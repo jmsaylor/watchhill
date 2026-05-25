@@ -1,0 +1,1107 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+
+const title = "15 Best Things to Do in Watch Hill, RI (2026 Local's Guide)";
+const description =
+  "From the oldest carousel in America to a 3-mile coastal hike past WWI fort ruins, here are the 15 best things to do in Watch Hill, RI — written by a local who lives just up the road.";
+const publishDate = "2026-05-24";
+const updatedDate = "2026-05-24";
+const readingTime = "12 min read";
+
+// Structured data for SEO — helps Google understand the page is a travel guide
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TravelGuide",
+  headline: title,
+  description: description,
+  datePublished: publishDate,
+  dateModified: updatedDate,
+  author: {
+    "@type": "Organization",
+    name: "Watch Hill Guide",
+  },
+  about: {
+    "@type": "Place",
+    name: "Watch Hill",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Westerly",
+      addressRegion: "RI",
+      addressCountry: "US",
+    },
+  },
+};
+
+// Affiliate links — replace these slugs with your real partner IDs once you sign up.
+// Using Stay22 / Booking.com / GetYourGuide / Amazon Associates as the four core programs.
+const aff = {
+  oceanHouse: "https://www.stay22.com/embed/gm?aid=watchhillguide&address=Ocean+House+Watch+Hill+RI",
+  weekapaugInn: "https://www.stay22.com/embed/gm?aid=watchhillguide&address=Weekapaug+Inn+RI",
+  watchHillInn: "https://www.stay22.com/embed/gm?aid=watchhillguide&address=Watch+Hill+Inn+RI",
+  vrboWesterly: "https://www.vrbo.com/?filterByRegionId=watch-hill&clickref=watchhillguide",
+  bookingWesterly: "https://www.booking.com/searchresults.html?ss=Watch+Hill&aid=watchhillguide",
+  boatTours: "https://www.getyourguide.com/-l/?partner_id=watchhillguide&q=watch+hill",
+  mysticAquarium: "https://www.getyourguide.com/-l/?partner_id=watchhillguide&q=mystic+aquarium",
+  amazonBeachBag: "https://www.amazon.com/s?k=beach+tote+bag&tag=YOUR_TAG",
+  amazonBinoculars: "https://www.amazon.com/s?k=birding+binoculars&tag=YOUR_TAG",
+  amazonCoolers: "https://www.amazon.com/s?k=beach+cooler&tag=YOUR_TAG",
+};
+
+const attractions = [
+  {
+    n: 1,
+    name: "Ride the Flying Horse Carousel",
+    tag: "Iconic Landmark",
+    description:
+      "America's oldest carousel — built in 1876 and continuously operating since 1883. The hand-carved horses literally fly outward on chains as the carousel spins, which is why kids must be under 12, under 5 feet, and under 100 pounds. Try to grab the brass ring on the outer horses and win a free ride.",
+    insider:
+      "Locals know: go on a weeknight after 6 PM. Saturday afternoons in July have wait times of 45+ minutes. Bring cash for ice cream next door — the ATM gets a line too.",
+    cost: "$1 inner horse / $2 outer horse",
+    bestFor: "Families with young kids",
+    season: "Open Memorial Day through Labor Day",
+  },
+  {
+    n: 2,
+    name: "Hike Napatree Point Conservation Area",
+    tag: "Outdoor",
+    description:
+      "A 3.1-mile loop along a 1.5-mile sandy peninsula with the Atlantic on one side and Little Narragansett Bay on the other. The 86-acre preserve is a globally important bird area — you'll see osprey, piping plovers, and American oystercatchers depending on the season. The trail ends at the ruins of Fort Mansfield, a WWI-era coastal defense site.",
+    insider:
+      "Most visitors only walk the first half-mile and turn around. The real reward is pushing all the way to the point and circling back along the bay side at low tide. Park at the Watch Hill lot early — by 10 AM in summer, you're hunting.",
+    cost: "Free",
+    bestFor: "Hikers, birders, history buffs",
+    season: "Year-round (best in fall and spring)",
+  },
+  {
+    n: 3,
+    name: "Climb Watch Hill Lighthouse",
+    tag: "History",
+    description:
+      "Commissioned by Thomas Jefferson in 1806, this is one of the oldest active lighthouses on the East Coast. The small museum on-site houses the original fourth-order Fresnel lens, and the views from the grounds across Block Island Sound are some of the best in Rhode Island.",
+    insider:
+      "Museum hours are limited — typically Tuesdays and Thursdays in summer only. Even when closed, the walk up Lighthouse Road and the views from the rocks below the keeper's house are worth the trip.",
+    cost: "Free (donations welcome)",
+    bestFor: "History lovers, photographers",
+    season: "Grounds open year-round; museum summer only",
+  },
+  {
+    n: 4,
+    name: "Spend a Day at East Beach",
+    tag: "Beach",
+    description:
+      "Three miles of soft, powder-white sand with calm waters and far fewer crowds than Misquamicut. The Watch Hill end is more residential and quiet; walk east and the beach opens up dramatically. East Beach connects directly to the larger Misquamicut shoreline.",
+    insider:
+      "Park at the Misquamicut State Beach lot ($14 weekdays, $20 weekends for out-of-state cars) and walk west. You'll get the better beach without the resident-sticker hassle.",
+    cost: "Parking $14–$20 daily in season",
+    bestFor: "Beach days, families, swimmers",
+    season: "Memorial Day to mid-September",
+  },
+  {
+    n: 5,
+    name: "Stroll Bay Street's Boutiques",
+    tag: "Shopping",
+    description:
+      "Watch Hill's two-block downtown is wedged between the harbor and the carousel. The shops here lean upscale-coastal — think cashmere sweaters, locally made jewelry, art galleries, and nautical home goods. It's compact enough to do in 90 minutes but charming enough to linger all afternoon.",
+    insider:
+      "Park once and walk everything. The town's tiny — driving between stops will only frustrate you. Public restrooms are behind the carousel pavilion.",
+    cost: "Free to browse",
+    bestFor: "Couples, gift shoppers, rainy days",
+    season: "Most shops open May through October",
+  },
+  {
+    n: 6,
+    name: "Eat Ice Cream at St. Clair Annex",
+    tag: "Food",
+    description:
+      "The Nicholas family has run this ice cream and sandwich counter for over 135 years — making it older than the carousel it sits next to. The small-batch ice cream is the headliner, but the Italian grinder is what locals come back for.",
+    insider:
+      "Cash only for ice cream. The line moves faster than it looks. Get the coffee ice cream — it's better than the trendy flavors.",
+    cost: "$6–$12 per person",
+    bestFor: "Every visitor, every visit",
+    season: "Open seasonally",
+  },
+  {
+    n: 7,
+    name: "Have Lunch at the Olympia Tea Room",
+    tag: "Food",
+    description:
+      "Operating since 1916, the Olympia is the soul of Bay Street. The antique mahogany booths, pressed tin ceiling, and original soda fountain look the same as they did when your grandparents might have visited. The linguini with roasted clams and Portuguese baked haddock are legendary.",
+    insider:
+      "No reservations. Show up at 11:30 AM or after 2 PM to avoid the worst of the wait. Sitting at the counter usually beats the booth line.",
+    cost: "$25–$45 per person",
+    bestFor: "Lunch with character",
+    season: "Closed in winter",
+  },
+  {
+    n: 8,
+    name: "Book a Sunset Cocktail at Ocean House",
+    tag: "Luxury",
+    description:
+      "Even if you're not staying at the Forbes Five-Star Ocean House, the verandah is open to non-guests for cocktails and small plates. Time your reservation for golden hour — the view down the bluffs to the Atlantic is the most photographed scene in southern Rhode Island.",
+    insider:
+      "Smart casual dress code is enforced (no flip-flops, no tank tops). Reserve a verandah table at least a week ahead in season. The Bistro is more accessible than the formal Coast restaurant if you want the experience without the $200/person tasting menu.",
+    cost: "$$$ ($75+ for cocktails and small plates)",
+    bestFor: "Date night, special occasions",
+    season: "Open year-round",
+  },
+  {
+    n: 9,
+    name: "Take a Boat Tour to Fishers Island",
+    tag: "Adventure",
+    description:
+      "Local outfitters like Hard Tail Charters run scenic harbor cruises from Watch Hill to Stonington, Mystic, and out to Fishers Island. Snappa Charters offers more specialized trips — sport fishing, whale watching, and even shark tagging excursions in deeper waters.",
+    insider:
+      "Sunset cruises sell out fastest. If you want the photogenic golden-hour shots, book the 6 PM departure at least two weeks ahead in July and August.",
+    cost: "$60–$150 per person",
+    bestFor: "Couples, anglers, photographers",
+    season: "May through October",
+  },
+  {
+    n: 10,
+    name: "Visit Taylor Swift's House (From the Water)",
+    tag: "Pop Culture",
+    description:
+      "Yes, this is a thing. The Holiday House — Taylor Swift's $17M oceanfront mansion — is visible from boats off the Watch Hill coast and from a distance along East Beach. There's no land access, but you can spot the famous deck where '4th of July' parties have been hosted.",
+    insider:
+      "You'll see better from a kayak or a charter boat than from the beach. Be respectful — it's a private home, and the local community is protective.",
+    cost: "Free (or boat tour cost)",
+    bestFor: "Swifties, casual celebrity-spotters",
+    season: "Year-round (visibility better in summer)",
+  },
+  {
+    n: 11,
+    name: "Day Trip to Mystic, Connecticut",
+    tag: "Day Trip",
+    description:
+      "Just 20 minutes west, Mystic is the perfect half-day pairing with Watch Hill. The Mystic Seaport Museum recreates a 19th-century whaling village, and the Mystic Aquarium is one of the best in the Northeast — particularly for kids. Downtown Mystic has its own historic charm and excellent restaurants.",
+    insider:
+      "If you have one day for both: do Watch Hill in the morning, drive to Mystic for late lunch, hit the Seaport, and have dinner at Bravo Bravo on Main Street before heading back.",
+    cost: "Aquarium ~$45 adult, Seaport ~$32 adult",
+    bestFor: "Families, history buffs",
+    season: "Year-round",
+  },
+  {
+    n: 12,
+    name: "Catch a Sunset at Watch Hill Point",
+    tag: "Free",
+    description:
+      "The southwesternmost point of Rhode Island, where the lighthouse stands, faces directly into Long Island Sound. On clear evenings, the sunset paints the water orange and pink with Fishers Island silhouetted in the distance. There's no admission, no crowd, and arguably no better free experience in town.",
+    insider:
+      "The best vantage isn't the lighthouse itself — it's the small overlook on Larkin Road just before you reach the lighthouse parking. Bring a blanket and a bottle of wine.",
+    cost: "Free",
+    bestFor: "Couples, photographers",
+    season: "Year-round",
+  },
+  {
+    n: 13,
+    name: "Tour Stonington Borough, CT",
+    tag: "Day Trip",
+    description:
+      "Fifteen minutes west across the state line, Stonington Borough is what Watch Hill might look like with even fewer tourists. The Old Lighthouse Museum, working fishing fleet, and tight grid of 18th-century homes make for a perfect 2-hour walking tour. Don't miss Water Street's restaurants — Breakwater and Dog Watch Café are local favorites.",
+    insider:
+      "Park at the Velvet Mill on Bayview Avenue for free and walk in. Borough parking is metered and frustrating.",
+    cost: "Free to walk; museum $8",
+    bestFor: "Quiet afternoon, photographers",
+    season: "Year-round",
+  },
+  {
+    n: 14,
+    name: "Play Mini Golf at Misquamicut",
+    tag: "Family",
+    description:
+      "Less than 10 minutes from Watch Hill, the Misquamicut strip has classic seaside amusements that feel completely different from Watch Hill's understated elegance. Bumper cars, batting cages, mini golf, and the Atlantic Beach Park arcade are exactly what kids want on day three of a beach trip.",
+    insider:
+      "This is the rainy-day backup plan. Combine it with a stop at Paddy's Beach Club for casual dinner and live music.",
+    cost: "$10–$15 per round",
+    bestFor: "Kids, teens, families",
+    season: "May through September",
+  },
+  {
+    n: 15,
+    name: "Try a Tasting at GreySail Brewing",
+    tag: "Drinks",
+    description:
+      "About 10 minutes inland in downtown Westerly, GreySail launched its Flagship Cream Ale on 11-11-11 and has anchored the town's craft beer scene ever since. The taproom is housed in a repurposed macaroni factory with original murals on the building next door.",
+    insider:
+      "Their Captain's Daughter Double IPA is the move if you like hop-forward beers. Flight prices are reasonable and they often have food trucks on weekends.",
+    cost: "Flights $12–$15",
+    bestFor: "Adults, beer fans",
+    season: "Year-round",
+  },
+];
+
+// FAQ — these target featured snippets and "People Also Ask" boxes on Google.
+// This is one of the highest-ROI SEO additions you can make.
+const faqs = [
+  {
+    q: "Is Watch Hill, RI worth visiting?",
+    a: "Yes — Watch Hill is one of New England's quietest luxury coastal destinations, with the oldest operating carousel in America, miles of soft-sand beaches, the historic Watch Hill Lighthouse, and the Napatree Point conservation area all within a walkable village. It's especially worth visiting if you prefer understated charm over the bigger crowds of Newport or the Hamptons.",
+  },
+  {
+    q: "How many days do you need in Watch Hill?",
+    a: "Two full days is the sweet spot. Day one covers the village (carousel, Bay Street, the lighthouse, sunset cocktails) plus a beach afternoon. Day two is for the Napatree hike, a boat tour, and a day trip to Mystic or Stonington. Stretching to three or four days makes sense if you want pure relaxation.",
+  },
+  {
+    q: "What is Watch Hill famous for?",
+    a: "Watch Hill is famous for three things: the 1876 Flying Horse Carousel (the oldest in America), the Ocean House luxury hotel, and being home to Taylor Swift's oceanfront Holiday House. It's also known as one of the most exclusive small beach communities on the East Coast.",
+  },
+  {
+    q: "When is the best time to visit Watch Hill?",
+    a: "Late June through early September for full beach season and all attractions open. September is the local favorite — water is still warm, crowds thin out after Labor Day, and the weather is reliably gorgeous. Avoid early May and late October if you want shops and restaurants open.",
+  },
+  {
+    q: "Is Watch Hill expensive?",
+    a: "It can be. Lodging is the main expense — Ocean House rooms start around $800/night in season, and Weekapaug Inn isn't far behind. However, all the best experiences (beaches, the lighthouse, Napatree, Bay Street walking) are free or low-cost. Budget travelers should stay in Misquamicut or Westerly and day-trip in.",
+  },
+  {
+    q: "Where should I stay near Watch Hill?",
+    a: "For luxury, Ocean House and Weekapaug Inn are the two Relais & Châteaux options — both with full beach access and shared amenities. The Watch Hill Inn offers a more accessible price point in town. For families or longer stays, VRBO and Airbnb rentals in Misquamicut put you on the beach for less.",
+  },
+];
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Nav />
+
+  <article class="article">
+    <!-- Hero -->
+    <header class="hero">
+      <div class="hero-inner">
+        <p class="kicker">Travel Guide · Rhode Island</p>
+        <h1 class="hero-title">
+          The <em>15 Best Things</em> to Do in Watch Hill, Rhode Island
+        </h1>
+        <p class="hero-sub">
+          An honest local's guide to America's quietest luxury beach town —
+          including the oldest carousel in the country, a 3-mile coastal hike,
+          and the best ice cream on Bay Street.
+        </p>
+        <div class="meta">
+          <span>Updated May 24, 2026</span>
+          <span class="dot">·</span>
+          <span>{readingTime}</span>
+          <span class="dot">·</span>
+          <span>Written from Westerly, RI</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Intro + Disclosure -->
+    <section class="prose">
+      <p class="lede">
+        I live ten minutes from Watch Hill. I've spent more sunsets at the
+        lighthouse than I can count, walked Napatree in every season, and have
+        a strong opinion about whether the inner or outer horse on the carousel
+        is the better ride. This guide is the version I'd hand to a friend who
+        was visiting for the first time — what to actually do, where to skip,
+        and the local timing tricks that turn a good day into a great one.
+      </p>
+
+      <aside class="disclosure">
+        <strong>A note on links:</strong> Some links below are affiliate links —
+        if you book a hotel or tour through them, we may earn a small
+        commission at no extra cost to you. We only recommend places we'd send
+        our own family to. It helps keep this guide free and updated.
+      </aside>
+    </section>
+
+    <!-- Quick Picks (high-CTR affiliate block) -->
+    <section class="quick-picks">
+      <h2 class="section-h">If You Only Have One Day</h2>
+      <ol class="quick-list">
+        <li>
+          <span class="time">9:00 AM</span>
+          <span class="what">
+            Hike Napatree Point before the parking lot fills
+          </span>
+        </li>
+        <li>
+          <span class="time">11:30 AM</span>
+          <span class="what">Lunch at the Olympia Tea Room</span>
+        </li>
+        <li>
+          <span class="time">1:00 PM</span>
+          <span class="what">
+            Bay Street shopping + carousel ride if you have kids
+          </span>
+        </li>
+        <li>
+          <span class="time">3:00 PM</span>
+          <span class="what">East Beach for the afternoon</span>
+        </li>
+        <li>
+          <span class="time">6:30 PM</span>
+          <span class="what">
+            Sunset cocktails on the Ocean House verandah
+          </span>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Where to Stay (affiliate-heavy block, placed high for revenue) -->
+    <section class="stay">
+      <h2 class="section-h">Where to Stay in Watch Hill</h2>
+      <p class="stay-intro">
+        Watch Hill has three landmark hotels — and they share amenities, which
+        is unusual and useful. A guest at any of the three can use the beaches,
+        spa, restaurants, and croquet courts of the others.
+      </p>
+
+      <div class="stay-grid">
+        <div class="stay-card">
+          <p class="stay-tag">Luxury · Forbes Five-Star</p>
+          <h3>Ocean House</h3>
+          <p>
+            The 1868 yellow grande dame on the bluffs. Five restaurants, a full
+            spa, private beach, and the most-photographed verandah in Rhode
+            Island. From $800/night in season.
+          </p>
+          <a class="stay-cta" href={aff.oceanHouse} rel="sponsored nofollow">
+            Check rates →
+          </a>
+        </div>
+
+        <div class="stay-card">
+          <p class="stay-tag">Luxury · Relais &amp; Châteaux</p>
+          <h3>Weekapaug Inn</h3>
+          <p>
+            Ocean House's quieter sister property on a private pond, about 10
+            minutes east. Best for couples who want luxury without the
+            see-and-be-seen energy. From $600/night.
+          </p>
+          <a class="stay-cta" href={aff.weekapaugInn} rel="sponsored nofollow">
+            Check rates →
+          </a>
+        </div>
+
+        <div class="stay-card">
+          <p class="stay-tag">Boutique · In Town</p>
+          <h3>Watch Hill Inn</h3>
+          <p>
+            All-suite property right on the harbor with kitchens and water
+            views. The most accessible of the three landmark hotels, and your
+            best bet for families or longer stays. From $400/night.
+          </p>
+          <a class="stay-cta" href={aff.watchHillInn} rel="sponsored nofollow">
+            Check rates →
+          </a>
+        </div>
+
+        <div class="stay-card alt">
+          <p class="stay-tag">Budget-Friendly</p>
+          <h3>VRBO Rentals in Misquamicut</h3>
+          <p>
+            Beach cottages and condos 5 minutes east. For families or groups,
+            this is usually 50%+ cheaper than the landmark hotels with more
+            space and a kitchen.
+          </p>
+          <a class="stay-cta" href={aff.vrboWesterly} rel="sponsored nofollow">
+            Browse rentals →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- The 15 Attractions -->
+    <section class="attractions">
+      <h2 class="section-h">The 15 Best Things to Do</h2>
+
+      {
+        attractions.map((item) => (
+          <article class="attraction" id={`thing-${item.n}`}>
+            <div class="num">{String(item.n).padStart(2, "0")}</div>
+            <div class="content">
+              <p class="tag">{item.tag}</p>
+              <h3>{item.name}</h3>
+              <p class="desc">{item.description}</p>
+
+              <div class="insider">
+                <p class="insider-label">Local Tip</p>
+                <p>{item.insider}</p>
+              </div>
+
+              <dl class="facts">
+                <div>
+                  <dt>Cost</dt>
+                  <dd>{item.cost}</dd>
+                </div>
+                <div>
+                  <dt>Best For</dt>
+                  <dd>{item.bestFor}</dd>
+                </div>
+                <div>
+                  <dt>When</dt>
+                  <dd>{item.season}</dd>
+                </div>
+              </dl>
+
+              {item.n === 9 && (
+                <a class="inline-cta" href={aff.boatTours} rel="sponsored nofollow">
+                  Browse Watch Hill boat tours →
+                </a>
+              )}
+              {item.n === 11 && (
+                <a class="inline-cta" href={aff.mysticAquarium} rel="sponsored nofollow">
+                  Book Mystic Aquarium tickets →
+                </a>
+              )}
+            </div>
+          </article>
+        ))
+      }
+    </section>
+
+    <!-- What to Pack (Amazon affiliate block) -->
+    <section class="pack">
+      <h2 class="section-h">What to Bring</h2>
+      <p>
+        A few things make a Watch Hill day immeasurably better. Linked below
+        are the picks I actually own and use.
+      </p>
+      <ul class="pack-list">
+        <li>
+          <strong>A roomy beach tote</strong> — Bay Street to East Beach is a
+          15-minute walk; you want straps that survive it.
+          <a href={aff.amazonBeachBag} rel="sponsored nofollow">
+            See picks →
+          </a>
+        </li>
+        <li>
+          <strong>Birding binoculars</strong> — Napatree is a globally
+          recognized bird area; even casual walkers see ospreys and oystercatchers.
+          <a href={aff.amazonBinoculars} rel="sponsored nofollow">
+            See picks →
+          </a>
+        </li>
+        <li>
+          <strong>A soft-sided cooler</strong> — there's no concession stand
+          past the carousel. Pack lunch from the village and you'll thank
+          yourself.
+          <a href={aff.amazonCoolers} rel="sponsored nofollow">
+            See picks →
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Getting There -->
+    <section class="prose">
+      <h2 class="section-h">Getting to Watch Hill</h2>
+      <p>
+        Watch Hill is a village within the town of Westerly, in the
+        southwestern corner of Rhode Island, right at the Connecticut border.
+        It's small — about a square mile — and best reached by car.
+      </p>
+      <ul class="bullets">
+        <li>
+          <strong>From Boston:</strong> 1 hour 45 minutes south via I-95. Take
+          exit 1 in Rhode Island.
+        </li>
+        <li>
+          <strong>From New York City:</strong> 2 hours 45 minutes north via
+          I-95. Take exit 92 in Connecticut.
+        </li>
+        <li>
+          <strong>From Providence:</strong> 50 minutes south, mostly on I-95.
+        </li>
+        <li>
+          <strong>By train:</strong> Amtrak's Northeast Corridor stops at
+          Westerly Station, 10 minutes from Watch Hill. Uber and a small local
+          taxi fleet cover the last mile.
+        </li>
+      </ul>
+      <p>
+        <strong>Parking:</strong> Watch Hill has metered street parking on Bay
+        Street and a small lot at the foot of the village. Both fill by 10 AM
+        on summer weekends. If you can't find a spot, park at Misquamicut
+        State Beach and walk in along East Beach — it's 25 minutes and
+        prettier than driving anyway.
+      </p>
+    </section>
+
+    <!-- FAQ Block (for Google "People Also Ask" snippets) -->
+    <section class="faq">
+      <h2 class="section-h">Watch Hill Travel FAQ</h2>
+      {
+        faqs.map((faq) => (
+          <details class="faq-item">
+            <summary>{faq.q}</summary>
+            <p>{faq.a}</p>
+          </details>
+        ))
+      }
+    </section>
+
+    <!-- Related posts (internal linking for SEO) -->
+    <section class="related">
+      <h2 class="section-h">Keep Reading</h2>
+      <div class="related-grid">
+        <a href="/blog/where-to-stay-watch-hill" class="related-card">
+          <p class="related-tag">Hotels</p>
+          <h3>Where to Stay in Watch Hill: A Full Hotel Guide</h3>
+        </a>
+        <a href="/blog/watch-hill-vs-newport" class="related-card">
+          <p class="related-tag">Comparison</p>
+          <h3>Watch Hill vs Newport: Which Rhode Island Town to Visit?</h3>
+        </a>
+        <a href="/blog/best-restaurants-watch-hill" class="related-card">
+          <p class="related-tag">Food</p>
+          <h3>The 12 Best Restaurants in Watch Hill &amp; Westerly</h3>
+        </a>
+        <a href="/blog/day-trips-from-watch-hill" class="related-card">
+          <p class="related-tag">Day Trips</p>
+          <h3>10 Best Day Trips from Watch Hill, RI</h3>
+        </a>
+      </div>
+    </section>
+  </article>
+
+  <style>
+    :root {
+      --ink: #1a1d24;
+      --ink-soft: #4a5061;
+      --ink-muted: #7a8195;
+      --paper: #fbf8f1;
+      --paper-warm: #f3ede0;
+      --line: #e5dfd0;
+      --accent: #2c5f5d;
+      --accent-deep: #1d3f3d;
+      --gold: #b8924a;
+      --font-display: "Fraunces", Georgia, serif;
+      --font-body: "Inter Tight", -apple-system, system-ui, sans-serif;
+    }
+
+    .article {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.65;
+      padding-bottom: 6rem;
+    }
+
+    .article *,
+    .article *::before,
+    .article *::after {
+      box-sizing: border-box;
+    }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(180deg, var(--paper-warm) 0%, var(--paper) 100%);
+      padding: 5rem 1.5rem 4rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .kicker {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin: 0 0 1.5rem;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5.5vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+      margin: 0 0 1.5rem;
+      color: var(--ink);
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .hero-sub {
+      font-size: 1.2rem;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      margin: 0 0 2rem;
+      max-width: 620px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      align-items: center;
+    }
+
+    .dot {
+      color: var(--line);
+    }
+
+    /* ── PROSE ────────────────────────────────────────── */
+    .prose {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    .lede {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .lede + .disclosure {
+      margin-top: 2rem;
+    }
+
+    .disclosure {
+      background: var(--paper-warm);
+      border-left: 3px solid var(--gold);
+      padding: 1rem 1.25rem;
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .disclosure strong {
+      color: var(--ink);
+    }
+
+    /* ── SECTION HEADINGS ─────────────────────────────── */
+    .section-h {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3vw, 2.4rem);
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      font-weight: 600;
+      color: var(--ink);
+      margin: 0 0 1.5rem;
+    }
+
+    /* ── QUICK PICKS ─────────────────────────────────── */
+    .quick-picks {
+      max-width: 760px;
+      margin: 2rem auto;
+      padding: 2.5rem 1.5rem;
+      background: var(--accent);
+      color: var(--paper);
+      border-radius: 4px;
+    }
+
+    .quick-picks .section-h {
+      color: var(--paper);
+    }
+
+    .quick-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .quick-list li {
+      display: flex;
+      gap: 1.5rem;
+      align-items: baseline;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(251, 248, 241, 0.15);
+    }
+
+    .quick-list li:last-child {
+      border-bottom: none;
+    }
+
+    .quick-list .time {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.95rem;
+      min-width: 75px;
+      color: var(--paper-warm);
+      letter-spacing: 0.02em;
+    }
+
+    .quick-list .what {
+      font-size: 1.05rem;
+    }
+
+    /* ── STAY GRID (affiliate block) ──────────────────── */
+    .stay {
+      max-width: 1080px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .stay-intro {
+      max-width: 680px;
+      color: var(--ink-soft);
+      margin: 0 0 2rem;
+    }
+
+    .stay-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .stay-card {
+      background: white;
+      border: 1px solid var(--line);
+      padding: 1.5rem;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .stay-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(26, 29, 36, 0.08);
+    }
+
+    .stay-card.alt {
+      background: var(--paper-warm);
+      border-color: var(--gold);
+    }
+
+    .stay-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin: 0 0 0.5rem;
+    }
+
+    .stay-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      margin: 0 0 0.75rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .stay-card p:not(.stay-tag) {
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      margin: 0 0 1.25rem;
+      flex: 1;
+    }
+
+    .stay-cta {
+      align-self: flex-start;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 2px;
+      transition: color 0.15s ease;
+    }
+
+    .stay-cta:hover {
+      color: var(--accent-deep);
+    }
+
+    /* ── ATTRACTIONS ──────────────────────────────────── */
+    .attractions {
+      max-width: 760px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .attraction {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.5rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .attraction:last-child {
+      border-bottom: none;
+    }
+
+    .num {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      font-feature-settings: "tnum";
+    }
+
+    .attraction .tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      font-weight: 600;
+      margin: 0 0 0.5rem;
+    }
+
+    .attraction h3 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      margin: 0 0 1rem;
+      line-height: 1.15;
+    }
+
+    .desc {
+      margin: 0 0 1.25rem;
+      color: var(--ink);
+    }
+
+    .insider {
+      background: var(--paper-warm);
+      padding: 1rem 1.25rem;
+      border-left: 3px solid var(--gold);
+      border-radius: 0 4px 4px 0;
+      margin: 0 0 1.25rem;
+    }
+
+    .insider-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+      margin: 0 0 0.25rem;
+    }
+
+    .insider p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin: 0 0 1rem;
+      padding: 0;
+    }
+
+    .facts > div {
+      border-top: 1px solid var(--line);
+      padding-top: 0.75rem;
+    }
+
+    .facts dt {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      font-weight: 600;
+      margin: 0 0 0.25rem;
+    }
+
+    .facts dd {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--ink);
+    }
+
+    .inline-cta {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.6rem 1rem;
+      background: var(--accent);
+      color: var(--paper);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 4px;
+      transition: background 0.15s ease;
+    }
+
+    .inline-cta:hover {
+      background: var(--accent-deep);
+    }
+
+    /* ── PACK LIST ────────────────────────────────────── */
+    .pack {
+      max-width: 680px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .pack-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0 0;
+    }
+
+    .pack-list li {
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 1rem;
+      color: var(--ink-soft);
+    }
+
+    .pack-list li:last-child {
+      border-bottom: none;
+    }
+
+    .pack-list strong {
+      color: var(--ink);
+      display: block;
+      margin-bottom: 0.15rem;
+    }
+
+    .pack-list a {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+      margin-left: 0.25rem;
+      border-bottom: 1px solid var(--accent);
+    }
+
+    /* ── BULLETS ──────────────────────────────────────── */
+    .bullets {
+      padding-left: 1.25rem;
+      margin: 1rem 0;
+    }
+
+    .bullets li {
+      margin-bottom: 0.5rem;
+      color: var(--ink-soft);
+    }
+
+    .bullets strong {
+      color: var(--ink);
+    }
+
+    /* ── FAQ ──────────────────────────────────────────── */
+    .faq {
+      max-width: 760px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--line);
+      padding: 1.25rem 0;
+    }
+
+    .faq-item summary {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--ink);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      letter-spacing: -0.005em;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: "+";
+      font-size: 1.5rem;
+      color: var(--accent);
+      font-weight: 400;
+      transition: transform 0.2s ease;
+    }
+
+    .faq-item[open] summary::after {
+      content: "−";
+    }
+
+    .faq-item p {
+      margin: 1rem 0 0;
+      color: var(--ink-soft);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /* ── RELATED POSTS ────────────────────────────────── */
+    .related {
+      max-width: 1080px;
+      margin: 4rem auto 0;
+      padding: 3rem 1.5rem 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .related-card {
+      display: block;
+      background: white;
+      border: 1px solid var(--line);
+      padding: 1.5rem;
+      text-decoration: none;
+      color: var(--ink);
+      border-radius: 4px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .related-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+
+    .related-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin: 0 0 0.75rem;
+    }
+
+    .related-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin: 0;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── MOBILE TWEAKS ────────────────────────────────── */
+    @media (max-width: 640px) {
+      .hero {
+        padding: 3.5rem 1.25rem 3rem;
+      }
+
+      .attraction {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+
+      .num {
+        font-size: 2rem;
+      }
+
+      .quick-list li {
+        flex-direction: column;
+        gap: 0.15rem;
+      }
+    }
+  </style>
+</Base>

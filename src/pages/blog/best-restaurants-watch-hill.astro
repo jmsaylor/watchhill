@@ -1,0 +1,1025 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import { affiliates } from "../../data/affiliates";
+
+const title =
+  "15 Best Restaurants in Watch Hill & Westerly, RI (2026 Local's Guide)";
+const description =
+  "A local's honest ranking of the best restaurants in Watch Hill and Westerly, Rhode Island — from the 110-year-old Olympia Tea Room to the Forbes Five-Star tasting menu at Ocean House. What to order, when to go, and where to skip.";
+const publishDate = "2026-05-24";
+const updatedDate = "2026-05-24";
+const readingTime = "13 min read";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description: description,
+  datePublished: publishDate,
+  dateModified: updatedDate,
+  author: {
+    "@type": "Organization",
+    name: "Watch Hill Guide",
+  },
+  about: {
+    "@type": "Place",
+    name: "Watch Hill and Westerly",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Westerly",
+      addressRegion: "RI",
+      addressCountry: "US",
+    },
+  },
+};
+
+// 15 restaurants, ranked roughly by a combination of food quality, atmosphere,
+// and "would I send a friend here." Tags help filter mentally.
+const restaurants = [
+  {
+    n: 1,
+    name: "Olympia Tea Room",
+    tag: "Historic · Bistro",
+    where: "74 Bay Street, Watch Hill",
+    cost: "$$$",
+    summary:
+      "The soul of Bay Street. Operating since 1916 — first as an ice cream parlor, now as a bistro — with the same antique mahogany booths, pressed tin ceiling, and original soda fountain. The kitchen is genuinely good: Portuguese baked haddock, lime chipotle shrimp, a lobster roll on a croissant that locals fight over, and a wine list that's better than any 80-seat restaurant in Rhode Island has any right to have.",
+    order:
+      "Paella when it's on specials. Avocado carpaccio with grilled chicken. Whatever the kitchen is pushing seasonally — they update the menu often.",
+    insider:
+      "No reservations, no exceptions. Show up at 11:30 AM for lunch or after 2 PM if you want to avoid waits. For dinner, sit at the counter rather than waiting for a booth — service is faster and the bartender is genuinely the best in town.",
+    season: "Closed early November through early April",
+    affiliate: null,
+  },
+  {
+    n: 2,
+    name: "Coast at Ocean House",
+    tag: "Fine Dining · Tasting Menu",
+    where: "1 Bluff Avenue, Watch Hill",
+    cost: "$$$$",
+    summary:
+      "Rhode Island's only Forbes Five-Star restaurant. A multi-course tasting menu rooted in coastal New England ingredients, served in a candlelit dining room with views down the bluff to the Atlantic. This is the special-occasion meal: anniversary, milestone birthday, you-finally-got-engaged celebration.",
+    order:
+      "Trust the chef's menu. You're not coming to Coast to make safe decisions.",
+    insider:
+      "Reserve at least 6 weeks ahead in season. Smart casual minimum — jackets aren't required for men but make you blend in. The wine pairing is worth the upcharge; sommelier here is excellent.",
+    season: "Year-round, closed Tuesdays in shoulder season",
+    affiliate: affiliates.restaurants.oceanHouseCoast,
+  },
+  {
+    n: 3,
+    name: "The Bistro at Ocean House",
+    tag: "Casual Refined",
+    where: "1 Bluff Avenue, Watch Hill",
+    cost: "$$$",
+    summary:
+      "Ocean House's accessible alternative to Coast. Same kitchen team, same ingredient sourcing, but a more relaxed menu and atmosphere — and far easier to book. Best lunch on the property; the verandah-adjacent dining area gets the same ocean view without the formality.",
+    order:
+      "The burger, surprisingly. Also the seasonal flatbreads. Don't sleep on the cocktail program — Ocean House's bar staff are properly trained.",
+    insider:
+      "Non-hotel guests can dine here, but in season reservations are essential. Best play: lunch on a weekday, sit on the verandah, order a glass of wine, watch the boats.",
+    season: "Year-round",
+    affiliate: affiliates.restaurants.oceanHouseBistro,
+  },
+  {
+    n: 4,
+    name: "Weekapaug Inn Restaurant",
+    tag: "Refined New England",
+    where: "25 Spray Rock Road, Weekapaug",
+    cost: "$$$",
+    summary:
+      "Tucked inside the Weekapaug Inn, ten minutes east of Watch Hill village. The dining room overlooks the inn's private pond, which sounds boring until you're sitting there at golden hour with a glass of something cold and watching herons stalk the shallows. Kitchen leans into the inn's working garden — vegetables you've actually never had before, locally caught fish, and a quietly excellent dessert program.",
+    order:
+      "Whatever's been pulled from the garden that morning. Ask the waiter — they know.",
+    insider:
+      "You don't need to be a guest of the inn to dine here, but the dining room is small. Reserve a week ahead minimum in season. Sunday brunch is the local secret — most tourists don't know it exists.",
+    season: "Closed January through March",
+    affiliate: affiliates.restaurants.weekapaugRestaurant,
+  },
+  {
+    n: 5,
+    name: "Bridge Restaurant & Raw Bar",
+    tag: "Seafood · Oysters",
+    where: "37 Main Street, Westerly",
+    cost: "$$$",
+    summary:
+      "If you want the best seafood in Westerly proper — and the best raw bar within thirty miles — this is it. The room is bright, the bar is long and well-staffed, and the oyster selection rotates daily from sources across the eastern seaboard. Sits right by Wilcox Park, which makes it the natural post-parade lunch on Memorial Day weekend.",
+    order:
+      "A dozen oysters from the rotating selection. The bloody mary if it's daytime, a martini if it's not. The lobster roll is genuinely competitive with Maine.",
+    insider:
+      "Bar seating gets you the full raw bar experience without needing a reservation. The Sunday brunch crowd is intense in season — go before 11 or after 1.",
+    season: "Open year-round",
+    affiliate: affiliates.restaurants.bridgeWesterly,
+  },
+  {
+    n: 6,
+    name: "The Cooked Goose",
+    tag: "Breakfast · Brunch",
+    where: "92 Watch Hill Road, Westerly",
+    cost: "$$",
+    summary:
+      "Best breakfast in southern Rhode Island, full stop. Five minutes outside Watch Hill on the road in, this is where everyone — locals, weekend visitors, Ocean House guests skipping the hotel buffet — actually eats in the morning. Cinnamon roll pancakes, lobster eggs Benedict, a crab cake sandwich at lunch that's somehow $18 in 2026.",
+    order:
+      "Lobster eggs Benedict. The cinnamon roll pancakes if you're hungover. Their iced coffee is the only iced coffee in town that's actually good.",
+    insider:
+      "There's almost always a wait at peak hours; go before 8:30 AM or after 11. They do takeout — call ahead and pick up a breakfast sandwich to eat at the beach.",
+    season: "Open year-round, 7 AM to 3 PM",
+    affiliate: affiliates.restaurants.cookedGoose,
+  },
+  {
+    n: 7,
+    name: "St. Clair Annex",
+    tag: "Ice Cream · Lunch Counter",
+    where: "141 Bay Street, Watch Hill",
+    cost: "$",
+    summary:
+      "The Nicholas family has run this counter for over 135 years — older than the carousel sitting next to it. Small-batch ice cream is the headliner (coffee flavor is the move), but the Italian grinder is what locals come back for. Lunch runs 11 AM to 4 PM, after which the line is purely ice cream.",
+    order:
+      "Coffee ice cream, two scoops, on a sugar cone. For lunch, the Italian grinder.",
+    insider:
+      "Cash only. The line looks daunting but moves faster than it appears. The ATM up the street gets crowded too, so bring cash before arriving.",
+    season: "Seasonal, roughly May through October",
+    affiliate: null,
+  },
+  {
+    n: 8,
+    name: "Paddy's Beach Restaurant",
+    tag: "Beach Bar · Casual",
+    where: "159 Atlantic Avenue, Misquamicut",
+    cost: "$$",
+    summary:
+      "The opposite of Coast at Ocean House. Open-air bar directly on Misquamicut Beach, live music most summer afternoons, sand on the floor, drinks that are stronger than they need to be. The food won't change your life, but the atmosphere genuinely will if you arrive at the right moment of a summer Saturday.",
+    order:
+      "Whatever's grilled. The clam strips. A frozen drink that's somehow $14. Don't overthink it.",
+    insider:
+      "Best between 3 and 6 PM in summer. After dark it turns into more of a club; in season they often have a cover. Off-season it's much quieter and the food is better.",
+    season: "Roughly May through September",
+    affiliate: affiliates.restaurants.paddysWesterly,
+  },
+  {
+    n: 9,
+    name: "Two Little Fish",
+    tag: "Seafood · Casual",
+    where: "346 Atlantic Avenue, Misquamicut",
+    cost: "$$",
+    summary:
+      "A small, family-run seafood spot that punches above its weight. The kitchen does fried clams, lobster rolls, and clam chowder at a level that justifies the wait, which there always is in summer. Nothing here is fussy. Everything here is good.",
+    order:
+      "Fried whole-belly clams. The lobster roll. The clam chowder is among the best in town and people don't talk about it enough.",
+    insider:
+      "Call ahead for a wait estimate — they're honest about it. BYOB, which makes the pricing more reasonable than it first appears.",
+    season: "May through October",
+    affiliate: affiliates.restaurants.twoLittleFish,
+  },
+  {
+    n: 10,
+    name: "The Andrea Seaside Restaurant",
+    tag: "Beach Bar · Family",
+    where: "89 Atlantic Avenue, Misquamicut",
+    cost: "$$",
+    summary:
+      "Directly on the beach, with the most ocean view of any restaurant in the area. The Andrea is the family-friendly counterpart to Paddy's — same casual energy, fewer late-night-club vibes, more space for kids. The menu is exactly what you'd expect: salads, sandwiches, seafood, drinks. The view is the actual product.",
+    order:
+      "Anything off the salad menu, surprisingly. The jerk chicken salad has a real following.",
+    insider:
+      "The parking situation is unusual — you pay to park but get a portion of it back in 'Andrea Money' to spend at the restaurant. It works out fine but read the signs before you complain.",
+    season: "May through September",
+    affiliate: null,
+  },
+  {
+    n: 11,
+    name: "Maria's Seaside Café",
+    tag: "Italian · Casual",
+    where: "132 Atlantic Avenue, Misquamicut",
+    cost: "$$",
+    summary:
+      "A Misquamicut institution that does honest red-sauce Italian and casual seafood. Family-run, lived-in, the kind of place where the same waitress has been working summers for twenty years. The pizza is genuinely good. The clam pie is a thing here and worth ordering.",
+    order:
+      "The clam pie. The chicken parm. A glass of house red.",
+    insider:
+      "Less hyped than the more touristy spots on the strip, which is exactly why locals quietly prefer it. Reservations not required but not a bad idea on summer weekends.",
+    season: "Roughly May through October",
+    affiliate: null,
+  },
+  {
+    n: 12,
+    name: "GreySail Brewing",
+    tag: "Brewery · Taproom",
+    where: "63 Canal Street, Westerly",
+    cost: "$",
+    summary:
+      "A craft brewery in a repurposed macaroni factory in downtown Westerly. Launched their flagship cream ale on 11-11-11 and has anchored the town's craft beer scene ever since. The taproom is small but well-run, the beer is consistently good, and there are usually food trucks on weekends.",
+    order:
+      "The Captain's Daughter Double IPA if you like hop-forward beers. Flagship Cream Ale if you want their original. A flight if you can't decide.",
+    insider:
+      "Check their event schedule before going on a weeknight — sometimes they're closed for private events. Saturdays in summer usually have food trucks and live music.",
+    season: "Year-round",
+    affiliate: null,
+  },
+  {
+    n: 13,
+    name: "Sandy's Fine Food Emporium",
+    tag: "Gourmet · Takeout",
+    where: "15 Post Road, Westerly",
+    cost: "$$",
+    summary:
+      "Less a restaurant than a small gourmet market with a serious sandwich counter. Locals use Sandy's the way Manhattanites use a good bodega: call ahead, pick up two specialty sandwiches and a bag of prepared sides, and you've solved beach lunch. Charcuterie, cheeses, wines, and a rotating prepared-food case round it out.",
+    order:
+      "Whatever sandwich they're featuring that week. Their grain salads are unusually good.",
+    insider:
+      "This is your secret weapon for beach days. Way better than the concession stand at Misquamicut, and you're not stuck eating beach food.",
+    season: "Year-round",
+    affiliate: null,
+  },
+  {
+    n: 14,
+    name: "Bay Street Deli & Pizzeria",
+    tag: "Pizza · Sandwiches",
+    where: "112 Bay Street, Watch Hill",
+    cost: "$",
+    summary:
+      "The casual sandwich-and-pizza option on Bay Street itself. Honest food at honest prices in a village where neither is guaranteed. Best for a fast lunch between the beach and the carousel without committing to a full restaurant experience.",
+    order:
+      "A slice of plain cheese — it travels well to the beach. The Italian grinder if you want something more substantial.",
+    insider:
+      "The closest thing Bay Street has to a 'normal' food option. When the village restaurants are full and the wait at Olympia is two hours, this is the answer.",
+    season: "Seasonal",
+    affiliate: null,
+  },
+  {
+    n: 15,
+    name: "Sift Bake Shop (Mystic)",
+    tag: "Bakery · Coffee",
+    where: "5 Water Street, Mystic, CT (20 min west)",
+    cost: "$",
+    summary:
+      "Worth the drive. A serious James Beard semifinalist bakery in downtown Mystic — coffee, croissants, breakfast pastries that look like they belong in Paris, and a small menu of sandwiches and salads at lunch. Most Watch Hill visitors don't know it exists; the ones who do work it into their day-trip planning.",
+    order:
+      "An almond croissant. A cortado. Take both to the boardwalk and eat them looking at the Mystic River.",
+    insider:
+      "Originally had a Watch Hill location that closed; only the Mystic shop remains. Combines beautifully with a Mystic day trip — pastries in the morning, aquarium midday, dinner back in Westerly.",
+    season: "Year-round",
+    affiliate: null,
+  },
+];
+
+const byMeal = {
+  breakfast: ["The Cooked Goose", "Sift Bake Shop"],
+  lunch: ["Olympia Tea Room", "St. Clair Annex", "Bridge Restaurant", "Sandy's"],
+  dinner: ["Coast at Ocean House", "Olympia Tea Room", "Weekapaug Inn", "Bridge Restaurant"],
+  beachDay: ["Paddy's Beach", "The Andrea", "Two Little Fish", "Sandy's"],
+  drinks: ["The Bistro at Ocean House", "GreySail Brewing", "Olympia Tea Room bar"],
+};
+
+const faqs = [
+  {
+    q: "What is the best restaurant in Watch Hill?",
+    a: "It depends on the meal. Olympia Tea Room is the best traditional sit-down on Bay Street with the most character — and the only Watch Hill restaurant besides Ocean House that serves both lunch and dinner. Coast at Ocean House is the best fine dining in Rhode Island. For breakfast, drive five minutes inland to The Cooked Goose.",
+  },
+  {
+    q: "Do Watch Hill restaurants take reservations?",
+    a: "Some do, some don't. Olympia Tea Room famously doesn't — you walk in and wait. Coast and The Bistro at Ocean House require reservations in season. Weekapaug Inn restaurant and Bridge Restaurant in Westerly take reservations and need them on weekends. Beach bars and casual spots like Paddy's and The Andrea are walk-in.",
+  },
+  {
+    q: "Are Watch Hill restaurants open year-round?",
+    a: "Most close from mid-October through April. The Ocean House restaurants operate year-round with reduced winter hours. Bridge Restaurant in downtown Westerly stays open all year. The Cooked Goose is open year-round. GreySail Brewing is open year-round. Most beach restaurants are strictly Memorial Day through Labor Day.",
+  },
+  {
+    q: "What is the dress code at Watch Hill restaurants?",
+    a: "Coast at Ocean House is the dressiest — smart casual minimum, jackets recommended. The Bistro and Weekapaug Inn lean smart casual. Olympia Tea Room is whatever-you're-wearing-after-the-beach, but no swimwear. Beach bars are explicitly come-as-you-are. There is no Watch Hill restaurant where you cannot wear nice shorts to lunch.",
+  },
+  {
+    q: "Where do locals actually eat in Watch Hill?",
+    a: "The Cooked Goose for breakfast, Olympia Tea Room for lunch or dinner, GreySail for beer, Bridge Restaurant when in Westerly proper. Sandy's for beach lunch. Honestly, locals go to Ocean House less often than tourists do — not because it's bad but because it's where company dinners and special occasions happen, not weeknights.",
+  },
+  {
+    q: "What's the best restaurant for kids in Watch Hill?",
+    a: "The Andrea Seaside Restaurant is the most explicitly kid-friendly — beach access, casual menu, no one minds if your three-year-old is loud. The Cooked Goose for breakfast handles families well. Olympia Tea Room is family-friendly at lunch (less so at dinner). Avoid Coast at Ocean House with young kids; it's not the room for it.",
+  },
+  {
+    q: "Is the food at Ocean House worth the price?",
+    a: "Coast is genuinely some of the best fine dining in New England, full stop. For a special occasion meal, yes, it's worth it. The Bistro is more accessibly priced and still excellent — better value than Coast for most diners. The verandah cocktails and small plates are worth doing once for the view alone, even if dinner isn't in the budget.",
+  },
+];
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <Nav />
+
+  <article class="article">
+    <!-- Hero -->
+    <header class="hero">
+      <div class="hero-inner">
+        <p class="kicker">Restaurant Guide · 2026</p>
+        <h1>
+          The <em>15 Best Restaurants</em> in Watch Hill &amp; Westerly
+        </h1>
+        <p class="hero-sub">
+          A local's honest ranking of every restaurant actually worth your
+          time — from the 110-year-old Olympia Tea Room to the only Forbes
+          Five-Star kitchen in Rhode Island, plus the beach bars, breakfast
+          spots, and gourmet markets that round out a real week of eating.
+        </p>
+        <div class="meta">
+          <span>Updated May 24, 2026</span>
+          <span class="dot">·</span>
+          <span>{readingTime}</span>
+          <span class="dot">·</span>
+          <span>Written from Westerly, RI</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Intro + Disclosure -->
+    <section class="prose">
+      <p class="lede">
+        Watch Hill has fewer restaurants than you'd expect. The village proper
+        has six. Stretch to Westerly and Misquamicut and you get to about
+        twenty. So a ranked list of fifteen — which is what this is — covers
+        nearly every restaurant in the area worth knowing. This guide is
+        opinionated, locally biased, and updated annually. If you disagree
+        with the order, write your own list.
+      </p>
+
+      <aside class="disclosure">
+        <strong>A note on links:</strong> Some links below go to OpenTable for
+        reservations; we may earn a small commission when you book through
+        them, at no extra cost to you. We only link to restaurants we'd send
+        our own family to.
+      </aside>
+    </section>
+
+    <!-- Quick lookup by meal type -->
+    <section class="by-meal">
+      <div class="by-meal-inner">
+        <p class="bm-label">Quick Lookup</p>
+        <h2>If You Just Need to Know Where to Eat for…</h2>
+
+        <div class="meal-grid">
+          <div class="meal-card">
+            <p class="meal-h">Breakfast</p>
+            <ul>
+              {byMeal.breakfast.map((r) => <li>{r}</li>)}
+            </ul>
+          </div>
+          <div class="meal-card">
+            <p class="meal-h">Lunch</p>
+            <ul>
+              {byMeal.lunch.map((r) => <li>{r}</li>)}
+            </ul>
+          </div>
+          <div class="meal-card">
+            <p class="meal-h">Dinner</p>
+            <ul>
+              {byMeal.dinner.map((r) => <li>{r}</li>)}
+            </ul>
+          </div>
+          <div class="meal-card">
+            <p class="meal-h">Beach Day</p>
+            <ul>
+              {byMeal.beachDay.map((r) => <li>{r}</li>)}
+            </ul>
+          </div>
+          <div class="meal-card">
+            <p class="meal-h">Drinks</p>
+            <ul>
+              {byMeal.drinks.map((r) => <li>{r}</li>)}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The 15 Restaurants -->
+    <section class="restaurants">
+      <div class="section-head">
+        <h2>The 15 Best, Ranked</h2>
+        <p>
+          Ranked by a mix of food quality, atmosphere, and the honest test of
+          "would I send a friend here." Number 1 is the heart of the village;
+          number 15 is worth a 20-minute drive.
+        </p>
+      </div>
+
+      {
+        restaurants.map((r) => (
+          <article class="restaurant" id={`r-${r.n}`}>
+            <header class="r-head">
+              <p class="r-num">{String(r.n).padStart(2, "0")}</p>
+              <p class="r-tag">{r.tag}</p>
+            </header>
+
+            <h3>{r.name}</h3>
+
+            <p class="r-where">
+              <span>{r.where}</span>
+              <span class="r-dot">·</span>
+              <span>{r.cost}</span>
+            </p>
+
+            <p class="r-summary">{r.summary}</p>
+
+            <div class="r-detail">
+              <p class="r-detail-label">What to Order</p>
+              <p>{r.order}</p>
+            </div>
+
+            <div class="r-insider">
+              <p class="r-insider-label">Local Tip</p>
+              <p>{r.insider}</p>
+            </div>
+
+            <div class="r-foot">
+              <p class="r-season">{r.season}</p>
+              {r.affiliate && (
+                <a
+                  class="r-cta"
+                  href={r.affiliate}
+                  rel="sponsored nofollow"
+                >
+                  Reserve on OpenTable →
+                </a>
+              )}
+            </div>
+          </article>
+        ))
+      }
+    </section>
+
+    <!-- Where to Stay context (drives traffic to the highest-revenue post) -->
+    <section class="stay-context">
+      <div class="sc-inner">
+        <p class="sc-tag">Building a Whole Trip?</p>
+        <h2>Where to Stay Affects Where You Eat</h2>
+        <p>
+          Three of the restaurants on this list — Coast, The Bistro, and
+          Weekapaug — are inside Ocean House Collection hotels. Stay at any
+          of the three properties and you get reservation priority, late-seating
+          flexibility, and a smoother experience overall. If you're still
+          deciding where to stay, the full breakdown is in our hotel guide.
+        </p>
+        <a
+          class="sc-cta"
+          href="/blog/where-to-stay-watch-hill"
+        >
+          Read: Where to Stay in Watch Hill →
+        </a>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+      <h2 class="section-h">Frequently Asked Questions</h2>
+      {
+        faqs.map((faq) => (
+          <details class="faq-item">
+            <summary>{faq.q}</summary>
+            <p>{faq.a}</p>
+          </details>
+        ))
+      }
+    </section>
+
+    <!-- Related -->
+    <section class="related">
+      <h2 class="section-h">Keep Reading</h2>
+      <div class="related-grid">
+        <a href="/blog/best-things-to-do-in-watch-hill-ri" class="related-card">
+          <p class="related-tag">Activities</p>
+          <h3>15 Best Things to Do in Watch Hill</h3>
+        </a>
+        <a href="/blog/where-to-stay-watch-hill" class="related-card">
+          <p class="related-tag">Hotels</p>
+          <h3>Where to Stay in Watch Hill</h3>
+        </a>
+        <a href="/blog/memorial-day-watch-hill" class="related-card">
+          <p class="related-tag">Seasonal</p>
+          <h3>Memorial Day in Watch Hill &amp; Westerly</h3>
+        </a>
+        <a href="/blog/is-watch-hill-worth-visiting" class="related-card">
+          <p class="related-tag">Planning</p>
+          <h3>Is Watch Hill Worth Visiting?</h3>
+        </a>
+      </div>
+    </section>
+  </article>
+
+  <style>
+    :root {
+      --ink: #1a1d24;
+      --ink-soft: #4a5061;
+      --ink-muted: #7a8195;
+      --paper: #fbf8f1;
+      --paper-warm: #f3ede0;
+      --line: #e5dfd0;
+      --accent: #2c5f5d;
+      --accent-deep: #1d3f3d;
+      --gold: #b8924a;
+      --font-display: "Fraunces", Georgia, serif;
+      --font-body: "Inter Tight", -apple-system, system-ui, sans-serif;
+    }
+
+    .article {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.7;
+      padding-bottom: 6rem;
+    }
+
+    .article *,
+    .article *::before,
+    .article *::after {
+      box-sizing: border-box;
+    }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(180deg, var(--paper-warm) 0%, var(--paper) 100%);
+      padding: 5rem 1.5rem 3rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .kicker {
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin: 0 0 1.5rem;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5.5vw, 4rem);
+      line-height: 1.04;
+      letter-spacing: -0.025em;
+      font-weight: 600;
+      margin: 0 0 1.5rem;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 1.2rem;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      margin: 0 0 2rem;
+      max-width: 620px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+    }
+
+    .dot {
+      color: var(--line);
+    }
+
+    /* ── PROSE ────────────────────────────────────────── */
+    .prose {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    .lede {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .disclosure {
+      background: var(--paper-warm);
+      border-left: 3px solid var(--gold);
+      padding: 1rem 1.25rem;
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      border-radius: 0 4px 4px 0;
+      margin-top: 2rem;
+    }
+
+    .disclosure strong {
+      color: var(--ink);
+    }
+
+    /* ── SECTION HEADINGS ─────────────────────────────── */
+    .section-h {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+      margin: 0 0 1.5rem;
+    }
+
+    /* ── QUICK LOOKUP BY MEAL ─────────────────────────── */
+    .by-meal {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 4rem 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .by-meal-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .bm-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin: 0 0 0.75rem;
+    }
+
+    .by-meal h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.3rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+      margin: 0 0 2.5rem;
+      color: white;
+    }
+
+    .meal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .meal-card {
+      padding-top: 1rem;
+      border-top: 1px solid rgba(251, 248, 241, 0.2);
+    }
+
+    .meal-h {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--gold);
+      margin: 0 0 0.75rem;
+    }
+
+    .meal-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .meal-card li {
+      font-size: 0.92rem;
+      color: rgba(251, 248, 241, 0.85);
+      padding: 0.3rem 0;
+      border-bottom: 1px solid rgba(251, 248, 241, 0.08);
+    }
+
+    .meal-card li:last-child {
+      border-bottom: none;
+    }
+
+    /* ── RESTAURANTS ──────────────────────────────────── */
+    .restaurants {
+      max-width: 760px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .section-head {
+      margin-bottom: 3rem;
+    }
+
+    .section-head p {
+      color: var(--ink-soft);
+      margin: 0.5rem 0 0;
+    }
+
+    .restaurant {
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .restaurant:last-of-type {
+      border-bottom: none;
+    }
+
+    .r-head {
+      display: flex;
+      align-items: baseline;
+      gap: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .r-num {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 0;
+      letter-spacing: -0.02em;
+      font-feature-settings: "tnum";
+    }
+
+    .r-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .restaurant h3 {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 3.5vw, 2.1rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+      margin: 0 0 0.5rem;
+    }
+
+    .r-where {
+      font-family: var(--font-display);
+      font-style: italic;
+      color: var(--ink-muted);
+      font-size: 1rem;
+      margin: 0 0 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .r-dot {
+      color: var(--line);
+      font-style: normal;
+    }
+
+    .r-summary {
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: var(--ink);
+      margin: 0 0 1.5rem;
+    }
+
+    .r-detail,
+    .r-insider {
+      padding: 1rem 1.25rem;
+      border-radius: 0 4px 4px 0;
+      margin-bottom: 1rem;
+    }
+
+    .r-detail {
+      background: var(--paper);
+      border-left: 3px solid var(--accent);
+    }
+
+    .r-insider {
+      background: var(--paper-warm);
+      border-left: 3px solid var(--gold);
+    }
+
+    .r-detail-label,
+    .r-insider-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin: 0 0 0.4rem;
+    }
+
+    .r-detail-label {
+      color: var(--accent);
+    }
+
+    .r-insider-label {
+      color: var(--gold);
+    }
+
+    .r-detail p:not(.r-detail-label),
+    .r-insider p:not(.r-insider-label) {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      line-height: 1.55;
+    }
+
+    .r-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .r-season {
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      font-style: italic;
+      margin: 0;
+    }
+
+    .r-cta {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--paper);
+      padding: 0.7rem 1.25rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background 0.15s ease;
+    }
+
+    .r-cta:hover {
+      background: var(--accent-deep);
+    }
+
+    /* ── STAY CONTEXT (cross-link to hotels post) ─────── */
+    .stay-context {
+      max-width: 1080px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .sc-inner {
+      background: var(--paper-warm);
+      border: 1px solid var(--line);
+      padding: 2.5rem;
+      border-radius: 4px;
+      border-left: 4px solid var(--accent);
+    }
+
+    .sc-tag {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin: 0 0 0.75rem;
+    }
+
+    .stay-context h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 2.8vw, 1.9rem);
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      font-weight: 600;
+      margin: 0 0 1rem;
+    }
+
+    .stay-context p {
+      color: var(--ink-soft);
+      margin: 0 0 1.5rem;
+      max-width: 620px;
+    }
+
+    .sc-cta {
+      display: inline-block;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 2px;
+      transition: color 0.15s ease;
+    }
+
+    .sc-cta:hover {
+      color: var(--accent-deep);
+    }
+
+    /* ── FAQ ──────────────────────────────────────────── */
+    .faq {
+      max-width: 760px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--line);
+      padding: 1.25rem 0;
+    }
+
+    .faq-item summary {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--ink);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      letter-spacing: -0.005em;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: "+";
+      font-size: 1.5rem;
+      color: var(--accent);
+      font-weight: 400;
+      flex-shrink: 0;
+    }
+
+    .faq-item[open] summary::after {
+      content: "−";
+    }
+
+    .faq-item p {
+      margin: 1rem 0 0;
+      color: var(--ink-soft);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /* ── RELATED ──────────────────────────────────────── */
+    .related {
+      max-width: 1080px;
+      margin: 4rem auto 0;
+      padding: 3rem 1.5rem 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .related-card {
+      display: block;
+      background: white;
+      border: 1px solid var(--line);
+      padding: 1.5rem;
+      text-decoration: none;
+      color: var(--ink);
+      border-radius: 4px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .related-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+
+    .related-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin: 0 0 0.75rem;
+    }
+
+    .related-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin: 0;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── MOBILE ───────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .hero {
+        padding: 3.5rem 1.25rem 2.5rem;
+      }
+
+      .by-meal {
+        padding: 3rem 1.25rem;
+      }
+
+      .sc-inner {
+        padding: 2rem 1.5rem;
+      }
+    }
+  </style>
+</Base>

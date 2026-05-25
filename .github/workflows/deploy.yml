@@ -27,7 +27,11 @@ jobs:
 
       - run: npm ci
 
-      - uses: withastro/action@v3
+      - run: npm run build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
 
   deploy:
     needs: build

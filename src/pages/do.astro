@@ -1,0 +1,134 @@
+---
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import HubPage from "../components/HubPage.astro";
+
+const title = "Things to Do in Watch Hill, RI | Watch Hill Guide";
+const description =
+  "The full local's guide to things to do in Watch Hill, Rhode Island — beaches, the carousel, the lighthouse, Napatree Point, boat tours, and the best free experiences in town.";
+
+const featured = {
+  href: "/blog/best-things-to-do-in-watch-hill-ri",
+  tag: "The Anchor Guide",
+  title: "15 Best Things to Do in Watch Hill, RI",
+  description:
+    "From the oldest carousel in America to a 3-mile coastal hike past WWI fort ruins — everything actually worth your time, with local timing tips.",
+  readTime: "12 min read",
+};
+
+const articles = [
+  {
+    href: "/blog/flying-horse-carousel-watch-hill",
+    tag: "Iconic",
+    title: "The Flying Horse Carousel: A Complete Visitor's Guide",
+    description:
+      "America's oldest carousel — hours, ticket prices, age limits, and the best time to ride without waiting in line.",
+    readTime: "6 min",
+  },
+  {
+    href: "/blog/napatree-point-guide",
+    tag: "Outdoor",
+    title: "Hiking Napatree Point: The Full Trail Guide",
+    description:
+      "Where to park, how long it takes, what to bring, and where to find the WWI Fort Mansfield ruins at the very end.",
+    readTime: "8 min",
+  },
+  {
+    href: "/blog/watch-hill-lighthouse",
+    tag: "History",
+    title: "Watch Hill Lighthouse: Visiting Hours, Museum & History",
+    description:
+      "The 1806 lighthouse commissioned by Thomas Jefferson — when you can climb it, what's in the museum, and why the sunset view is unbeatable.",
+    readTime: "5 min",
+  },
+  {
+    href: "/blog/east-beach-watch-hill",
+    tag: "Beach",
+    title: "East Beach Watch Hill: A Full Beach Guide",
+    description:
+      "Parking, lifeguards, water quality, and the best stretch of sand connecting Watch Hill to Misquamicut.",
+    readTime: "6 min",
+  },
+  {
+    href: "/blog/misquamicut-state-beach",
+    tag: "Beach",
+    title: "Misquamicut State Beach: Visitor's Guide",
+    description:
+      "The bigger, livelier beach next door — parking fees, amenities, concessions, and how to time your visit.",
+    readTime: "5 min",
+  },
+  {
+    href: "/blog/watch-hill-boat-tours",
+    tag: "Adventure",
+    title: "Boat Tours, Charters & Sunset Cruises from Watch Hill",
+    description:
+      "Hard Tail, Snappa, and the local outfitters running scenic tours, sport fishing, and the famous sunset cruise.",
+    readTime: "7 min",
+  },
+  {
+    href: "/blog/taylor-swift-watch-hill-mansion",
+    tag: "Local History",
+    title: "The Real Story of Holiday House",
+    description:
+      "Three generations of women, one mansion on the hill — including the Rebekah Harkness years that inspired a Taylor Swift song.",
+    readTime: "11 min",
+  },
+  {
+    href: "/blog/free-things-watch-hill",
+    tag: "Free",
+    title: "10 Free Things to Do in Watch Hill",
+    description:
+      "Sunsets at the lighthouse, Bay Street strolls, Napatree hike — the best Watch Hill experiences cost nothing.",
+    readTime: "6 min",
+  },
+  {
+    href: "/blog/watch-hill-rainy-day",
+    tag: "Bad Weather",
+    title: "What to Do in Watch Hill on a Rainy Day",
+    description:
+      "Indoor restaurants, shopping, museums in Mystic, and the rainy-day routine locals swear by.",
+    readTime: "5 min",
+  },
+];
+
+const quickAnswers = [
+  {
+    q: "What is Watch Hill famous for?",
+    a: "Three things: the 1876 Flying Horse Carousel (the oldest in America), the historic Watch Hill Lighthouse, and being home to Taylor Swift's oceanfront estate. It's also known as one of the quietest luxury coastal communities on the East Coast.",
+  },
+  {
+    q: "Is the Flying Horse Carousel still operating?",
+    a: "Yes — it's been operating continuously since 1883 and is the oldest carousel in America. It runs daily from Memorial Day through Labor Day. There are strict size limits because the horses literally fly outward on chains: kids must be under 12, under 5 feet, and under 100 pounds.",
+  },
+  {
+    q: "Can you climb Watch Hill Lighthouse?",
+    a: "The grounds are open year-round, but the small museum and tower viewing area have limited summer hours (typically Tuesdays and Thursdays). Even when closed, the walk up to the lighthouse and the view from the surrounding rocks are worth the trip.",
+  },
+  {
+    q: "Are there beach activities at Napatree Point?",
+    a: "Napatree is a conservation area, not a swimming beach. You can walk the 3-mile loop, birdwatch, beachcomb along the bay side at low tide, and explore the Fort Mansfield ruins at the western end. Swimming is better at East Beach or Misquamicut.",
+  },
+];
+
+const otherHubs = [
+  { href: "/plan", title: "Plan Your Trip", description: "Timing, logistics, packing, getting there." },
+  { href: "/stay", title: "Where to Stay", description: "Ocean House, Weekapaug, vacation rentals." },
+  { href: "/eat", title: "Eat & Drink", description: "Restaurants, ice cream, breweries, brunch spots." },
+  { href: "/day-trips", title: "Day Trips", description: "Mystic, Stonington, Newport, Block Island." },
+];
+---
+
+<Base title={title} description={description}>
+  <Nav />
+  <HubPage
+    kicker="Hub · Things to Do"
+    heading="What to Do in Watch Hill"
+    lede="The full local's guide to attractions, beaches, history, and outdoor experiences in Watch Hill and the surrounding shoreline. Free things, kid things, splurge things — all in one place."
+    featured={featured}
+    articlesHeading="Activity Guides"
+    articlesSubheading="Sorted by what most visitors actually want to know."
+    articles={articles}
+    quickAnswers={quickAnswers}
+    otherHubs={otherHubs}
+  />
+</Base>

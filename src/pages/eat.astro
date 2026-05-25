@@ -1,0 +1,126 @@
+---
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import HubPage from "../components/HubPage.astro";
+
+const title = "Where to Eat in Watch Hill, RI | Restaurant Guide";
+const description =
+  "The local's guide to restaurants in Watch Hill and Westerly, RI — from the 110-year-old Olympia Tea Room to the best ice cream, breweries, and waterfront dining in southern Rhode Island.";
+
+const featured = {
+  href: "/blog/best-restaurants-watch-hill",
+  tag: "The Restaurant Guide",
+  title: "The 12 Best Restaurants in Watch Hill & Westerly",
+  description:
+    "From historic Bay Street institutions to the Ocean House tasting menu — the restaurants worth planning your trip around, ranked honestly.",
+  readTime: "13 min read",
+};
+
+const articles = [
+  {
+    href: "/blog/olympia-tea-room-review",
+    tag: "Historic",
+    title: "Olympia Tea Room: The Soul of Bay Street",
+    description:
+      "Operating since 1916. What to order, when to go to avoid the wait, and why locals are protective of it.",
+    readTime: "6 min",
+  },
+  {
+    href: "/blog/st-clair-annex-ice-cream",
+    tag: "Ice Cream",
+    title: "St. Clair Annex: 135 Years of Ice Cream on Bay Street",
+    description:
+      "The Nicholas family institution — the flavors to get, the grinders that locals come for, and why it's cash-only.",
+    readTime: "4 min",
+  },
+  {
+    href: "/blog/ocean-house-restaurants",
+    tag: "Fine Dining",
+    title: "All Five Ocean House Restaurants, Reviewed",
+    description:
+      "From the $250/person Coast tasting menu to the casual Bistro — what to book, what to skip, and what to wear.",
+    readTime: "10 min",
+  },
+  {
+    href: "/blog/watch-hill-breakfast",
+    tag: "Breakfast",
+    title: "Best Breakfast Spots in Watch Hill & Westerly",
+    description:
+      "Where to get the best coffee, eggs, and morning pastries — including the local favorite no one writes about.",
+    readTime: "6 min",
+  },
+  {
+    href: "/blog/greysail-brewing-westerly",
+    tag: "Drinks",
+    title: "GreySail Brewing: A Local Brewery Guide",
+    description:
+      "The macaroni-factory taproom that anchors Westerly's craft beer scene. The flagship cream ale to try, plus food truck schedule.",
+    readTime: "5 min",
+  },
+  {
+    href: "/blog/watch-hill-seafood",
+    tag: "Seafood",
+    title: "Where to Get the Best Seafood in Watch Hill",
+    description:
+      "Lobster rolls, raw bars, fried clams, and the spots actually worth the price. Including which to skip.",
+    readTime: "7 min",
+  },
+  {
+    href: "/blog/misquamicut-restaurants",
+    tag: "Casual",
+    title: "Best Restaurants on the Misquamicut Beach Strip",
+    description:
+      "Paddy's Beach Club, Andrea's, and the casual seaside spots locals recommend after a beach day.",
+    readTime: "6 min",
+  },
+  {
+    href: "/blog/watch-hill-bars",
+    tag: "Nightlife",
+    title: "The Best Bars in Watch Hill & Westerly",
+    description:
+      "Watch Hill's nightlife is small but quality. Where to find a great cocktail, oyster happy hour, or live music.",
+    readTime: "5 min",
+  },
+];
+
+const quickAnswers = [
+  {
+    q: "What is the best restaurant in Watch Hill?",
+    a: "It depends on the meal you want. For a special-occasion dinner, Coast at Ocean House. For lunch with character, the Olympia Tea Room. For casual waterfront dining, Bay Street Deli or the Watch Hill Inn's restaurant. For ice cream, St. Clair Annex with no debate.",
+  },
+  {
+    q: "Do Watch Hill restaurants take reservations?",
+    a: "Ocean House properties, Weekapaug Inn restaurants, and Bridge Restaurant in Westerly take reservations and need them in season. Olympia Tea Room is walk-in only and has waits at peak times. Casual spots and ice cream counters are first-come, first-served.",
+  },
+  {
+    q: "Are Watch Hill restaurants open year-round?",
+    a: "Most close from mid-October through April. Ocean House operates year-round with reduced restaurant hours. A handful of Westerly restaurants (like Bridge) stay open all year. Always call ahead in winter or shoulder season.",
+  },
+  {
+    q: "What's the dress code at Ocean House?",
+    a: "Smart casual is enforced — no flip-flops, no tank tops, no swimwear in restaurants or the verandah. Coast (the tasting menu restaurant) leans dressier in the evening. The Bistro is more relaxed. Resort-elegant is a safe bet.",
+  },
+];
+
+const otherHubs = [
+  { href: "/plan", title: "Plan Your Trip", description: "Timing, logistics, packing, getting there." },
+  { href: "/do", title: "Things to Do", description: "Beaches, the carousel, the lighthouse, boat tours." },
+  { href: "/stay", title: "Where to Stay", description: "Ocean House, Weekapaug, vacation rentals." },
+  { href: "/day-trips", title: "Day Trips", description: "Mystic, Stonington, Newport, Block Island." },
+];
+---
+
+<Base title={title} description={description}>
+  <Nav />
+  <HubPage
+    kicker="Hub · Eat & Drink"
+    heading="Where to Eat in Watch Hill"
+    lede="A village with one of the oldest ice cream counters in America, a 110-year-old tea room, and a Forbes Five-Star kitchen — all within four blocks. Here's the full local guide."
+    featured={featured}
+    articlesHeading="Restaurant & Drink Guides"
+    articlesSubheading="From historic institutions to the newest waterfront spots."
+    articles={articles}
+    quickAnswers={quickAnswers}
+    otherHubs={otherHubs}
+  />
+</Base>

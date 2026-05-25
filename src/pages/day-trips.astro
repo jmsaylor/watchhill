@@ -1,0 +1,126 @@
+---
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import HubPage from "../components/HubPage.astro";
+
+const title = "Day Trips from Watch Hill, RI | Watch Hill Guide";
+const description =
+  "The best day trips from Watch Hill, Rhode Island — Mystic, Stonington, Newport, Block Island, the Connecticut casinos, and more. Drive times, what to do, and how to make the most of a day.";
+
+const featured = {
+  href: "/blog/day-trips-from-watch-hill",
+  tag: "The Day Trip Guide",
+  title: "10 Best Day Trips from Watch Hill, RI",
+  description:
+    "Mystic Aquarium to Block Island ferry to Newport mansions — the day trips that turn a Watch Hill weekend into a real southern New England vacation.",
+  readTime: "11 min read",
+};
+
+const articles = [
+  {
+    href: "/blog/mystic-day-trip",
+    tag: "20 Min Away",
+    title: "A Perfect Day in Mystic, CT from Watch Hill",
+    description:
+      "Mystic Seaport, Mystic Aquarium, and the historic downtown — the full itinerary, including the restaurants worth the drive.",
+    readTime: "9 min",
+  },
+  {
+    href: "/blog/stonington-borough-guide",
+    tag: "15 Min Away",
+    title: "Stonington Borough, CT: Day Trip Guide",
+    description:
+      "What Watch Hill might look like with even fewer tourists. A two-hour walking tour and where to lunch on Water Street.",
+    readTime: "7 min",
+  },
+  {
+    href: "/blog/watch-hill-to-newport",
+    tag: "1 Hour Away",
+    title: "Newport, RI Day Trip: The Mansion Tour Guide",
+    description:
+      "The Breakers, Marble House, the Cliff Walk — how to do Newport in a day from Watch Hill without spending it in traffic.",
+    readTime: "10 min",
+  },
+  {
+    href: "/blog/block-island-ferry-westerly",
+    tag: "Ferry",
+    title: "How to Take the Block Island Ferry from Westerly",
+    description:
+      "The high-speed ferry leaves from Pawcatuck — schedules, parking, what to do once you're there, and whether to bring your bike.",
+    readTime: "8 min",
+  },
+  {
+    href: "/blog/foxwoods-mohegan-sun",
+    tag: "Casinos",
+    title: "Foxwoods & Mohegan Sun: 15 Minutes from Watch Hill",
+    description:
+      "Both casinos are an easy drive — when to go, what's worth it beyond gambling (concerts, restaurants, spas), and where to stay.",
+    readTime: "7 min",
+  },
+  {
+    href: "/blog/watch-hill-to-providence",
+    tag: "1 Hour Away",
+    title: "Providence Day Trip from Watch Hill",
+    description:
+      "The capital is 50 minutes north — Federal Hill restaurants, RISD Museum, the East Side. Worth a full day on a rainy weekend.",
+    readTime: "8 min",
+  },
+  {
+    href: "/blog/mystic-aquarium-guide",
+    tag: "Family",
+    title: "Mystic Aquarium: A Visitor's Guide",
+    description:
+      "Tickets, hours, the best time to visit, and the exhibits kids actually love. The single best rainy-day plan with kids.",
+    readTime: "6 min",
+  },
+  {
+    href: "/blog/charlestown-rhode-island",
+    tag: "Beaches",
+    title: "Charlestown, RI: Beaches, Ponds & Hidden Coast",
+    description:
+      "Twenty minutes east, Charlestown has some of the best undeveloped beaches in the state. Where to park and what to bring.",
+    readTime: "6 min",
+  },
+];
+
+const quickAnswers = [
+  {
+    q: "What's the best day trip from Watch Hill?",
+    a: "Mystic, Connecticut — twenty minutes west — is the most popular and most worthwhile. You can pair it with Stonington Borough for a full day or use it as a half-day combined with a Watch Hill afternoon. The Mystic Aquarium and Mystic Seaport Museum are both worth visiting on their own.",
+  },
+  {
+    q: "Can you take a day trip to Block Island from Watch Hill?",
+    a: "Yes — the high-speed ferry from Westerly (in Pawcatuck) gets you to Block Island in about 30 minutes. The full ferry round trip plus a day on the island is a comfortable single-day plan. Bring or rent a bike once you're there.",
+  },
+  {
+    q: "Is Newport worth a day trip from Watch Hill?",
+    a: "Yes, but plan for a full day — it's about an hour each way without summer traffic. The Newport mansions and the Cliff Walk are the headline attractions. Avoid Saturday afternoons in July when traffic between Westerly and Newport can be brutal.",
+  },
+  {
+    q: "How far is Boston from Watch Hill?",
+    a: "About 1 hour 45 minutes by car. Too far for a true day trip — most travelers either use Watch Hill as a Boston getaway or combine the two destinations on a longer New England trip.",
+  },
+];
+
+const otherHubs = [
+  { href: "/plan", title: "Plan Your Trip", description: "Timing, logistics, packing, getting there." },
+  { href: "/do", title: "Things to Do", description: "Beaches, the carousel, the lighthouse, boat tours." },
+  { href: "/stay", title: "Where to Stay", description: "Ocean House, Weekapaug, vacation rentals." },
+  { href: "/eat", title: "Eat & Drink", description: "Restaurants, ice cream, breweries, brunch spots." },
+];
+---
+
+<Base title={title} description={description}>
+  <Nav />
+  <HubPage
+    kicker="Hub · Day Trips"
+    heading="Day Trips from Watch Hill"
+    lede="Watch Hill is the kind of town you don't need to leave — but if you have three days, the southern New England coast around it is one of the most rewarding driving regions in the country. Here's where to go and how to plan it."
+    featured={featured}
+    articlesHeading="Day Trip Guides"
+    articlesSubheading="Sorted by distance — closest first."
+    articles={articles}
+    quickAnswers={quickAnswers}
+    otherHubs={otherHubs}
+  />
+</Base>

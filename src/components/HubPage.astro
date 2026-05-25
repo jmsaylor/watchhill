@@ -1,0 +1,508 @@
+---
+// ─────────────────────────────────────────────────────────────────────────
+// HubPage — the reusable layout for category landing pages.
+// All five hubs (Plan, Do, Stay, Eat, Day Trips) use this component.
+// To change hub design across the whole site, you only edit this file.
+// ─────────────────────────────────────────────────────────────────────────
+
+interface Article {
+  href: string;
+  tag: string;
+  title: string;
+  description: string;
+  readTime: string;
+}
+
+interface FeaturedArticle extends Article {
+  // Featured uses the same shape but renders as the big dark hero card.
+}
+
+interface QuickAnswer {
+  q: string;
+  a: string;
+}
+
+interface HubLink {
+  href: string;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  kicker: string;        // e.g. "Hub · Trip Planning"
+  heading: string;       // big H1
+  lede: string;          // hero subtitle paragraph
+  featured: FeaturedArticle;
+  articlesHeading: string;       // e.g. "Planning Guides"
+  articlesSubheading: string;
+  articles: Article[];
+  quickAnswers?: QuickAnswer[];  // optional FAQ-style block
+  quickAnswersHeading?: string;
+  quickAnswersSubheading?: string;
+  otherHubs: HubLink[];          // cross-links to other hubs
+}
+
+const {
+  kicker,
+  heading,
+  lede,
+  featured,
+  articlesHeading,
+  articlesSubheading,
+  articles,
+  quickAnswers,
+  quickAnswersHeading = "Quick Answers",
+  quickAnswersSubheading = "The questions visitors ask most often.",
+  otherHubs,
+} = Astro.props;
+---
+
+<main class="hub">
+  <!-- Hero -->
+  <header class="hub-hero">
+    <div class="hub-hero-inner">
+      <p class="kicker">{kicker}</p>
+      <h1>{heading}</h1>
+      <p class="lede">{lede}</p>
+    </div>
+  </header>
+
+  <!-- Featured / Start Here -->
+  <section class="featured-wrap">
+    <a href={featured.href} class="featured">
+      <div class="featured-text">
+        <p class="featured-tag">{featured.tag}</p>
+        <h2>{featured.title}</h2>
+        <p class="featured-desc">{featured.description}</p>
+        <p class="featured-meta">
+          {featured.readTime} <span class="arrow">→</span>
+        </p>
+      </div>
+      <div class="featured-graphic" aria-hidden="true">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="80" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+          <circle cx="100" cy="100" r="50" fill="none" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <circle cx="100" cy="100" r="20" fill="currentColor"/>
+          <line x1="100" y1="10" x2="100" y2="30" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="100" y1="170" x2="100" y2="190" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="10" y1="100" x2="30" y2="100" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="170" y1="100" x2="190" y2="100" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+      </div>
+    </a>
+  </section>
+
+  <!-- Article grid -->
+  <section class="articles">
+    <div class="section-head">
+      <h2>{articlesHeading}</h2>
+      <p>{articlesSubheading}</p>
+    </div>
+
+    <div class="articles-grid">
+      {
+        articles.map((a) => (
+          <a href={a.href} class="article-card">
+            <p class="card-tag">{a.tag}</p>
+            <h3>{a.title}</h3>
+            <p class="card-desc">{a.description}</p>
+            <p class="card-meta">
+              {a.readTime} <span class="arrow">→</span>
+            </p>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Optional quick answers block -->
+  {
+    quickAnswers && quickAnswers.length > 0 && (
+      <section class="quick">
+        <div class="section-head">
+          <h2>{quickAnswersHeading}</h2>
+          <p>{quickAnswersSubheading}</p>
+        </div>
+
+        <div class="quick-grid">
+          {quickAnswers.map((qa) => (
+            <div class="quick-card">
+              <h3>{qa.q}</h3>
+              <p>{qa.a}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <!-- Cross-hub links -->
+  <section class="hubs-next">
+    <p class="next-label">Continue Exploring</p>
+    <div class="hubs-grid">
+      {
+        otherHubs.map((hub) => (
+          <a href={hub.href} class="hub-link">
+            <h3>{hub.title}</h3>
+            <p>{hub.description}</p>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</main>
+
+<style>
+  :root {
+    --ink: #1a1d24;
+    --ink-soft: #4a5061;
+    --ink-muted: #7a8195;
+    --paper: #fbf8f1;
+    --paper-warm: #f3ede0;
+    --line: #e5dfd0;
+    --accent: #2c5f5d;
+    --accent-deep: #1d3f3d;
+    --gold: #b8924a;
+    --font-display: "Fraunces", Georgia, serif;
+    --font-body: "Inter Tight", -apple-system, system-ui, sans-serif;
+  }
+
+  .hub {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.6;
+    padding-bottom: 6rem;
+  }
+
+  .hub *,
+  .hub *::before,
+  .hub *::after {
+    box-sizing: border-box;
+  }
+
+  /* ── HERO ─────────────────────────────────────────── */
+  .hub-hero {
+    background: linear-gradient(180deg, var(--paper-warm) 0%, var(--paper) 100%);
+    padding: 5rem 1.5rem 4rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .hub-hero-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .kicker {
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin: 0 0 1.25rem;
+  }
+
+  .hub-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 5.5vw, 4rem);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    font-weight: 600;
+    margin: 0 0 1.25rem;
+  }
+
+  .lede {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0;
+    max-width: 600px;
+  }
+
+  /* ── FEATURED (Start Here) ────────────────────────── */
+  .featured-wrap {
+    max-width: 1080px;
+    margin: 4rem auto;
+    padding: 0 1.5rem;
+  }
+
+  .featured {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 3rem;
+    border-radius: 6px;
+    text-decoration: none;
+    align-items: center;
+    transition: transform 0.2s ease;
+    overflow: hidden;
+  }
+
+  .featured:hover {
+    transform: translateY(-3px);
+  }
+
+  .featured:hover .arrow {
+    transform: translateX(4px);
+  }
+
+  .featured-tag {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin: 0 0 0.75rem;
+  }
+
+  .featured h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3.5vw, 2.3rem);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+    margin: 0 0 1rem;
+    color: white;
+  }
+
+  .featured-desc {
+    font-size: 1.05rem;
+    color: rgba(251, 248, 241, 0.78);
+    margin: 0 0 1.5rem;
+    max-width: 540px;
+  }
+
+  .featured-meta {
+    margin: 0;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .featured-graphic {
+    width: 160px;
+    height: 160px;
+    color: var(--gold);
+    opacity: 0.65;
+  }
+
+  .featured-graphic svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .arrow {
+    display: inline-block;
+    transition: transform 0.2s ease;
+    margin-left: 0.25rem;
+  }
+
+  /* ── SECTION HEAD ─────────────────────────────────── */
+  .section-head {
+    max-width: 760px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .section-head h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+  }
+
+  .section-head p {
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ── ARTICLES GRID ────────────────────────────────── */
+  .articles {
+    max-width: 1080px;
+    margin: 0 auto 4rem;
+    padding: 0 1.5rem;
+  }
+
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .article-card {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1.75rem;
+    text-decoration: none;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    position: relative;
+  }
+
+  .article-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+  }
+
+  .article-card:hover .arrow {
+    transform: translateX(4px);
+  }
+
+  .card-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin: 0 0 0.75rem;
+  }
+
+  .article-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    font-weight: 600;
+    margin: 0 0 0.75rem;
+    color: var(--ink);
+  }
+
+  .card-desc {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    margin: 0 0 1.25rem;
+    flex: 1;
+    line-height: 1.5;
+  }
+
+  .card-meta {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  /* ── QUICK ANSWERS ────────────────────────────────── */
+  .quick {
+    background: var(--paper-warm);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 4rem 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .quick .section-head {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .quick-grid {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .quick-card {
+    background: white;
+    padding: 1.75rem;
+    border-radius: 4px;
+    border: 1px solid var(--line);
+  }
+
+  .quick-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    margin: 0 0 0.75rem;
+  }
+
+  .quick-card p {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* ── HUBS NEXT (cross-linking) ────────────────────── */
+  .hubs-next {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .next-label {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin: 0 0 1.5rem;
+  }
+
+  .hubs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .hub-link {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .hub-link:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .hub-link h3 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+
+  .hub-link p {
+    margin: 0;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+
+  /* ── MOBILE ───────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .hub-hero {
+      padding: 3.5rem 1.25rem 3rem;
+    }
+
+    .featured {
+      grid-template-columns: 1fr;
+      padding: 2rem;
+    }
+
+    .featured-graphic {
+      display: none;
+    }
+  }
+</style>

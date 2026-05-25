@@ -1,0 +1,126 @@
+---
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import HubPage from "../components/HubPage.astro";
+
+const title = "Where to Stay in Watch Hill, RI | Watch Hill Guide";
+const description =
+  "Honest reviews of every hotel and rental option in Watch Hill, Rhode Island — Ocean House, Weekapaug Inn, Watch Hill Inn, and the best VRBO and Airbnb rentals in the surrounding area.";
+
+const featured = {
+  href: "/blog/where-to-stay-watch-hill",
+  tag: "The Complete Hotel Guide",
+  title: "Where to Stay in Watch Hill: Every Hotel, Honestly Reviewed",
+  description:
+    "Ocean House, Weekapaug Inn, Watch Hill Inn, and the surrounding area — what each costs, who each is for, and which one to book based on your trip.",
+  readTime: "14 min read",
+};
+
+const articles = [
+  {
+    href: "/blog/ocean-house-review",
+    tag: "Luxury Hotel",
+    title: "Ocean House Review: Is It Worth the Price?",
+    description:
+      "The Forbes Five-Star landmark — rooms, restaurants, the verandah, the spa, and an honest take on what $800+ a night actually gets you.",
+    readTime: "10 min",
+  },
+  {
+    href: "/blog/weekapaug-inn-review",
+    tag: "Luxury Hotel",
+    title: "Weekapaug Inn: The Quieter Sister Property",
+    description:
+      "Ocean House's Relais & Châteaux sibling on a private pond — and why most couples actually prefer it.",
+    readTime: "8 min",
+  },
+  {
+    href: "/blog/watch-hill-inn-review",
+    tag: "Boutique",
+    title: "Watch Hill Inn: All-Suite in the Heart of the Village",
+    description:
+      "The most accessible price point with the best in-village location. Best for families and longer stays.",
+    readTime: "7 min",
+  },
+  {
+    href: "/blog/watch-hill-vrbo-guide",
+    tag: "Vacation Rentals",
+    title: "Best VRBO & Airbnb Rentals Near Watch Hill",
+    description:
+      "Where to find the best beach houses in Misquamicut, the quieter spots in Westerly, and what to look out for.",
+    readTime: "9 min",
+  },
+  {
+    href: "/blog/ocean-house-vs-weekapaug",
+    tag: "Comparison",
+    title: "Ocean House vs Weekapaug Inn: Which Should You Book?",
+    description:
+      "Both are five-star. Both share amenities. Here's how to choose the right one based on your trip and travel style.",
+    readTime: "8 min",
+  },
+  {
+    href: "/blog/cheap-stays-near-watch-hill",
+    tag: "Budget",
+    title: "Affordable Places to Stay Near Watch Hill",
+    description:
+      "Real options under $250/night in Westerly, Misquamicut, and Pawcatuck — none requiring you to sacrifice the experience.",
+    readTime: "7 min",
+  },
+  {
+    href: "/blog/watch-hill-with-pets",
+    tag: "Pet-Friendly",
+    title: "Pet-Friendly Hotels & Rentals in Watch Hill",
+    description:
+      "Which properties accept dogs, what the fees are, and where you can actually walk your pet on the beach.",
+    readTime: "5 min",
+  },
+  {
+    href: "/blog/best-time-to-book-watch-hill",
+    tag: "Booking Tips",
+    title: "When to Book Watch Hill Hotels (and How to Save)",
+    description:
+      "Booking windows, shoulder-season rates, and the loyalty programs that actually pay off here.",
+    readTime: "6 min",
+  },
+];
+
+const quickAnswers = [
+  {
+    q: "How much does Ocean House cost per night?",
+    a: "Rooms start around $800/night in peak season (June–August) and climb past $2,000 for suites. Shoulder-season rates (May, September, October) can drop to around $500. Off-season rates in winter can dip below $400. Always check directly — promotional rates appear regularly.",
+  },
+  {
+    q: "What's the best hotel in Watch Hill for couples?",
+    a: "Weekapaug Inn is the local favorite for couples — quieter than Ocean House, more intimate, and located on a private pond ten minutes east of the village. Both are Relais & Châteaux properties and guests can use amenities at either.",
+  },
+  {
+    q: "Are there cheap hotels in Watch Hill?",
+    a: "Not in the village itself — Watch Hill has three landmark hotels, all in the $400+/night range. For budget options, look in Westerly (10 minutes inland) or along the Misquamicut beach strip. VRBO and Airbnb tend to be the best value for families or groups.",
+  },
+  {
+    q: "When should I book a Watch Hill hotel for summer?",
+    a: "By February or March for prime July/August weekends. Memorial Day and Fourth of July weekends often sell out by April. Weekday stays in June and September can be booked much closer to the date with flexibility on price.",
+  },
+];
+
+const otherHubs = [
+  { href: "/plan", title: "Plan Your Trip", description: "Timing, logistics, packing, getting there." },
+  { href: "/do", title: "Things to Do", description: "Beaches, the carousel, the lighthouse, boat tours." },
+  { href: "/eat", title: "Eat & Drink", description: "Restaurants, ice cream, breweries, brunch spots." },
+  { href: "/day-trips", title: "Day Trips", description: "Mystic, Stonington, Newport, Block Island." },
+];
+---
+
+<Base title={title} description={description}>
+  <Nav />
+  <HubPage
+    kicker="Hub · Where to Stay"
+    heading="Where to Stay in Watch Hill"
+    lede="Three landmark hotels, dozens of beach rentals, and a quiet network of smaller inns — here's the honest breakdown of every option, who each is for, and how to pick the one that fits your trip."
+    featured={featured}
+    articlesHeading="Hotel & Rental Guides"
+    articlesSubheading="Sorted by what most travelers ask first."
+    articles={articles}
+    quickAnswers={quickAnswers}
+    otherHubs={otherHubs}
+  />
+</Base>

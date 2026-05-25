@@ -1,0 +1,1120 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+
+const title =
+  "Memorial Day in Watch Hill & Westerly, RI: 2026 Parades, Beaches & Things to Do";
+const description =
+  "A local's guide to Memorial Day weekend in Watch Hill, Westerly, and the surrounding shoreline — including the historic Westerly-Pawcatuck Parade, beach openings, ceremonies, and where to eat after.";
+const publishDate = "2026-05-24";
+const updatedDate = "2026-05-24";
+const readingTime = "8 min read";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description: description,
+  datePublished: publishDate,
+  dateModified: updatedDate,
+  author: {
+    "@type": "Organization",
+    name: "Watch Hill Guide",
+  },
+  about: {
+    "@type": "Event",
+    name: "Memorial Day in Watch Hill and Westerly",
+    startDate: "2026-05-23",
+    endDate: "2026-05-25",
+    location: {
+      "@type": "Place",
+      name: "Westerly, RI",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Westerly",
+        addressRegion: "RI",
+        addressCountry: "US",
+      },
+    },
+  },
+};
+
+const aff = {
+  oceanHouse:
+    "https://www.stay22.com/embed/gm?aid=YOUR_ID&address=Ocean+House+Watch+Hill+RI",
+  weekapaugInn:
+    "https://www.stay22.com/embed/gm?aid=YOUR_ID&address=Weekapaug+Inn+RI",
+  vrboWesterly:
+    "https://www.vrbo.com/?filterByRegionId=watch-hill&clickref=YOUR_ID",
+  bookingWesterly:
+    "https://www.booking.com/searchresults.html?ss=Westerly+RI&aid=YOUR_ID",
+  amazonBeachGear:
+    "https://www.amazon.com/s?k=beach+chair+lightweight&tag=YOUR_TAG",
+};
+
+// 3-day schedule, locally accurate for 2026 Memorial Day weekend.
+const schedule = [
+  {
+    day: "Saturday, May 23",
+    label: "Beach Season Officially Opens",
+    items: [
+      {
+        time: "9:00 AM",
+        title: "Misquamicut State Beach opens",
+        body: "All Rhode Island state beaches open for the 2026 season with full amenities — lifeguards, concessions, restrooms, beach staff. Parking is $14 weekdays, $20 weekends for non-residents. Arrive before 10 AM on Memorial Day weekend; the lot fills.",
+      },
+      {
+        time: "9:00 AM",
+        title: "Watch Hill town beaches open",
+        body: "Misquamicut Fire District's Benson, Clark, and Lawton beaches open for the weekend. Hours: 9 AM to 6 PM. Parking pass required.",
+      },
+      {
+        time: "All day",
+        title: "Bay Street comes back to life",
+        body: "Most Watch Hill village shops and restaurants are open for the season by Saturday morning. The Flying Horse Carousel typically begins its summer run this weekend. St. Clair Annex is making ice cream again.",
+      },
+      {
+        time: "Evening",
+        title: "Sunset cocktails on the Ocean House verandah",
+        body: "If you've ever wanted the postcard view of Watch Hill, this is the weekend the verandah service starts. Reservations strongly recommended.",
+      },
+    ],
+  },
+  {
+    day: "Sunday, May 24",
+    label: "The Quiet Day",
+    items: [
+      {
+        time: "Morning",
+        title: "Napatree Point hike",
+        body: "Memorial Day Sunday is one of the best mornings of the year to walk Napatree. The peninsula is technically open year-round, but with summer crowds yet to arrive in earnest, you'll have the bay-side trail mostly to yourself. About 3 miles round-trip; allow 90 minutes.",
+      },
+      {
+        time: "Midday",
+        title: "Early Memorial Day services",
+        body: "Some smaller veterans' organizations hold informal flag-placing and wreath-laying observances at local cemeteries on Sunday — quieter and more personal than the Monday parade. Check the Westerly Pawcatuck Veterans Board for any updates.",
+      },
+      {
+        time: "Late afternoon",
+        title: "Watch Hill Lighthouse grounds",
+        body: "The lighthouse museum's summer hours typically begin the Tuesday after Memorial Day, but the grounds themselves are always accessible. The view across Block Island Sound on a clear Sunday in late May is exceptional.",
+      },
+    ],
+  },
+  {
+    day: "Monday, May 25 — Memorial Day",
+    label: "The Parade",
+    items: [
+      {
+        time: "9:30 AM",
+        title: "Westerly-Pawcatuck Memorial Day Parade",
+        body: "One of the oldest continuously held Memorial Day parades in the United States — dating back to the period just after the Civil War. The parade steps off at the Pawcatuck Shopping Center on Pequot Trail in Pawcatuck, CT, crosses the Pawcatuck River bridge into Westerly, RI (it's the rare parade that crosses a state line), and proceeds to Wilcox Park for a closing ceremony at the bandstand. Arrive 30 minutes early for a curb spot.",
+      },
+      {
+        time: "11:00 AM",
+        title: "Wilcox Park ceremony",
+        body: "The formal Memorial Day ceremony happens at the Wilcox Park bandstand after the parade ends — speeches, taps, and a wreath-laying. Wilcox Park itself is one of the prettiest urban parks in Rhode Island, designed by the Olmsted firm.",
+      },
+      {
+        time: "1:00 PM",
+        title: "Mystic Memorial Day Parade",
+        body: "Twenty minutes west, Mystic hosts its own parade — historically smaller and more intimate than Westerly's, run by VFW Post 3263. A good option if you'd rather catch an afternoon parade than fight Westerly morning crowds.",
+      },
+      {
+        time: "Afternoon",
+        title: "First real beach day of the year",
+        body: "By 2 PM, the parade is over and the beaches fill. If you only have time for one Memorial Day activity, this is the move: pay respects in the morning, drive five minutes to the shore in the afternoon. It's the cleanest expression of what the day is actually for.",
+      },
+    ],
+  },
+];
+
+// Local restaurant recommendations — these are real and stable enough to
+// recommend for next Memorial Day too.
+const food = [
+  {
+    name: "Olympia Tea Room",
+    where: "Bay Street, Watch Hill",
+    why: "Operating since 1916. Memorial Day Monday is the unofficial first day of the summer lunch crowd. Show up at 11:30 AM or wait.",
+  },
+  {
+    name: "St. Clair Annex",
+    where: "Bay Street, Watch Hill",
+    why: "Ice cream and grinders. The Memorial Day weekend reopening is a small local ritual. Cash only.",
+  },
+  {
+    name: "Bridge Restaurant & Raw Bar",
+    where: "Margin Street, Westerly",
+    why: "Right by the parade route's endpoint at Wilcox Park. Best post-parade lunch in town if you want oysters and a bloody mary.",
+  },
+  {
+    name: "Paddy's Beach Restaurant",
+    where: "Misquamicut",
+    why: "The Memorial Day weekend reopening at Paddy's is its own scene — outdoor bar, live music most afternoons, full beach access. Casual, loud, fun.",
+  },
+  {
+    name: "Coast at Ocean House",
+    where: "Watch Hill",
+    why: "If you want the polar opposite of Paddy's. White-tablecloth dinner with the ocean view. Reserve well in advance.",
+  },
+];
+
+const faqs = [
+  {
+    q: "Is the Memorial Day parade in Westerly worth attending?",
+    a: "Genuinely yes. The Westerly-Pawcatuck Parade is one of the oldest continuously held Memorial Day parades in the country, dating to the years just after the Civil War. It's also one of the few parades anywhere that crosses a state line — starting in Pawcatuck, Connecticut and ending in Westerly, Rhode Island. It draws a real local crowd, not a tourist one.",
+  },
+  {
+    q: "Where does the Westerly-Pawcatuck Memorial Day Parade start?",
+    a: "It steps off at 9:30 AM Monday morning from the Pawcatuck Shopping Center at 37 South Broad Street in Pawcatuck, CT. From there it crosses the Pawcatuck River bridge into Westerly and ends with a ceremony at the Wilcox Park bandstand. You can catch it anywhere along the route.",
+  },
+  {
+    q: "Are Watch Hill beaches open Memorial Day weekend?",
+    a: "Yes. Rhode Island state beaches — including Misquamicut State Beach — open Saturday of Memorial Day weekend with full amenities, lifeguards, and concessions. The Watch Hill town beaches (Benson, Clark, and Lawton, managed by the Misquamicut Fire District) also open that weekend, but require a parking pass.",
+  },
+  {
+    q: "Is Watch Hill busy on Memorial Day weekend?",
+    a: "Busy by Watch Hill standards, which is still less busy than nearly any comparable East Coast destination. Saturday and Sunday afternoons see the most foot traffic on Bay Street; Monday morning belongs to the parade. The trick is timing — beach in the morning, village in the late afternoon, dinner reservations made well in advance.",
+  },
+  {
+    q: "Can you swim at the beach on Memorial Day in Rhode Island?",
+    a: "You can — but the water is cold. Ocean temperatures in late May typically run 55–60°F. Lifeguards are on duty starting Saturday, and the beach is fully operational, but most locals wait until mid-June for genuine swim weather. Wading and beach time are great; full ocean swimming takes commitment.",
+  },
+  {
+    q: "What time should I arrive for the Westerly Memorial Day Parade?",
+    a: "Be in position by 9:00 AM for the 9:30 AM step-off. Curb spots along Broad Street fill quickly. If you want to be at Wilcox Park for the closing ceremony around 11 AM, plan to walk in rather than drive — Westerly's small downtown gets congested.",
+  },
+];
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <Nav />
+
+  <article class="article">
+    <!-- Hero -->
+    <header class="hero">
+      <div class="hero-inner">
+        <p class="kicker">Seasonal Guide · Memorial Day 2026</p>
+        <h1>
+          Memorial Day Weekend in <em>Watch Hill</em> &amp; Westerly, RI
+        </h1>
+        <p class="hero-sub">
+          A local's three-day guide — from the historic Westerly-Pawcatuck
+          Parade to the beach season's opening day, with where to be when, and
+          a few quieter moments worth seeking out.
+        </p>
+        <div class="meta">
+          <span>Updated May 24, 2026</span>
+          <span class="dot">·</span>
+          <span>{readingTime}</span>
+          <span class="dot">·</span>
+          <span>Written from Westerly, RI</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- THE HEADLINE BLOCK — what to do if you're reading this now -->
+    <section class="headline-now">
+      <div class="hn-inner">
+        <p class="hn-label">If You're Reading This Memorial Day Weekend</p>
+        <p class="hn-text">
+          The short version: <strong>beach opening day was Saturday</strong>,
+          the <strong>Westerly-Pawcatuck Parade steps off Monday at 9:30 AM</strong>
+          from Pawcatuck Shopping Center, and <strong>Wilcox Park ceremony
+          starts around 11 AM</strong>. Bay Street is open. The beaches are
+          open. Most restaurants are open. The full breakdown is below.
+        </p>
+      </div>
+    </section>
+
+    <!-- Intro -->
+    <section class="prose">
+      <p class="lede">
+        Memorial Day weekend is, for Watch Hill, the moment the town wakes up
+        from winter. The shops on Bay Street roll up their shutters. The
+        carousel starts spinning. The state beach lots fill for the first
+        time since Labor Day. And on Monday morning, a Memorial Day parade
+        that's been running in some form since just after the Civil War
+        moves through the streets of neighboring Pawcatuck and Westerly. Here's
+        how to do the whole weekend right — for the holiday itself, for the
+        history of it, and for what comes after the ceremony.
+      </p>
+    </section>
+
+    <!-- 3-day Schedule -->
+    <section class="schedule">
+      <div class="schedule-head">
+        <h2>The Three-Day Schedule</h2>
+        <p>What's happening, when, and where to be for each part of it.</p>
+      </div>
+
+      {
+        schedule.map((day) => (
+          <div class="day">
+            <div class="day-head">
+              <p class="day-name">{day.day}</p>
+              <p class="day-label">{day.label}</p>
+            </div>
+            <div class="day-items">
+              {day.items.map((item) => (
+                <div class="item">
+                  <p class="item-time">{item.time}</p>
+                  <div class="item-body">
+                    <h3>{item.title}</h3>
+                    <p>{item.body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </section>
+
+    <!-- The Parade Deep Dive -->
+    <section class="parade">
+      <div class="parade-inner">
+        <p class="parade-tag">The Parade · 158 Years and Counting</p>
+        <h2>About the Westerly-Pawcatuck Memorial Day Parade</h2>
+        <p>
+          The parade is the centerpiece of the weekend and the part most worth
+          attending if you only have time for one thing. It traces its roots to
+          the period immediately after the Civil War, when General John Logan
+          formally established Decoration Day in 1868 as a national day of
+          remembrance for the Union dead. Westerly began holding annual
+          observances within the first years of that tradition, and the parade
+          has run more or less continuously ever since.
+        </p>
+        <p>
+          What makes it unusual: <strong>it crosses a state line.</strong> The
+          parade begins in Pawcatuck, Connecticut, crosses the Pawcatuck River
+          bridge, and ends in Westerly, Rhode Island. Veterans from both
+          states march together. The parade pauses at the World War I
+          Monument on West Broad Street and again at the bridge itself for
+          moments of silence honoring fallen sailors. It's a small,
+          unglamorous, intensely local kind of tradition — the kind that has
+          largely disappeared from larger American cities.
+        </p>
+
+        <div class="parade-facts">
+          <div>
+            <dt>Step-off</dt>
+            <dd>Monday 9:30 AM</dd>
+          </div>
+          <div>
+            <dt>Starts</dt>
+            <dd>37 South Broad St, Pawcatuck, CT</dd>
+          </div>
+          <div>
+            <dt>Ends</dt>
+            <dd>Wilcox Park, Westerly, RI</dd>
+          </div>
+          <div>
+            <dt>Ceremony</dt>
+            <dd>~11 AM at the bandstand</dd>
+          </div>
+          <div>
+            <dt>Best viewing</dt>
+            <dd>Broad St near the bridge</dd>
+          </div>
+          <div>
+            <dt>Family-friendly</dt>
+            <dd>Very</dd>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Where to Eat Around the Parade -->
+    <section class="food">
+      <div class="section-head">
+        <h2>Where to Eat Over the Weekend</h2>
+        <p>
+          Memorial Day weekend is the year's first real test for local
+          kitchens. These five places handle it well.
+        </p>
+      </div>
+
+      <ul class="food-list">
+        {
+          food.map((f) => (
+            <li>
+              <div>
+                <h3>{f.name}</h3>
+                <p class="food-where">{f.where}</p>
+              </div>
+              <p class="food-why">{f.why}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <!-- Where to Stay -->
+    <section class="stay">
+      <div class="stay-inner">
+        <p class="stay-tag">If You Need a Last-Minute Room</p>
+        <h2>Where to Stay for Memorial Day Weekend</h2>
+        <p class="stay-intro">
+          Memorial Day weekend is the second-most-booked weekend of the year
+          in Watch Hill, after Fourth of July. By the Tuesday before the
+          weekend, the landmark hotels are usually full. If you're booking
+          last minute, your best bets are typically VRBO and the broader
+          Westerly area.
+        </p>
+
+        <div class="stay-grid">
+          <a
+            class="stay-card"
+            href={aff.vrboWesterly}
+            rel="sponsored nofollow"
+          >
+            <p class="sc-tag">Most Availability</p>
+            <h3>VRBO Rentals in Westerly</h3>
+            <p>
+              The flexible last-minute option. Beach cottages and condos in
+              Misquamicut and surrounding areas.
+            </p>
+            <span class="sc-arrow">Browse rentals →</span>
+          </a>
+
+          <a class="stay-card" href={aff.oceanHouse} rel="sponsored nofollow">
+            <p class="sc-tag">If a Room Opens</p>
+            <h3>Ocean House</h3>
+            <p>
+              Cancellations happen even on holiday weekends. Worth checking —
+              the verandah at sunset is the Memorial Day weekend memory.
+            </p>
+            <span class="sc-arrow">Check availability →</span>
+          </a>
+
+          <a
+            class="stay-card"
+            href={aff.bookingWesterly}
+            rel="sponsored nofollow"
+          >
+            <p class="sc-tag">Best Range of Options</p>
+            <h3>Westerly Hotels</h3>
+            <p>
+              The broader Westerly area still has rooms across price levels.
+              Less charming than Watch Hill, but you'll find something.
+            </p>
+            <span class="sc-arrow">Search hotels →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Practical info -->
+    <section class="prose">
+      <h2 class="section-h">Practical Notes</h2>
+
+      <p>
+        <strong>Parking on Monday morning.</strong> Wilcox Park area parking
+        fills by 8:30 AM. The smarter move is to park at the Westerly train
+        station lot or along the streets a few blocks east of the park, and
+        walk in. If you're catching the parade at the bridge end, park on the
+        Pawcatuck side off Liberty Street.
+      </p>
+
+      <p>
+        <strong>Weather.</strong> Memorial Day weekend in this part of Rhode
+        Island averages high 60s to low 70s with a real chance of cloud
+        cover. Pack layers. Ocean temperatures are still in the high 50s — the
+        beach is open but the water is honest about the season.
+      </p>
+
+      <p>
+        <strong>Flag etiquette.</strong> Memorial Day specifically honors those
+        who died in military service. The American flag is flown at half-staff
+        from sunrise until noon on Memorial Day, then raised to full-staff for
+        the rest of the day. If you're staying somewhere with a flagpole and
+        planning to participate, that's the convention.
+      </p>
+
+      <p>
+        <strong>Restaurants.</strong> Reservations are essential at Ocean House
+        properties, Olympia Tea Room, and Bridge Restaurant for any weekend
+        dinner. Saturday and Sunday lunch tend to be more flexible. By Tuesday
+        morning everything quiets down again until the next weekend.
+      </p>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+      <h2 class="section-h">Frequently Asked Questions</h2>
+      {
+        faqs.map((faq) => (
+          <details class="faq-item">
+            <summary>{faq.q}</summary>
+            <p>{faq.a}</p>
+          </details>
+        ))
+      }
+    </section>
+
+    <!-- Related -->
+    <section class="related">
+      <h2 class="section-h">Keep Planning</h2>
+      <div class="related-grid">
+        <a
+          href="/blog/best-things-to-do-in-watch-hill-ri"
+          class="related-card"
+        >
+          <p class="related-tag">Guide</p>
+          <h3>15 Best Things to Do in Watch Hill, RI</h3>
+        </a>
+        <a href="/blog/is-watch-hill-worth-visiting" class="related-card">
+          <p class="related-tag">Planning</p>
+          <h3>Is Watch Hill, RI Worth Visiting?</h3>
+        </a>
+        <a href="/blog/best-time-to-visit-watch-hill" class="related-card">
+          <p class="related-tag">Timing</p>
+          <h3>Best Time to Visit Watch Hill</h3>
+        </a>
+        <a
+          href="/blog/taylor-swift-watch-hill-mansion"
+          class="related-card"
+        >
+          <p class="related-tag">History</p>
+          <h3>The Real Story of Holiday House</h3>
+        </a>
+      </div>
+    </section>
+  </article>
+
+  <style>
+    :root {
+      --ink: #1a1d24;
+      --ink-soft: #4a5061;
+      --ink-muted: #7a8195;
+      --paper: #fbf8f1;
+      --paper-warm: #f3ede0;
+      --line: #e5dfd0;
+      --accent: #2c5f5d;
+      --accent-deep: #1d3f3d;
+      --gold: #b8924a;
+      --flag-red: #a52833;
+      --flag-navy: #1f3557;
+      --font-display: "Fraunces", Georgia, serif;
+      --font-body: "Inter Tight", -apple-system, system-ui, sans-serif;
+    }
+
+    .article {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.7;
+      padding-bottom: 6rem;
+    }
+
+    .article *,
+    .article *::before,
+    .article *::after {
+      box-sizing: border-box;
+    }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(180deg, var(--paper-warm) 0%, var(--paper) 100%);
+      padding: 5rem 1.5rem 3.5rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .kicker {
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--flag-red);
+      font-weight: 600;
+      margin: 0 0 1.5rem;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5.5vw, 4rem);
+      line-height: 1.04;
+      letter-spacing: -0.025em;
+      font-weight: 600;
+      margin: 0 0 1.5rem;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--flag-navy);
+    }
+
+    .hero-sub {
+      font-size: 1.2rem;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      margin: 0 0 2rem;
+      max-width: 620px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      align-items: center;
+    }
+
+    .dot {
+      color: var(--line);
+    }
+
+    /* ── HEADLINE NOW (above-fold actionable summary) ─── */
+    .headline-now {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .hn-inner {
+      background: var(--flag-navy);
+      color: var(--paper);
+      padding: 2rem 2.25rem;
+      border-radius: 4px;
+      margin-top: -1px;
+      border-left: 4px solid var(--flag-red);
+    }
+
+    .hn-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+      margin: 0 0 0.85rem;
+    }
+
+    .hn-text {
+      font-family: var(--font-display);
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      line-height: 1.5;
+      margin: 0;
+      color: white;
+      font-weight: 400;
+      letter-spacing: -0.005em;
+    }
+
+    .hn-text strong {
+      color: white;
+      font-weight: 600;
+    }
+
+    /* ── PROSE ────────────────────────────────────────── */
+    .prose {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    .lede {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .prose p {
+      margin: 0 0 1.25rem;
+      color: var(--ink);
+    }
+
+    .prose p:last-child {
+      margin-bottom: 0;
+    }
+
+    .prose strong {
+      color: var(--flag-navy);
+      font-weight: 600;
+    }
+
+    /* ── SECTION HEADINGS ─────────────────────────────── */
+    .section-h {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+      margin: 0 0 1.5rem;
+      color: var(--ink);
+    }
+
+    /* ── 3-DAY SCHEDULE ───────────────────────────────── */
+    .schedule {
+      max-width: 860px;
+      margin: 2rem auto 4rem;
+      padding: 0 1.5rem;
+    }
+
+    .schedule-head {
+      margin: 0 0 3rem;
+    }
+
+    .schedule-head h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+      margin: 0 0 0.5rem;
+    }
+
+    .schedule-head p {
+      color: var(--ink-soft);
+      margin: 0;
+    }
+
+    .day {
+      margin-bottom: 3.5rem;
+    }
+
+    .day:last-child {
+      margin-bottom: 0;
+    }
+
+    .day-head {
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .day-name {
+      font-family: var(--font-display);
+      font-size: 1.65rem;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+      margin: 0 0 0.25rem;
+    }
+
+    .day-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--flag-red);
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .day-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .item {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 1.5rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--line);
+      align-items: baseline;
+    }
+
+    .item:last-child {
+      border-bottom: none;
+    }
+
+    .item-time {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 0;
+      letter-spacing: 0.01em;
+    }
+
+    .item-body h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin: 0 0 0.5rem;
+    }
+
+    .item-body p {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /* ── PARADE DEEP-DIVE ─────────────────────────────── */
+    .parade {
+      background: var(--flag-navy);
+      color: var(--paper);
+      padding: 4rem 1.5rem;
+      margin: 4rem 0;
+    }
+
+    .parade-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .parade-tag {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin: 0 0 1rem;
+    }
+
+    .parade h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+      margin: 0 0 1.5rem;
+      color: white;
+    }
+
+    .parade p {
+      margin: 0 0 1.25rem;
+      color: rgba(251, 248, 241, 0.85);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .parade strong {
+      color: white;
+      font-weight: 600;
+    }
+
+    .parade-facts {
+      margin-top: 2.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem 2rem;
+    }
+
+    .parade-facts > div {
+      border-top: 1px solid rgba(251, 248, 241, 0.18);
+      padding-top: 0.75rem;
+    }
+
+    .parade-facts dt {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin: 0 0 0.25rem;
+    }
+
+    .parade-facts dd {
+      margin: 0;
+      font-size: 1rem;
+      font-family: var(--font-display);
+      font-weight: 500;
+      color: white;
+      letter-spacing: -0.005em;
+    }
+
+    /* ── FOOD ─────────────────────────────────────────── */
+    .food {
+      max-width: 860px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .section-head {
+      max-width: 680px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .section-head h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+      margin: 0 0 0.5rem;
+    }
+
+    .section-head p {
+      color: var(--ink-soft);
+      margin: 0;
+    }
+
+    .food-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .food-list li {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 2rem;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--line);
+      align-items: baseline;
+    }
+
+    .food-list li:first-child {
+      border-top: 1px solid var(--line);
+    }
+
+    .food-list h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      margin: 0 0 0.25rem;
+    }
+
+    .food-where {
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      margin: 0;
+      font-style: italic;
+    }
+
+    .food-why {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 0.98rem;
+      line-height: 1.6;
+    }
+
+    /* ── STAY ─────────────────────────────────────────── */
+    .stay {
+      background: var(--paper-warm);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 4rem 1.5rem;
+      margin: 4rem 0;
+    }
+
+    .stay-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .stay-tag {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--flag-red);
+      font-weight: 600;
+      margin: 0 0 1rem;
+    }
+
+    .stay h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+      margin: 0 0 1rem;
+    }
+
+    .stay-intro {
+      max-width: 620px;
+      color: var(--ink-soft);
+      margin: 0 0 2.5rem;
+      font-size: 1.05rem;
+    }
+
+    .stay-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .stay-card {
+      background: white;
+      border: 1px solid var(--line);
+      padding: 1.75rem;
+      border-radius: 4px;
+      text-decoration: none;
+      color: var(--ink);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .stay-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(26, 29, 36, 0.08);
+    }
+
+    .sc-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--flag-red);
+      font-weight: 600;
+      margin: 0 0 0.5rem;
+    }
+
+    .stay-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      margin: 0 0 0.75rem;
+    }
+
+    .stay-card p:not(.sc-tag) {
+      margin: 0 0 1.25rem;
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      flex: 1;
+    }
+
+    .sc-arrow {
+      align-self: flex-start;
+      font-weight: 600;
+      color: var(--accent);
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 2px;
+      font-size: 0.95rem;
+    }
+
+    /* ── FAQ ──────────────────────────────────────────── */
+    .faq {
+      max-width: 760px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--line);
+      padding: 1.25rem 0;
+    }
+
+    .faq-item summary {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--ink);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      letter-spacing: -0.005em;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: "+";
+      font-size: 1.5rem;
+      color: var(--accent);
+      font-weight: 400;
+      flex-shrink: 0;
+    }
+
+    .faq-item[open] summary::after {
+      content: "−";
+    }
+
+    .faq-item p {
+      margin: 1rem 0 0;
+      color: var(--ink-soft);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /* ── RELATED ──────────────────────────────────────── */
+    .related {
+      max-width: 1080px;
+      margin: 4rem auto 0;
+      padding: 3rem 1.5rem 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .related-card {
+      display: block;
+      background: white;
+      border: 1px solid var(--line);
+      padding: 1.5rem;
+      text-decoration: none;
+      color: var(--ink);
+      border-radius: 4px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .related-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+
+    .related-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin: 0 0 0.75rem;
+    }
+
+    .related-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin: 0;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── MOBILE ───────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .hero {
+        padding: 3.5rem 1.25rem 3rem;
+      }
+
+      .hn-inner {
+        padding: 1.5rem 1.25rem;
+      }
+
+      .item {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+      }
+
+      .item-time {
+        font-size: 0.85rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .food-list li {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+
+      .parade {
+        padding: 3rem 1.5rem;
+      }
+    }
+  </style>
+</Base>

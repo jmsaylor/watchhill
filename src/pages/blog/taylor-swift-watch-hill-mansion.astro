@@ -1,0 +1,936 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+
+const title =
+  "Taylor Swift's Watch Hill Mansion: The Real Story of Holiday House";
+const description =
+  "The full history of High Watch — the Watch Hill, RI mansion now owned by Taylor Swift — including its 1929 origins, the wild Rebekah Harkness years, and how it inspired one of Swift's most acclaimed songs.";
+const publishDate = "2026-05-24";
+const updatedDate = "2026-05-24";
+const readingTime = "11 min read";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description: description,
+  datePublished: publishDate,
+  dateModified: updatedDate,
+  author: {
+    "@type": "Organization",
+    name: "Watch Hill Guide",
+  },
+  about: [
+    {
+      "@type": "Place",
+      name: "High Watch (Holiday House)",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Watch Hill",
+        addressRegion: "RI",
+        addressCountry: "US",
+      },
+    },
+  ],
+};
+
+const aff = {
+  oceanHouse:
+    "https://www.stay22.com/embed/gm?aid=YOUR_ID&address=Ocean+House+Watch+Hill+RI",
+  watchHillInn:
+    "https://www.stay22.com/embed/gm?aid=YOUR_ID&address=Watch+Hill+Inn+RI",
+  boatTours:
+    "https://www.getyourguide.com/-l/?partner_id=YOUR_ID&q=watch+hill",
+};
+
+// Timeline data — the structural backbone of the piece.
+const timeline = [
+  {
+    year: "1929–1930",
+    title: "The Snowdens build Holiday House",
+    body: "Mrs. George Grant Snowden of Philadelphia acquired a five-acre site on the summit of Watch Hill and built what would become the largest cottage in the village. Construction took over two years. The Snowdens, who made their fortune in oil, named the new estate Holiday House.",
+  },
+  {
+    year: "1947",
+    title: "Rebekah West marries William Harkness",
+    body: "Rebekah Semple West, a St. Louis–born divorcée then in her early thirties, married William Hale Harkness — heir to the Standard Oil fortune, the largest oil refiner in the world at its peak. The marriage was Rebekah's second.",
+  },
+  {
+    year: "1954",
+    title: "Bill Harkness dies; Rebekah inherits",
+    body: "William Harkness died of a heart attack at age 53. Rebekah inherited the house and roughly $75 million — making her one of the wealthiest women in America. The town, in a particularly unkind chapter, blamed her for his death.",
+  },
+  {
+    year: "1954–1982",
+    title: "The Harkness era",
+    body: "Rebekah dramatically expanded the property — at one point the mansion reportedly grew to roughly 40 rooms, 21 bathrooms, and eight kitchens. She added a three-hole golf course. She hosted famously lavish parties attended by figures like Salvador Dalí and Alvin Ailey. She also became one of the most significant ballet patrons in 20th-century America, founding and funding what became the Harkness Ballet.",
+  },
+  {
+    year: "1982",
+    title: "Rebekah Harkness dies",
+    body: "Harkness died at 67. Her ashes were placed in a jeweled chalice she had commissioned years earlier — gold, diamonds, rubies, sapphires, emeralds. The house passed through subsequent owners and eventually to James and Marlene Benson in 1996, who reportedly used it little. It sat largely empty for nearly two decades.",
+  },
+  {
+    year: "2013",
+    title: "Taylor Swift buys the house",
+    body: "At age 23, Taylor Swift purchased the property for $17.75 million in cash through the Harbor Land Revocable Trust. It became, and remains, the most expensive private home in Rhode Island.",
+  },
+  {
+    year: "2020",
+    title: "'The Last Great American Dynasty' is released",
+    body: "Swift's eighth studio album Folklore included a song about Rebekah Harkness — researched and written after Swift learned about her predecessor from a real estate agent during the original 2013 walkthrough. The song frames Harkness sympathetically and draws an explicit parallel to Swift herself.",
+  },
+  {
+    year: "2025",
+    title: "Renovations and expansion",
+    body: "Following the conclusion of the Eras Tour, Swift began significant renovation work — building permits filed with Westerly indicate a roughly 400-square-foot addition with a new bedroom and bathrooms, plus a kitchen upgrade. The house's total square footage now exceeds 12,600.",
+  },
+];
+
+const faqs = [
+  {
+    q: "Where is Taylor Swift's house in Watch Hill?",
+    a: "It sits on Bluff Avenue at the highest point of Watch Hill, on a private 5-acre estate with 700 feet of beachfront. We're intentionally not giving more specific directions — the home has active security and the Watch Hill community has asked visitors to respect the family's privacy. There's no public access of any kind.",
+  },
+  {
+    q: "Can you visit Holiday House?",
+    a: "No. It's a private residence with full-time security. There are no tours, no public viewing areas, and the surrounding streets are residential. Attempting to approach the property isn't just legally problematic — it's deeply unwelcome by Swift, her security, and the local Watch Hill community.",
+  },
+  {
+    q: "What is the Taylor Swift song about Watch Hill?",
+    a: "It's called 'The Last Great American Dynasty' from her 2020 album Folklore. The song tells the story of Rebekah Harkness — the previous occupant who lived there from 1954 until her death in 1982 — and, in its final verse, draws a parallel between Harkness's reputation in town and Swift's own.",
+  },
+  {
+    q: "How much did Taylor Swift pay for the Watch Hill house?",
+    a: "$17.75 million in 2013, paid in cash. The property is widely reported as the most expensive private residence in Rhode Island.",
+  },
+  {
+    q: "Who was Rebekah Harkness?",
+    a: "A St. Louis–born socialite, composer, sculptor, and ballet patron who inherited the Standard Oil fortune of her second husband, William Hale Harkness, in 1954. She founded the Harkness Ballet, sponsored international tours, and lived a famously eccentric life at Holiday House until her death in 1982. She studied composition under Nadia Boulanger and is more historically significant than her tabloid reputation suggests.",
+  },
+  {
+    q: "Does Taylor Swift host parties at the house?",
+    a: "Historically, yes — most famously her Fourth of July gatherings, which from roughly 2014 through 2016 drew large groups of celebrity guests and significant paparazzi attention. The parties have grown much quieter in recent years. The home now serves more as a private residence than a public event venue.",
+  },
+];
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <Nav />
+
+  <article class="article">
+    <!-- Hero -->
+    <header class="hero">
+      <div class="hero-inner">
+        <p class="kicker">Local History · Culture</p>
+        <h1>
+          The Real Story of <em>Holiday House</em> — Watch Hill's Most Famous Address
+        </h1>
+        <p class="hero-sub">
+          Three generations of remarkable women, one Colonial mansion on the
+          hill, and how it ended up at the center of a Taylor Swift song. A
+          history-forward guide for visitors who want the full story — not the
+          gossip.
+        </p>
+        <div class="meta">
+          <span>Updated May 24, 2026</span>
+          <span class="dot">·</span>
+          <span>{readingTime}</span>
+          <span class="dot">·</span>
+          <span>Written from Westerly, RI</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Intro / Editorial note -->
+    <section class="prose">
+      <p class="lede">
+        Most articles about the Watch Hill mansion now owned by Taylor Swift
+        treat it as celebrity gossip. I think that misses what's actually
+        interesting about the place. The house has been standing on its
+        hillside bluff since 1930, has weathered more than fifty hurricanes,
+        and has been home to three of the more singular women in 20th- and
+        21st-century American culture. Its story is genuinely worth telling
+        properly.
+      </p>
+
+      <aside class="editorial">
+        <p class="editorial-tag">A note before we start</p>
+        <p>
+          This is a respectful piece, not a tour guide. The house is a private
+          residence, the address isn't included here, and we don't recommend
+          attempting to view it. Locals (and the property's security) take
+          trespassing seriously, and there is genuinely nothing to see from the
+          public street. The story is the interesting part. Read on for that.
+        </p>
+      </aside>
+    </section>
+
+    <!-- Quick Facts Card -->
+    <section class="quick-facts">
+      <div class="quick-inner">
+        <p class="qf-label">The Quick Facts</p>
+        <div class="qf-grid">
+          <div>
+            <dt>Built</dt>
+            <dd>1929–1930</dd>
+          </div>
+          <div>
+            <dt>Architectural style</dt>
+            <dd>Colonial</dd>
+          </div>
+          <div>
+            <dt>Size today</dt>
+            <dd>~12,657 sq ft</dd>
+          </div>
+          <div>
+            <dt>Lot</dt>
+            <dd>5.23 acres, oceanfront</dd>
+          </div>
+          <div>
+            <dt>Beachfront</dt>
+            <dd>~700 feet, private</dd>
+          </div>
+          <div>
+            <dt>Purchased by Swift</dt>
+            <dd>2013, for $17.75M cash</dd>
+          </div>
+          <div>
+            <dt>Local name</dt>
+            <dd>Holiday House / High Watch</dd>
+          </div>
+          <div>
+            <dt>Status</dt>
+            <dd>Private residence</dd>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: The Hill -->
+    <section class="prose">
+      <h2 class="section-h">The Hill, Before the House</h2>
+      <p>
+        Watch Hill is named for the hill itself — a 56-foot-high bluff at the
+        southwestern tip of Rhode Island, with views across three states. Long
+        before any cottage stood on it, the rise was used as a lookout point
+        during the Seven Years' War (the French and Indian War, in American
+        textbooks) and again during the American Revolution. By the late 19th
+        century, the summit was bare grass, owned by the Eugene Atwood estate,
+        with one of the most commanding ocean panoramas on the East Coast.
+      </p>
+      <p>
+        From the widow's walk at the top of what would later become Holiday
+        House, on a clear day you can see Newport, Block Island, Fishers
+        Island, and Montauk. The site is the reason the village exists at all.
+      </p>
+    </section>
+
+    <!-- Section: The Snowdens -->
+    <section class="prose">
+      <h2 class="section-h">1929: The Snowdens and the First Holiday House</h2>
+      <p>
+        In 1929, Mrs. George Grant Snowden of Philadelphia bought the five-acre
+        site on the summit. The Snowdens were oil money — different oil from
+        the family that would come later, but the same gilded-age scale. She
+        wanted what would be, when finished, the largest cottage in Watch
+        Hill. (The word "cottage" in this context is a New England
+        understatement; Newport's mansions are also called cottages.)
+        Construction took two-plus years through the early years of the
+        Depression. The new estate was named Holiday House.
+      </p>
+      <p>
+        The architecture was Colonial — three stories of white-painted wood,
+        symmetrical massing, deep porches, and that widow's walk on top. It
+        was built for a generation that thought the social order was settled
+        and would not change much. They were about to be very wrong.
+      </p>
+    </section>
+
+    <!-- Section: Rebekah Harkness -->
+    <section class="prose">
+      <h2 class="section-h">1954: Rebekah Arrives</h2>
+      <p>
+        Rebekah Semple West was born in St. Louis in 1915. Her father was a
+        stockbroker who co-founded the firm G.H. Walker &amp; Co. with George
+        Herbert Walker — the same Walker who would become the grandfather of
+        one U.S. president and great-grandfather of another. Her upbringing
+        was wealthy but, by her biographer's account, unhappy. She married
+        first at 24, divorced at 31, and married William Hale Harkness in
+        1947.
+      </p>
+      <p>
+        Bill Harkness was the heir to a piece of the Standard Oil fortune —
+        the world's first true multinational corporation and, before its 1911
+        breakup, the largest oil refiner on earth. The Harknesses bought
+        Holiday House together in the early 1950s. In 1954, Bill died of a
+        heart attack at 53. Rebekah inherited the house and roughly $75
+        million.
+      </p>
+      <p>
+        What followed was nearly three decades of one of the more remarkable —
+        and gossiped-about — chapters in Watch Hill's history. Rebekah
+        renovated the house aggressively, expanding it at one point to
+        something like forty rooms with twenty-one bathrooms and eight
+        kitchens. She added a three-hole golf course on the lawn. She filled
+        the pool with champagne for one party (allegedly). She hosted Salvador
+        Dalí, Alvin Ailey, and a long parade of figures from the worlds of
+        art, ballet, and high society.
+      </p>
+      <p>
+        But she was also a serious artist. Rebekah Harkness studied composition
+        under Nadia Boulanger — the most celebrated composition teacher of
+        the 20th century, whose students included Aaron Copland, Philip Glass,
+        and Quincy Jones. Harkness composed music. She sculpted. And most
+        consequentially, she became one of the great American ballet patrons
+        of the century, founding the Harkness Ballet and the Harkness House
+        for Ballet Arts in New York, sponsoring world tours, commissioning
+        original works, and supporting dancers who would shape American ballet
+        for generations.
+      </p>
+      <p>
+        The town tolerated her, mostly, but did not love her. New money in
+        Watch Hill never quite stops being new money. When she died in 1982,
+        at 67, she had spent a substantial portion of the inheritance — some
+        of it on bad bets, much of it on the arts. Her ashes, in keeping with
+        the rest of her life, were placed in a custom chalice of gold and
+        precious stones she had commissioned years before. The chalice
+        eventually disappeared from public records. The house went on the
+        market.
+      </p>
+    </section>
+
+    <!-- Section: The Lost Years -->
+    <section class="prose">
+      <h2 class="section-h">1982–2013: The Lost Years</h2>
+      <p>
+        For most of the next three decades, Holiday House sat largely empty.
+        It passed through several owners — a group of concerned Watch Hill
+        residents banded together as Watch Hill Associates to buy it at one
+        point, fearing it might be carved up into condos or a hotel. James and
+        Marlene Benson of Weston, Massachusetts purchased it in 1996 for $3.5
+        million and reportedly used it little. The house sat. The bluff
+        underneath it began to erode. The price kept dropping.
+      </p>
+      <p>
+        It is genuinely strange, looking back, that one of the most prominent
+        seaside estates on the entire New England coast was vacant for so
+        long. New England real estate folklore is full of haunted-mansion
+        stories, and Holiday House was on its way to becoming one. Then, in
+        2013, a 23-year-old country-pop crossover artist from Nashville bought
+        it for $17.75 million in cash.
+      </p>
+    </section>
+
+    <!-- Section: Taylor Swift -->
+    <section class="prose">
+      <h2 class="section-h">2013: Taylor Swift Buys the House</h2>
+      <p>
+        Swift's purchase was made through a trust, in cash, at age 23 — six
+        years into a recording career and one year before <em>1989</em> would
+        reshape her trajectory entirely. Watch Hill is, in retrospect, an
+        unusual choice for a young celebrity at the peak of pop fame. It's not
+        the Hamptons. It's not Malibu. There's no nightlife, no scene, no
+        photographers loitering outside restaurants. The geography is what
+        makes it work: a private bluff at the end of a small village at the
+        end of a peninsula, with security infrastructure inherited from a
+        previous era of American wealth.
+      </p>
+      <p>
+        For roughly the first three years of Swift's ownership, the house was
+        very much a public-facing property. The Fourth of July parties from
+        2014 through 2016 became their own cultural phenomenon — large
+        gatherings of celebrities photographed on the porch and beach, the
+        images cycled through tabloids for weeks each summer. Locals
+        complained. The state's governor at the time, Gina Raimondo, proposed
+        a luxury home tax that locals nicknamed the "Taylor Swift tax." It
+        never passed. The parties have grown much quieter since.
+      </p>
+    </section>
+
+    <!-- Section: The Song -->
+    <section class="prose song-section">
+      <h2 class="section-h">2020: The Song</h2>
+      <p>
+        Taylor Swift has said in interviews that during the original 2013
+        walkthrough of the house, a real estate agent told her about the
+        woman who had lived there before. The story stuck. Swift read about
+        Rebekah Harkness for years — the lavish parties, the ballet
+        patronage, the way the town gossiped about her. She told <em
+          >Entertainment Weekly</em
+        > in 2020 that she had been looking for a way to write about
+        Harkness for a long time.
+      </p>
+      <p>
+        The song that resulted, "The Last Great American Dynasty," appears on
+        Swift's 2020 album <em>Folklore</em>. It's structured as a third-person
+        ballad — the townsfolk gossiping about Harkness, summarizing her
+        marriage, her husband's death, her parties, her reputation as
+        difficult. Without quoting the lyrics, the song's emotional twist is
+        in its final section: Swift moves the narrative from third person to
+        first person and reveals that she is the new owner of the house, and
+        identifies with her predecessor.
+      </p>
+      <p>
+        It's a remarkably generous song about a woman the town had spent
+        decades disliking. Critics have called it one of the best songs Swift
+        has ever written. For Watch Hill, it had the effect of permanently
+        rehabilitating Rebekah Harkness's reputation, while pulling the house
+        into a kind of cultural circulation it hadn't seen in eighty years.
+      </p>
+    </section>
+
+    <!-- Section: Today -->
+    <section class="prose">
+      <h2 class="section-h">Today: A Working Renovation</h2>
+      <p>
+        Following the conclusion of the Eras Tour in late 2024, public
+        building permits filed with the town of Westerly show active
+        renovation work at the property. The additions are modest by the
+        standards of the house's history — roughly a 400-square-foot
+        expansion adding a bedroom and bathrooms, plus a kitchen update.
+        Total square footage now exceeds 12,600.
+      </p>
+      <p>
+        Speculation in 2025 about whether Swift might host her wedding to
+        Travis Kelce at the property has been constant in entertainment
+        press. Whatever ultimately happens, the house is once again at the
+        center of a particular kind of American cultural attention — which,
+        viewed across the full arc of its history, is more or less the
+        natural state of Holiday House.
+      </p>
+    </section>
+
+    <!-- Visiting Watch Hill Respectfully (Affiliate placement, but framed appropriately) -->
+    <section class="visit">
+      <div class="visit-inner">
+        <p class="visit-tag">If You're Visiting Watch Hill</p>
+        <h2>The Rest of the Village Is the Reason to Come</h2>
+        <p class="visit-intro">
+          Watch Hill is a working coastal village with public beaches, a
+          historic carousel, a 1806 lighthouse, and miles of walkable
+          shoreline. The mansion is a footnote — interesting context, not a
+          destination. Here's how to actually experience the place.
+        </p>
+
+        <div class="visit-grid">
+          <a class="visit-card" href="/blog/best-things-to-do-in-watch-hill-ri">
+            <p class="vc-tag">Itinerary</p>
+            <h3>15 Best Things to Do in Watch Hill</h3>
+            <p>The full local guide to everything actually worth your time.</p>
+          </a>
+
+          <a class="visit-card" href={aff.oceanHouse} rel="sponsored nofollow">
+            <p class="vc-tag">Where to Stay</p>
+            <h3>Ocean House</h3>
+            <p>
+              The 1868 Forbes Five-Star property on the bluff next door.
+              Where most visitors actually stay.
+            </p>
+          </a>
+
+          <a class="visit-card" href={aff.boatTours} rel="sponsored nofollow">
+            <p class="vc-tag">On the Water</p>
+            <h3>Watch Hill Boat Tours</h3>
+            <p>
+              The most photogenic way to see the village — and the bluffs —
+              from the water.
+            </p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+      <h2 class="section-h">Frequently Asked Questions</h2>
+      {
+        faqs.map((faq) => (
+          <details class="faq-item">
+            <summary>{faq.q}</summary>
+            <p>{faq.a}</p>
+          </details>
+        ))
+      }
+    </section>
+
+    <!-- Sources -->
+    <section class="sources">
+      <h2 class="section-h">Sources &amp; Further Reading</h2>
+      <p>
+        This article draws on reporting from <em>The Westerly Sun</em>, <em
+          >The Providence Journal</em
+        >, the National Register of Historic Places file on the Watch Hill
+        Historic District, Craig Unger's biography of Rebekah Harkness, the
+        See Westerly local history archive, and public records from the town
+        of Westerly. Errors are mine — let us know and we'll fix them.
+      </p>
+    </section>
+
+    <!-- Related -->
+    <section class="related">
+      <h2 class="section-h">Keep Reading</h2>
+      <div class="related-grid">
+        <a
+          href="/blog/best-things-to-do-in-watch-hill-ri"
+          class="related-card"
+        >
+          <p class="related-tag">Guide</p>
+          <h3>15 Best Things to Do in Watch Hill, RI</h3>
+        </a>
+        <a href="/blog/is-watch-hill-worth-visiting" class="related-card">
+          <p class="related-tag">Planning</p>
+          <h3>Is Watch Hill, RI Worth Visiting?</h3>
+        </a>
+        <a href="/blog/watch-hill-historic-district" class="related-card">
+          <p class="related-tag">History</p>
+          <h3>The Watch Hill Historic District: A Walking Tour</h3>
+        </a>
+        <a href="/blog/where-to-stay-watch-hill" class="related-card">
+          <p class="related-tag">Hotels</p>
+          <h3>Where to Stay in Watch Hill: A Full Hotel Guide</h3>
+        </a>
+      </div>
+    </section>
+  </article>
+
+  <style>
+    :root {
+      --ink: #1a1d24;
+      --ink-soft: #4a5061;
+      --ink-muted: #7a8195;
+      --paper: #fbf8f1;
+      --paper-warm: #f3ede0;
+      --line: #e5dfd0;
+      --accent: #2c5f5d;
+      --accent-deep: #1d3f3d;
+      --gold: #b8924a;
+      --rose: #b85a4a;
+      --font-display: "Fraunces", Georgia, serif;
+      --font-body: "Inter Tight", -apple-system, system-ui, sans-serif;
+    }
+
+    .article {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.7;
+      padding-bottom: 6rem;
+    }
+
+    .article *,
+    .article *::before,
+    .article *::after {
+      box-sizing: border-box;
+    }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(180deg, var(--paper-warm) 0%, var(--paper) 100%);
+      padding: 5rem 1.5rem 4rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .kicker {
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin: 0 0 1.5rem;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5.5vw, 4rem);
+      line-height: 1.04;
+      letter-spacing: -0.025em;
+      font-weight: 600;
+      margin: 0 0 1.5rem;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 1.2rem;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      margin: 0 0 2rem;
+      max-width: 620px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      align-items: center;
+    }
+
+    .dot {
+      color: var(--line);
+    }
+
+    /* ── PROSE ────────────────────────────────────────── */
+    .prose {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    .lede {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .prose p {
+      margin: 0 0 1.25rem;
+      color: var(--ink);
+    }
+
+    .prose p:last-child {
+      margin-bottom: 0;
+    }
+
+    .prose em {
+      font-style: italic;
+    }
+
+    /* Editorial note */
+    .editorial {
+      background: var(--paper-warm);
+      border-left: 3px solid var(--rose);
+      padding: 1.25rem 1.5rem;
+      margin-top: 2rem;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .editorial-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rose);
+      font-weight: 700;
+      margin: 0 0 0.5rem !important;
+    }
+
+    .editorial p:not(.editorial-tag) {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
+
+    /* ── SECTION HEADINGS ─────────────────────────────── */
+    .section-h {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+      margin: 0 0 1.5rem;
+      color: var(--ink);
+    }
+
+    /* Song section gets a subtle differentiation */
+    .song-section {
+      background: var(--paper-warm);
+      max-width: 100%;
+      padding: 4rem 1.5rem;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .song-section .section-h,
+    .song-section p {
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .song-section p {
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── QUICK FACTS CARD ─────────────────────────────── */
+    .quick-facts {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .quick-inner {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 2.5rem;
+      border-radius: 4px;
+    }
+
+    .qf-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin: 0 0 1.5rem;
+    }
+
+    .qf-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem 2rem;
+    }
+
+    .qf-grid > div {
+      border-top: 1px solid rgba(251, 248, 241, 0.15);
+      padding-top: 0.75rem;
+    }
+
+    .qf-grid dt {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin: 0 0 0.25rem;
+    }
+
+    .qf-grid dd {
+      margin: 0;
+      font-size: 1rem;
+      font-family: var(--font-display);
+      font-weight: 500;
+      color: white;
+      letter-spacing: -0.005em;
+    }
+
+    /* ── VISIT BLOCK (affiliate cards) ────────────────── */
+    .visit {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 4rem 1.5rem;
+      margin: 4rem 0;
+    }
+
+    .visit-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .visit-tag {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin: 0 0 1rem;
+    }
+
+    .visit h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+      margin: 0 0 1rem;
+      color: white;
+    }
+
+    .visit-intro {
+      max-width: 620px;
+      color: rgba(251, 248, 241, 0.75);
+      margin: 0 0 2.5rem;
+      font-size: 1.05rem;
+    }
+
+    .visit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .visit-card {
+      background: rgba(251, 248, 241, 0.05);
+      border: 1px solid rgba(251, 248, 241, 0.12);
+      padding: 1.75rem;
+      border-radius: 4px;
+      text-decoration: none;
+      color: var(--paper);
+      display: flex;
+      flex-direction: column;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .visit-card:hover {
+      background: rgba(251, 248, 241, 0.09);
+      transform: translateY(-2px);
+    }
+
+    .vc-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin: 0 0 0.75rem;
+    }
+
+    .visit-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin: 0 0 0.75rem;
+      letter-spacing: -0.015em;
+      color: white;
+    }
+
+    .visit-card p:not(.vc-tag) {
+      margin: 0;
+      font-size: 0.95rem;
+      color: rgba(251, 248, 241, 0.7);
+      line-height: 1.5;
+    }
+
+    /* ── FAQ ──────────────────────────────────────────── */
+    .faq {
+      max-width: 760px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--line);
+      padding: 1.25rem 0;
+    }
+
+    .faq-item summary {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--ink);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      letter-spacing: -0.005em;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: "+";
+      font-size: 1.5rem;
+      color: var(--accent);
+      font-weight: 400;
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .faq-item[open] summary::after {
+      content: "−";
+    }
+
+    .faq-item p {
+      margin: 1rem 0 0;
+      color: var(--ink-soft);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /* ── SOURCES ──────────────────────────────────────── */
+    .sources {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .sources p {
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ── RELATED ──────────────────────────────────────── */
+    .related {
+      max-width: 1080px;
+      margin: 4rem auto 0;
+      padding: 3rem 1.5rem 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .related-card {
+      display: block;
+      background: white;
+      border: 1px solid var(--line);
+      padding: 1.5rem;
+      text-decoration: none;
+      color: var(--ink);
+      border-radius: 4px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .related-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+
+    .related-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin: 0 0 0.75rem;
+    }
+
+    .related-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin: 0;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── MOBILE ───────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .hero {
+        padding: 3.5rem 1.25rem 3rem;
+      }
+
+      .quick-inner {
+        padding: 2rem 1.5rem;
+      }
+
+      .visit {
+        padding: 3rem 1.25rem;
+      }
+    }
+  </style>
+</Base>

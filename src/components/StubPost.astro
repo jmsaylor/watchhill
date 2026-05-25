@@ -1,0 +1,246 @@
+---
+// ─────────────────────────────────────────────────────────────────────────
+// StubPost — placeholder article page used while content is in development.
+// Renders a clean "in progress" experience that funnels readers to real
+// articles. Sets noindex so Google never sees the thin content.
+//
+// To convert a stub into a real article: replace the stub page file with
+// a full Astro page like the other articles. This file is just a layout.
+// ─────────────────────────────────────────────────────────────────────────
+
+interface RelatedLink {
+  href: string;
+  title: string;
+  tag: string;
+}
+
+interface Props {
+  title: string;         // article title — what it will eventually be called
+  hubLabel: string;      // which hub it belongs to (e.g. "Things to Do")
+  hubHref: string;       // link to the hub page
+  preview: string;       // 1-2 sentence preview of what the article will cover
+  related: RelatedLink[]; // 3-4 real articles to send the reader to instead
+}
+
+const { title, hubLabel, hubHref, preview, related } = Astro.props;
+---
+
+<main class="stub">
+  <article class="stub-inner">
+    <header class="stub-head">
+      <p class="kicker">{hubLabel} · In Development</p>
+      <h1>{title}</h1>
+      <p class="preview">{preview}</p>
+    </header>
+
+    <section class="status">
+      <div class="status-inner">
+        <p class="status-label">This Guide Is Coming Soon</p>
+        <p class="status-body">
+          We're writing this article now and want to do it properly — every
+          guide on Watch Hill Guide is researched and written locally rather
+          than scraped together. Check back in the coming weeks, or read one
+          of the related guides below in the meantime.
+        </p>
+        <a class="status-cta" href={hubHref}>
+          Browse all {hubLabel.toLowerCase()} guides →
+        </a>
+      </div>
+    </section>
+
+    <section class="related">
+      <p class="related-label">In the meantime, you might like</p>
+      <div class="related-grid">
+        {
+          related.map((r) => (
+            <a class="related-card" href={r.href}>
+              <p class="rc-tag">{r.tag}</p>
+              <h3>{r.title}</h3>
+              <span class="rc-arrow">Read →</span>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+  </article>
+</main>
+
+<style>
+  :root {
+    --ink: #1a1d24;
+    --ink-soft: #4a5061;
+    --ink-muted: #7a8195;
+    --paper: #fbf8f1;
+    --paper-warm: #f3ede0;
+    --line: #e5dfd0;
+    --accent: #2c5f5d;
+    --accent-deep: #1d3f3d;
+    --gold: #b8924a;
+    --font-display: "Fraunces", Georgia, serif;
+    --font-body: "Inter Tight", -apple-system, system-ui, sans-serif;
+  }
+
+  .stub {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.65;
+    min-height: 70vh;
+    padding-bottom: 6rem;
+  }
+
+  .stub *,
+  .stub *::before,
+  .stub *::after {
+    box-sizing: border-box;
+  }
+
+  .stub-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 0;
+  }
+
+  /* ── HEAD ─────────────────────────────────────────── */
+  .stub-head {
+    max-width: 680px;
+    margin: 0 auto 3rem;
+    text-align: center;
+  }
+
+  .kicker {
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin: 0 0 1.25rem;
+  }
+
+  .stub-head h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    line-height: 1.06;
+    letter-spacing: -0.025em;
+    font-weight: 600;
+    margin: 0 0 1.25rem;
+  }
+
+  .preview {
+    font-size: 1.1rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ── STATUS BLOCK ─────────────────────────────────── */
+  .status {
+    max-width: 680px;
+    margin: 0 auto 4rem;
+  }
+
+  .status-inner {
+    background: var(--paper-warm);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--gold);
+    padding: 2rem 2.25rem;
+    border-radius: 4px;
+  }
+
+  .status-label {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin: 0 0 1rem;
+  }
+
+  .status-body {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    margin: 0 0 1.5rem;
+    line-height: 1.6;
+  }
+
+  .status-cta {
+    display: inline-block;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 2px;
+    transition: color 0.15s ease;
+  }
+
+  .status-cta:hover {
+    color: var(--accent-deep);
+  }
+
+  /* ── RELATED ──────────────────────────────────────── */
+  .related {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .related-label {
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    font-weight: 600;
+    margin: 0 0 1.5rem;
+    text-align: center;
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+
+  .related-card {
+    background: white;
+    border: 1px solid var(--line);
+    padding: 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .related-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+  }
+
+  .rc-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin: 0 0 0.75rem;
+  }
+
+  .related-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin: 0 0 1.25rem;
+    flex: 1;
+  }
+
+  .rc-arrow {
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--accent);
+  }
+</style>

@@ -17,10 +17,23 @@ const { title, description = "A landing page built with Astro.", noindex = false
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZTLK1KN7L4" is:inline></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
+      // Google Analystics Setup
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-ZTLK1KN7L4');
+
+      // Link analytics (Google)
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('a[rel~="sponsored"]').forEach(link => {
+        link.addEventListener('click', () => {
+          gtag('event', 'affiliate_click', {
+            link_url: link.href,
+            link_text: link.textContent.trim(),
+            page_path: window.location.pathname
+          });
+        });
+      });
+    });
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

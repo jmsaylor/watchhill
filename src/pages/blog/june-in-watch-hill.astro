@@ -1,0 +1,674 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import { affiliates } from "../../data/affiliates";
+
+const title = "June in Watch Hill, RI: Early Summer Events & What's Open (2026)";
+const description =
+  "A local's guide to early summer in Watch Hill and Westerly — including Summer Pops at Wilcox Park (June 20), Music on the Hill, opening-week beaches, and the quietest pre-July moment to visit.";
+const publishDate = "2026-05-26";
+const updatedDate = "2026-05-26";
+const readingTime = "9 min read";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description: description,
+  datePublished: publishDate,
+  dateModified: updatedDate,
+  author: { "@type": "Organization", name: "Watch Hill Guide" },
+};
+
+// Hand-picked June events with verified 2026 dates.
+const events = [
+  {
+    when: "All June",
+    name: "Music on the Hill Chamber Festival",
+    where: "Multiple venues, Westerly to Warwick",
+    body: "Rhode Island–born musicians come home each June for an affordable chamber music festival. Concerts are held in intimate venues across the state, including in Westerly. Tickets are reasonably priced; students attend free. A genuinely high-quality classical experience that most Watch Hill visitors don't know about.",
+    link: "https://www.musiconthehillri.org/",
+  },
+  {
+    when: "Throughout June",
+    name: "Watch Hill in Bloom",
+    where: "Bay Street, Watch Hill",
+    body: "Bay Street's shops and restaurants are fully open by early June. The Flying Horse Carousel is in daily operation. Olympia Tea Room takes its first big lunch crowds of the year. The carousel pavilion's hanging baskets are at their peak. This is the moment the village fully wakes up.",
+    link: null,
+  },
+  {
+    when: "Saturday, June 20",
+    name: "Summer Pops at Wilcox Park",
+    where: "Wilcox Park, Westerly",
+    body: "The 43rd annual Chorus of Westerly Summer Pops — the biggest free outdoor cultural event in the area. The Chorus of Westerly performs with the Pops Festival Orchestra under conductor Andrew Howell. The night ends with Grucci fireworks (the same firm that does the Macy's Fourth of July show in New York) and the bells of Christ Church played on a carillon. Over 25,000 people attend. Pre-show at 6:15 PM, main performance at 8 PM. Free. Rain date: June 21.",
+    link: "https://www.chorusofwesterly.org/summer-pops",
+  },
+  {
+    when: "Father's Day Weekend (June 21)",
+    name: "Father's Day at Ocean House",
+    where: "Ocean House, Watch Hill",
+    body: "Ocean House traditionally runs Father's Day brunch and dinner programming — typically including the Verandah lunch service, special menus at the Bistro, and family-oriented activities on the bluff. Reserve well in advance.",
+    link: null,
+  },
+  {
+    when: "Saturday mornings, June onward",
+    name: "Westerly Farmers Market",
+    where: "Wilcox Park, Westerly",
+    body: "The local farmers market runs at Wilcox Park on Saturday mornings starting in early summer. Rhode Island produce, baked goods from local kitchens, fresh seafood, and live music. The market is a 7-minute drive from Watch Hill village and the easiest way to taste actual local Rhode Island in one stop.",
+    link: null,
+  },
+  {
+    when: "Throughout June",
+    name: "Beach Season in Full Stride",
+    where: "Misquamicut, East Beach, Napatree",
+    body: "All state and town beaches are fully staffed with lifeguards. Water temperatures move from about 60°F at the start of the month to 65°F by month's end — cool but swimmable. Crowds are noticeably lighter than July or August, especially on weekdays. Parking is easier; restaurants are easier to walk into.",
+    link: null,
+  },
+];
+
+// What's open vs. still closed in June — useful for visitors planning
+const status = [
+  { thing: "Flying Horse Carousel", status: "Open daily", note: "Memorial Day through Labor Day" },
+  { thing: "Misquamicut State Beach", status: "Open daily", note: "9 AM weekdays, 8:30 AM weekends; lifeguards on duty" },
+  { thing: "Ocean House (all 5 restaurants)", status: "Open year-round", note: "Coast, Bistro, Verandah, Seasons Pool Bar, OH! Pastry" },
+  { thing: "Olympia Tea Room", status: "Open", note: "No reservations; expect waits on summer weekends" },
+  { thing: "St. Clair Annex", status: "Open", note: "Lunch 11–3 weekdays, 11–4 weekends; ice cream window until dusk" },
+  { thing: "Watch Hill Lighthouse Museum", status: "Closed until July", note: "Museum opens July 1; grounds open daily" },
+  { thing: "Weekapaug Inn", status: "Open", note: "Reopened in April; full restaurant operations" },
+  { thing: "GreySail Brewing", status: "Open year-round", note: "Taproom + frequent weekend food trucks" },
+  { thing: "Napatree Point", status: "Open 24/7", note: "Free, year-round; bird nesting areas marked" },
+  { thing: "Boat tours (Hard Tail, Snappa)", status: "Running", note: "Sunset cruises book up fastest" },
+];
+
+// Why June is underrated as a visiting window
+const whyJune = [
+  "Water temperatures hit swimmable levels (~65°F by month's end) without August's crowds",
+  "Hotel rates are 25-40% lower than July/August peak weekends",
+  "Days are the longest of the year — sunsets after 8 PM through the solstice (June 21)",
+  "Bay Street is fully open without the full summer rush",
+  "Restaurants take reservations relatively easily compared to July",
+  "Father's Day weekend (June 21) is a quiet alternative to crowded Memorial Day or July 4 weekends",
+  "The Summer Pops concert (June 20) is a genuinely special evening that you can't replicate in any other month",
+];
+
+const faqs = [
+  {
+    q: "Is Watch Hill busy in June?",
+    a: "Less busy than July or August. The first half of June is genuinely quiet — most attractions are open, but crowds haven't peaked. By the third weekend of June, weekend crowds pick up as schools let out across the Northeast. Father's Day weekend (June 21) is the inflection point.",
+  },
+  {
+    q: "What is Summer Pops at Wilcox Park?",
+    a: "The annual outdoor concert by the Chorus of Westerly and Pops Festival Orchestra in Wilcox Park — taking place Saturday, June 20, 2026, at 8 PM (pre-show at 6:15 PM). It includes a Grucci fireworks display and bells played on a carillon at Christ Church. Free admission, over 25,000 attendees, the biggest community cultural event of the year. Rain date: June 21.",
+  },
+  {
+    q: "Can you swim in June at Watch Hill beaches?",
+    a: "Yes, but the water is cool. Atlantic temperatures start the month around 60°F and warm to about 65°F by the end of June. Wading is comfortable; full ocean swimming takes some commitment. The water gets dramatically warmer in July (68°F) and peaks in August (70°F).",
+  },
+  {
+    q: "Is Ocean House open in June?",
+    a: "Yes — Ocean House operates year-round, with full restaurant, spa, and lodging operations. June rates are typically 25–40% lower than July/August peak weekends, especially for midweek stays. Father's Day weekend is one of the most-booked June weekends.",
+  },
+  {
+    q: "When does the Watch Hill Lighthouse Museum open?",
+    a: "The small lighthouse museum opens July 1 and runs through the week after Labor Day, Tuesdays through Thursdays from 1–3 PM. In June, the lighthouse grounds are still open daily from 8 AM to sunset (free), but the museum itself is closed.",
+  },
+  {
+    q: "Are there festivals or events in Watch Hill in June?",
+    a: "Yes — the headline event is Summer Pops at Wilcox Park on June 20 (free outdoor concert with fireworks). The Music on the Hill chamber music festival runs throughout June at venues across Rhode Island including Westerly. Father's Day weekend (June 21) brings special programming at Ocean House.",
+  },
+];
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <Nav />
+
+  <article class="article">
+    <!-- Hero -->
+    <header class="hero">
+      <div class="hero-inner">
+        <p class="kicker">Seasonal Guide · June 2026</p>
+        <h1>
+          June in <em>Watch Hill</em>: An Early Summer Guide
+        </h1>
+        <p class="hero-sub">
+          The village is fully open, water is warming, and the biggest free
+          cultural event of the year happens on June 20. A local's month-by-month
+          guide to early summer — including the events worth planning around and
+          why June is the quietly best time to visit before the July peak.
+        </p>
+        <div class="meta">
+          <span>Updated May 26, 2026</span>
+          <span class="dot">·</span>
+          <span>{readingTime}</span>
+          <span class="dot">·</span>
+          <span>Written from Westerly, RI</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Headline event callout -->
+    <section class="headline">
+      <div class="h-inner">
+        <p class="h-tag">The Headline Event</p>
+        <h2>Summer Pops at Wilcox Park · June 20</h2>
+        <p>
+          The 43rd annual outdoor concert by the Chorus of Westerly and Pops
+          Festival Orchestra. <strong>Free admission, 8 PM main performance
+          (pre-show 6:15 PM), with Grucci fireworks</strong> and the bells of
+          Christ Church played on a carillon. Over 25,000 attend each year. If
+          you're in the area on that Saturday, this is the move.
+        </p>
+        <p class="h-meta">Wilcox Park, Westerly · Free · Rain date June 21</p>
+      </div>
+    </section>
+
+    <!-- Intro -->
+    <section class="prose">
+      <p class="lede">
+        Memorial Day opens the season; the Fourth of July closes the quiet
+        window. The four weeks between are some of the best on the southern
+        Rhode Island coast. Everything is open. The beach water is finally
+        swimmable. Hotel rates are still in shoulder-season territory. And one
+        Saturday night in June, the largest free cultural gathering of the
+        year happens fifteen minutes inland in Wilcox Park.
+      </p>
+      <p>
+        Here's what's actually happening in Watch Hill, Westerly, and the
+        surrounding shoreline this June — plus the practical detail on what's
+        open, what's still closed, and why a lot of locals quietly consider
+        June the best month to visit.
+      </p>
+    </section>
+
+    <!-- Events list -->
+    <section class="events">
+      <div class="section-head">
+        <h2>What's On in June</h2>
+        <p>Verified 2026 dates for the events worth planning around.</p>
+      </div>
+
+      <div class="events-list">
+        {
+          events.map((e, i) => (
+            <article class="event">
+              <p class="e-num">{String(i + 1).padStart(2, "0")}</p>
+              <div class="e-body">
+                <p class="e-when">{e.when}</p>
+                <h3>{e.name}</h3>
+                <p class="e-where">{e.where}</p>
+                <p class="e-text">{e.body}</p>
+                {e.link && (
+                  <a class="e-link" href={e.link} target="_blank" rel="noopener">
+                    Official site →
+                  </a>
+                )}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Why June -->
+    <section class="why">
+      <div class="w-inner">
+        <p class="w-tag">The Locals' Secret</p>
+        <h2>Why June Is the Quietly Best Month to Visit</h2>
+        <p class="w-intro">
+          Most travelers default to July or August because those are the
+          months they hear about. Locals know June is the better play.
+        </p>
+
+        <ul class="why-list">
+          {
+            whyJune.map((reason) => (
+              <li>{reason}</li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <!-- Status table — what's open / closed -->
+    <section class="status">
+      <div class="section-head">
+        <h2>What's Open in June</h2>
+        <p>The full operational status of the major attractions and businesses.</p>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Place</th>
+              <th>Status</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              status.map((s) => (
+                <tr>
+                  <td><strong>{s.thing}</strong></td>
+                  <td>{s.status}</td>
+                  <td>{s.note}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Practical -->
+    <section class="prose">
+      <h2 class="section-h">Planning a June Trip</h2>
+
+      <p>
+        <strong>Weather.</strong> June averages highs in the mid-70s with
+        lows in the high 50s. Humidity is still manageable (peaks in August).
+        Water temperatures climb from 60°F at the start of the month to about
+        65°F by the end. Pack a light layer for evenings — coastal Rhode Island
+        cools off after sunset.
+      </p>
+
+      <p>
+        <strong>Hotel rates.</strong> June midweek rates at Ocean House, Weekapaug
+        Inn, and Watch Hill Inn run 25–40% below July and August peaks.
+        Weekends — particularly Father's Day weekend and the June 20 Summer
+        Pops weekend — tighten significantly. Book by late April for any June
+        weekend stay.
+      </p>
+
+      <p>
+        <strong>Restaurants.</strong> June is the easiest month to walk into
+        Olympia Tea Room without a long wait. Ocean House properties still
+        require reservations, but availability is wider than in July. Bridge
+        Restaurant and The Cooked Goose are reliably open year-round.
+      </p>
+
+      <p>
+        <strong>Parking.</strong> Bay Street parking remains relatively
+        manageable through June, even on weekends. The Misquamicut State Beach
+        lot does start filling earlier — arrive by 10 AM on weekends if a
+        guaranteed spot matters.
+      </p>
+    </section>
+
+    <!-- Stay CTA -->
+    <section class="stay">
+      <div class="s-inner">
+        <p class="s-tag">If You're Booking a June Trip</p>
+        <h2>Where to Stay</h2>
+        <p>
+          June rates are some of the best of the year. Compare across the
+          three landmark hotels and the surrounding area.
+        </p>
+
+        <div class="s-grid">
+          <a class="s-card" href={affiliates.hotels.oceanHouse} rel="sponsored nofollow">
+            <p class="sc-tag">Luxury</p>
+            <h3>Ocean House</h3>
+            <p>Forbes Triple Five-Star. Lower June rates than July peaks.</p>
+          </a>
+          <a class="s-card" href={affiliates.hotels.weekapaugInn} rel="sponsored nofollow">
+            <p class="sc-tag">Quiet Couples</p>
+            <h3>Weekapaug Inn</h3>
+            <p>Relais &amp; Châteaux on a private pond. Reopened in April.</p>
+          </a>
+          <a class="s-card" href={affiliates.rentals.misquamicutVRBO} rel="sponsored nofollow">
+            <p class="sc-tag">Families</p>
+            <h3>VRBO Misquamicut</h3>
+            <p>Beach houses 5 minutes east. Best June value for families.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+      <h2 class="section-h">Frequently Asked Questions</h2>
+      {
+        faqs.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))
+      }
+    </section>
+
+    <!-- Related -->
+    <section class="related">
+      <h2 class="section-h">Keep Reading</h2>
+      <div class="related-grid">
+        <a href="/blog/best-time-to-visit-watch-hill" class="related-card">
+          <p class="related-tag">Planning</p>
+          <h3>Best Time to Visit Watch Hill</h3>
+        </a>
+        <a href="/blog/best-things-to-do-in-watch-hill-ri" class="related-card">
+          <p class="related-tag">Activities</p>
+          <h3>15 Best Things to Do in Watch Hill</h3>
+        </a>
+        <a href="/blog/where-to-stay-watch-hill" class="related-card">
+          <p class="related-tag">Hotels</p>
+          <h3>Where to Stay in Watch Hill</h3>
+        </a>
+        <a href="/blog/best-restaurants-watch-hill" class="related-card">
+          <p class="related-tag">Food</p>
+          <h3>15 Best Restaurants in Watch Hill &amp; Westerly</h3>
+        </a>
+      </div>
+    </section>
+  </article>
+
+  <style>
+    :root {
+      --ink: #1a1d24;
+      --ink-soft: #4a5061;
+      --ink-muted: #7a8195;
+      --paper: #fbf8f1;
+      --paper-warm: #f3ede0;
+      --line: #e5dfd0;
+      --accent: #2c5f5d;
+      --accent-deep: #1d3f3d;
+      --gold: #b8924a;
+      --rose: #b85a4a;
+      --font-display: "Fraunces", Georgia, serif;
+      --font-body: "Inter Tight", -apple-system, system-ui, sans-serif;
+    }
+
+    .article {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.7;
+      padding-bottom: 6rem;
+    }
+    .article *, .article *::before, .article *::after { box-sizing: border-box; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(180deg, var(--paper-warm) 0%, var(--paper) 100%);
+      padding: 5rem 1.5rem 3rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-inner { max-width: 760px; margin: 0 auto; }
+    .kicker {
+      font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600; margin: 0 0 1.5rem;
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5.5vw, 4rem);
+      line-height: 1.04; letter-spacing: -0.025em; font-weight: 600;
+      margin: 0 0 1.5rem;
+    }
+    h1 em { font-style: italic; color: var(--accent); }
+    .hero-sub {
+      font-size: 1.2rem; line-height: 1.55; color: var(--ink-soft);
+      margin: 0 0 2rem; max-width: 620px;
+    }
+    .meta {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      font-size: 0.85rem; color: var(--ink-muted);
+    }
+    .dot { color: var(--line); }
+
+    /* HEADLINE EVENT CALLOUT */
+    .headline { max-width: 760px; margin: -1px auto 0; padding: 0 1.5rem; }
+    .h-inner {
+      background: var(--ink); color: var(--paper);
+      padding: 2.5rem 2.5rem 2rem; border-radius: 6px;
+      border-left: 4px solid var(--gold);
+    }
+    .h-tag {
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); font-weight: 700; margin: 0 0 0.85rem;
+    }
+    .h-inner h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      line-height: 1.15; letter-spacing: -0.02em; font-weight: 600;
+      margin: 0 0 1rem; color: white;
+    }
+    .h-inner p {
+      font-size: 1.05rem; color: rgba(251, 248, 241, 0.85);
+      margin: 0 0 1rem; line-height: 1.6;
+    }
+    .h-inner p:last-of-type { margin-bottom: 0; }
+    .h-inner strong { color: white; font-weight: 600; }
+    .h-meta {
+      font-size: 0.85rem !important; color: rgba(251, 248, 241, 0.65) !important;
+      font-style: italic; margin-top: 0.75rem !important;
+    }
+
+    /* PROSE */
+    .prose { max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem; }
+    .lede { font-size: 1.15rem; line-height: 1.7; }
+    .prose p { margin: 0 0 1.25rem; color: var(--ink); }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose strong { color: var(--ink); font-weight: 600; }
+
+    /* HEADINGS */
+    .section-h {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+      line-height: 1.1; letter-spacing: -0.02em; font-weight: 600;
+      margin: 0 0 1.5rem;
+    }
+    .section-head { max-width: 680px; margin: 0 auto 3rem; }
+    .section-head h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+      line-height: 1.1; letter-spacing: -0.02em; font-weight: 600;
+      margin: 0 0 0.5rem;
+    }
+    .section-head p { color: var(--ink-soft); margin: 0; }
+
+    /* EVENTS */
+    .events { max-width: 860px; margin: 4rem auto; padding: 0 1.5rem; }
+    .events-list { display: flex; flex-direction: column; }
+
+    .event {
+      display: grid; grid-template-columns: auto 1fr; gap: 1.5rem;
+      padding: 2rem 0; border-bottom: 1px solid var(--line);
+      align-items: start;
+    }
+    .event:last-child { border-bottom: none; }
+
+    .e-num {
+      font-family: var(--font-display);
+      font-size: 1.8rem; font-weight: 600; color: var(--accent);
+      margin: 0; letter-spacing: -0.02em;
+      font-feature-settings: "tnum"; line-height: 1;
+    }
+
+    .e-when {
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); font-weight: 700; margin: 0 0 0.4rem;
+    }
+    .event h3 {
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+      line-height: 1.15; letter-spacing: -0.015em; font-weight: 600;
+      margin: 0 0 0.4rem;
+    }
+    .e-where {
+      font-family: var(--font-display); font-style: italic;
+      color: var(--ink-muted); font-size: 0.95rem; margin: 0 0 0.85rem;
+    }
+    .e-text {
+      margin: 0 0 0.85rem; color: var(--ink); line-height: 1.6;
+    }
+    .e-link {
+      font-size: 0.85rem; letter-spacing: 0.05em;
+      color: var(--accent); font-weight: 600;
+      text-decoration: none; border-bottom: 1px solid var(--accent);
+      padding-bottom: 2px;
+    }
+
+    /* WHY JUNE */
+    .why {
+      background: var(--paper-warm); border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 4rem 1.5rem; margin: 4rem 0;
+    }
+    .w-inner { max-width: 760px; margin: 0 auto; }
+    .w-tag {
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600; margin: 0 0 0.75rem;
+    }
+    .why h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 3vw, 2.2rem);
+      line-height: 1.15; letter-spacing: -0.02em; font-weight: 600;
+      margin: 0 0 1rem;
+    }
+    .w-intro { color: var(--ink-soft); margin: 0 0 2rem; }
+
+    .why-list { list-style: none; padding: 0; margin: 0; }
+    .why-list li {
+      position: relative; padding: 0.75rem 0 0.75rem 1.75rem;
+      color: var(--ink); line-height: 1.55;
+      border-bottom: 1px solid var(--line);
+    }
+    .why-list li:last-child { border-bottom: none; }
+    .why-list li::before {
+      content: "✓"; position: absolute; left: 0; top: 0.75rem;
+      color: var(--accent); font-weight: 600;
+    }
+
+    /* STATUS TABLE */
+    .status { max-width: 1080px; margin: 4rem auto; padding: 0 1.5rem; }
+    .table-wrap {
+      overflow-x: auto; border: 1px solid var(--line);
+      border-radius: 4px; background: white;
+    }
+    table {
+      width: 100%; border-collapse: collapse;
+      font-size: 0.95rem; min-width: 640px;
+    }
+    thead { background: var(--paper-warm); }
+    th {
+      text-align: left; padding: 1rem 1.25rem;
+      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+      font-weight: 600; color: var(--ink-muted);
+      border-bottom: 1px solid var(--line);
+    }
+    td {
+      padding: 1rem 1.25rem; border-bottom: 1px solid var(--line);
+      color: var(--ink-soft); vertical-align: top;
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody strong { color: var(--ink); font-weight: 600; }
+
+    /* STAY CTA */
+    .stay {
+      background: var(--ink); color: var(--paper);
+      padding: 4rem 1.5rem; margin: 4rem 0;
+    }
+    .s-inner { max-width: 1080px; margin: 0 auto; }
+    .s-tag {
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); font-weight: 600; margin: 0 0 0.75rem;
+    }
+    .stay h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3vw, 2.3rem);
+      line-height: 1.1; letter-spacing: -0.02em; font-weight: 600;
+      margin: 0 0 1rem; color: white;
+    }
+    .stay > .s-inner > p {
+      color: rgba(251, 248, 241, 0.85); margin: 0 0 2rem; max-width: 600px;
+    }
+    .s-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+    .s-card {
+      background: rgba(251, 248, 241, 0.05);
+      border: 1px solid rgba(251, 248, 241, 0.12);
+      padding: 1.75rem; border-radius: 4px;
+      text-decoration: none; color: var(--paper);
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .s-card:hover {
+      background: rgba(251, 248, 241, 0.09);
+      transform: translateY(-2px);
+    }
+    .sc-tag {
+      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); font-weight: 600; margin: 0 0 0.6rem;
+    }
+    .s-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem; font-weight: 600;
+      letter-spacing: -0.015em; margin: 0 0 0.6rem; color: white;
+    }
+    .s-card p:not(.sc-tag) {
+      font-size: 0.92rem; color: rgba(251, 248, 241, 0.75);
+      margin: 0; line-height: 1.5;
+    }
+
+    /* FAQ */
+    .faq { max-width: 760px; margin: 4rem auto; padding: 0 1.5rem; }
+    .faq-item { border-bottom: 1px solid var(--line); padding: 1.25rem 0; }
+    .faq-item summary {
+      font-family: var(--font-display);
+      font-size: 1.15rem; font-weight: 600; cursor: pointer; color: var(--ink);
+      list-style: none; display: flex; justify-content: space-between;
+      align-items: center; gap: 1rem; letter-spacing: -0.005em;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: "+"; font-size: 1.5rem; color: var(--accent);
+      font-weight: 400; flex-shrink: 0;
+    }
+    .faq-item[open] summary::after { content: "−"; }
+    .faq-item p {
+      margin: 1rem 0 0; color: var(--ink-soft); font-size: 1rem; line-height: 1.6;
+    }
+
+    /* RELATED */
+    .related {
+      max-width: 1080px; margin: 4rem auto 0;
+      padding: 3rem 1.5rem 0; border-top: 1px solid var(--line);
+    }
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+    .related-card {
+      display: block; background: white; border: 1px solid var(--line);
+      padding: 1.5rem; text-decoration: none; color: var(--ink);
+      border-radius: 4px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .related-card:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .related-tag {
+      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600; margin: 0 0 0.75rem;
+    }
+    .related-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem; font-weight: 600; margin: 0;
+      line-height: 1.25; letter-spacing: -0.01em;
+    }
+
+    /* MOBILE */
+    @media (max-width: 640px) {
+      .hero { padding: 3.5rem 1.25rem 2.5rem; }
+      .h-inner { padding: 2rem 1.5rem; }
+      .stay { padding: 3rem 1.25rem; }
+      .why { padding: 3rem 1.25rem; }
+      .event { grid-template-columns: 1fr; gap: 0.5rem; }
+      .e-num { font-size: 1.4rem; }
+    }
+  </style>
+</Base>

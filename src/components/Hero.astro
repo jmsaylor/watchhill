@@ -4,20 +4,19 @@
 // Everything below is presentation; this is the content.
 // ─────────────────────────────────────────────────────────────────────────
 const featured = {
-  href: "/blog/memorial-day-watch-hill",
-  kicker: "This Weekend · Memorial Day 2026",
-  title: "Memorial Day in Watch Hill & Westerly",
+  href: "/blog/june-in-watch-hill",
+  kicker: "Now Live · Early Summer 2026",
+  title: "June in Watch Hill",
   subtitle:
-    "A local's three-day guide — from the historic Westerly-Pawcatuck Parade to the beach season's opening day, with where to be when and a few quieter moments worth seeking out.",
+    "The village is fully open, water is warming, and the biggest free cultural event of the year happens on June 20. A local's guide to early summer — including the events worth planning around and why June is the quietly best time to visit before the July peak.",
   meta: [
-    "9:30 AM Monday — Parade steps off",
-    "Wilcox Park ceremony at 11",
-    "Beaches officially open",
+    "June 20 — Summer Pops at Wilcox Park",
+    "Music on the Hill — all month",
+    "Lower rates than July & August",
   ],
-  readingTime: "8 min read",
+  readingTime: "9 min read",
 };
 
-// Secondary featured posts — three smaller cards beneath the hero.
 const secondary = [
   {
     href: "/blog/best-things-to-do-in-watch-hill-ri",
@@ -25,23 +24,21 @@ const secondary = [
     title: "15 Best Things to Do in Watch Hill",
   },
   {
-    href: "/blog/is-watch-hill-worth-visiting",
-    tag: "Planning",
-    title: "Is Watch Hill Worth Visiting?",
+    href: "/blog/where-to-stay-watch-hill",
+    tag: "Hotel Guide",
+    title: "Where to Stay in Watch Hill",
   },
   {
-    href: "/blog/taylor-swift-watch-hill-mansion",
-    tag: "Local History",
-    title: "The Real Story of Holiday House",
+    href: "/blog/watch-hill-vs-newport",
+    tag: "Comparison",
+    title: "Watch Hill vs Newport: Which to Visit?",
   },
 ];
 ---
 
 <section class="hero">
-  <!-- Top: small breadcrumb / brand cue -->
   <div class="hero-shell">
     <div class="hero-grid">
-      <!-- LEFT: editorial content -->
       <div class="hero-text">
         <a href={featured.href} class="featured-link" aria-label={featured.title}>
           <p class="kicker">{featured.kicker}</p>
@@ -49,11 +46,7 @@ const secondary = [
           <p class="hero-sub">{featured.subtitle}</p>
 
           <ul class="meta-list">
-            {
-              featured.meta.map((bullet) => (
-                <li>{bullet}</li>
-              ))
-            }
+            {featured.meta.map((bullet) => (<li>{bullet}</li>))}
           </ul>
 
           <p class="hero-cta">
@@ -64,97 +57,79 @@ const secondary = [
         </a>
       </div>
 
-      <!-- RIGHT: editorial visual (custom SVG, not a stock photo) -->
       <div class="hero-art" aria-hidden="true">
         <div class="art-frame">
           <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-            <!-- Sky gradient -->
             <defs>
-              <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#f3ede0"/>
-                <stop offset="100%" stop-color="#e8ddc5"/>
+              <linearGradient id="sky-june" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#fef4d8"/>
+                <stop offset="50%" stop-color="#f9d99a"/>
+                <stop offset="100%" stop-color="#e8a572"/>
               </linearGradient>
-              <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#7a9ba0"/>
-                <stop offset="100%" stop-color="#2c5f5d"/>
+              <linearGradient id="water-june" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#c98558"/>
+                <stop offset="50%" stop-color="#5d7c89"/>
+                <stop offset="100%" stop-color="#2c4d5e"/>
               </linearGradient>
+              <radialGradient id="sun-glow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#fff5d6" stop-opacity="0.9"/>
+                <stop offset="50%" stop-color="#f9d99a" stop-opacity="0.4"/>
+                <stop offset="100%" stop-color="#f9d99a" stop-opacity="0"/>
+              </radialGradient>
             </defs>
 
-            <!-- Background -->
-            <rect width="400" height="500" fill="url(#sky)"/>
+            <rect width="400" height="500" fill="url(#sky-june)"/>
+            <circle cx="200" cy="240" r="110" fill="url(#sun-glow)"/>
+            <circle cx="200" cy="240" r="32" fill="#fffaeb" opacity="0.9"/>
+            <circle cx="200" cy="240" r="22" fill="#fff5d6"/>
 
-            <!-- Distant horizon land -->
-            <path d="M 0 280 Q 100 270 200 275 T 400 280 L 400 290 L 0 290 Z" fill="#1d3f3d" opacity="0.4"/>
+            <path d="M 0 295 Q 100 285 200 290 T 400 295 L 400 305 L 0 305 Z" fill="#1d3f3d" opacity="0.45"/>
 
-            <!-- Water -->
-            <rect y="285" width="400" height="120" fill="url(#water)" opacity="0.85"/>
+            <rect y="295" width="400" height="135" fill="url(#water-june)" opacity="0.92"/>
 
-            <!-- Water shimmer lines -->
-            <line x1="20" y1="310" x2="80" y2="310" stroke="#fbf8f1" stroke-width="0.5" opacity="0.5"/>
-            <line x1="180" y1="325" x2="240" y2="325" stroke="#fbf8f1" stroke-width="0.5" opacity="0.5"/>
-            <line x1="60" y1="345" x2="130" y2="345" stroke="#fbf8f1" stroke-width="0.5" opacity="0.5"/>
-            <line x1="280" y1="360" x2="360" y2="360" stroke="#fbf8f1" stroke-width="0.5" opacity="0.5"/>
+            <ellipse cx="200" cy="320" rx="60" ry="3" fill="#fff5d6" opacity="0.6"/>
+            <ellipse cx="200" cy="335" rx="50" ry="2" fill="#fff5d6" opacity="0.5"/>
+            <ellipse cx="200" cy="350" rx="40" ry="2" fill="#fff5d6" opacity="0.4"/>
+            <ellipse cx="200" cy="365" rx="30" ry="1.5" fill="#fff5d6" opacity="0.3"/>
+            <ellipse cx="200" cy="380" rx="22" ry="1" fill="#fff5d6" opacity="0.25"/>
 
-            <!-- Beach -->
-            <rect y="395" width="400" height="105" fill="#f3ede0"/>
-            <rect y="395" width="400" height="105" fill="#b8924a" opacity="0.15"/>
+            <line x1="40" y1="345" x2="100" y2="345" stroke="#fbf8f1" stroke-width="0.5" opacity="0.4"/>
+            <line x1="310" y1="370" x2="370" y2="370" stroke="#fbf8f1" stroke-width="0.5" opacity="0.4"/>
+            <line x1="60" y1="395" x2="120" y2="395" stroke="#fbf8f1" stroke-width="0.5" opacity="0.4"/>
 
-            <!-- Lighthouse silhouette on the hill -->
-            <g transform="translate(280, 180)">
-              <!-- Hill -->
-              <path d="M -80 105 Q 0 60 80 105 L 80 110 L -80 110 Z" fill="#1d3f3d" opacity="0.55"/>
-              <!-- Lighthouse base -->
-              <rect x="-8" y="50" width="16" height="55" fill="#fbf8f1"/>
-              <rect x="-8" y="50" width="16" height="55" fill="#1a1d24" opacity="0.05"/>
-              <!-- Lighthouse cap -->
-              <rect x="-10" y="40" width="20" height="10" fill="#1a1d24"/>
-              <!-- Lantern -->
-              <rect x="-6" y="30" width="12" height="12" fill="#b8924a"/>
-              <!-- Light glow -->
-              <circle cx="0" cy="36" r="18" fill="#b8924a" opacity="0.25"/>
-              <circle cx="0" cy="36" r="9" fill="#b8924a" opacity="0.35"/>
-              <!-- Top spire -->
-              <polygon points="-4,30 4,30 0,22" fill="#1a1d24"/>
+            <rect y="420" width="400" height="80" fill="#f3ede0"/>
+            <rect y="420" width="400" height="80" fill="#b8924a" opacity="0.18"/>
+
+            <g transform="translate(140, 320)" opacity="0.55">
+              <line x1="0" y1="-26" x2="0" y2="6" stroke="#1a1d24" stroke-width="0.8"/>
+              <polygon points="0,-24 0,3 13,3" fill="#1a1d24" opacity="0.55"/>
+              <path d="M -8 6 L 8 6 L 6 9 L -6 9 Z" fill="#1a1d24"/>
             </g>
 
-            <!-- Distant sailboat -->
-            <g transform="translate(80, 320)" opacity="0.75">
-              <line x1="0" y1="-22" x2="0" y2="8" stroke="#1a1d24" stroke-width="0.75"/>
-              <polygon points="0,-20 0,4 14,4" fill="#fbf8f1" stroke="#1a1d24" stroke-width="0.5"/>
-              <polygon points="0,-18 0,2 -10,2" fill="#fbf8f1" stroke="#1a1d24" stroke-width="0.5"/>
-              <path d="M -10 8 L 10 8 L 8 11 L -8 11 Z" fill="#1a1d24"/>
+            <g transform="translate(330, 200)">
+              <path d="M -70 105 Q 0 65 70 105 L 70 110 L -70 110 Z" fill="#1d3f3d" opacity="0.55"/>
+              <rect x="-7" y="55" width="14" height="50" fill="#fbf8f1" opacity="0.95"/>
+              <rect x="-9" y="46" width="18" height="9" fill="#1a1d24"/>
+              <rect x="-5" y="36" width="10" height="10" fill="#b8924a"/>
+              <circle cx="0" cy="41" r="14" fill="#b8924a" opacity="0.3"/>
+              <polygon points="-3,36 3,36 0,29" fill="#1a1d24"/>
             </g>
-
-            <!-- Small flag on shore -->
-            <g transform="translate(80, 395)">
-              <line x1="0" y1="0" x2="0" y2="-50" stroke="#1a1d24" stroke-width="1"/>
-              <rect x="0" y="-50" width="22" height="14" fill="#a52833"/>
-              <rect x="0" y="-50" width="9" height="6" fill="#1f3557"/>
-            </g>
-
-            <!-- Subtle grain -->
-            <rect width="400" height="500" fill="url(#sky)" opacity="0"/>
           </svg>
         </div>
-
-        <!-- Small caption that overlays bottom -->
-        <p class="art-caption">Watch Hill Lighthouse, est. 1806</p>
+        <p class="art-caption">Sunset at Watch Hill Lighthouse, early June</p>
       </div>
     </div>
 
-    <!-- Secondary featured strip -->
     <div class="secondary">
       <p class="secondary-label">More to explore</p>
       <div class="secondary-grid">
-        {
-          secondary.map((post) => (
-            <a class="secondary-card" href={post.href}>
-              <p class="sc-tag">{post.tag}</p>
-              <h3>{post.title}</h3>
-              <span class="sc-arrow">Read →</span>
-            </a>
-          ))
-        }
+        {secondary.map((post) => (
+          <a class="secondary-card" href={post.href}>
+            <p class="sc-tag">{post.tag}</p>
+            <h3>{post.title}</h3>
+            <span class="sc-arrow">Read →</span>
+          </a>
+        ))}
       </div>
     </div>
   </div>
@@ -171,8 +146,6 @@ const secondary = [
     --accent: #2c5f5d;
     --accent-deep: #1d3f3d;
     --gold: #b8924a;
-    --flag-red: #a52833;
-    --flag-navy: #1f3557;
     --font-display: "Fraunces", Georgia, serif;
     --font-body: "Inter Tight", -apple-system, system-ui, sans-serif;
   }
@@ -185,7 +158,6 @@ const secondary = [
     position: relative;
     overflow: hidden;
   }
-
   .hero::before {
     content: "";
     position: absolute;
@@ -199,15 +171,8 @@ const secondary = [
     opacity: 0.55;
     z-index: 0;
   }
+  .hero-shell { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
 
-  .hero-shell {
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* ── MAIN GRID ────────────────────────────────────── */
   .hero-grid {
     display: grid;
     grid-template-columns: 1.15fr 1fr;
@@ -217,40 +182,32 @@ const secondary = [
     border-bottom: 1px solid var(--line);
   }
 
-  /* ── TEXT SIDE ────────────────────────────────────── */
   .featured-link {
     display: block;
     text-decoration: none;
     color: inherit;
     transition: transform 0.25s ease;
   }
-
-  .featured-link:hover {
-    transform: translateX(2px);
-  }
-
-  .featured-link:hover .cta-arrow {
-    transform: translateX(6px);
-  }
+  .featured-link:hover { transform: translateX(2px); }
+  .featured-link:hover .cta-arrow { transform: translateX(6px); }
 
   .kicker {
     font-family: var(--font-body);
     font-size: 0.8rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--flag-red);
+    color: var(--gold);
     font-weight: 600;
     margin: 0 0 1.5rem;
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
   }
-
   .kicker::before {
     content: "";
     width: 28px;
     height: 1px;
-    background: var(--flag-red);
+    background: var(--gold);
     display: inline-block;
   }
 
@@ -274,12 +231,10 @@ const secondary = [
 
   .meta-list {
     list-style: none;
-    padding: 0;
+    padding: 0 0 0 1.25rem;
     margin: 0 0 2.5rem;
     border-left: 2px solid var(--gold);
-    padding-left: 1.25rem;
   }
-
   .meta-list li {
     font-family: var(--font-display);
     font-size: 1rem;
@@ -288,10 +243,7 @@ const secondary = [
     padding: 0.4rem 0;
     letter-spacing: -0.005em;
   }
-
-  .meta-list li + li {
-    border-top: 1px solid var(--line);
-  }
+  .meta-list li + li { border-top: 1px solid var(--line); }
 
   .hero-cta {
     display: inline-flex;
@@ -304,14 +256,12 @@ const secondary = [
     font-weight: 600;
     color: var(--accent);
   }
-
   .cta-arrow {
     transition: transform 0.2s ease;
     display: inline-block;
     color: var(--accent);
     font-size: 1.1rem;
   }
-
   .cta-time {
     color: var(--ink-muted);
     font-weight: 500;
@@ -319,7 +269,6 @@ const secondary = [
     text-transform: none;
   }
 
-  /* ── ART SIDE ─────────────────────────────────────── */
   .hero-art {
     position: relative;
     width: 100%;
@@ -327,24 +276,15 @@ const secondary = [
     max-width: 440px;
     justify-self: end;
   }
-
   .art-frame {
     width: 100%;
     height: 100%;
     border-radius: 6px;
     overflow: hidden;
     background: var(--paper-warm);
-    box-shadow:
-      0 1px 0 rgba(26, 29, 36, 0.06),
-      0 18px 50px -20px rgba(26, 29, 36, 0.18);
+    box-shadow: 0 1px 0 rgba(26, 29, 36, 0.06), 0 18px 50px -20px rgba(26, 29, 36, 0.18);
   }
-
-  .art-frame svg {
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-
+  .art-frame svg { width: 100%; height: 100%; display: block; }
   .art-caption {
     position: absolute;
     bottom: -2rem;
@@ -357,11 +297,7 @@ const secondary = [
     letter-spacing: -0.005em;
   }
 
-  /* ── SECONDARY STRIP ──────────────────────────────── */
-  .secondary {
-    padding: 4rem 0 0;
-  }
-
+  .secondary { padding: 4rem 0 0; }
   .secondary-label {
     font-size: 0.75rem;
     letter-spacing: 0.2em;
@@ -370,13 +306,11 @@ const secondary = [
     font-weight: 600;
     margin: 0 0 1.5rem;
   }
-
   .secondary-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 1rem;
   }
-
   .secondary-card {
     background: white;
     border: 1px solid var(--line);
@@ -389,15 +323,11 @@ const secondary = [
     transition: transform 0.2s ease, border-color 0.2s ease;
     position: relative;
   }
-
   .secondary-card:hover {
     transform: translateY(-3px);
     border-color: var(--accent);
   }
-
-  .secondary-card:hover .sc-arrow {
-    color: var(--accent-deep);
-  }
+  .secondary-card:hover .sc-arrow { color: var(--accent-deep); }
 
   .sc-tag {
     font-size: 0.7rem;
@@ -407,7 +337,6 @@ const secondary = [
     font-weight: 600;
     margin: 0 0 0.75rem;
   }
-
   .secondary-card h3 {
     font-family: var(--font-display);
     font-size: 1.2rem;
@@ -417,7 +346,6 @@ const secondary = [
     margin: 0 0 1.25rem;
     flex: 1;
   }
-
   .sc-arrow {
     font-size: 0.8rem;
     letter-spacing: 0.12em;
@@ -427,38 +355,23 @@ const secondary = [
     transition: color 0.15s ease;
   }
 
-  /* ── MOBILE ───────────────────────────────────────── */
   @media (max-width: 900px) {
     .hero-grid {
       grid-template-columns: 1fr;
       gap: 2.5rem;
       padding: 2rem 0 3rem;
     }
-
     .hero-art {
       order: -1;
       max-width: 360px;
       justify-self: start;
       aspect-ratio: 5 / 4;
     }
-
-    .art-caption {
-      position: static;
-      margin-top: 0.6rem;
-    }
+    .art-caption { position: static; margin-top: 0.6rem; }
   }
-
   @media (max-width: 640px) {
-    .hero {
-      padding: 2rem 1.25rem 3.5rem;
-    }
-
-    .hero-title {
-      font-size: clamp(2.2rem, 9vw, 3rem);
-    }
-
-    .meta-list {
-      padding-left: 1rem;
-    }
+    .hero { padding: 2rem 1.25rem 3.5rem; }
+    .hero-title { font-size: clamp(2.2rem, 9vw, 3rem); }
+    .meta-list { padding-left: 1rem; }
   }
 </style>

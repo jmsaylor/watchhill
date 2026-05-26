@@ -1,0 +1,749 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import { affiliates } from "../../data/affiliates";
+
+const title = "Watch Hill vs Newport: Which Rhode Island Town Should You Visit? (2026)";
+const description =
+  "A local's honest comparison of Watch Hill and Newport, Rhode Island — vibe, crowds, costs, food, beaches, and which town fits your trip. Plus the case for visiting both.";
+const publishDate = "2026-05-26";
+const updatedDate = "2026-05-26";
+const readingTime = "12 min read";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description: description,
+  datePublished: publishDate,
+  dateModified: updatedDate,
+  author: { "@type": "Organization", name: "Watch Hill Guide" },
+};
+
+// The headline comparison rows — design these for featured-snippet eligibility.
+const headlineCompare = [
+  { dim: "Size", wh: "1 sq mile village", np: "11 sq miles, full city" },
+  { dim: "Famous for", wh: "Quiet luxury, lighthouse, Taylor Swift", np: "Gilded Age mansions, sailing, Cliff Walk" },
+  { dim: "Annual visitors", wh: "Hundreds of thousands", np: "Over 3.5 million" },
+  { dim: "Vibe", wh: "Sleepy, residential, low-key", np: "Lively, historic, see-and-be-seen" },
+  { dim: "Walkable downtown", wh: "Two blocks (Bay Street)", np: "30+ blocks (Thames, Bellevue)" },
+  { dim: "Restaurants", wh: "About 8 in the village", np: "150+ in the city" },
+  { dim: "Cost (lodging)", wh: "$400–$1,200+/night", np: "$200–$1,500+/night" },
+  { dim: "Best time", wh: "May–October", np: "Year-round, peaks summer" },
+  { dim: "From Boston", wh: "1h 45m drive", np: "1h 30m drive" },
+  { dim: "From NYC", wh: "2h 45m drive", np: "3h 30m drive" },
+  { dim: "Crowds", wh: "Low to moderate", np: "Heavy in summer" },
+];
+
+// Dimension-by-dimension deep dives — the editorial substance.
+const dimensions = [
+  {
+    title: "Vibe & Atmosphere",
+    winner: "Depends",
+    wh: "Watch Hill is small and residential — about 1 square mile of mostly-private bluff with a 2-block village at one end. The dominant feeling is quiet wealth. You can walk the entire village in 15 minutes. There's no nightlife to speak of. Restaurants close by 9:30 PM. It's the kind of place travel writers consistently describe as \"understated.\"",
+    np: "Newport is a working city of about 24,000 with three centuries of continuous history and tourism layered on top. Thames Street has the energy of a busy harbor town: walkable, loud, full of bars and restaurants, with sailing traffic visible from most of the waterfront. Bellevue Avenue, by contrast, is the Gilded Age mansion district — formal, manicured, and explicitly grand.",
+  },
+  {
+    title: "Crowds",
+    winner: "Watch Hill",
+    wh: "Real but manageable. Bay Street fills on summer weekends but you can always find parking somewhere, beaches don't require advance arrival until July, and even peak-summer dinners can be had with reasonable patience. The village structurally can't accommodate huge crowds — and so it doesn't try to.",
+    np: "Heavy. Newport gets over 3.5 million visitors annually. Summer weekends are genuinely difficult: mansion tours sell out, the Cliff Walk gets congested, Thames Street parking is a real challenge, and traffic across the Newport Bridge can be brutal on Friday afternoons. The fall is more pleasant. Off-season is wonderful.",
+  },
+  {
+    title: "Historic Architecture",
+    winner: "Newport",
+    wh: "Watch Hill has a charming Victorian-era resort architecture along Bay Street and on the bluffs above. The Watch Hill Historic District is on the National Register, and there are some genuinely beautiful 19th-century homes. But it's small in scale and not the reason most people visit.",
+    np: "Newport is the architectural heavyweight of New England — over 300 pre-Revolutionary buildings (the largest concentration in the country), Touro Synagogue (1763, America's oldest), the Trinity Church, and the famous Bellevue Avenue mansion district built by Vanderbilts, Astors, and Berwinds during the Gilded Age. If old buildings matter to you at all, Newport wins easily.",
+  },
+  {
+    title: "Beaches",
+    winner: "Watch Hill",
+    wh: "Better beaches, full stop. East Beach and the larger Misquamicut shoreline run for seven uninterrupted miles of fine sand and gentle surf. Napatree Point adds a 1.3-mile barrier peninsula at the western end with bird sanctuaries and Fort Mansfield ruins. The water is cleaner and the crowds are thinner than anywhere on Aquidneck Island.",
+    np: "Easton's Beach (\"First Beach\") and Sachuest Beach (\"Second Beach\") are the two main public beaches. Both are perfectly fine — Easton's connects to the Cliff Walk, which is a real plus — but they're more developed, more crowded, and less impressive than Watch Hill's coastline. Newport is better for sailing than swimming.",
+  },
+  {
+    title: "Food & Restaurants",
+    winner: "Newport",
+    wh: "Watch Hill has roughly 8 real restaurants in the village plus another dozen or so in Westerly and Misquamicut. The quality bar is genuinely high — Ocean House has Rhode Island's only Forbes Five-Star restaurant, and the Olympia Tea Room (1916) is a Bay Street institution — but the variety is limited. Most every restaurant closes from mid-October through April.",
+    np: "Newport has more than 150 restaurants, year-round, across every cuisine you can think of. The Mooring, Midtown Oyster Bar, and Bowen's Wharf for waterfront dining; Tallulah on Thames for high-end; Bouchard for fine dining; plus a serious oyster, raw bar, and craft beer scene. If food variety matters to your trip, Newport is the answer.",
+  },
+  {
+    title: "Things to Do",
+    winner: "Newport",
+    wh: "The Flying Horse Carousel, Watch Hill Lighthouse, Napatree Point hike, the beaches, Bay Street browsing, and boat tours. Plenty for a 2–3 day trip, not enough for a full week. Some visitors also drive 20 minutes to Mystic, CT for an aquarium-and-seaport day trip.",
+    np: "An enormous range — The Breakers, Marble House, Rosecliff, The Elms, Cliff Walk (3.5 miles), Tennis Hall of Fame, sailing tours, Fort Adams, vineyards, ghost tours, Newport Folk Festival (July), Newport Jazz Festival (August). You could fill a full week and still miss things.",
+  },
+  {
+    title: "Where to Stay",
+    winner: "Depends",
+    wh: "Three landmark hotels — Ocean House (Forbes Triple Five-Star), Weekapaug Inn, Watch Hill Inn — plus VRBO rentals in Misquamicut. Tight inventory means summer weekends book months ahead. Quality across the board is high; budget options are limited.",
+    np: "Hundreds of properties, from Castle Hill Inn (Relais & Châteaux) and the Vanderbilt Auberge at the top to inns, B&Bs, mid-tier hotels, and chain hotels. Far more inventory and more price flexibility. Easier to find a last-minute room — though prime summer weekends still book up well in advance.",
+  },
+  {
+    title: "Cost of a Trip",
+    winner: "Newport (if you choose)",
+    wh: "Hard to do cheaply. The village hotels all start above $400/night and easily exceed $1,000. Restaurants skew upscale. The way to do Watch Hill on a budget is to stay in Westerly or Misquamicut (10 minutes inland) and day-trip into the village.",
+    np: "Can be expensive at the top end — Castle Hill, Forty 1 North — but also has real mid-range and budget options across the city. You can do a quality 3-day Newport trip for half what the same trip would cost in Watch Hill.",
+  },
+  {
+    title: "Accessibility",
+    winner: "Newport",
+    wh: "About 1h 45m from Boston, 2h 45m from NYC, 50 min from Providence. Amtrak's Northeast Corridor stops at Westerly Station (10 min from Watch Hill). T.F. Green Airport is 50 minutes away.",
+    np: "About 1h 30m from Boston, 3h 30m from NYC, 35 min from Providence (and the Newport Bridge sometimes adds traffic to that). T.F. Green Airport is 30 minutes away. Newport has a more developed local infrastructure for visitors — trolleys, taxis, ferry service.",
+  },
+];
+
+// Decision tree by traveler type
+const byType = [
+  {
+    type: "First-time Rhode Island visitor",
+    pick: "Newport",
+    why: "Newport is the headline tourism experience of the state — the mansions, the Cliff Walk, the sailing history. If you've never been to Rhode Island, do Newport first. Watch Hill rewards repeat visits more than first visits.",
+  },
+  {
+    type: "Couple wanting a quiet weekend",
+    pick: "Watch Hill",
+    why: "Watch Hill is structurally quieter than Newport — fewer crowds, less nightlife, smaller scale. The slow pace is the product. Ocean House and Weekapaug Inn are built around exactly this kind of trip.",
+  },
+  {
+    type: "Family with kids 5–12",
+    pick: "Watch Hill (slight edge)",
+    why: "The Flying Horse Carousel, gentle beaches at East Beach and Misquamicut, the Misquamicut amusement strip 5 minutes east, the Mystic Aquarium 20 minutes west — Watch Hill makes a better family base. Newport works too, but it's more spread out and adult-oriented.",
+  },
+  {
+    type: "Family with teenagers",
+    pick: "Newport",
+    why: "Teenagers want things to do, places to walk to, and other people around. Newport has all of that — Thames Street, the Cliff Walk, sailing trips, mansion tours, Easton's Beach. Watch Hill's quietness can read as boredom at 15.",
+  },
+  {
+    type: "History or architecture enthusiast",
+    pick: "Newport",
+    why: "Easy choice. 300+ pre-Revolutionary buildings, the Gilded Age mansion district, Touro Synagogue, Trinity Church, the International Tennis Hall of Fame. Watch Hill has charming Victorian resort architecture but nothing approaching the depth or significance.",
+  },
+  {
+    type: "Beach trip",
+    pick: "Watch Hill",
+    why: "Watch Hill's seven miles of connected white-sand beaches genuinely outclass Newport's two small public beaches. If you want a swim-and-sun trip, this isn't close.",
+  },
+  {
+    type: "Sailing or boating focus",
+    pick: "Newport",
+    why: "Newport is the historical sailing capital of the East Coast. Marinas, charters, regattas, sailing schools. Watch Hill has small-boat tours but isn't a serious sailing town.",
+  },
+  {
+    type: "Food trip",
+    pick: "Newport",
+    why: "Far more restaurants, far more variety, far longer seasons. Watch Hill has high-end food at Ocean House and a few Bay Street institutions; Newport has all of that plus 140 more restaurants across every cuisine.",
+  },
+  {
+    type: "Budget traveler",
+    pick: "Newport",
+    why: "Watch Hill's lodging starts above $400/night for anywhere meaningful, and budget options require staying outside the village. Newport has real mid-range and budget options across the city.",
+  },
+  {
+    type: "Off-season / winter trip",
+    pick: "Newport",
+    why: "Newport stays open year-round — most restaurants, attractions, and the mansions all keep some form of operation through winter. Watch Hill goes deeply quiet from mid-October to May, with only Ocean House and a handful of Westerly spots staying open.",
+  },
+];
+
+const faqs = [
+  {
+    q: "Is Watch Hill better than Newport?",
+    a: "It depends what you want. Watch Hill is quieter, has better beaches, and offers a more intimate luxury experience. Newport is bigger, more historic, has more restaurants and activities, and is more accessible for a full week of activity. Most travelers who have time should visit both — they're an hour apart and feel completely different.",
+  },
+  {
+    q: "Which is more expensive, Watch Hill or Newport?",
+    a: "Watch Hill is more expensive on average. The village has only three landmark hotels — all of which start above $400/night — and restaurants skew upscale. Newport has a wider range of accommodations and food at all price points, so a careful traveler can do Newport for significantly less than a comparable Watch Hill trip.",
+  },
+  {
+    q: "Can you do both Watch Hill and Newport on the same trip?",
+    a: "Yes, easily. The two are about an hour apart by car. A common approach: stay in Watch Hill for the quiet end of the trip and Newport for the activity end. Or stay in Newport and day-trip to Watch Hill. The two complement each other well.",
+  },
+  {
+    q: "Which is better for kids, Watch Hill or Newport?",
+    a: "Watch Hill is slightly better for younger kids (5–12) because of the Flying Horse Carousel, the calm beaches, and the Misquamicut amusement strip nearby. Newport is better for teenagers and family groups that want more activity and walkability.",
+  },
+  {
+    q: "Which has better beaches, Watch Hill or Newport?",
+    a: "Watch Hill, decisively. East Beach and the Misquamicut shoreline run for seven uninterrupted miles of clean white sand, plus Napatree Point at the western end. Newport's main public beaches (Easton's and Sachuest) are smaller, more developed, and more crowded.",
+  },
+  {
+    q: "Is Newport worth visiting if I'm staying in Watch Hill?",
+    a: "Yes — Newport makes an excellent full-day trip from Watch Hill. The mansions and Cliff Walk alone justify the drive. Plan for a full day, leave by 9 AM, and avoid Saturday afternoons in July when traffic on Route 138 can be brutal.",
+  },
+];
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <Nav />
+
+  <article class="article">
+    <!-- Hero -->
+    <header class="hero">
+      <div class="hero-inner">
+        <p class="kicker">Comparison Guide · Rhode Island Travel</p>
+        <h1>
+          Watch Hill <em>vs Newport</em>: Which Should You Visit?
+        </h1>
+        <p class="hero-sub">
+          A local's honest, dimension-by-dimension comparison of the two most
+          famous coastal towns in Rhode Island — covering vibe, beaches, food,
+          history, costs, and which one actually fits your trip.
+        </p>
+        <div class="meta">
+          <span>Updated May 26, 2026</span>
+          <span class="dot">·</span>
+          <span>{readingTime}</span>
+          <span class="dot">·</span>
+          <span>Written from Westerly, RI</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- THE SHORT ANSWER -->
+    <section class="verdict">
+      <p class="v-label">The Short Answer</p>
+      <p class="v-text">
+        <strong>Newport for first-timers, history, food, and full-week trips.
+        Watch Hill for couples, beach trips, quiet luxury, and shorter stays.</strong>
+        If you can do both, do — they're an hour apart and feel like completely
+        different vacations. The full breakdown is below.
+      </p>
+    </section>
+
+    <!-- HEADLINE COMPARISON TABLE -->
+    <section class="compare">
+      <h2 class="section-h">The Quick Comparison</h2>
+      <p class="compare-intro">
+        Eleven dimensions, side by side. The honest version, not the brochure
+        version.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Watch Hill</th>
+              <th>Newport</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              headlineCompare.map((row) => (
+                <tr>
+                  <td><strong>{row.dim}</strong></td>
+                  <td>{row.wh}</td>
+                  <td>{row.np}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Intro -->
+    <section class="prose">
+      <p class="lede">
+        Watch Hill and Newport are the two coastal Rhode Island destinations
+        most travelers consider, and they get compared constantly — usually
+        without much honesty about what's different between them. They are not,
+        in fact, similar towns. They're the same size only if you ignore the
+        fact that Newport has eleven times the land area and roughly twenty
+        times the resident population. They both have luxury hotels, but
+        Newport has dozens and Watch Hill has three. They're both walkable, but
+        Newport has 30+ blocks of walkable downtown while Watch Hill has two.
+      </p>
+      <p>
+        Which one is "better" is a meaningless question. Which one fits your
+        trip is the real question — and it depends on who you're traveling
+        with, how long you have, what you want to do, and how much you're
+        prepared to spend. This guide walks through every dimension that
+        matters.
+      </p>
+    </section>
+
+    <!-- DIMENSION-BY-DIMENSION -->
+    <section class="dimensions">
+      <h2 class="section-h">Dimension by Dimension</h2>
+
+      <div class="dim-list">
+        {
+          dimensions.map((d, i) => (
+            <article class="dim">
+              <header class="dim-head">
+                <p class="dim-num">{String(i + 1).padStart(2, "0")}</p>
+                <div>
+                  <h3>{d.title}</h3>
+                  <p class="dim-winner">Edge: <strong>{d.winner}</strong></p>
+                </div>
+              </header>
+
+              <div class="dim-grid">
+                <div class="dim-col wh">
+                  <p class="dim-label">Watch Hill</p>
+                  <p>{d.wh}</p>
+                </div>
+                <div class="dim-col np">
+                  <p class="dim-label">Newport</p>
+                  <p>{d.np}</p>
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- DECISION BY TRAVELER TYPE -->
+    <section class="decide">
+      <div class="d-inner">
+        <p class="d-tag">Pick by Travel Style</p>
+        <h2>Which Should You Pick?</h2>
+        <p class="d-intro">
+          Ten common travel scenarios. The honest pick for each — not always
+          the obvious one.
+        </p>
+
+        <div class="d-list">
+          {
+            byType.map((t) => (
+              <div class="d-item">
+                <div class="d-meta">
+                  <p class="d-type">{t.type}</p>
+                  <p class="d-pick">{t.pick}</p>
+                </div>
+                <p class="d-why">{t.why}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- THE BEST ANSWER: BOTH -->
+    <section class="prose">
+      <h2 class="section-h">The Honest Best Answer: Both</h2>
+      <p>
+        If you have four or more days in southern New England, the actual right
+        answer is usually to do both. They're 56 miles apart — about an hour by
+        car along Route 1 and Route 138. They feel completely different from
+        each other, which means the combined trip has range that neither town
+        offers alone. A typical pairing:
+      </p>
+
+      <ul class="cal">
+        <li>
+          <strong>Two days in Newport first.</strong> Hit the headline
+          attractions — The Breakers, the Cliff Walk, a harbor sailing tour,
+          dinner on Thames Street, a mansion or two.
+        </li>
+        <li>
+          <strong>Then two or three days in Watch Hill.</strong> Decompress.
+          Walk the lighthouse at sunset. Spend a day on East Beach. Do Napatree
+          one morning before the parking lots fill.
+        </li>
+        <li>
+          <strong>Use Mystic, CT as the connector.</strong> Roughly halfway
+          between, 20 minutes west of Watch Hill, makes a natural lunch stop
+          when moving between the two.
+        </li>
+      </ul>
+    </section>
+
+    <!-- BOOKING CTA -->
+    <section class="book">
+      <div class="b-inner">
+        <p class="b-tag">If You've Made Your Choice</p>
+        <h2>Find a Place to Stay</h2>
+        <p>
+          Lodging is the single biggest variable in either town. Search current
+          availability and rates below.
+        </p>
+
+        <div class="b-grid">
+          <a class="b-card" href={affiliates.hotels.oceanHouse} rel="sponsored nofollow">
+            <p class="b-card-tag">Watch Hill · Luxury</p>
+            <h3>Ocean House</h3>
+            <p>The Forbes Triple Five-Star landmark. From ~$700/night.</p>
+          </a>
+          <a class="b-card" href={affiliates.hotels.watchHillInn} rel="sponsored nofollow">
+            <p class="b-card-tag">Watch Hill · Best Value</p>
+            <h3>Watch Hill Inn</h3>
+            <p>All-suite with full Ocean House amenity access.</p>
+          </a>
+          <a class="b-card" href={affiliates.hotels.allWesterly} rel="sponsored nofollow">
+            <p class="b-card-tag">Newport · All Options</p>
+            <h3>Browse Newport Hotels</h3>
+            <p>Compare hundreds of options across price points.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+      <h2 class="section-h">Frequently Asked Questions</h2>
+      {
+        faqs.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))
+      }
+    </section>
+
+    <!-- Related -->
+    <section class="related">
+      <h2 class="section-h">Keep Reading</h2>
+      <div class="related-grid">
+        <a href="/blog/is-watch-hill-worth-visiting" class="related-card">
+          <p class="related-tag">Planning</p>
+          <h3>Is Watch Hill Worth Visiting?</h3>
+        </a>
+        <a href="/blog/best-things-to-do-in-watch-hill-ri" class="related-card">
+          <p class="related-tag">Activities</p>
+          <h3>15 Best Things to Do in Watch Hill</h3>
+        </a>
+        <a href="/blog/where-to-stay-watch-hill" class="related-card">
+          <p class="related-tag">Hotels</p>
+          <h3>Where to Stay in Watch Hill</h3>
+        </a>
+        <a href="/blog/watch-hill-to-newport" class="related-card">
+          <p class="related-tag">Day Trip</p>
+          <h3>Newport Day Trip from Watch Hill</h3>
+        </a>
+      </div>
+    </section>
+  </article>
+
+  <style>
+    :root {
+      --ink: #1a1d24;
+      --ink-soft: #4a5061;
+      --ink-muted: #7a8195;
+      --paper: #fbf8f1;
+      --paper-warm: #f3ede0;
+      --line: #e5dfd0;
+      --accent: #2c5f5d;
+      --accent-deep: #1d3f3d;
+      --gold: #b8924a;
+      --rose: #b85a4a;
+      --font-display: "Fraunces", Georgia, serif;
+      --font-body: "Inter Tight", -apple-system, system-ui, sans-serif;
+    }
+
+    .article {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.7;
+      padding-bottom: 6rem;
+    }
+    .article *, .article *::before, .article *::after { box-sizing: border-box; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(180deg, var(--paper-warm) 0%, var(--paper) 100%);
+      padding: 5rem 1.5rem 3rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-inner { max-width: 760px; margin: 0 auto; }
+    .kicker {
+      font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600; margin: 0 0 1.5rem;
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5.5vw, 4rem);
+      line-height: 1.04; letter-spacing: -0.025em; font-weight: 600;
+      margin: 0 0 1.5rem;
+    }
+    h1 em { font-style: italic; color: var(--accent); }
+    .hero-sub {
+      font-size: 1.2rem; line-height: 1.55; color: var(--ink-soft);
+      margin: 0 0 2rem; max-width: 620px;
+    }
+    .meta {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      font-size: 0.85rem; color: var(--ink-muted);
+    }
+    .dot { color: var(--line); }
+
+    /* VERDICT */
+    .verdict {
+      max-width: 760px; margin: -1px auto 0;
+      padding: 2.5rem 1.5rem; background: var(--accent); color: var(--paper);
+    }
+    .v-label {
+      font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--paper-warm); font-weight: 600; margin: 0 0 0.75rem;
+      opacity: 0.85;
+    }
+    .v-text {
+      font-family: var(--font-display);
+      font-size: clamp(1.15rem, 2.3vw, 1.45rem);
+      line-height: 1.45; margin: 0; letter-spacing: -0.01em; font-weight: 400;
+    }
+    .v-text strong { font-weight: 600; color: white; }
+
+    /* PROSE */
+    .prose { max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem; }
+    .lede { font-size: 1.15rem; line-height: 1.7; color: var(--ink); margin: 0 0 1.25rem; }
+    .prose p { margin: 0 0 1.25rem; color: var(--ink); }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose strong { color: var(--ink); font-weight: 600; }
+
+    /* SECTION HEADINGS */
+    .section-h {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+      line-height: 1.1; letter-spacing: -0.02em; font-weight: 600;
+      margin: 0 0 1.5rem;
+    }
+
+    /* COMPARISON TABLE */
+    .compare { max-width: 1080px; margin: 4rem auto; padding: 0 1.5rem; }
+    .compare-intro { color: var(--ink-soft); margin: 0 0 2rem; max-width: 680px; }
+    .table-wrap {
+      overflow-x: auto; border: 1px solid var(--line);
+      border-radius: 4px; background: white;
+    }
+    table {
+      width: 100%; border-collapse: collapse;
+      font-size: 0.95rem; min-width: 640px;
+    }
+    thead { background: var(--paper-warm); }
+    th {
+      text-align: left; padding: 1rem 1.25rem;
+      font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+      font-weight: 600; color: var(--ink-muted);
+      border-bottom: 1px solid var(--line);
+    }
+    th:first-child { width: 22%; }
+    td {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--line);
+      color: var(--ink-soft); vertical-align: top;
+    }
+    td:first-child { font-weight: 500; color: var(--ink); }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody strong { color: var(--ink); font-weight: 600; }
+
+    /* DIMENSIONS */
+    .dimensions { max-width: 860px; margin: 4rem auto; padding: 0 1.5rem; }
+    .dim-list { display: flex; flex-direction: column; }
+
+    .dim { padding: 2.5rem 0; border-bottom: 1px solid var(--line); }
+    .dim:last-child { border-bottom: none; }
+
+    .dim-head {
+      display: flex; gap: 1.25rem; align-items: baseline;
+      margin-bottom: 1.5rem;
+    }
+    .dim-num {
+      font-family: var(--font-display);
+      font-size: 2rem; font-weight: 600; color: var(--accent);
+      margin: 0; letter-spacing: -0.02em;
+      font-feature-settings: "tnum"; flex-shrink: 0;
+    }
+    .dim-head > div { flex: 1; }
+    .dim h3 {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 1.9rem);
+      line-height: 1.1; letter-spacing: -0.02em; font-weight: 600;
+      margin: 0 0 0.4rem;
+    }
+    .dim-winner {
+      font-size: 0.95rem; color: var(--ink-muted); margin: 0;
+      font-family: var(--font-display); font-style: italic;
+    }
+    .dim-winner strong {
+      font-style: normal; color: var(--accent); font-weight: 600;
+    }
+
+    .dim-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
+    }
+    .dim-col {
+      padding: 1.25rem 1.5rem;
+      background: var(--paper-warm);
+      border-radius: 4px;
+    }
+    .dim-col.wh { border-left: 3px solid var(--accent); }
+    .dim-col.np { border-left: 3px solid var(--gold); }
+
+    .dim-label {
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      font-weight: 700; margin: 0 0 0.6rem;
+    }
+    .dim-col.wh .dim-label { color: var(--accent); }
+    .dim-col.np .dim-label { color: var(--gold); }
+
+    .dim-col p:not(.dim-label) {
+      margin: 0; font-size: 0.95rem; color: var(--ink-soft); line-height: 1.6;
+    }
+
+    /* DECISION BY TYPE */
+    .decide {
+      background: var(--ink); color: var(--paper);
+      padding: 4rem 1.5rem; margin: 4rem 0;
+    }
+    .d-inner { max-width: 860px; margin: 0 auto; }
+    .d-tag {
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); font-weight: 600; margin: 0 0 0.75rem;
+    }
+    .decide h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+      line-height: 1.1; letter-spacing: -0.02em; font-weight: 600;
+      margin: 0 0 1rem; color: white;
+    }
+    .d-intro {
+      color: rgba(251, 248, 241, 0.85); margin: 0 0 2.5rem;
+      max-width: 620px; font-size: 1.05rem;
+    }
+    .d-list { display: flex; flex-direction: column; }
+
+    .d-item {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(251, 248, 241, 0.12);
+      display: grid;
+      grid-template-columns: minmax(220px, 1.2fr) 1.8fr;
+      gap: 1.5rem;
+      align-items: baseline;
+    }
+    .d-item:last-child { border-bottom: none; }
+
+    .d-type {
+      font-family: var(--font-display);
+      font-size: 1.05rem; font-weight: 500;
+      letter-spacing: -0.005em; color: white; margin: 0 0 0.3rem;
+    }
+    .d-pick {
+      font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); font-weight: 700; margin: 0;
+    }
+    .d-why {
+      margin: 0; color: rgba(251, 248, 241, 0.82);
+      font-size: 0.97rem; line-height: 1.6;
+    }
+
+    /* CALENDAR LIST (Both Section) */
+    .cal { list-style: none; padding: 0; margin: 1rem 0 0; }
+    .cal li {
+      padding: 1rem 0; border-bottom: 1px solid var(--line);
+      color: var(--ink-soft); line-height: 1.6;
+    }
+    .cal li:last-child { border-bottom: none; }
+    .cal strong { color: var(--ink); font-weight: 600; }
+
+    /* BOOK CTA */
+    .book {
+      background: var(--paper-warm); border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 4rem 1.5rem; margin: 4rem 0;
+    }
+    .b-inner { max-width: 1080px; margin: 0 auto; }
+    .b-tag {
+      font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600; margin: 0 0 0.75rem;
+    }
+    .book h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3vw, 2.3rem);
+      line-height: 1.1; letter-spacing: -0.02em; font-weight: 600;
+      margin: 0 0 1rem;
+    }
+    .book > .b-inner > p {
+      color: var(--ink-soft); margin: 0 0 2rem; max-width: 600px;
+    }
+    .b-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+    .b-card {
+      background: white; border: 1px solid var(--line);
+      padding: 1.75rem; border-radius: 4px;
+      text-decoration: none; color: var(--ink);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .b-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+    .b-card-tag {
+      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600; margin: 0 0 0.6rem;
+    }
+    .b-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem; font-weight: 600;
+      letter-spacing: -0.015em; margin: 0 0 0.6rem;
+    }
+    .b-card p:not(.b-card-tag) {
+      font-size: 0.92rem; color: var(--ink-soft); margin: 0; line-height: 1.5;
+    }
+
+    /* FAQ */
+    .faq { max-width: 760px; margin: 4rem auto; padding: 0 1.5rem; }
+    .faq-item { border-bottom: 1px solid var(--line); padding: 1.25rem 0; }
+    .faq-item summary {
+      font-family: var(--font-display);
+      font-size: 1.15rem; font-weight: 600; cursor: pointer; color: var(--ink);
+      list-style: none; display: flex; justify-content: space-between;
+      align-items: center; gap: 1rem; letter-spacing: -0.005em;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: "+"; font-size: 1.5rem; color: var(--accent);
+      font-weight: 400; flex-shrink: 0;
+    }
+    .faq-item[open] summary::after { content: "−"; }
+    .faq-item p {
+      margin: 1rem 0 0; color: var(--ink-soft); font-size: 1rem; line-height: 1.6;
+    }
+
+    /* RELATED */
+    .related {
+      max-width: 1080px; margin: 4rem auto 0;
+      padding: 3rem 1.5rem 0; border-top: 1px solid var(--line);
+    }
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+    .related-card {
+      display: block; background: white; border: 1px solid var(--line);
+      padding: 1.5rem; text-decoration: none; color: var(--ink);
+      border-radius: 4px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .related-card:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .related-tag {
+      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600; margin: 0 0 0.75rem;
+    }
+    .related-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem; font-weight: 600; margin: 0;
+      line-height: 1.25; letter-spacing: -0.01em;
+    }
+
+    /* MOBILE */
+    @media (max-width: 720px) {
+      .hero { padding: 3.5rem 1.25rem 2.5rem; }
+      .verdict { padding: 2rem 1.25rem; }
+      .dim-grid { grid-template-columns: 1fr; }
+      .d-item { grid-template-columns: 1fr; gap: 0.75rem; }
+      .decide { padding: 3rem 1.25rem; }
+      .book { padding: 3rem 1.25rem; }
+    }
+  </style>
+</Base>

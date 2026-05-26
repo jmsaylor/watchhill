@@ -1,0 +1,111 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import AttractionPost from "../../components/AttractionPost.astro";
+import { affiliates } from "../../data/affiliates";
+
+const title = "Misquamicut State Beach: Visitor's Guide (2026)";
+const description = "2026 parking fees, hours, amenities, and the local's guide to Rhode Island's most popular state beach — a half-mile of gentle surf five minutes east of Watch Hill.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  name: "Misquamicut State Beach",
+  description: "Half-mile Rhode Island state beach with full amenities in Westerly, RI.",
+  address: { "@type": "PostalAddress", addressLocality: "Westerly", addressRegion: "RI", addressCountry: "US" },
+};
+
+const props = {
+  kicker: "Beach Guide · State Beach",
+  title: "A Day at ",
+  titleEm: "Misquamicut State Beach",
+  titleTail: "",
+  subtitle: "Rhode Island's largest and most popular state beach — half a mile of fine sand, gentle surf, full amenities, and a parking lot that fills by 11 AM in July. Here's how to do it right, what it costs in 2026, and when to skip it.",
+  readingTime: "6 min read",
+  verdict: "Open <strong>9 AM–6 PM weekdays, 8:30 AM–6 PM weekends</strong>, Memorial Day weekend through Labor Day. 2026 parking: <strong>non-residents $20 weekday / $30 weekend; RI residents $10/$15</strong>. The season pass is $60 non-resident, $30 resident — pays for itself in two visits.",
+  quickFacts: [
+    { label: "Length", value: "½ mile of beachfront" },
+    { label: "Open", value: "Memorial Day–Labor Day" },
+    { label: "Hours", value: "9–6 weekdays / 8:30–6 weekends" },
+    { label: "Non-resident parking", value: "$20 weekday / $30 weekend" },
+    { label: "RI resident parking", value: "$10 weekday / $15 weekend" },
+    { label: "Season pass", value: "$60 non-res / $30 res" },
+  ],
+  introParagraphs: [
+    "Misquamicut State Beach is the family-friendly counterweight to Watch Hill's quiet shoreline. Five minutes east of the village, it stretches half a mile along Atlantic Avenue with a wide, fine-sand beach, gentle low surf, lifeguards, a full pavilion with restrooms and concessions, and a parking lot large enough to hold the crowds (mostly). It is Rhode Island's most popular state beach by attendance, and on a sunny Saturday in July, you understand why.",
+    "It is also Rhode Island's most contested state beach — 88% of visitors are from out of state, which has prompted the state DEM to raise non-resident parking fees aggressively over the past several years. As of 2026, non-residents pay $30 to park on a weekend, which is real money. The locals have a workaround: a season pass for $60 (or $30 for Rhode Islanders) covers all eight state beaches and pays for itself in two visits.",
+    "The beach itself is genuinely good. The surf is mild enough for kids most days but the bottom slopes out evenly, so swimming is easy. The Federico Pavilion is well-maintained, with public restrooms, heated indoor showers, food concessions, a playground, and shaded gazebos. There are designated surfing zones separated from the swimming area. And the beach is wheelchair accessible with beach wheelchairs available for use, free of charge.",
+  ],
+  tips: [
+    {
+      label: "Buy the parking pass online",
+      body: "Go to beachparkingri.com before you leave for the beach. Online passes use license plate recognition and let you skip the cash/credit booth line, which on summer weekends can back up onto Atlantic Avenue. Same price, much faster entry.",
+    },
+    {
+      label: "Get the season pass if you're staying a week+",
+      body: "Two visits pay for the season pass. It also covers Scarborough North, Roger Wheeler, Salty Brine, East Matunuck, Charlestown Breachway, East Beach, and Misquamicut — so you can mix in quieter beaches without paying again. Senior citizens (65+) get 50% off everything.",
+    },
+    {
+      label: "Arrive before 11 AM in season",
+      body: "The lot fills to capacity on sunny summer days, especially weekends. By 11 AM you may be turned away. Live capacity status is posted at riparks.ri.gov. If the state lot fills, there's overflow paid parking at private lots along Atlantic Avenue — typically $20–$40 — but the walk is longer and you've already paid more than the state lot would have cost.",
+    },
+    {
+      label: "Pavilion amenities",
+      body: "Public restrooms (always open during beach hours), heated indoor showers (worth knowing in May and September), outdoor showers, food and gift concessions, a playground, shade gazebos, and lifeguards from 9 AM to 6 PM. Beach wheelchairs are available free at the pavilion on a first-come basis. Electric vehicle charging stations are available for up to 4 hours; parking fees still apply.",
+    },
+    {
+      label: "Surfing zones",
+      body: "Misquamicut has designated surf zones separated from the swimming area, with board surfing, bodyboarding, and skim boarding all permitted. The default is gentle low surf, ideal for beginners. The best surf appears during August through October tropical storm swells, with overhead waves possible. Low tide produces the cleanest breaks.",
+    },
+    {
+      label: "Where it sits vs Watch Hill",
+      body: "Misquamicut is 5 minutes east of Watch Hill village by car. The two beaches actually connect at low tide — you can walk west from Misquamicut along the shoreline and arrive at the quieter Watch Hill town beaches and Napatree Point. This is one of the better local tricks: park at Misquamicut, walk west.",
+    },
+  ],
+  cta: {
+    framing: "Most visitors to Misquamicut stay nearby — the closest hotels and rentals are on the Misquamicut beach strip or in Westerly.",
+    label: "Browse Misquamicut beach rentals →",
+    url: affiliates.rentals.misquamicutVRBO,
+  },
+  faqs: [
+    {
+      q: "How much does Misquamicut State Beach cost in 2026?",
+      a: "Non-residents pay $20 on weekdays and $30 on weekends and holidays. Rhode Island residents pay $10 on weekdays and $15 on weekends. Season passes are $60 non-resident / $30 resident, valid at all eight RI state beaches. Senior citizens 65+ get 50% off. Beach access itself is free; you only pay to park.",
+    },
+    {
+      q: "What time does Misquamicut State Beach open?",
+      a: "9 AM on weekdays, 8:30 AM on weekends and holidays. The beach closes at 6 PM, which is also when the gates close. Lifeguards are on duty during these same hours. The season runs from Memorial Day weekend through Labor Day.",
+    },
+    {
+      q: "Is the parking lot always available?",
+      a: "No — on sunny summer weekends it fills to capacity, sometimes by 10 or 11 AM. Live capacity status is posted at riparks.ri.gov before you leave. Once the lot is full, you'll be turned away and will need to find paid parking at private lots along Atlantic Avenue, which run $20–$40.",
+    },
+    {
+      q: "Does Misquamicut have amenities?",
+      a: "Yes — Federico Pavilion has public restrooms, heated indoor and outdoor showers, food and gift concessions, a playground, shade gazebos, lifeguard tower, and electric vehicle charging stations. Beach wheelchairs are available free of charge at the pavilion.",
+    },
+    {
+      q: "Can you surf at Misquamicut?",
+      a: "Yes — Misquamicut has designated surfing zones separated from the swimming area. Board surfing, bodyboarding, and skim boarding are all allowed. The default is gentle low surf, but tropical storm swells from August through October can produce overhead waves. Low tide typically has the best break.",
+    },
+    {
+      q: "Is Misquamicut better or worse than Watch Hill's beaches?",
+      a: "Different, not better or worse. Misquamicut has full amenities (restrooms, concessions, lifeguards) and the family-friendly amusement strip across the road. The Watch Hill town beaches and Napatree Point are quieter, more natural, but have fewer facilities and stricter parking requirements. A common locals' move is to park at Misquamicut and walk west into the quieter Watch Hill shoreline.",
+    },
+  ],
+  related: [
+    { href: "/blog/best-things-to-do-in-watch-hill-ri", tag: "Activities", title: "15 Best Things to Do in Watch Hill" },
+    { href: "/blog/east-beach-watch-hill", tag: "Beaches", title: "East Beach Watch Hill Guide" },
+    { href: "/blog/napatree-point-guide", tag: "Hiking", title: "Hiking Napatree Point" },
+    { href: "/blog/misquamicut-restaurants", tag: "Food", title: "Misquamicut Beach Strip Restaurants" },
+  ],
+};
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Nav />
+  <main>
+    <AttractionPost {...props} />
+  </main>
+</Base>

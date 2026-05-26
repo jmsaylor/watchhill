@@ -1,0 +1,102 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import AttractionPost from "../../components/AttractionPost.astro";
+
+const title = "Watch Hill Lighthouse: Visiting Hours, Museum & History (2026)";
+const description = "When you can visit Watch Hill Lighthouse, what's in the museum, the 1856 Fresnel lens, and the local's guide to one of the most under-visited historic lighthouses on the East Coast.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  name: "Watch Hill Lighthouse",
+  description: "Historic 1856 lighthouse and museum at the southwestern tip of Rhode Island.",
+  address: { "@type": "PostalAddress", addressLocality: "Watch Hill", addressRegion: "RI", addressCountry: "US" },
+};
+
+const props = {
+  kicker: "Landmark · 1856 Granite Tower",
+  title: "Visiting ",
+  titleEm: "Watch Hill Lighthouse",
+  titleTail: "",
+  subtitle: "A 1,200-year-old lighthouse heritage on a 56-foot bluff with views across three states — and a small museum with the original Fresnel lens. Here's how to visit, when the museum is open, and why locals come at sunset.",
+  readingTime: "6 min read",
+  verdict: "Grounds are open daily, <strong>8 AM to sunset, year-round, free</strong>. The small museum is open <strong>Tuesdays, Wednesdays, and Thursdays from 1–3 PM, July through the week after Labor Day</strong>. The tower itself is not open to the public — it's still an active Coast Guard aid to navigation.",
+  quickFacts: [
+    { label: "Authorized", value: "1806 (Jefferson)" },
+    { label: "Original tower", value: "1808 (wood, 35 ft)" },
+    { label: "Current tower", value: "1856 (granite, 51 ft)" },
+    { label: "Automated", value: "1986" },
+    { label: "Range", value: "14 nautical miles" },
+    { label: "Museum hours", value: "Tue–Thu 1–3 PM, summer" },
+  ],
+  introParagraphs: [
+    "Watch Hill Lighthouse sits at the southwestern tip of Rhode Island, on a private road past Bluff Avenue, on the same 56-foot promontory that gives the village its name. Walk past the gate — there's pedestrian access despite the private road designation — and you arrive at one of the better small-lighthouse settings on the East Coast: a 51-foot granite tower, a brick keeper's dwelling, and a clear horizon view across Block Island Sound to Fishers Island and Montauk.",
+    "The lighthouse is still an active aid to navigation, maintained by the Coast Guard, with the original 1856 light replaced in 1986 by a modern automated beacon. The Fresnel lens that used to be in the tower is now on display in the small oil-house museum next door. The whole site is run by the volunteer-staffed Watch Hill Lighthouse Keepers Association, who took over the lease from the Coast Guard in 1986 and have been preserving the property ever since.",
+    "Most visitors miss the museum entirely because of its limited hours. If you can time your visit to be there on a Tuesday, Wednesday, or Thursday afternoon in July or August, it's worth doing — the keepers' logs, shipwreck records, and 1938 hurricane photographs are genuinely interesting, and the museum was substantially renovated in 2025.",
+  ],
+  history: [
+    "The first lighthouse on this site was a 35-foot wooden octagonal tower completed in 1808. Construction was authorized by Thomas Jefferson and Congress in 1806 under \"An Act to provide for lighthouses in Long Island Sound,\" which followed an earlier informal warning post that had been used on the same hill during King George's War in the 1740s and the American Revolution.",
+    "The current granite tower replaced the original wooden one in 1856, when the keeper's brick dwelling and a separate oil-storage shed were also constructed. The new tower was set further inland to escape ongoing coastal erosion — a problem that has persisted; Tropical Storm Irene in 2011 damaged 200 feet of the eastern seawall and required a $100,000 emergency repair, the largest single expenditure in the Association's history.",
+    "The lighthouse was automated on August 31, 1986. On that same day the Coast Guard transferred operational responsibility (other than the actual beacon) to the volunteer Watch Hill Lighthouse Keepers Association. The original fourth-order Fresnel lens — 29 inches tall, 450 pounds, installed in 1856 — was removed at automation and is now the centerpiece of the small museum in the oil house.",
+  ],
+  tips: [
+    {
+      label: "Museum hours (the small print)",
+      body: "Tuesday, Wednesday, and Thursday from 1:00 to 3:00 PM, from July 1 through the week after Labor Day. Two hours, three days a week, two months a year. National Lighthouse Day (August 7) typically has expanded hours, 10 AM to 4 PM. Outside those windows, the grounds are still walkable; the museum is just locked.",
+    },
+    {
+      label: "Getting there",
+      body: "The lighthouse is accessed via a private road past 144 Lighthouse Road. There's no parking at the lighthouse itself. Park in the village (Bay Street or the small lot at the foot of the village) and walk up — it's about a 10-minute walk uphill from the Flying Horse Carousel. The walk has good views the whole way.",
+    },
+    {
+      label: "Sunset is the move",
+      body: "If you visit any one thing at Watch Hill at sunset, make it the lighthouse. The bluff faces directly into Long Island Sound and the horizon view at golden hour is the kind of thing people stop to text photos of. Locals bring a blanket and sit on the grass below the tower. The light is always best 20–40 minutes before official sunset.",
+    },
+    {
+      label: "What you'll see in the museum",
+      body: "The 1856 Fresnel lens (the centerpiece), keepers' logbooks and personal documents, photographs of 250+ documented shipwrecks in the surrounding waters, 1938 hurricane damage photographs, and a new room dedicated to the U.S. Life Saving Station that operated on the property from 1879 to 1963. The whole museum was reorganized in 2025.",
+    },
+    {
+      label: "Dogs and accessibility",
+      body: "Dogs are welcome on the grounds on leash. The walk-up path is paved and reasonably accessible, but the museum itself is a small historic structure with limited mobility access. There are no public restrooms at the lighthouse — use the public restrooms near the carousel before walking up.",
+    },
+  ],
+  faqs: [
+    {
+      q: "Is Watch Hill Lighthouse open to the public?",
+      a: "Yes — the grounds are open every day from 8 AM to sunset, year-round, free of charge. The small museum next to the tower is open Tuesdays, Wednesdays, and Thursdays from 1–3 PM from July 1 through the week after Labor Day. The tower itself is not open to the public; it's still an active Coast Guard navigation aid.",
+    },
+    {
+      q: "How old is Watch Hill Lighthouse?",
+      a: "Construction was authorized in 1806; the first tower was completed in 1808. The current granite tower was built in 1856 and has been continuously operating since. The light was automated in 1986. The site has been used as a maritime warning post in some form since at least the 1740s.",
+    },
+    {
+      q: "Can you climb Watch Hill Lighthouse?",
+      a: "No. The tower interior is closed to the public — it remains an active Coast Guard aid to navigation. You can walk all around the exterior grounds, photograph it freely, and visit the museum when it's open.",
+    },
+    {
+      q: "Where do you park for Watch Hill Lighthouse?",
+      a: "There is no parking at the lighthouse itself. Park in the village of Watch Hill (street parking on Bay Street or in the small village lot) and walk up Lighthouse Road. It's about a 10-minute uphill walk, and the views start improving immediately.",
+    },
+    {
+      q: "Is the museum worth it?",
+      a: "Yes, if your visit happens to align with the limited hours. The 2025 renovation added a U.S. Life Saving Station exhibit and reorganized the shipwreck and hurricane photography collections. The original 1856 Fresnel lens is the centerpiece. Allow 30–45 minutes.",
+    },
+  ],
+  related: [
+    { href: "/blog/best-things-to-do-in-watch-hill-ri", tag: "Activities", title: "15 Best Things to Do in Watch Hill" },
+    { href: "/blog/napatree-point-guide", tag: "Nearby Hike", title: "Hiking Napatree Point" },
+    { href: "/blog/watch-hill-historic-district", tag: "History", title: "The Watch Hill Historic District" },
+    { href: "/blog/flying-horse-carousel-watch-hill", tag: "Landmark", title: "The Flying Horse Carousel" },
+  ],
+};
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Nav />
+  <main>
+    <AttractionPost {...props} />
+  </main>
+</Base>

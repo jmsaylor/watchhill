@@ -1,0 +1,102 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import AttractionPost from "../../components/AttractionPost.astro";
+
+const title = "Flying Horse Carousel: A Complete Visitor's Guide (2026)";
+const description = "Hours, ticket prices, age and size limits, and the local's guide to America's oldest carousel of its type — the 150-year-old Flying Horse Carousel on Bay Street in Watch Hill, RI.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  name: "Flying Horse Carousel",
+  description: "America's oldest continuously operating carousel of its type, built circa 1876.",
+  address: { "@type": "PostalAddress", addressLocality: "Watch Hill", addressRegion: "RI", addressCountry: "US" },
+};
+
+const props = {
+  kicker: "Landmark · National Historic Landmark",
+  title: "Riding the ",
+  titleEm: "Flying Horse Carousel",
+  titleTail: " in Watch Hill",
+  subtitle: "America's oldest continuously operating carousel of its type — and one of only two carousels in the United States that still play the brass-ring game. Here's how to ride it, when to go, and the rules nobody warns you about.",
+  readingTime: "6 min read",
+  verdict: "Open <strong>Memorial Day through Labor Day</strong>. Inside horses $1, outside horses $4 (the outside seats play the brass-ring game). <strong>Riders must be under 12, under 5 feet, and under 100 pounds</strong> — adults cannot ride. Go in the evening to skip the worst of the line.",
+  quickFacts: [
+    { label: "Built", value: "Circa 1876" },
+    { label: "In Watch Hill since", value: "1879" },
+    { label: "Status", value: "National Historic Landmark (1987)" },
+    { label: "Open", value: "Memorial Day–Labor Day" },
+    { label: "Cost", value: "$1 inner / $4 outer" },
+    { label: "Rider limit", value: "Under 12, <5 ft, <100 lbs" },
+  ],
+  introParagraphs: [
+    "The Flying Horse Carousel sits at the foot of Bay Street, in a small open-sided pavilion next to St. Clair Annex. It does not look like much from the outside — a low wooden structure, a slightly weathered roof, twenty horses hanging from chains. Then it starts spinning, and the horses literally fly outward as centrifugal force takes hold, and you understand why this is the carousel that every other carousel is measured against.",
+    "It is, by the U.S. National Park Service's reckoning, the oldest continuously operating carousel of its type in America — \"of its type\" meaning the horses are suspended from a central frame by chains rather than mounted to a wooden platform. There is no floor. When the ride speeds up, the horses fly. This is also why kids under 12, under 5 feet, and under 100 pounds are the only people allowed to ride: small bodies stay on the horse. Larger ones don't.",
+    "Each horse is hand-carved wood with a real horsehair mane and tail and a genuine leather saddle, which is one of the more remarkable facts about a piece of working equipment that's been operating outdoors in Rhode Island since 1879.",
+  ],
+  history: [
+    "The carousel was built around 1876 by the Charles W.F. Dare Company of New York and originally traveled as part of a carnival circuit. In 1879 it was set up in Watch Hill for the summer and, for reasons lost to history, the carnival left it behind when it moved on. The town adopted it, and it has been there ever since.",
+    "It was originally powered by a horse walking in a circle, unwinding a rope tied to the center pole. Local legend has it that the first horse to power the carousel loved the job so much that he would escape from his Westerly stable in winter and walk back to the carousel to do his circuits in the snow. The ride switched to water power in 1897 and electricity around 1914.",
+    "It survived the catastrophic 1938 hurricane, which buried the horses in sand dunes but didn't destroy them. The carousel was listed on the National Register of Historic Places in 1980 and designated a National Historic Landmark in 1987. Three chariots that the carousel once had were lost in earlier storms and never replaced.",
+  ],
+  tips: [
+    {
+      label: "The brass ring game",
+      body: "If you sit on an outside horse, a mechanical arm lowers metal rings during each rotation for riders to grab. The last ring in the cycle is brass. Grab the brass ring and you win a free ride. Rings must be returned at the end. This is, by the way, the actual origin of the English phrase \"grab the brass ring\" — now in everyday use largely because of this exact carousel and a handful of similar rides.",
+    },
+    {
+      label: "Best time to ride",
+      body: "Weekday mornings before 11 AM and weekday evenings after 6 PM have the shortest lines. Saturday afternoons in July and August can have 30–45 minute waits. The carousel is also worth watching even if you have no one to ride — the spinning horses are visible from the sidewalk for free.",
+    },
+    {
+      label: "Payment",
+      body: "Tickets are sold at the small building next door. Credit cards are accepted. Watch Hill has limited ATMs, so cards are easier than cash for most visitors.",
+    },
+    {
+      label: "Photos",
+      body: "Photography is welcome and encouraged. The horses look best in motion — try a 1/30s shutter speed if you have a real camera. Light is best in late afternoon when the sun angles through the open sides of the pavilion.",
+    },
+    {
+      label: "What if your kid is too big",
+      body: "It happens. The cutoff is firm — operators do check height and weight if a child looks close to the line. Older kids can still grab ice cream at St. Clair Annex next door and watch from the benches. The carousel is half the fun even from the sidelines.",
+    },
+  ],
+  faqs: [
+    {
+      q: "How old is the Flying Horse Carousel?",
+      a: "Built around 1876, making it about 150 years old in 2026. It has been in continuous operation in Watch Hill since 1883, making it the oldest continuously operating carousel of its type in the United States — \"of its type\" meaning horses suspended from chains rather than mounted to a platform.",
+    },
+    {
+      q: "Can adults ride the Flying Horse Carousel?",
+      a: "No. Riders must be under 12 years old, under 5 feet tall, and under 100 pounds. The ride uses centrifugal force to swing the horses outward, and the size limits are safety-related, not arbitrary. Operators do enforce them.",
+    },
+    {
+      q: "How much does the Flying Horse Carousel cost?",
+      a: "Inside horses are $1 per ride. Outside horses, which play the brass-ring game, are $4 per ride. Credit cards accepted at the ticket window next to the pavilion.",
+    },
+    {
+      q: "When is the Flying Horse Carousel open?",
+      a: "Memorial Day weekend through Labor Day weekend each year. Hours generally run from late morning through early evening, weather permitting. The carousel does not operate in the off-season.",
+    },
+    {
+      q: "What is the brass ring game?",
+      a: "Riders on outer horses can reach for metal rings dispensed by a mechanical arm during the ride. The last ring of the cycle is brass — grabbing it wins a free ride. This is the origin of the English phrase \"grab the brass ring.\"",
+    },
+  ],
+  related: [
+    { href: "/blog/best-things-to-do-in-watch-hill-ri", tag: "Activities", title: "15 Best Things to Do in Watch Hill" },
+    { href: "/blog/st-clair-annex-ice-cream", tag: "Right Next Door", title: "St. Clair Annex: 139 Years on Bay Street" },
+    { href: "/blog/watch-hill-with-kids", tag: "Family", title: "Visiting Watch Hill with Kids" },
+    { href: "/blog/watch-hill-lighthouse", tag: "History", title: "Watch Hill Lighthouse Visitor's Guide" },
+  ],
+};
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Nav />
+  <main>
+    <AttractionPost {...props} />
+  </main>
+</Base>

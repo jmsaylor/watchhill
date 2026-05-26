@@ -1,0 +1,104 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import AttractionPost from "../../components/AttractionPost.astro";
+
+const title = "St. Clair Annex: 139 Years of Ice Cream on Bay Street (2026 Guide)";
+const description = "The Nicholas family has run St. Clair Annex in Watch Hill, RI since 1887 — making it older than the Flying Horse Carousel next door. What to order, when to go, and the heritage worth knowing.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  name: "St. Clair Annex",
+  description: "Family-owned ice cream and sandwich shop in Watch Hill, RI, operating since 1887.",
+  address: { "@type": "PostalAddress", streetAddress: "141 Bay Street", addressLocality: "Watch Hill", addressRegion: "RI", addressCountry: "US" },
+  servesCuisine: "American",
+  priceRange: "$",
+};
+
+const props = {
+  kicker: "Bay Street · Since 1887",
+  title: "139 Years at ",
+  titleEm: "St. Clair Annex",
+  titleTail: "",
+  subtitle: "The Nicholas family has been making ice cream in small batches on Bay Street since 1887 — older than the carousel next door, older than the current lighthouse tower, older than almost anything else in Watch Hill that's still in business. Here's what to order, when to go, and why locals are quietly protective of it.",
+  readingTime: "5 min read",
+  verdict: "<strong>Open seasonally, roughly May through October</strong>. Lunch 11 AM–3 PM weekdays, 11 AM–4 PM weekends. Ice cream window service runs until dusk. Credit cards accepted. Phone: 401-348-8407. The coffee ice cream and the lobster roll are the two things to order.",
+  quickFacts: [
+    { label: "Established", value: "1887" },
+    { label: "Years in business", value: "139 (in 2026)" },
+    { label: "Address", value: "141 Bay Street" },
+    { label: "Owner", value: "James Nicholas (4th gen.)" },
+    { label: "Phone", value: "401-348-8407" },
+    { label: "Payment", value: "Credit cards accepted" },
+  ],
+  introParagraphs: [
+    "St. Clair Annex is the kind of business that you don't fully appreciate until you start counting backwards. It has been operated by the Nicholas family since 1887. That's eleven years older than the current Watch Hill Lighthouse tower. Older than the Spanish-American War. Older than the Ford Motor Company. It is, by a comfortable margin, the oldest continuously operating ice cream parlor in Rhode Island, and probably one of the oldest in the country still owned by the same family.",
+    "It started in 1887 in downtown Westerly. The Nicholas family moved it to its current Bay Street location in Watch Hill at some point in the early 20th century, and it has been there ever since — a wooden building with sidewalk takeout windows, a long counter, a small dining area, and a kitchen that produces ice cream in small batches every day on the premises. James Nicholas, the fourth-generation owner, took over from his parents George and Joann in 2021. He spent his teenage and early-adult summers cooking 12 hours a day, seven days a week, before officially inheriting the operation.",
+    "The ice cream is genuinely good — not in a hyped-up Instagram way, but in a straightforward way: fresh cream from a Rhode Island dairy, chocolate and candy from a local chocolatier, vanilla beans you can actually taste. Around 30 flavors at any given time, with seasonal specials in constant rotation. The vanilla is the test flavor: serious ice cream people order vanilla first, because plain vanilla is where you can taste whether a kitchen actually knows what it's doing.",
+  ],
+  history: [
+    "The shop opened in 1887, the same year that the Eiffel Tower began construction and Sherlock Holmes first appeared in print. The Nicholas family — five generations now — has operated it continuously since.",
+    "It survived the 1938 hurricane that devastated Watch Hill. It survived Prohibition (it was always an ice cream parlor and lunch counter, not a bar). It survived the long economic decline of small American downtown businesses through the 20th century. It survived the pandemic, when it actually expanded its takeout operation through the sidewalk windows.",
+    "James Nicholas is the fourth generation of the family to run it. He officially took over from his parents George and Joann Nicholas in 2021. The picture of his grandmother Irene Nicholas hangs on the dining room wall — Irene ran the place for decades and is still remembered by older Watch Hill customers.",
+  ],
+  tips: [
+    {
+      label: "What to order: ice cream",
+      body: "Get the coffee. It's the move. Beyond that, the rotation includes some unusual flavors worth catching when they're in season — cantaloupe (summer only), peach (when local peaches are good), coffee Oreo cookie, chocolate peanut butter cup. Ask what's fresh that day. Available in cups, sugar cones, wafer cones, or waffle cones, in one, two, or three scoops. They also pack pints, quarts, and half gallons to go.",
+    },
+    {
+      label: "What to order: lunch",
+      body: "The lobster roll is genuinely competitive with anywhere in New England — quarter-pound of fresh lobster claw and tail meat, lightly dressed in mayo with lemon and celery, served on a buttered grilled roll. About $30 in 2026. The Italian grinder is the other local favorite. The clam chowder (both New England creamy and Rhode Island clear styles available) is made fresh daily and is among the best in town.",
+    },
+    {
+      label: "When to go",
+      body: "Lunch service is 11 AM–3 PM weekdays and 11 AM–4 PM weekends. Ice cream window service runs from late morning until dusk every day. For shortest waits: weekday afternoons after the lunch rush (around 2 PM), or weekday evenings just before sunset. Saturday and Sunday in July and August always have lines — though they move faster than they look.",
+    },
+    {
+      label: "Payment",
+      body: "Credit cards are accepted (despite older guides that still say cash-only — the policy changed). Tap-to-pay also works at most service points. There's an ATM up the street if needed.",
+    },
+    {
+      label: "Where to eat it",
+      body: "There's a small indoor dining area, but most people get their order from the takeout windows and sit on the benches outside, or walk down Bay Street with a cone in hand. The benches in front of the Flying Horse Carousel are 30 feet from the ice cream window and make for the classic Watch Hill afternoon: ice cream while watching the carousel spin.",
+    },
+  ],
+  faqs: [
+    {
+      q: "How old is St. Clair Annex?",
+      a: "St. Clair Annex was established in 1887, making it 139 years old in 2026. The Nicholas family has owned and operated it continuously since the beginning. It's the oldest continuously operating ice cream parlor in Rhode Island and one of the oldest family-owned restaurants of any kind in the state.",
+    },
+    {
+      q: "What are the hours at St. Clair Annex?",
+      a: "Lunch is served 11 AM to 3 PM Monday through Friday and 11 AM to 4 PM Saturday and Sunday. Ice cream window service runs from late morning until dusk every day. The shop is open seasonally, roughly May through October — call 401-348-8407 to confirm current hours before visiting in shoulder season.",
+    },
+    {
+      q: "Is St. Clair Annex cash-only?",
+      a: "No — credit cards are accepted, despite older guides that still say cash-only. Tap-to-pay also works at most service points. The policy changed several years ago.",
+    },
+    {
+      q: "What should you order at St. Clair Annex?",
+      a: "Coffee ice cream is the top recommendation. The lobster roll (about $30) is genuinely excellent. The Italian grinder and the clam chowder are local favorites. For ice cream, ask what's seasonal — flavors like cantaloupe, peach, and rotating specials are worth catching in their windows.",
+    },
+    {
+      q: "Where is St. Clair Annex?",
+      a: "141 Bay Street, Watch Hill, RI — at the very end of Bay Street, immediately next to the Flying Horse Carousel pavilion. Phone: 401-348-8407.",
+    },
+  ],
+  related: [
+    { href: "/blog/best-restaurants-watch-hill", tag: "Food Guide", title: "15 Best Restaurants in Watch Hill" },
+    { href: "/blog/flying-horse-carousel-watch-hill", tag: "Right Next Door", title: "The Flying Horse Carousel" },
+    { href: "/blog/olympia-tea-room-review", tag: "Bay Street Classics", title: "Olympia Tea Room" },
+    { href: "/blog/best-things-to-do-in-watch-hill-ri", tag: "Activities", title: "15 Best Things to Do in Watch Hill" },
+  ],
+};
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Nav />
+  <main>
+    <AttractionPost {...props} />
+  </main>
+</Base>

@@ -1,0 +1,105 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import AttractionPost from "../../components/AttractionPost.astro";
+
+const title = "Hiking Napatree Point: The Full Trail Guide (2026)";
+const description = "Where to park, how long it takes, what to bring, and where to find the WWI Fort Mansfield ruins on Rhode Island's most beautiful coastal hike — Napatree Point Conservation Area in Watch Hill.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  name: "Napatree Point Conservation Area",
+  description: "An 86-acre coastal nature preserve and globally important bird area in Watch Hill, RI.",
+  address: { "@type": "PostalAddress", addressLocality: "Watch Hill", addressRegion: "RI", addressCountry: "US" },
+};
+
+const props = {
+  kicker: "Outdoor · Conservation Area",
+  title: "Hiking ",
+  titleEm: "Napatree Point",
+  titleTail: "",
+  subtitle: "An 86-acre coastal preserve, a 1.3-mile barrier peninsula, a globally important bird area, and the ruins of a WWI coastal defense fort at the far end. The best free thing to do in Watch Hill — if you know how to plan around the tide and the parking.",
+  readingTime: "7 min read",
+  verdict: "Open <strong>24 hours a day, year-round, free</strong>. The loop is officially <strong>3.1 miles</strong> and takes most people 1 to 1.5 hours. <strong>No designated parking</strong> — park in Watch Hill village and walk in. Bring water; there are no facilities on the trail.",
+  quickFacts: [
+    { label: "Size", value: "86 acres" },
+    { label: "Peninsula length", value: "1.3 miles" },
+    { label: "Loop trail", value: "3.1 miles (~55 min)" },
+    { label: "Difficulty", value: "Moderate (sand + rocks)" },
+    { label: "Open", value: "24/7, year-round, free" },
+    { label: "Status", value: "Globally Important Bird Area" },
+  ],
+  introParagraphs: [
+    "Napatree Point is the kind of place you'd think would be more famous. A 1.3-mile peninsula of pure sand and dune grass extending west from Watch Hill village into Little Narragansett Bay, with the open Atlantic on one side and a protected calm bay on the other. The National Audubon Society has formally designated it a Globally Important Bird Area. The University of Rhode Island uses it as a Climate Response Demonstration Site. And at the far end, mostly swallowed by sand and vegetation, sit the concrete ruins of Fort Mansfield, a turn-of-the-century coastal defense installation that the U.S. Army abandoned over a century ago.",
+    "It is, in short, one of the most ecologically interesting and historically rich coastal areas in southern New England. It is also one of the most accessible — you walk out of Watch Hill village, past the harbor, and you're on it. There's no entrance fee, no gate, no opening hour. The hike is genuinely one of the great free things to do on the East Coast.",
+    "The catch — there's always a catch — is parking. The conservation area has no parking facilities of its own. The whole approach is through Watch Hill village, which has limited paid parking that fills by mid-morning on any summer weekend. The trick to Napatree is timing the parking, not the tide.",
+  ],
+  tips: [
+    {
+      label: "Parking strategy",
+      body: "Park in Watch Hill village — either street parking on Bay Street (metered, fills early) or the small village lot. In summer, arrive before 9 AM to get a spot. Alternative: park at Misquamicut State Beach ($14–$30) and walk west along the beach to the Napatree entrance. It's about 25 minutes on foot but you'll find parking. From the village, the walk to the start of the trail is about 5 minutes past the harbor.",
+    },
+    {
+      label: "The tide matters",
+      body: "The full loop trail involves walking the bay side back, which is rocky and gets cut off at high tide. Check the tide chart before you go. Low tide is best for the full loop; at high tide, plan to walk out and back on the ocean side rather than looping around. Allowing yourself 2 hours total is safer than the 55-minute AllTrails estimate.",
+    },
+    {
+      label: "Fort Mansfield ruins",
+      body: "Built 1898–1901 as part of the Endicott System of coastal defenses for Long Island Sound. Abandoned in 1928. The ruins are at the western tip of the peninsula, mostly overgrown and partially buried in sand. You can walk among them but there's no formal preservation — pieces of the old 1903 seawall washed up in recent storms. Bring a camera; bring respect for the site.",
+    },
+    {
+      label: "What to bring",
+      body: "Water (no facilities on the trail), sunscreen (no shade after the first 200 yards), sturdy shoes (sand and rock, no good sandals), and binoculars if you care about birds at all. In May–September, watch for piping plover nesting areas — they're roped off and dogs/people are prohibited from those zones.",
+    },
+    {
+      label: "Dogs",
+      body: "Leashed dogs are allowed year-round outside summer beach hours. From May 2 to Labor Day, leashed dogs are only allowed from 6 PM to 8 AM. Outside that window (Labor Day through May 1), leashed dogs are fine at any time. Owners must pick up after their dogs — this is a sensitive bird habitat, and rule enforcement is active.",
+    },
+    {
+      label: "Swimming and boats",
+      body: "Swimming is allowed but there are no lifeguards. The bay side is calmer and warmer; the Atlantic side has stronger waves. Boats can visit Napatree by water but cannot anchor, moor, or beach in the \"Kitchen Area\" around the Napatree Lagoon — this is enforced to protect bird habitat.",
+    },
+  ],
+  faqs: [
+    {
+      q: "How long is the Napatree Point hike?",
+      a: "The full loop trail is 3.1 miles and takes most people 55 minutes to 1.5 hours depending on how much you stop. The peninsula itself is 1.3 miles long; the loop adds the return along the bay side. If you only have time for half, walk out and back along the ocean side — you'll still see the fort ruins and most of the best views.",
+    },
+    {
+      q: "Where do you park for Napatree Point?",
+      a: "There is no designated parking at Napatree itself. Park in Watch Hill village (Bay Street meters or the small village lot, which fills by 10 AM in summer). Alternative: park at Misquamicut State Beach and walk west along the shore to the Napatree entrance — about 25 minutes on foot.",
+    },
+    {
+      q: "Is Napatree Point free?",
+      a: "Yes. The 86-acre conservation area is owned and managed by the Watch Hill Fire District and the Watch Hill Conservancy. It's open 24 hours a day, year-round, with no entrance fee. Parking in the village is the only cost.",
+    },
+    {
+      q: "Are dogs allowed at Napatree Point?",
+      a: "Yes, leashed. From May 2 to Labor Day, leashed dogs are only allowed from 6 PM to 8 AM. From the day after Labor Day through May 1, leashed dogs are allowed any time. Dogs are prohibited from any bird nesting areas marked by the U.S. Fish and Wildlife Service.",
+    },
+    {
+      q: "What is Fort Mansfield?",
+      a: "A coastal defense fort built between 1898 and 1901 as part of the U.S. Army's Endicott System for defending Long Island Sound. It was abandoned in 1928, and its concrete remains are now largely buried in sand and overgrown with dune vegetation at the western tip of the Napatree peninsula. The site is accessible by foot but not formally preserved.",
+    },
+    {
+      q: "Can you swim at Napatree?",
+      a: "Yes, but at your own risk — there are no lifeguards. The bay-side waters are calmer and warmer than the ocean side. Most visitors swim near the start of the peninsula where access is easiest. The far end of the peninsula is rocky.",
+    },
+  ],
+  related: [
+    { href: "/blog/best-things-to-do-in-watch-hill-ri", tag: "Activities", title: "15 Best Things to Do in Watch Hill" },
+    { href: "/blog/watch-hill-lighthouse", tag: "Nearby", title: "Watch Hill Lighthouse Guide" },
+    { href: "/blog/east-beach-watch-hill", tag: "Beaches", title: "East Beach Watch Hill Guide" },
+    { href: "/blog/misquamicut-state-beach", tag: "Beaches", title: "Misquamicut State Beach Guide" },
+  ],
+};
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Nav />
+  <main>
+    <AttractionPost {...props} />
+  </main>
+</Base>

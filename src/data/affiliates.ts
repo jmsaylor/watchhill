@@ -23,7 +23,7 @@
 
 // ─── PARTNER IDs (REPLACE THESE WITH YOUR REAL CODES) ───────────────────
 const STAY22_ID = "watchhillguide";       // TODO: replace after Stay22 signup
-const BOOKING_ID = "watchhillguide";      // TODO: replace after Booking signup
+const BOOKING_ID = "watchhillguide";      // TODO: replace after Booking/CJ signup
 const VRBO_ID = "Gp7VBfs";                // TODO: replace after Expedia signup
 const GETYOURGUIDE_ID = "watchhillguide"; // TODO: replace after GYG signup
 const VIATOR_ID = "watchhillguide";       // TODO: replace after Viator signup

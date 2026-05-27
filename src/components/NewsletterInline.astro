@@ -1,0 +1,274 @@
+---
+// ─────────────────────────────────────────────────────────────────────────
+// NewsletterInline — drop-in email opt-in for use inside articles & hubs.
+//
+// HOW TO USE:
+//   import NewsletterInline from "../components/NewsletterInline.astro";
+//   <NewsletterInline />
+//
+// Or customize the headline/copy per placement:
+//   <NewsletterInline
+//     headline="Like this? There's a map."
+//     subhead="12 spots locals actually go. Free PDF, sent immediately."
+//   />
+//
+// Place after ~60% scroll depth in articles — typically after the
+// 2nd or 3rd major section. NOT at the top, NOT at the very bottom.
+//
+// BEFORE GOING LIVE:
+//   1. Replace KIT_FORM_ACTION_URL with the action URL from your Kit form
+//      (Kit → Grow → Forms → your form → Embed → HTML → copy the action attr)
+//   2. Replace KIT_FORM_UID with the form UID from the same embed snippet
+//   3. Test by submitting a real email and confirming it lands in Kit
+// ─────────────────────────────────────────────────────────────────────────
+
+import {kit} from "../data/kit";
+
+interface Props {
+  /** Headline shown at top of card. Default works for most placements. */
+  headline?: string;
+  /** Subhead below the headline — one sentence selling the magnet. */
+  subhead?: string;
+  /** Button label. Keep it 2–4 words. */
+  ctaLabel?: string;
+  /** Tiny line below the form. Default reassures about spam. */
+  microcopy?: string;
+}
+
+const {
+  headline = "Get the Watch Hill Insider Map",
+  subhead = "Twelve spots locals actually go — places you won't find on the tourist maps. Free PDF, sent immediately.",
+  ctaLabel = "Send me the map",
+  microcopy = "One email a month after that. Unsubscribe anytime.",
+} = Astro.props;
+
+// ─── Replace these with your real Kit values ────────────────────────────
+const KIT_FORM_ACTION_URL = kit.formActionUrl;
+const KIT_FORM_UID = kit.formUid;
+---
+
+<aside class="nl-card" aria-labelledby="nl-headline">
+  <div class="nl-mark" aria-hidden="true">
+    <!-- envelope + map pin glyph -->
+    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <rect x="6" y="12" width="36" height="26" rx="2" stroke="currentColor" stroke-width="2"/>
+      <path d="M6 14 L24 27 L42 14" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="36" cy="32" r="5" fill="currentColor"/>
+      <circle cx="36" cy="31" r="1.5" fill="var(--paper)"/>
+    </svg>
+  </div>
+
+  <div class="nl-body">
+    <p class="nl-kicker">Free Guide</p>
+    <h3 id="nl-headline" class="nl-headline">{headline}</h3>
+    <p class="nl-subhead">{subhead}</p>
+
+    <form
+      action={KIT_FORM_ACTION_URL}
+      method="post"
+      class="nl-form"
+      data-sv-form={KIT_FORM_UID}
+      data-uid={KIT_FORM_UID}
+      data-format="inline"
+      data-version="5"
+    >
+      <label class="nl-visually-hidden" for="nl-email">Email address</label>
+      <input
+        type="email"
+        id="nl-email"
+        name="email_address"
+        placeholder="you@example.com"
+        required
+        autocomplete="email"
+        class="nl-input"
+      />
+      <button type="submit" class="nl-button">
+        {ctaLabel}
+        <span class="nl-arrow" aria-hidden="true">→</span>
+      </button>
+    </form>
+
+    <p class="nl-micro">{microcopy}</p>
+  </div>
+</aside>
+
+<style>
+  /* Inherits design tokens from hub/article pages — falls back to defaults
+     so this component also works on any page that hasn't set them. */
+  .nl-card {
+    --_ink: var(--ink, #1a1d24);
+    --_ink-soft: var(--ink-soft, #4a5061);
+    --_ink-muted: var(--ink-muted, #7a8195);
+    --_paper: var(--paper, #fbf8f1);
+    --_paper-warm: var(--paper-warm, #f3ede0);
+    --_line: var(--line, #e5dfd0);
+    --_accent: var(--accent, #2c5f5d);
+    --_accent-deep: var(--accent-deep, #1d3f3d);
+    --_gold: var(--gold, #b8924a);
+    --_font-display: var(--font-display, "Fraunces", Georgia, serif);
+    --_font-body: var(--font-body, "Inter Tight", -apple-system, system-ui, sans-serif);
+
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.75rem;
+    align-items: start;
+
+    max-width: 720px;
+    margin: 3rem auto;
+    padding: 2.25rem 2.5rem;
+
+    background: var(--_paper-warm);
+    border: 1px solid var(--_line);
+    border-left: 3px solid var(--_gold);
+    border-radius: 4px;
+
+    color: var(--_ink);
+    font-family: var(--_font-body);
+  }
+
+  .nl-mark {
+    width: 48px;
+    height: 48px;
+    color: var(--_accent);
+    flex-shrink: 0;
+  }
+
+  .nl-mark svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .nl-body {
+    min-width: 0;
+  }
+
+  .nl-kicker {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--_gold);
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+  }
+
+  .nl-headline {
+    font-family: var(--_font-display);
+    font-size: 1.45rem;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    font-weight: 600;
+    margin: 0 0 0.6rem;
+    color: var(--_ink);
+  }
+
+  .nl-subhead {
+    font-size: 0.98rem;
+    line-height: 1.55;
+    color: var(--_ink-soft);
+    margin: 0 0 1.25rem;
+  }
+
+  .nl-form {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .nl-input {
+    flex: 1 1 220px;
+    min-width: 0;
+    font-family: inherit;
+    font-size: 0.98rem;
+    padding: 0.75rem 0.9rem;
+    background: var(--_paper);
+    border: 1px solid var(--_line);
+    border-radius: 3px;
+    color: var(--_ink);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .nl-input::placeholder {
+    color: var(--_ink-muted);
+  }
+
+  .nl-input:focus {
+    outline: none;
+    border-color: var(--_accent);
+    box-shadow: 0 0 0 3px rgba(44, 95, 93, 0.12);
+  }
+
+  .nl-button {
+    font-family: inherit;
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 0.75rem 1.25rem;
+    background: var(--_ink);
+    color: var(--_paper);
+    border: 1px solid var(--_ink);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .nl-button:hover {
+    background: var(--_accent-deep);
+    border-color: var(--_accent-deep);
+  }
+
+  .nl-button:hover .nl-arrow {
+    transform: translateX(3px);
+  }
+
+  .nl-arrow {
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+
+  .nl-micro {
+    font-size: 0.8rem;
+    color: var(--_ink-muted);
+    margin: 0.85rem 0 0;
+    line-height: 1.4;
+  }
+
+  .nl-visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* ── Mobile ────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .nl-card {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      padding: 1.75rem 1.5rem;
+      margin: 2rem auto;
+    }
+
+    .nl-mark {
+      width: 36px;
+      height: 36px;
+    }
+
+    .nl-headline {
+      font-size: 1.3rem;
+    }
+
+    .nl-button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

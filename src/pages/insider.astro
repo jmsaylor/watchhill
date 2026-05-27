@@ -1,0 +1,561 @@
+---
+// ─────────────────────────────────────────────────────────────────────────
+// /insider — Dedicated landing page for the Insider Map opt-in.
+//
+// This is the "sell hard" version. Use this URL when promoting from:
+//   - social bios (Instagram, Pinterest, TikTok)
+//   - Pinterest pin descriptions
+//   - guest posts and partner links
+//   - your email signature
+//   - paid traffic (if you ever run it)
+//
+// The inline NewsletterInline component is for placing INSIDE articles.
+// This page is for traffic coming specifically to opt in.
+//
+// BEFORE GOING LIVE:
+//   1. Same Kit form action + UID replacement as NewsletterInline.astro
+//   2. Replace the testimonial/social-proof block once you have one
+//      (or delete it entirely until you do — fake testimonials are worse
+//       than no testimonials)
+// ─────────────────────────────────────────────────────────────────────────
+
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import { kit } from "../data/kit";
+
+const KIT_FORM_ACTION_URL = kit.formActionUrl;
+const KIT_FORM_UID = kit.formUid;
+---
+
+<Base
+  title="The Watch Hill Guide - Insider Map"
+  description="A free PDF map of all the best places in Watch Hill. Sent immediately when you subscribe."
+>
+  <Nav />
+
+  <main class="insider">
+
+    <!-- ── HERO ──────────────────────────────────────────────── -->
+    <section class="hero">
+      <div class="hero-inner">
+        <p class="kicker">Free Guide · One-Time Download</p>
+        <h1>The 12 Watch Hill spots that don't show up on the tourist maps.</h1>
+        <p class="lede">
+          A free PDF map of the places locals actually go — quiet beaches,
+          a hidden trail that ends at the sound, the lighthouse view nobody
+          photographs, the bakery that closes when it's sold out. Sent
+          immediately when you subscribe.
+        </p>
+
+        <form
+          action={KIT_FORM_ACTION_URL}
+          method="post"
+          class="hero-form"
+          data-sv-form={KIT_FORM_UID}
+          data-uid={KIT_FORM_UID}
+          data-format="inline"
+          data-version="5"
+        >
+          <label class="sr-only" for="hero-email">Email address</label>
+          <input
+            type="email"
+            id="hero-email"
+            name="email_address"
+            placeholder="you@example.com"
+            required
+            autocomplete="email"
+            class="hero-input"
+          />
+          <button type="submit" class="hero-button">
+            Send me the map <span class="arrow" aria-hidden="true">→</span>
+          </button>
+        </form>
+
+        <p class="micro">
+          One email a month after that — usually a "what's worth doing
+          this month" note. Unsubscribe anytime, link in every email.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── WHAT'S IN IT ──────────────────────────────────────── -->
+    <section class="whats-in">
+      <div class="section-head">
+        <p class="section-kicker">What's in it</p>
+        <h2>Twelve spots. Real ones. Local ones.</h2>
+        <p class="section-lede">
+          No top-10 lists pulled from somebody else's blog. No "must-see"
+          places where the actual must-see is the parking lot. These are
+          the spots I send my own friends to when they ask.
+        </p>
+      </div>
+
+      <ul class="features">
+        <li class="feature">
+          <span class="feature-num">01</span>
+          <div>
+            <h3>A two-page hand-illustrated map</h3>
+            <p>Roughly south-to-north along the coast, so you can work it into one day or stretch it across a long weekend.</p>
+          </div>
+        </li>
+        <li class="feature">
+          <span class="feature-num">02</span>
+          <div>
+            <h3>Best-time-to-go notes for each spot</h3>
+            <p>Most places have one window when they're magic and one window when they're miserable. I tell you which is which.</p>
+          </div>
+        </li>
+        <li class="feature">
+          <span class="feature-num">03</span>
+          <div>
+            <h3>The three I'd start with</h3>
+            <p>If you only have one afternoon, I'll tell you exactly which three to do, in what order, and why.</p>
+          </div>
+        </li>
+        <li class="feature">
+          <span class="feature-num">04</span>
+          <div>
+            <h3>One spot only locals know</h3>
+            <p>I'm not joking. This one isn't on Google. It's on the map.</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ── WHO IT'S FOR ──────────────────────────────────────── -->
+    <section class="for-who">
+      <div class="section-head">
+        <p class="section-kicker">Who it's for</p>
+        <h2>People planning a trip — or people who already love it here.</h2>
+      </div>
+
+      <div class="for-grid">
+        <div class="for-card">
+          <h3>First-time visitors</h3>
+          <p>You've heard "Watch Hill is great" and now you're trying to figure out what that actually means. Start here.</p>
+        </div>
+        <div class="for-card">
+          <h3>Returning regulars</h3>
+          <p>You come every summer and you've done the carousel. You're ready for the next layer.</p>
+        </div>
+        <div class="for-card">
+          <h3>Day trippers from CT / MA / NY</h3>
+          <p>You've got eight hours. I'll help you make them count.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ABOUT (proof through specificity, not testimonials) ── -->
+    <section class="about">
+      <div class="about-inner">
+        <p class="section-kicker">Who's writing this</p>
+        <h2>I live here. That's the whole pitch.</h2>
+        <p>
+          Watch Hill Guide is written from Westerly, Rhode Island — not
+          from a content farm, not from a syndicated network, not by
+          someone who came once on assignment. Every place on the map is
+          somewhere I've been more times than I can count, in different
+          seasons, in different weather, at different hours.
+        </p>
+        <p>
+          The map is free because it's also an introduction. If we get
+          along over email, eventually I might write a longer paid guide.
+          If we don't, you keep the map and unsubscribe — no hard feelings.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── BOTTOM CTA ────────────────────────────────────────── -->
+    <section class="bottom-cta">
+      <div class="bottom-inner">
+        <h2>Ready for the map?</h2>
+        <p>Free, immediate, no upsell. Just the PDF and an honest welcome.</p>
+
+        <form
+          action={KIT_FORM_ACTION_URL}
+          method="post"
+          class="hero-form bottom-form"
+          data-sv-form={KIT_FORM_UID}
+          data-uid={KIT_FORM_UID}
+          data-format="inline"
+          data-version="5"
+        >
+          <label class="sr-only" for="bottom-email">Email address</label>
+          <input
+            type="email"
+            id="bottom-email"
+            name="email_address"
+            placeholder="you@example.com"
+            required
+            autocomplete="email"
+            class="hero-input"
+          />
+          <button type="submit" class="hero-button">
+            Send me the map <span class="arrow" aria-hidden="true">→</span>
+          </button>
+        </form>
+
+        <p class="micro">Subscribe and the map is on its way in under a minute.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Base>
+
+<style>
+  :root {
+    --ink: #1a1d24;
+    --ink-soft: #4a5061;
+    --ink-muted: #7a8195;
+    --paper: #fbf8f1;
+    --paper-warm: #f3ede0;
+    --line: #e5dfd0;
+    --accent: #2c5f5d;
+    --accent-deep: #1d3f3d;
+    --gold: #b8924a;
+    --font-display: "Fraunces", Georgia, serif;
+    --font-body: "Inter Tight", -apple-system, system-ui, sans-serif;
+  }
+
+  .insider {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.6;
+    padding-bottom: 6rem;
+  }
+
+  .insider *,
+  .insider *::before,
+  .insider *::after {
+    box-sizing: border-box;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* ── HERO ─────────────────────────────────────────── */
+  .hero {
+    background: linear-gradient(180deg, var(--paper-warm) 0%, var(--paper) 100%);
+    padding: 5rem 1.5rem 4rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .hero-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .kicker, .section-kicker {
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin: 0 0 1.25rem;
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    font-weight: 600;
+    margin: 0 0 1.5rem;
+  }
+
+  .lede {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0 0 2.5rem;
+    max-width: 620px;
+  }
+
+  /* ── FORM ─────────────────────────────────────────── */
+  .hero-form {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    max-width: 540px;
+  }
+
+  .hero-input {
+    flex: 1 1 240px;
+    min-width: 0;
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 0.9rem 1rem;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    color: var(--ink);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .hero-input::placeholder { color: var(--ink-muted); }
+
+  .hero-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(44, 95, 93, 0.12);
+  }
+
+  .hero-button {
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.9rem 1.4rem;
+    background: var(--ink);
+    color: var(--paper);
+    border: 1px solid var(--ink);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .hero-button:hover {
+    background: var(--accent-deep);
+    border-color: var(--accent-deep);
+  }
+
+  .hero-button:hover .arrow {
+    transform: translateX(3px);
+  }
+
+  .arrow {
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+
+  .micro {
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+    margin: 1rem 0 0;
+    max-width: 540px;
+    line-height: 1.5;
+  }
+
+  /* ── SECTION HEADS ────────────────────────────────── */
+  .section-head {
+    max-width: 720px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .section-head h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+    margin: 0 0 0.75rem;
+  }
+
+  .section-lede {
+    color: var(--ink-soft);
+    font-size: 1.05rem;
+    margin: 0;
+    max-width: 600px;
+  }
+
+  /* ── WHAT'S IN IT ─────────────────────────────────── */
+  .whats-in {
+    max-width: 920px;
+    margin: 5rem auto;
+    padding: 0 1.5rem;
+  }
+
+  .features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+
+  .feature {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.25rem;
+    align-items: start;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1.75rem;
+  }
+
+  .feature-num {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--gold);
+    font-weight: 600;
+    line-height: 1;
+    margin-top: 0.15rem;
+  }
+
+  .feature h3 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+  }
+
+  .feature p {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* ── FOR WHO ─────────────────────────────────────── */
+  .for-who {
+    background: var(--paper-warm);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 5rem 1.5rem;
+    margin-bottom: 5rem;
+  }
+
+  .for-grid {
+    max-width: 920px;
+    margin: 0 auto;
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+
+  .for-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1.75rem;
+  }
+
+  .for-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    margin: 0 0 0.65rem;
+  }
+
+  .for-card p {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  /* ── ABOUT ───────────────────────────────────────── */
+  .about {
+    max-width: 720px;
+    margin: 0 auto 5rem;
+    padding: 0 1.5rem;
+  }
+
+  .about-inner h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+    margin: 0 0 1.25rem;
+  }
+
+  .about p {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    margin: 0 0 1.25rem;
+    line-height: 1.65;
+  }
+
+  .about p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── BOTTOM CTA ──────────────────────────────────── */
+  .bottom-cta {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .bottom-inner {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 3.5rem 3rem;
+    border-radius: 6px;
+    text-align: center;
+  }
+
+  .bottom-inner h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+    margin: 0 0 0.85rem;
+    color: white;
+  }
+
+  .bottom-inner p {
+    color: rgba(251, 248, 241, 0.78);
+    margin: 0 0 2rem;
+    font-size: 1.05rem;
+  }
+
+  .bottom-form {
+    margin: 0 auto;
+    justify-content: center;
+  }
+
+  .bottom-inner .micro {
+    color: rgba(251, 248, 241, 0.55);
+    margin: 1rem auto 0;
+  }
+
+  .bottom-inner .hero-input {
+    background: rgba(255, 255, 255, 0.95);
+  }
+
+  .bottom-inner .hero-button {
+    background: var(--gold);
+    color: var(--ink);
+    border-color: var(--gold);
+  }
+
+  .bottom-inner .hero-button:hover {
+    background: #a07f3f;
+    border-color: #a07f3f;
+  }
+
+  /* ── MOBILE ──────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .hero { padding: 4rem 1.25rem 3rem; }
+    .whats-in, .about { margin: 3.5rem auto; }
+    .for-who { padding: 3.5rem 1.25rem; margin-bottom: 3.5rem; }
+    .bottom-inner { padding: 2.5rem 1.5rem; }
+    .hero-button { width: 100%; justify-content: center; }
+    .feature { padding: 1.5rem; }
+  }
+</style>

@@ -1,0 +1,128 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import AttractionPost from "../../components/AttractionPost.astro";
+import { affiliates } from "../../data/affiliates";
+
+const title = "A Perfect Day in Mystic, CT from Watch Hill (2026 Local's Guide)";
+const description =
+  "How to spend a perfect day in Mystic, Connecticut from Watch Hill, RI — Mystic Seaport, the Aquarium, downtown, and where to eat. Itinerary, parking tips, and the discount most visitors miss.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TravelGuide",
+  name: "Mystic, Connecticut Day Trip Guide",
+  description: "Complete day-trip itinerary for Mystic, CT from the Watch Hill / Westerly, RI area.",
+  about: {
+    "@type": "Place",
+    name: "Mystic, Connecticut",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Mystic",
+      addressRegion: "CT",
+      addressCountry: "US",
+    },
+  },
+};
+
+const props = {
+  kicker: "Day Trip · 20 Minutes West of Watch Hill",
+  title: "A Perfect Day in ",
+  titleEm: "Mystic, Connecticut",
+  titleTail: "",
+  subtitle:
+    "Twenty minutes west of Watch Hill, Mystic is the day trip every visitor should take. A maritime museum on a working shipyard, one of the best aquariums in the Northeast, a downtown drawbridge over a working river, and a restaurant scene that punches well above its weight. Here's how to do it right.",
+  readingTime: "9 min read",
+  verdict:
+    "<strong>Allow a full day.</strong> Pair Mystic Seaport (morning) with Mystic Aquarium (afternoon) — buy the <strong>Mystic Pass</strong> in advance for a combined discount on both. Park downtown for free at the public garage on Holmes Street and walk; downtown parking elsewhere is metered and competitive. Eat lunch on Main Street between the two stops.",
+  quickFacts: [
+    { label: "Distance from Watch Hill", value: "20 min / 13 miles" },
+    { label: "Plan for", value: "A full 8-10 hour day" },
+    { label: "Mystic Pass", value: "Aquarium + Seaport combined" },
+    { label: "Mystic Seaport", value: "Largest maritime museum in U.S." },
+    { label: "Mystic Aquarium", value: "Belugas, sea lions, penguins" },
+    { label: "Open year-round", value: "Both major attractions" },
+  ],
+  introParagraphs: [
+    "Mystic sits twenty minutes west of Watch Hill, just across the Rhode Island/Connecticut state line. Technically it's not even a town — it's a village split between Groton and Stonington — but it punches enormously above its size. It has the largest maritime museum in the United States, one of the most respected aquariums in the Northeast, a working drawbridge over a working river, more than a hundred restaurants and shops in a walkable downtown, and a tourism infrastructure built around the assumption that every visitor will spend a full day.",
+    "It's also genuinely the right day trip for almost every Watch Hill visitor. Couples come for the downtown shopping and the dinner scene. Families come for the aquarium. History buffs come for the Seaport. Adventurous eaters come for the Oyster Club and Sift Bake Shop. Rainy-day visitors come because half of Mystic's offerings are indoors. Most importantly, Mystic complements Watch Hill rather than competing with it — the two are different enough that a 3-day trip can comfortably include both without feeling repetitive.",
+    "The single most-asked question is whether you should do both Mystic Seaport and Mystic Aquarium in one day. The short answer: <strong>yes, if you're efficient about it</strong>. Both are operated under the same nonprofit umbrella, both sell the combined Mystic Pass at a meaningful discount, and they're a 5-minute drive apart. The longer answer — including the itinerary that actually makes it work — is below.",
+  ],
+  tips: [
+    {
+      label: "Buy the Mystic Pass in advance",
+      body: "The Mystic Pass combines admission to both Mystic Seaport Museum and Mystic Aquarium at a discount compared to buying tickets separately. You purchase it once online, then use it for entry at each location on whichever day you choose (visits don't need to be on the same day, though most day-trippers do them together). Print the email confirmation or show it on your phone. Available at mystic.org.",
+    },
+    {
+      label: "Where to park",
+      body: "<strong>Free option:</strong> The public parking garage on Holmes Street, two blocks off Main Street downtown. Free for the first hour, then small hourly fees that cap at a daily maximum. <strong>Convenient option:</strong> Mystic Seaport and Mystic Aquarium both have on-site free parking, so if your day starts at one of them, just park there. Avoid the metered street spaces on Main Street unless you're stopping briefly — they're enforced strictly and limited to 2 hours.",
+    },
+    {
+      label: "The ideal full-day itinerary",
+      body: "<strong>9 AM:</strong> Arrive at Mystic Seaport when it opens. The Charles W. Morgan whaleship and the working shipyard need at least 2 hours. <strong>11:30 AM:</strong> Drive 5 minutes to downtown Mystic for lunch. <strong>1 PM:</strong> Drive to Mystic Aquarium (also 5 minutes from downtown). Plan 2-3 hours. <strong>4 PM:</strong> Back to downtown for coffee at Sift Bake Shop or shopping along Main Street. <strong>6 PM:</strong> Dinner — the Oyster Club, Bravo Bravo, or Engine Room are the three serious options. <strong>8 PM:</strong> Back to Watch Hill, ideally hitting the lighthouse for sunset on the way.",
+    },
+    {
+      label: "Don't miss the drawbridge",
+      body: "The Mystic River Bascule Bridge is a working drawbridge in downtown Mystic that raises every hour and 40 minutes (roughly :40 past the hour during boating season). When it goes up, traffic stops, boats pass through, and tourists gather to watch. It's a small thing but it's one of the genuinely memorable details of the day. Time your lunch around it.",
+    },
+    {
+      label: "Skip Olde Mistick Village unless you're shopping",
+      body: "Olde Mistick Village is a recreated 18th-century shopping complex with 50+ specialty stores. It's pleasant and free to walk through, but most adults find it more touristy-cute than essential — and if you have kids, the actual aquarium across the parking lot is the better use of the time. Browse for 30 minutes before or after the aquarium visit; don't build the day around it.",
+    },
+    {
+      label: "Best restaurant strategy",
+      body: "<strong>Lunch (downtown):</strong> S&P Oyster Restaurant on the water for casual; Mystic Drawbridge Ice Cream for something quick. <strong>Dinner (downtown):</strong> The Oyster Club is the headline choice — seasonal, coastal, the kind of restaurant that gets New York Times coverage. Reserve 2-3 weeks ahead in summer. Engine Room is the locals' alternative (slightly less polished, equally good food). Bravo Bravo is the upscale Italian. <strong>Pastries:</strong> Sift Bake Shop is a James Beard semifinalist and worth a stop on the way in or out — almond croissants and cortados are the move.",
+    },
+  ],
+  cta: {
+    framing:
+      "Most visitors do Mystic as a day trip from Watch Hill, but if you want to break it into two days — Seaport one day, Aquarium another — staying overnight in Mystic is an option. Watch Hill is usually the better base, but both work.",
+    label: "Browse Watch Hill stays →",
+    url: affiliates.hotels.allWatchHill,
+  },
+  faqs: [
+    {
+      q: "How far is Mystic, CT from Watch Hill, RI?",
+      a: "About 13 miles or 20 minutes by car. The drive is mostly along Route 1 and Route 27 through Stonington, Connecticut. There's no public transit between Watch Hill and Mystic — you'll need a car.",
+    },
+    {
+      q: "Can you do Mystic Seaport and Mystic Aquarium in one day?",
+      a: "Yes — and most day-trippers do. Buy the Mystic Pass online in advance for a combined discount. The Seaport needs 2-3 hours and the Aquarium needs 2-3 hours, so a 9 AM start and a 6 PM dinner makes a full but comfortable day. If you have kids under 6, you may want to split it across two days.",
+    },
+    {
+      q: "Is Mystic Seaport worth visiting?",
+      a: "Yes — it's the largest maritime museum in the United States, with 19 acres of recreated 19th-century seafaring village, a working shipyard, and the Charles W. Morgan (the world's last surviving wooden whaleship). It's particularly good with kids old enough to climb on boats (roughly 6+), and equally rewarding for adults interested in American history.",
+    },
+    {
+      q: "Is Mystic Aquarium worth visiting?",
+      a: "Yes — it's one of the best aquariums in the Northeast, with beluga whales, sea lions, African penguins, an active marine animal rescue clinic, and substantial indoor and outdoor exhibits. It's the single best rainy-day activity within an hour of Watch Hill, and the most kid-friendly Mystic attraction.",
+    },
+    {
+      q: "Where should you eat in Mystic?",
+      a: "For dinner: The Oyster Club (seasonal, coastal, reserve 2-3 weeks ahead), Engine Room (locals' favorite), or Bravo Bravo (upscale Italian). For lunch: S&P Oyster Restaurant on the water. For coffee or pastries: Sift Bake Shop, a James Beard semifinalist. Avoid Mystic Pizza if food quality matters more than the movie nostalgia.",
+    },
+    {
+      q: "How much time do you need in Mystic?",
+      a: "A full day (8-10 hours) is right for most visitors. You can do a half-day if you're picking just one attraction (Aquarium or Seaport), but the value of the trip multiplies if you include both plus a downtown meal. Mystic also works as a 2-day stay with an overnight, particularly if you want to dine at the Oyster Club without rushing back.",
+    },
+    {
+      q: "Is Mystic, CT open year-round?",
+      a: "Yes. Mystic Aquarium and Mystic Seaport both operate year-round, with reduced winter hours. Downtown restaurants and shops mostly stay open year-round as well, with some reduced winter schedules. Mystic is one of the better off-season day trips from Watch Hill since most of the village's offerings are weather-independent.",
+    },
+  ],
+  related: [
+    { href: "/blog/day-trips-from-watch-hill", tag: "All Day Trips", title: "10 Best Day Trips from Watch Hill" },
+    { href: "/blog/mystic-aquarium-guide", tag: "Deeper Dive", title: "Mystic Aquarium Visitor's Guide" },
+    { href: "/blog/stonington-borough-guide", tag: "Nearby", title: "Stonington Borough Day Trip" },
+    { href: "/blog/foxwoods-mohegan-sun", tag: "30 Min North", title: "Foxwoods & Mohegan Sun" },
+  ],
+};
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Nav />
+  <main>
+    <AttractionPost {...props} />
+  </main>
+</Base>

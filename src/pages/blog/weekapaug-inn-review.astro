@@ -1,0 +1,1000 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import { affiliates } from "../../data/affiliates";
+
+const title =
+  "Weekapaug Inn Review (2026): Is the Quiet Sister Property Worth It?";
+const description =
+  "A local's honest review of Weekapaug Inn in Westerly, RI — the Forbes Five-Star, Relais & Châteaux property on Quonochontaug Pond, ten minutes east of Watch Hill. Rooms, dining, naturalist program, real costs, and who it's actually for.";
+const publishDate = "2026-05-26";
+const updatedDate = "2026-05-26";
+const readingTime = "12 min read";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Review",
+  itemReviewed: {
+    "@type": "Hotel",
+    name: "Weekapaug Inn",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "25 Spray Rock Road",
+      addressLocality: "Westerly",
+      addressRegion: "RI",
+      postalCode: "02891",
+      addressCountry: "US",
+    },
+    starRating: { "@type": "Rating", ratingValue: "5" },
+  },
+  reviewRating: { "@type": "Rating", ratingValue: "4.8", bestRating: "5" },
+  author: { "@type": "Organization", name: "Watch Hill Guide" },
+  datePublished: publishDate,
+};
+
+const ratings = [
+  { category: "Location & setting", score: 4.9, note: "A private peninsula on Quonochontaug Pond with Atlantic access. Unusually unspoiled." },
+  { category: "Rooms & suites", score: 4.8, note: "33 rooms across the inn and Carriage House. Comfortable, antique-meets-modern, water views from most." },
+  { category: "Food (The Restaurant)", score: 4.7, note: "Farm-to-table under Executive Chef Andrew Brooks. Pond-side dining is exceptional; service is consistently strong." },
+  { category: "Naturalist program", score: 5.0, note: "The standout feature. Guided birding, pond cruises, stargazing — meaningfully better than peer properties." },
+  { category: "Service", score: 4.9, note: "Quieter and more personal than Ocean House. Staff know your name by day two." },
+  { category: "Atmosphere", score: 4.9, note: "Genuinely peaceful. Not stuffy, not casual — somewhere in between, which is rare." },
+  { category: "Family-friendliness", score: 4.5, note: "Welcoming but more naturally suited to couples and adult families. Younger kids do better at Ocean House." },
+  { category: "Value for money", score: 4.5, note: "Not cheap, but typically $200–$400 less per night than Ocean House — and you can use OH amenities anyway." },
+];
+
+const rooms = [
+  {
+    type: "Classic Inn Room",
+    sqft: "~325 sq ft",
+    rate: "From $500/night",
+    view: "Pond or garden views",
+    note: "The entry-level option in the historic main inn. Comfortable, traditional furnishings with vintage pieces from the original 1899 building. Pond views in most. No balcony.",
+  },
+  {
+    type: "Premier Pond View",
+    sqft: "~400 sq ft",
+    rate: "From $700/night",
+    view: "Direct pond view",
+    note: "The sweet spot. Direct views over Quonochontaug Pond, larger sitting area, and the soundscape that makes Weekapaug specifically Weekapaug — wading birds, distant ocean, almost no road noise.",
+  },
+  {
+    type: "Carriage House Suite",
+    sqft: "500–700 sq ft",
+    rate: "From $850/night",
+    view: "Separate building, garden",
+    note: "Set apart from the main inn in a separate building. More privacy, more independence, often a small porch. Best for couples who want quiet and discretion.",
+  },
+  {
+    type: "Signature Suite",
+    sqft: "750–1,100 sq ft",
+    rate: "From $1,200/night",
+    view: "Best in the house",
+    note: "Four of these on property. Two bedrooms, full living area, premium positioning, often a fireplace. The Fenway Suite is the most commonly singled-out by past guests.",
+  },
+];
+
+const included = [
+  "Access to Ocean House Collection beach (8 minutes by complimentary shuttle)",
+  "Daily naturalist programming — guided birding, pond cruises, beach walks, stargazing",
+  "Outdoor pool and Jacuzzi (seasonal, May–October)",
+  "24-hour fitness center",
+  "Free use of cruiser bikes and kayaks",
+  "Guest pantry with complimentary snacks and beverages",
+  "Lawn games — croquet, bocce, badminton — on the inn lawn",
+  "Wi-Fi throughout",
+  "Valet parking and complimentary area shuttle",
+];
+
+const notIncluded = [
+  "Dining at The Restaurant — full price (lunch $25–$45, dinner $75–$150 with wine)",
+  "Treatments at the Ocean House spa (when using OH Collection amenities)",
+  "Private boat charters and fishing guides arranged through the Inn",
+  "Specialty naturalist programs (some advanced birding outings)",
+  "Babysitting services (extra fee)",
+];
+
+const honestWeaknesses = [
+  {
+    title: "It's not in Watch Hill village",
+    body:
+      "Weekapaug is in Westerly's Weekapaug section — about 10 minutes east of Watch Hill by car. The complimentary shuttle runs to Ocean House and the beach, but reaching Bay Street, the Flying Horse Carousel, the lighthouse, or any Watch Hill village experience requires a drive. If walking out your front door into a village is part of what you want, this is the wrong property.",
+  },
+  {
+    title: "It's on a pond, not the ocean",
+    body:
+      "Quonochontaug Pond is beautiful — saltwater, full of wading birds, with a barrier beach between it and the Atlantic. But it is a pond, not the open ocean. The beach access is real but requires a short walk or the shuttle. If your mental picture of a New England coastal hotel involves waking up to crashing waves, Weekapaug isn't that — Ocean House is.",
+  },
+  {
+    title: "The restaurant has had off nights",
+    body:
+      "The Restaurant under Chef Andrew Brooks is consistently good and often excellent, but some recent reviewers — particularly at lunch — have noted slow service and a more limited menu than expected for a Five-Star property. The pond-side setting is forgiving, but if you're building the trip around a specific high-end meal, Coast at Ocean House is the more reliable choice.",
+  },
+  {
+    title: "Closes for part of the winter",
+    body:
+      "Weekapaug typically closes for several weeks from late January through early March for annual maintenance. If you're targeting a deep winter getaway, Ocean House is the year-round Watch Hill option; Weekapaug isn't always available.",
+  },
+  {
+    title: "Less family infrastructure than Ocean House",
+    body:
+      "Weekapaug welcomes families and has thoughtful touches for kids, but doesn't have Ocean House's Sand Castles supervised kids' program or the in-room welcome gifts. Younger kids (under 8) usually have a richer time at Ocean House; teens and older kids appreciate Weekapaug's quiet more.",
+  },
+];
+
+const compareTo = [
+  {
+    name: "Ocean House",
+    distance: "10 min west",
+    diff: "Same Ocean House Collection. Larger, busier, in the village. Forbes Triple Five-Star. Typically $200–$400 more per night.",
+  },
+  {
+    name: "Watch Hill Inn",
+    distance: "10 min west",
+    diff: "Ocean House Collection sister property. All-suite with kitchens, in the Watch Hill village proper. Less expensive; less intimate than Weekapaug.",
+  },
+  {
+    name: "Castle Hill Inn (Newport)",
+    distance: "1 hr east",
+    diff: "Relais & Châteaux peer. Similar price point, more formal atmosphere, oceanfront rather than pond-side. Better if you also want to see Newport.",
+  },
+  {
+    name: "Wequassett (Cape Cod)",
+    distance: "2 hr east",
+    diff: "Forbes Five-Star peer on Cape Cod. Larger resort, more programming, more kids. Less intimate than Weekapaug.",
+  },
+];
+
+const faqs = [
+  {
+    q: "How much does Weekapaug Inn cost?",
+    a: "Classic rooms start around $500/night in peak summer; Premier Pond View rooms run about $700; Carriage House Suites from $850; Signature Suites from $1,200. Shoulder seasons (May, late September, October) typically run 25–35% lower. Weekapaug typically closes for several weeks in late winter for maintenance.",
+  },
+  {
+    q: "Is Weekapaug Inn worth the price?",
+    a: "For couples wanting a quiet, naturalist-driven luxury experience, yes — it's one of the genuinely distinctive Relais & Châteaux properties in the Northeast. It's not the right choice if you want to be in the Watch Hill village or if you prefer the structured resort programming of Ocean House. It is, however, frequently the smarter choice for repeat New England travelers who've already done Ocean House.",
+  },
+  {
+    q: "Can Weekapaug Inn guests use Ocean House?",
+    a: "Yes — guests at Weekapaug have full access to Ocean House amenities through the Ocean House Collection. That includes Ocean House's private ocean beach with cabana service, the Forbes Five-Star OH! Spa, fitness center, indoor saltwater pool, and dining reservations across all five Ocean House restaurants. A complimentary shuttle runs between the properties.",
+  },
+  {
+    q: "Is Weekapaug Inn family-friendly?",
+    a: "Yes, but more selectively than Ocean House. Weekapaug welcomes families and has thoughtful naturalist programming kids enjoy (birding walks, pond exploration, kayaking). It doesn't have Ocean House's full Sand Castles supervised kids' program or the in-room welcome gifts. Best for families with children 8+, particularly those interested in nature and the outdoors.",
+  },
+  {
+    q: "Does Weekapaug Inn allow pets?",
+    a: "No. Unlike Ocean House (which is dog-friendly with a fee), Weekapaug Inn does not accept pets. If you're traveling with a dog, Ocean House or a Misquamicut vacation rental are the better options.",
+  },
+  {
+    q: "What is the naturalist program at Weekapaug Inn?",
+    a: "Weekapaug has a dedicated naturalist team that runs daily complimentary programming for guests — guided birding walks (Quonochontaug Pond is on the Atlantic Flyway, a major migratory route), pond boat tours, beach walks, stargazing nights, biking outings, and seasonal programs like horseshoe crab spawning observation. It's the property's signature differentiator and consistently among the highest-rated features.",
+  },
+  {
+    q: "How far is Weekapaug Inn from Watch Hill?",
+    a: "About 10 minutes by car — roughly 6 miles east. The complimentary inn shuttle runs to Ocean House and the Watch Hill Collection beach. Bay Street, the Flying Horse Carousel, the lighthouse, and Napatree Point are all reachable but require driving or the shuttle.",
+  },
+  {
+    q: "Is Weekapaug Inn open year-round?",
+    a: "Mostly. The Inn operates from early March through late January, typically closing for several weeks in late January and February for annual maintenance. Ocean House remains open year-round; if winter dates matter and Weekapaug is closed, Ocean House is the alternative within the Collection.",
+  },
+];
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Nav />
+
+  <article class="article">
+    <header class="hero">
+      <div class="hero-inner">
+        <p class="kicker">Hotel Review · 2026</p>
+        <h1>
+          Weekapaug Inn Review: The <em>Quiet Sister</em> to Ocean House
+        </h1>
+        <p class="hero-sub">
+          A locally written review of the Forbes Five-Star, Relais &amp; Châteaux
+          Weekapaug Inn — ten minutes east of Watch Hill on a private pond.
+          What it gets right, where it falls short, and the very specific kind
+          of traveler it's for.
+        </p>
+        <div class="meta">
+          <span>Updated May 26, 2026</span>
+          <span class="dot">·</span>
+          <span>{readingTime}</span>
+          <span class="dot">·</span>
+          <span>Written from Westerly, RI</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="verdict">
+      <div class="v-inner">
+        <p class="v-label">The Verdict</p>
+        <p class="v-text">
+          <strong>The smarter choice for couples and quiet trips.</strong>
+          Weekapaug Inn is what people picture when they imagine "a small
+          Relais &amp; Châteaux inn on the New England coast" — slower-paced
+          than Ocean House, more nature-driven, more personal. It's not as
+          dazzling and it's not in the village. But for the right traveler,
+          it's the better property — and you get full access to Ocean House
+          amenities anyway.
+        </p>
+
+        <div class="v-stats">
+          <div>
+            <p class="v-stat-num">4.8</p>
+            <p class="v-stat-label">Overall</p>
+          </div>
+          <div>
+            <p class="v-stat-num">★★★★★</p>
+            <p class="v-stat-label">Forbes Five-Star</p>
+          </div>
+          <div>
+            <p class="v-stat-num">$500+</p>
+            <p class="v-stat-label">Starting rate</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="prose">
+      <p class="lede">
+        I've recommended Weekapaug Inn to a lot of friends over the years —
+        more often, in fact, than Ocean House. The conversation usually
+        starts with "we want to do the Watch Hill area for an anniversary"
+        and ends with "go to Weekapaug, you can use Ocean House anyway." It's
+        not the first property anyone has heard of, but it's frequently the
+        one that ends up being right. Here's the locally honest version of
+        why — and the situations where it's actually the wrong choice.
+      </p>
+
+      <aside class="disclosure">
+        <strong>A note on links:</strong> Some links below are affiliate
+        links; we may earn a small commission when you book through them at
+        no extra cost to you. We only recommend places we'd send our own
+        family to.
+      </aside>
+    </section>
+
+    <section class="ratings">
+      <h2 class="section-h">Rating Breakdown</h2>
+      <p class="ratings-intro">
+        Eight categories that matter for a quiet luxury inn stay, scored
+        individually rather than averaged into a single number.
+      </p>
+
+      <div class="ratings-list">
+        {ratings.map((r) => (
+          <div class="rating">
+            <div class="r-head">
+              <p class="r-cat">{r.category}</p>
+              <p class="r-score">{r.score.toFixed(1)}</p>
+            </div>
+            <div class="r-bar">
+              <div class="r-bar-fill" style={`width: ${(r.score / 5) * 100}%`} />
+            </div>
+            <p class="r-note">{r.note}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="book-now">
+      <div class="bn-inner">
+        <p class="bn-label">If You're Ready to Book</p>
+        <h2>Check Current Rates &amp; Availability</h2>
+        <p>
+          Rates change weekly. Stay22 aggregates current availability across
+          Booking.com, Hotels.com, Expedia, and direct channels so you can
+          compare in one place.
+        </p>
+        <a class="bn-cta" href={affiliates.hotels.weekapaugInn} rel="sponsored nofollow">
+          Check Weekapaug Inn rates →
+        </a>
+      </div>
+    </section>
+
+    <section class="prose">
+      <h2 class="section-h">The Setting</h2>
+      <p>
+        Weekapaug Inn sits on a private peninsula at the end of Spray Rock
+        Road, surrounded on three sides by Quonochontaug Pond — a 743-acre
+        saltwater pond that locals call "Quonny." A barrier beach separates
+        the pond from the open Atlantic. The combination is genuinely
+        unusual: protected, glassy pond water on one side; ocean and dunes
+        on the other; the inn quietly between them, set well back from any
+        road or commerce.
+      </p>
+      <p>
+        The current main building dates from 1899, with substantial
+        renovations and additions over the decades — most recently the new
+        MeetingHouse with floor-to-ceiling retractable windows, and an
+        infrastructure upgrade to a geothermal heating and cooling system.
+        The property is listed on the National Register of Historic Places
+        and is a member of Relais &amp; Châteaux, the international
+        association of small, independently owned luxury properties.
+      </p>
+      <p>
+        Weekapaug is not, as the geography suggests, in Watch Hill. It's in
+        Westerly's Weekapaug neighborhood, about ten minutes east of Watch
+        Hill village by car. There's a complimentary shuttle to Ocean House
+        and the Watch Hill beach throughout the day, so you can be at Bay
+        Street or the Forbes Five-Star OH! Spa within fifteen minutes door
+        to door — but you're not walking distance to anything. That's either
+        a feature or a bug depending on what you want.
+      </p>
+    </section>
+
+    <section class="rooms">
+      <div class="section-head">
+        <h2>Rooms &amp; Suites</h2>
+        <p>
+          33 rooms total — across the historic main inn, the Carriage House
+          (a separate building behind the main inn), and four two-bedroom
+          Signature Suites. All rooms have water or garden views.
+        </p>
+      </div>
+
+      <div class="rooms-grid">
+        {rooms.map((r) => (
+          <div class="room">
+            <div class="room-head">
+              <h3>{r.type}</h3>
+              <p class="room-meta">
+                <span>{r.sqft}</span>
+                <span class="dot-sm">·</span>
+                <span>{r.rate}</span>
+              </p>
+            </div>
+            <p class="room-view">{r.view}</p>
+            <p class="room-note">{r.note}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="naturalist">
+      <div class="n-inner">
+        <p class="n-tag">The Standout Feature</p>
+        <h2>The Naturalist Program</h2>
+        <p>
+          Most luxury inns mention having "guided walks" somewhere in their
+          marketing. Weekapaug actually has a dedicated naturalist team that
+          runs real programming every single day. Quonochontaug Pond is on
+          the Atlantic Flyway — the major bird migratory route along the
+          East Coast — and the inn has built a meaningful naturalist program
+          around the wildlife that passes through.
+        </p>
+
+        <p>The typical roster of complimentary programs:</p>
+
+        <ul class="check-list">
+          <li>Guided birding walks at dawn (warblers, egrets, ospreys, terns)</li>
+          <li>Pond cruises on the inn's small boats with the naturalist guide</li>
+          <li>Sunset paddle outings — kayaks and stand-up paddleboards</li>
+          <li>Beach walks identifying shorebirds, shells, and dune ecology</li>
+          <li>Stargazing nights with a telescope on the lawn</li>
+          <li>Seasonal programs — horseshoe crab spawning in spring, monarch migration in fall</li>
+          <li>Junior naturalist programming for kids 8+</li>
+        </ul>
+
+        <p>
+          This is what guests consistently flag in reviews — not the food,
+          not the rooms, but the naturalist program. It's the genuine
+          differentiator versus other Relais &amp; Châteaux properties at
+          the same price point. If naturalist programming isn't interesting
+          to you at all, Weekapaug isn't quite the right property — try
+          Ocean House instead, where the programming skews toward wine
+          tastings, cooking demos, and beach service.
+        </p>
+      </div>
+    </section>
+
+    <section class="restaurants">
+      <div class="section-head">
+        <h2>Dining at The Restaurant</h2>
+        <p>
+          Weekapaug has one restaurant — straightforwardly called The
+          Restaurant — plus a casual breakfast service and a small bar area
+          in the main inn.
+        </p>
+      </div>
+
+      <div class="rest-content">
+        <p>
+          The Restaurant is the inn's centerpiece dining experience.
+          Executive Chef Andrew Brooks runs a farm-to-table program with
+          most ingredients sourced from Westerly and surrounding Rhode
+          Island producers. The setting is the real differentiator — a
+          dining room with floor-to-ceiling pond views and an outdoor
+          porch that gets used aggressively in warm months. Pond-side
+          dinner at golden hour is the kind of meal that justifies the
+          trip.
+        </p>
+        <p>
+          Recent reviews are mostly excellent, with a notable cluster of
+          mid-tier reviews flagging slower-than-expected lunch service and
+          a more limited menu than the inn's website suggests. The
+          consistency at dinner is stronger than at lunch. If you're
+          building the trip around a specific high-end meal, Coast at Ocean
+          House is the more reliable choice — but the setting at Weekapaug
+          is better than at Coast, which is part of the trade.
+        </p>
+        <p>
+          <strong>What to order:</strong> Whatever's been pulled from the
+          inn's working garden that morning (ask the server). The crab
+          cakes are consistently praised. The lobster preparation is local
+          and unfussy. The wine list is well-edited around New England and
+          coastal European producers. The dessert program is quietly strong
+          — particularly anything involving local stone fruit when in
+          season.
+        </p>
+        <p>
+          <strong>Sunday brunch</strong> is the locals' secret. Most
+          tourists don't know it exists; it runs in season and is the
+          easiest reservation to get at any Ocean House Collection property.
+        </p>
+      </div>
+    </section>
+
+    <section class="included">
+      <div class="inc-inner">
+        <div class="inc-col">
+          <p class="inc-label included-label">Included with Your Stay</p>
+          <ul class="check-list">
+            {included.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+
+        <div class="inc-col">
+          <p class="inc-label excluded-label">Not Included</p>
+          <ul class="x-list">
+            {notIncluded.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="weak">
+      <div class="w-inner">
+        <p class="w-tag">Where Weekapaug Falls Short</p>
+        <h2>The Things to Know Before You Book</h2>
+        <p class="w-intro">
+          Every property has tradeoffs. These are the ones that matter at
+          Weekapaug — not deal-breakers, but the kind of details that turn
+          a great stay into a slightly less-great stay if you don't
+          anticipate them.
+        </p>
+
+        <div class="w-list">
+          {honestWeaknesses.map((w) => (
+            <div class="w-item">
+              <h3>{w.title}</h3>
+              <p>{w.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="prose">
+      <h2 class="section-h">Who Weekapaug Inn Is For</h2>
+
+      <p><strong>It's worth booking if you're:</strong></p>
+      <ul class="for-list yes">
+        <li>A couple wanting a quiet anniversary, honeymoon, or romantic weekend</li>
+        <li>A repeat New England traveler who's done Ocean House and wants something different</li>
+        <li>Genuinely interested in birding, naturalist programs, or saltwater pond ecology</li>
+        <li>Traveling in shoulder seasons (April–June, September–November) when the inn handles the season especially well</li>
+        <li>A family with kids 8 and up who appreciate quiet, nature, and a slower pace</li>
+        <li>Looking to use Ocean House amenities without paying Ocean House rates</li>
+      </ul>
+
+      <p><strong>It's probably not the right fit if you:</strong></p>
+      <ul class="for-list no">
+        <li>Want to walk to the Watch Hill village — you'll need the shuttle or a car</li>
+        <li>Prefer an oceanfront stay with crashing-wave views (Ocean House does that better)</li>
+        <li>Have young children who'd benefit from structured kids' programming</li>
+        <li>Are traveling with a dog (Weekapaug doesn't accept pets)</li>
+        <li>Want maximum amenity density — the inn is small, and that's the point</li>
+        <li>Are targeting a deep winter trip (the inn typically closes for several weeks in late winter)</li>
+      </ul>
+    </section>
+
+    <section class="compare">
+      <h2 class="section-h">How Weekapaug Compares</h2>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Distance from Weekapaug</th>
+              <th>Key Difference</th>
+            </tr>
+          </thead>
+          <tbody>
+            {compareTo.map((c) => (
+              <tr>
+                <td><strong>{c.name}</strong></td>
+                <td>{c.distance}</td>
+                <td>{c.diff}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="book-now-bottom">
+      <div class="bnb-inner">
+        <h2>Ready to Book?</h2>
+        <p>
+          Rates and availability change daily. Compare across Booking.com,
+          Hotels.com, Expedia, and direct rates with one click.
+        </p>
+
+        <div class="bnb-grid">
+          <a class="bnb-card" href={affiliates.hotels.weekapaugInn} rel="sponsored nofollow">
+            <p class="bnb-tag">This Property</p>
+            <h3>Weekapaug Inn — Check Rates</h3>
+            <p>Compare across booking platforms</p>
+          </a>
+          <a class="bnb-card" href={affiliates.hotels.oceanHouse} rel="sponsored nofollow">
+            <p class="bnb-tag">Larger Sister</p>
+            <h3>Ocean House</h3>
+            <p>Forbes Triple Five-Star; in the village</p>
+          </a>
+          <a class="bnb-card" href={affiliates.hotels.watchHillInn} rel="sponsored nofollow">
+            <p class="bnb-tag">Best Value Luxury</p>
+            <h3>Watch Hill Inn</h3>
+            <p>All-suite, full OH Collection access</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq">
+      <h2 class="section-h">Frequently Asked Questions</h2>
+      {faqs.map((faq) => (
+        <details class="faq-item">
+          <summary>{faq.q}</summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <section class="related">
+      <h2 class="section-h">Keep Reading</h2>
+      <div class="related-grid">
+        <a href="/blog/where-to-stay-watch-hill" class="related-card">
+          <p class="related-tag">Full Hotel Guide</p>
+          <h3>Where to Stay in Watch Hill</h3>
+        </a>
+        <a href="/blog/ocean-house-review" class="related-card">
+          <p class="related-tag">Sister Property</p>
+          <h3>Ocean House Review</h3>
+        </a>
+        <a href="/blog/best-restaurants-watch-hill" class="related-card">
+          <p class="related-tag">Food</p>
+          <h3>15 Best Restaurants in Watch Hill</h3>
+        </a>
+        <a href="/blog/best-time-to-visit-watch-hill" class="related-card">
+          <p class="related-tag">Planning</p>
+          <h3>Best Time to Visit Watch Hill</h3>
+        </a>
+      </div>
+    </section>
+  </article>
+
+  <style>
+    :root {
+      --ink: #1a1d24;
+      --ink-soft: #4a5061;
+      --ink-muted: #7a8195;
+      --paper: #fbf8f1;
+      --paper-warm: #f3ede0;
+      --line: #e5dfd0;
+      --accent: #2c5f5d;
+      --accent-deep: #1d3f3d;
+      --gold: #b8924a;
+      --rose: #b85a4a;
+      --font-display: "Fraunces", Georgia, serif;
+      --font-body: "Inter Tight", -apple-system, system-ui, sans-serif;
+    }
+    .article {
+      background: var(--paper); color: var(--ink);
+      font-family: var(--font-body); font-size: 18px; line-height: 1.7;
+      padding-bottom: 6rem;
+    }
+    .article *, .article *::before, .article *::after { box-sizing: border-box; }
+
+    .hero {
+      background: linear-gradient(180deg, var(--paper-warm) 0%, var(--paper) 100%);
+      padding: 5rem 1.5rem 3rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-inner { max-width: 760px; margin: 0 auto; }
+    .kicker {
+      font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600; margin: 0 0 1.5rem;
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5.5vw, 4rem);
+      line-height: 1.04; letter-spacing: -0.025em; font-weight: 600;
+      margin: 0 0 1.5rem;
+    }
+    h1 em { font-style: italic; color: var(--accent); }
+    .hero-sub {
+      font-size: 1.2rem; line-height: 1.55; color: var(--ink-soft);
+      margin: 0 0 2rem; max-width: 620px;
+    }
+    .meta {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      font-size: 0.85rem; color: var(--ink-muted);
+    }
+    .dot { color: var(--line); }
+
+    .verdict { max-width: 760px; margin: -1px auto 0; padding: 0 1.5rem; }
+    .v-inner {
+      background: var(--ink); color: var(--paper);
+      padding: 2.5rem; border-radius: 6px; border-left: 4px solid var(--gold);
+    }
+    .v-label {
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); font-weight: 600; margin: 0 0 1rem;
+    }
+    .v-text {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      line-height: 1.5; margin: 0 0 2rem; letter-spacing: -0.005em;
+      color: rgba(251, 248, 241, 0.92);
+    }
+    .v-text strong { color: white; font-weight: 600; }
+    .v-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+      padding-top: 1.5rem; border-top: 1px solid rgba(251, 248, 241, 0.15);
+    }
+    .v-stat-num {
+      font-family: var(--font-display);
+      font-size: 1.7rem; font-weight: 600; color: var(--gold);
+      margin: 0 0 0.2rem; letter-spacing: -0.01em;
+    }
+    .v-stat-label {
+      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(251, 248, 241, 0.65); font-weight: 600; margin: 0;
+    }
+
+    .prose { max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem; }
+    .lede { font-size: 1.15rem; line-height: 1.7; color: var(--ink); margin: 0; }
+    .prose p { margin: 0 0 1.25rem; color: var(--ink); }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose strong { color: var(--ink); font-weight: 600; }
+    .disclosure {
+      background: var(--paper-warm); border-left: 3px solid var(--gold);
+      padding: 1rem 1.25rem; font-size: 0.9rem; color: var(--ink-soft);
+      border-radius: 0 4px 4px 0; margin-top: 2rem;
+    }
+    .disclosure strong { color: var(--ink); }
+
+    .section-h {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+      line-height: 1.1; letter-spacing: -0.02em; font-weight: 600;
+      margin: 0 0 1.5rem;
+    }
+    .section-head { max-width: 680px; margin: 0 auto 3rem; }
+    .section-head h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+      line-height: 1.1; letter-spacing: -0.02em; font-weight: 600;
+      margin: 0 0 0.5rem;
+    }
+    .section-head p { color: var(--ink-soft); margin: 0; }
+
+    .ratings { max-width: 760px; margin: 4rem auto; padding: 0 1.5rem; }
+    .ratings-intro { color: var(--ink-soft); margin: 0 0 2rem; }
+    .ratings-list { display: flex; flex-direction: column; gap: 1.25rem; }
+    .rating { padding: 1.25rem 0; border-bottom: 1px solid var(--line); }
+    .rating:last-child { border-bottom: none; }
+    .r-head {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 0.6rem; gap: 1rem;
+    }
+    .r-cat {
+      font-family: var(--font-display);
+      font-size: 1.1rem; font-weight: 600;
+      letter-spacing: -0.01em; margin: 0;
+    }
+    .r-score {
+      font-family: var(--font-display);
+      font-size: 1.25rem; font-weight: 600; color: var(--accent);
+      margin: 0; font-feature-settings: "tnum";
+    }
+    .r-bar {
+      height: 4px; background: var(--paper-warm);
+      border-radius: 2px; overflow: hidden; margin-bottom: 0.75rem;
+    }
+    .r-bar-fill { height: 100%; background: var(--accent); border-radius: 2px; }
+    .r-note { font-size: 0.95rem; color: var(--ink-soft); margin: 0; line-height: 1.5; }
+
+    .book-now { max-width: 1080px; margin: 4rem auto; padding: 0 1.5rem; }
+    .bn-inner {
+      background: var(--accent); color: var(--paper);
+      padding: 2.5rem; border-radius: 6px;
+    }
+    .bn-label {
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); font-weight: 600; margin: 0 0 0.75rem;
+    }
+    .book-now h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      line-height: 1.15; letter-spacing: -0.015em; font-weight: 600;
+      margin: 0 0 1rem; color: white;
+    }
+    .book-now p {
+      font-size: 1rem; color: rgba(251, 248, 241, 0.85);
+      margin: 0 0 1.5rem; max-width: 620px; line-height: 1.6;
+    }
+    .bn-cta {
+      display: inline-block; background: white; color: var(--ink);
+      padding: 0.85rem 1.75rem; border-radius: 4px;
+      text-decoration: none; font-weight: 600; font-size: 0.95rem;
+      transition: transform 0.15s ease;
+    }
+    .bn-cta:hover { transform: translateY(-2px); }
+
+    .rooms { max-width: 1080px; margin: 4rem auto; padding: 0 1.5rem; }
+    .rooms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+    .room {
+      background: white; border: 1px solid var(--line);
+      padding: 1.75rem; border-radius: 4px;
+      display: flex; flex-direction: column;
+    }
+    .room-head { margin-bottom: 1rem; }
+    .room h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem; font-weight: 600;
+      letter-spacing: -0.015em; margin: 0 0 0.3rem;
+    }
+    .room-meta {
+      font-size: 0.85rem; color: var(--ink-muted); margin: 0;
+      display: flex; gap: 0.4rem; align-items: center; flex-wrap: wrap;
+    }
+    .dot-sm { color: var(--line); }
+    .room-view {
+      font-family: var(--font-display); font-style: italic;
+      color: var(--accent); font-size: 0.95rem; margin: 0 0 1rem;
+    }
+    .room-note {
+      font-size: 0.93rem; color: var(--ink-soft);
+      margin: 0; line-height: 1.55;
+    }
+
+    .naturalist {
+      background: var(--paper-warm); border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 4rem 1.5rem; margin: 4rem 0;
+    }
+    .n-inner { max-width: 760px; margin: 0 auto; }
+    .n-tag {
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600; margin: 0 0 0.75rem;
+    }
+    .naturalist h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.3rem);
+      line-height: 1.15; letter-spacing: -0.02em; font-weight: 600;
+      margin: 0 0 1.25rem;
+    }
+    .naturalist p { color: var(--ink); margin: 0 0 1.25rem; line-height: 1.65; }
+    .naturalist p:last-child { margin-bottom: 0; }
+    .naturalist .check-list { margin: 0 0 1.5rem; }
+    .naturalist .check-list li {
+      border-bottom: 1px solid var(--line);
+      background: transparent;
+    }
+
+    .restaurants { max-width: 680px; margin: 4rem auto; padding: 0 1.5rem; }
+    .rest-content p { margin: 0 0 1.25rem; color: var(--ink); }
+    .rest-content p:last-child { margin-bottom: 0; }
+    .rest-content strong { color: var(--ink); font-weight: 600; }
+
+    .included {
+      background: var(--paper-warm); border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 4rem 1.5rem; margin: 4rem 0;
+    }
+    .inc-inner {
+      max-width: 1080px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+    }
+    .inc-label {
+      font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
+      font-weight: 700; margin: 0 0 1.25rem;
+    }
+    .included-label { color: var(--accent); }
+    .excluded-label { color: var(--rose); }
+    .check-list, .x-list { list-style: none; padding: 0; margin: 0; }
+    .check-list li, .x-list li {
+      position: relative; padding: 0.55rem 0 0.55rem 1.75rem;
+      font-size: 0.95rem; color: var(--ink-soft); line-height: 1.5;
+      border-bottom: 1px solid var(--line);
+    }
+    .check-list li:last-child, .x-list li:last-child { border-bottom: none; }
+    .check-list li::before {
+      content: "✓"; position: absolute; left: 0; top: 0.55rem;
+      color: var(--accent); font-weight: 600;
+    }
+    .x-list li::before {
+      content: "×"; position: absolute; left: 0; top: 0.4rem;
+      color: var(--rose); font-weight: 600; font-size: 1.15rem;
+    }
+
+    .weak { max-width: 760px; margin: 4rem auto; padding: 0 1.5rem; }
+    .w-tag {
+      font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--rose); font-weight: 600; margin: 0 0 0.75rem;
+    }
+    .weak h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.3rem);
+      line-height: 1.15; letter-spacing: -0.02em; font-weight: 600;
+      margin: 0 0 1rem;
+    }
+    .w-intro {
+      color: var(--ink-soft); margin: 0 0 2.5rem;
+      font-size: 1.05rem; line-height: 1.6;
+    }
+    .w-list { display: flex; flex-direction: column; gap: 2rem; }
+    .w-item h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem; font-weight: 600;
+      letter-spacing: -0.015em; margin: 0 0 0.6rem; color: var(--ink);
+    }
+    .w-item p {
+      margin: 0; color: var(--ink-soft);
+      font-size: 1rem; line-height: 1.6;
+    }
+
+    .for-list { list-style: none; padding: 0; margin: 0 0 2rem; }
+    .for-list li {
+      position: relative; padding: 0.65rem 0 0.65rem 1.75rem;
+      color: var(--ink-soft); line-height: 1.55;
+      border-bottom: 1px solid var(--line);
+    }
+    .for-list li:last-child { border-bottom: none; }
+    .for-list.yes li::before {
+      content: "✓"; position: absolute; left: 0; top: 0.65rem;
+      color: var(--accent); font-weight: 600;
+    }
+    .for-list.no li::before {
+      content: "×"; position: absolute; left: 0; top: 0.5rem;
+      color: var(--rose); font-weight: 600; font-size: 1.15rem;
+    }
+
+    .compare { max-width: 1080px; margin: 4rem auto; padding: 0 1.5rem; }
+    .table-wrap {
+      overflow-x: auto; border: 1px solid var(--line);
+      border-radius: 4px; background: white;
+    }
+    table {
+      width: 100%; border-collapse: collapse;
+      font-size: 0.95rem; min-width: 640px;
+    }
+    thead { background: var(--paper-warm); }
+    th {
+      text-align: left; padding: 1rem 1.25rem;
+      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+      font-weight: 600; color: var(--ink-muted);
+      border-bottom: 1px solid var(--line);
+    }
+    td {
+      padding: 1rem 1.25rem; border-bottom: 1px solid var(--line);
+      color: var(--ink-soft); vertical-align: top;
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody strong { color: var(--ink); }
+
+    .book-now-bottom { max-width: 1080px; margin: 4rem auto; padding: 0 1.5rem; }
+    .bnb-inner {
+      background: var(--paper-warm); border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      padding: 3rem; border-radius: 4px;
+    }
+    .book-now-bottom h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      line-height: 1.15; letter-spacing: -0.02em; font-weight: 600;
+      margin: 0 0 1rem;
+    }
+    .book-now-bottom > .bnb-inner > p {
+      color: var(--ink-soft); margin: 0 0 2rem; max-width: 620px;
+    }
+    .bnb-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .bnb-card {
+      background: white; border: 1px solid var(--line);
+      padding: 1.5rem; border-radius: 4px;
+      text-decoration: none; color: var(--ink);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .bnb-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+    .bnb-tag {
+      font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600; margin: 0 0 0.6rem;
+    }
+    .bnb-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem; font-weight: 600;
+      letter-spacing: -0.01em; margin: 0 0 0.5rem; line-height: 1.2;
+    }
+    .bnb-card p:not(.bnb-tag) {
+      font-size: 0.88rem; color: var(--ink-soft);
+      margin: 0; line-height: 1.45;
+    }
+
+    .faq { max-width: 760px; margin: 4rem auto; padding: 0 1.5rem; }
+    .faq-item { border-bottom: 1px solid var(--line); padding: 1.25rem 0; }
+    .faq-item summary {
+      font-family: var(--font-display);
+      font-size: 1.15rem; font-weight: 600; cursor: pointer; color: var(--ink);
+      list-style: none; display: flex; justify-content: space-between;
+      align-items: center; gap: 1rem; letter-spacing: -0.005em;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: "+"; font-size: 1.5rem; color: var(--accent);
+      font-weight: 400; flex-shrink: 0;
+    }
+    .faq-item[open] summary::after { content: "−"; }
+    .faq-item p {
+      margin: 1rem 0 0; color: var(--ink-soft); font-size: 1rem; line-height: 1.6;
+    }
+
+    .related {
+      max-width: 1080px; margin: 4rem auto 0;
+      padding: 3rem 1.5rem 0; border-top: 1px solid var(--line);
+    }
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+    .related-card {
+      display: block; background: white; border: 1px solid var(--line);
+      padding: 1.5rem; text-decoration: none; color: var(--ink);
+      border-radius: 4px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .related-card:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .related-tag {
+      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600; margin: 0 0 0.75rem;
+    }
+    .related-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem; font-weight: 600; margin: 0;
+      line-height: 1.25; letter-spacing: -0.01em;
+    }
+
+    @media (max-width: 720px) {
+      .hero { padding: 3.5rem 1.25rem 2.5rem; }
+      .v-inner { padding: 2rem 1.5rem; }
+      .bn-inner, .bnb-inner { padding: 2rem 1.5rem; }
+      .inc-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .v-stats { gap: 0.5rem; }
+      .v-stat-num { font-size: 1.3rem; }
+    }
+  </style>
+</Base>

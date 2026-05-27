@@ -27,6 +27,9 @@ jobs:
 
       - run: npm ci
 
+      - name: Clear Vite cache
+        run: rm -rf node_modules/.vite
+
       - run: npm run build
 
       - uses: actions/upload-pages-artifact@v3

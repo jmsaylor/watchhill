@@ -11,6 +11,6 @@
 // ─────────────────────────────────────────────────────────────────────────
 
 export const kit = {
-  formActionUrl: "https://app.kit.com/forms/REPLACE_ME/subscriptions",
-  formUid: "REPLACE_ME",
+  formActionUrl: "https://watch-hill-guide.kit.com/eca53f6949/index.js",
+  formUid: "eca53f6949",
 };

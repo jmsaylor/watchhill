@@ -1,4 +1,5 @@
-
+#Astro build folder
+/dist/
 
 # generated types
 .astro/

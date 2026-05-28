@@ -7,7 +7,11 @@ interface Props {
   noindex?: boolean;
 }
 
-const { title, description = "A landing page built with Astro.", noindex = false } = Astro.props;
+// 1. Grab the current page's absolute URL for the canonical tag
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://watchhillguide.com");
+
+// 2. Swapped the generic "Astro landing page" text for a fallback tailored to your niche
+const { title, description = "The ultimate local's guide to visiting Watch Hill, Rhode Island. Discover the best beaches, parking tips, hotels, and things to do.", noindex = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -17,7 +21,6 @@ const { title, description = "A landing page built with Astro.", noindex = false
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZTLK1KN7L4" is:inline></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
-      // Google Analystics Setup
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-ZTLK1KN7L4');
@@ -25,20 +28,24 @@ const { title, description = "A landing page built with Astro.", noindex = false
       // Link analytics (Google)
       document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('a[rel~="sponsored"]').forEach(link => {
-        link.addEventListener('click', () => {
-          gtag('event', 'affiliate_click', {
-            link_url: link.href,
-            link_text: link.textContent.trim(),
-            page_path: window.location.pathname
+          link.addEventListener('click', () => {
+            gtag('event', 'affiliate_click', {
+              link_url: link.href,
+              link_text: link.textContent.trim(),
+              page_path: window.location.pathname
+            });
           });
         });
       });
-    });
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex,follow" />}
+    
+    <!-- Canonical URL Tag -->
+    <link rel="canonical" href={canonicalURL} />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

@@ -9,12 +9,13 @@ const links = [
 ];
 ---
 
-<nav class="nav">
+<nav class="nav" aria-label="Main Navigation">
   <div class="nav-inner">
     <a href="/" class="brand">
       Watch Hill <span class="brand-mark">·</span> Guide
     </a>
 
+    <!-- Desktop Navigation Loop -->
     <ul class="nav-links">
       {
         links.map((l) => (
@@ -25,7 +26,8 @@ const links = [
       }
     </ul>
 
-    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+    <!-- 1. Tied aria-controls directly to the drawer ID below -->
+    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-navigation-drawer">
       <span></span>
       <span></span>
       <span></span>
@@ -33,7 +35,8 @@ const links = [
   </div>
 
   <!-- Mobile drawer -->
-  <div class="mobile-drawer">
+  <!-- 2. Added id, aria-hidden="true" by default, and mobile-specific nav role for accessibility -->
+  <div id="mobile-navigation-drawer" class="mobile-drawer" aria-hidden="true" aria-label="Mobile Navigation">
     <ul>
       {
         links.map((l) => (
@@ -54,6 +57,11 @@ const links = [
   toggle?.addEventListener("click", () => {
     const open = nav?.classList.toggle("open");
     toggle.setAttribute("aria-expanded", String(open));
+    
+    // 3. Dynamically toggle aria-hidden so search readers ignore it when closed
+    if (drawer) {
+      drawer.setAttribute("aria-hidden", String(!open));
+    }
   });
 </script>
 

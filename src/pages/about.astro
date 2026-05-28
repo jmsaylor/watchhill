@@ -1,0 +1,96 @@
+---
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+---
+
+<Base 
+  title="About Us · Watch Hill Guide" 
+  description="Meet the local behind Watch Hill Guide. With over 10 years of living in Watch Hill and dining across Westerly, I share the ultimate insider secrets, dining reviews, and logistics tips."
+>
+  <Nav />
+  
+  <main class="about-container">
+    <header class="about-header">
+      <h1>About Watch Hill Guide</h1>
+      <p class="subtitle">Real, battle-tested insider secrets from a Watch Hill local.</p>
+    </header>
+
+    <section class="about-content">
+      <h2>Hey There, I'm Your Local Guide</h2>
+      <p>
+        If you’ve ever tried to navigate the parking gridlock near the Flying Horse Carousel on a beautiful Saturday afternoon in July, you know that visiting our village requires a bit of strategy. 
+      </p>
+      <p>
+        I built <strong>Watch Hill Guide</strong> to strip away the guesswork for you. Having lived right here in Watch Hill for over 10 years, I’ve watched the seasons change, tracked the shifting beach tides, and learned the hidden rhythms of this beautiful coastal slice of Rhode Island. 
+      </p>
+
+      <blockquote>
+        "Massive travel platforms rely on generic algorithms, but a machine can’t tell you the exact hour the line peaks at the ice cream shop or where to park to avoid a ticket."
+      </blockquote>
+
+      <h2>Tested Across Watch Hill & Westerly</h2>
+      <p>
+        When I say this is an insider's guide, I mean it literally. I have personally eaten at <strong>every single restaurant</strong> across both Watch Hill and the broader Westerly area. From the high-end dining rooms on the hill to the quietest local sandwich counters, seafood shacks, and coffee shops, I've tried them all. 
+      </p>
+      <p>
+        Over the last decade, I have compiled a massive collection of logistical secrets, dining hacks, and neighborhood tips. Whether you want to escape the crowds at Napatree Point, find the best lobster roll, or time your trip around our community highlights like the June Summer Pops, my goal is to help you experience this area like a seasoned resident, not a stressed-out tourist.
+      </p>
+
+      <h2>Our Editorial Promise</h2>
+      <p>
+        No recycled tourist brochures. No sponsored fluff. Just honest, independent, boots-on-the-ground advice from someone who loves this coastal community and calls it home. 
+      </p>
+    </section>
+  </main>
+</Base>
+
+<style>
+  .about-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+    font-family: "Inter Tight", -apple-system, sans-serif;
+  }
+  .about-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+  h1 {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 3rem;
+    color: #1a1d24;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+  .subtitle {
+    font-size: 1.25rem;
+    color: #4a5061;
+    font-weight: 500;
+  }
+  .about-content {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: #2c303a;
+  }
+  h2 {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 1.85rem;
+    color: #2c5f5d;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+  p {
+    margin-bottom: 1.6rem;
+  }
+  blockquote {
+    margin: 2.5rem 0;
+    padding-left: 1.5rem;
+    border-left: 4px solid #2c5f5d;
+    font-family: "Fraunces", Georgia, serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: #4a5061;
+    line-height: 1.6;
+  }
+</style>

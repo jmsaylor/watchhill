@@ -1,0 +1,153 @@
+---
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+---
+
+<Base 
+  title="Contact Us · Watch Hill Guide" 
+  description="Have a question about visiting Watch Hill, or want to partner with us? Reach out to the team at Watch Hill Guide."
+>
+  <Nav />
+  
+  <main class="contact-container">
+    <h1>Get in Touch</h1>
+    <p class="lead">Have a question about planning your trip to Watch Hill? Want to collaborate or share a local tip? We'd love to hear from you.</p>
+
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h2>Say Hello</h2>
+        <p>We read every message and do our best to get back to you within 48 hours.</p>
+        <div class="email-box">
+          <span>Email us directly:</span>
+          <!-- Replace this with your actual domain email when you set it up! -->
+          <a href="mailto:hello@watchhillguide.com">john@watchhillguide.com</a>
+        </div>
+      </div>
+
+      <!-- Simple, clean HTML contact form structure -->
+      <!-- Tip: You can connect this action later to Netlify Forms, Formspree, or Web3Forms easily -->
+      <!-- <form class="contact-form" action="#" method="POST">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="6" required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+    </div>
+  </main> -->
+</Base>
+
+<style>
+  .contact-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+    font-family: "Inter Tight", -apple-system, sans-serif;
+  }
+  h1 {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 3rem;
+    color: #1a1d24;
+    margin-bottom: 1rem;
+  }
+  .lead {
+    font-size: 1.2rem;
+    color: #4a5061;
+    max-width: 600px;
+    margin-bottom: 3rem;
+    line-height: 1.5;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+  }
+  h2 {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 1.75rem;
+    color: #2c5f5d;
+    margin-bottom: 1rem;
+  }
+  .email-box {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #fbf8f1;
+    border: 1px solid #e5dfd0;
+    border-radius: 8px;
+  }
+  .email-box span {
+    display: block;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #71788a;
+    margin-bottom: 0.5rem;
+  }
+  .email-box a {
+    font-size: 1.2rem;
+    color: #2c5f5d;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #1a1d24;
+  }
+  input, textarea {
+    padding: 0.75rem;
+    border: 1px solid #e5dfd0;
+    background: #fbf8f1;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 1rem;
+    color: #1a1d24;
+  }
+  input:focus, textarea:focus {
+    outline: none;
+    border-color: #2c5f5d;
+    background: #fff;
+  }
+  .submit-btn {
+    background: #2c5f5d;
+    color: white;
+    border: none;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  .submit-btn:hover {
+    background: #1e4241;
+  }
+
+  @media (max-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,111 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import AttractionPost from "../../components/AttractionPost.astro";
+
+const title = "Olympia Tea Room Review: 110 Years on Bay Street (2026 Local's Guide)";
+const description = "An honest review of the Olympia Tea Room in Watch Hill, RI — operating since 1916, run by the Felber family since 1980. What to order, when to go, and why it's the most iconic restaurant on Bay Street.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  name: "The Olympia Tea Room",
+  description: "Historic American bistro on Bay Street in Watch Hill, RI, operating since 1916.",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "74 Bay Street",
+    addressLocality: "Watch Hill",
+    addressRegion: "RI",
+    postalCode: "02891",
+    addressCountry: "US",
+  },
+  telephone: "+14013488211",
+  servesCuisine: "American",
+  priceRange: "$$$",
+};
+
+const props = {
+  kicker: "Bay Street · Since 1916",
+  title: "110 Years at ",
+  titleEm: "Olympia Tea Room",
+  titleTail: "",
+  subtitle: "The 1916 Bay Street institution under the Felber family since 1980 — \"Famous not Fancy,\" as the tagline puts it. The most iconic restaurant in Watch Hill, with a 45-year family operation behind it. Here's what to order, when to go, and what to know.",
+  readingTime: "6 min read",
+  verdict: "<strong>The defining Bay Street restaurant.</strong> Open seasonally roughly April through Columbus Day. Reservations are taken and recommended on summer weekends — older guides that say \"no reservations\" are out of date. Hours: 4–10 PM Monday through Wednesday; 12–10 PM Thursday through Sunday. Phone: <strong>(401) 348-8211</strong>.",
+  quickFacts: [
+    { label: "Established", value: "1916" },
+    { label: "Years in business", value: "110 (in 2026)" },
+    { label: "Address", value: "74 Bay Street" },
+    { label: "Owners", value: "Felber family (since 1980)" },
+    { label: "Phone", value: "(401) 348-8211" },
+    { label: "Reservations", value: "Yes, recommended" },
+  ],
+  introParagraphs: [
+    "Olympia Tea Room sits in the middle of Bay Street with pressed tin ceilings, antique mahogany booths, and a soda fountain that's been operating since the building opened. It is the oldest restaurant in Watch Hill and one of the oldest continuously operating restaurants in Rhode Island. The tagline — \"Famous not Fancy since 1916\" — gets at the place exactly: it's serious about food and service without taking itself seriously. Locals have been coming for generations. Tourists discover it once and tell everyone they know.",
+    "The original 1916 operation was opened by three Albanian brothers — Teddy, Spiro, and Mike Tramis — who were known locally as \"the Greeks\" despite being Albanian. They ran it through the mid-1970s, after which a brief intermediate ownership kept it going until Jack and Marcia Felber bought it in late 1980. The Felber family has owned and operated it for over 45 years now. Jack is a Culinary Institute of America graduate; he found the place after searching the Rhode Island and Connecticut coast for a restaurant with an attached residence so the family could be together. The 45-year continuity is part of why the food remains consistent — same recipes, same standards, no chef-of-the-month churn.",
+    "The dining room itself is unchanged from the original: the long oak bar, the booths along the side wall, the small back-room tables for couples, the harbor-view outdoor tables in season. The menu is American bistro with serious wine and cocktail programs. The chowders are made daily. The lobster comes from the boats two blocks away.",
+  ],
+  tips: [
+    {
+      label: "What to order",
+      body: "<strong>The lobster salad croissant</strong> at lunch is the cult favorite. Generous portion of fresh lobster meat, lightly dressed, served on a buttery grilled croissant. <strong>The calamari</strong> is consistently praised — tender, well-seasoned, served with a roasted-tomato sauce. <strong>The Portuguese baked haddock</strong> at dinner is the long-running specialty. <strong>The cocktail program</strong> is the best in Watch Hill — the espresso martinis and pineapple mimosas get particularly singled out. <strong>The wine list</strong> is unusually good for an 80-seat restaurant.",
+    },
+    {
+      label: "When to go",
+      body: "<strong>Weekday lunches before 12:30 PM or after 1:30 PM</strong> are the easiest times to get a table without a reservation. <strong>Weekday dinners before 6 PM</strong> are usually walk-in-friendly. <strong>Summer weekends require reservations</strong> — book a week ahead minimum in July and August. Sunday brunch is the under-the-radar move; the harbor view from the outdoor tables at brunch is one of the best dining views in the village.",
+    },
+    {
+      label: "Reservation policy",
+      body: "Older guides — including, embarrassingly, an earlier version of this site — say Olympia doesn't take reservations. That's no longer true. The restaurant accepts reservations by phone at (401) 348-8211 or through OpenTable. Walk-ins are still welcome and the bar seating area handles overflow well, but for any peak-summer weekend visit, reserve ahead. Same-day reservations are often available for early-evening seatings.",
+    },
+    {
+      label: "Sit at the bar",
+      body: "When the wait for a booth is long, the bar is the move. The bartenders are the best in town, the menu is the same, and service is faster than at the tables. Bar regulars include working locals, yacht-club patrons, and visitors who've figured this out. It's also the easiest place to order half-portions or eat solo without it being awkward.",
+    },
+    {
+      label: "Seasonal closure",
+      body: "Olympia operates seasonally, roughly April through Columbus Day weekend in October. The exact opening and closing dates vary year to year based on weather and bookings; call to confirm before traveling specifically for it. Once the restaurant closes for the season, the next place to get a comparable Watch Hill village experience is at Ocean House (open year-round), about a 10-minute walk uphill.",
+    },
+  ],
+  faqs: [
+    {
+      q: "How old is the Olympia Tea Room?",
+      a: "Established in 1916, making it 110 years old in 2026. It has operated continuously in the same Bay Street location since then. The current owners, Jack and Marcia Felber, bought the restaurant in late 1980 and have run it as a family business for over 45 years.",
+    },
+    {
+      q: "Does Olympia Tea Room take reservations?",
+      a: "Yes. Reservations are accepted by phone at (401) 348-8211 or through OpenTable, and are recommended for summer weekends. Walk-ins are still welcome, with bar seating typically available when tables are full. Note: older travel guides incorrectly state the restaurant doesn't take reservations.",
+    },
+    {
+      q: "What should you order at Olympia Tea Room?",
+      a: "The lobster salad croissant is the iconic lunch order. At dinner, the Portuguese baked haddock has been a long-running specialty. The calamari, clam chowder, and cocktails are all consistently praised. The wine list is unusually good for a small restaurant — ask the bartender for a pairing if you're undecided.",
+    },
+    {
+      q: "Is Olympia Tea Room expensive?",
+      a: "Mid-to-upper range. Lunch entrées run $20–$30 in 2026; dinner entrées $30–$50. Cocktails are about $14–$18. Wine by the glass starts around $12. Not cheap, but reasonable for the quality and the location in Watch Hill — significantly less expensive than dinner at Ocean House.",
+    },
+    {
+      q: "What are the hours at Olympia Tea Room?",
+      a: "Monday through Wednesday: 4 PM to 10 PM (dinner only). Thursday through Sunday: noon to 10 PM (lunch and dinner). Seasonal — typically open April through Columbus Day. Confirm before traveling, as opening and closing dates shift year to year.",
+    },
+    {
+      q: "Where is Olympia Tea Room located?",
+      a: "74 Bay Street, Watch Hill, RI — in the middle of Bay Street between the Flying Horse Carousel and the harbor. About a 2-minute walk from Watch Hill Inn and the carousel; a 10-minute walk downhill from Ocean House. Phone: (401) 348-8211.",
+    },
+  ],
+  related: [
+    { href: "/blog/best-restaurants-watch-hill", tag: "Food Guide", title: "15 Best Restaurants in Watch Hill" },
+    { href: "/blog/st-clair-annex-ice-cream", tag: "Bay Street Classics", title: "St. Clair Annex: 139 Years on Bay Street" },
+    { href: "/blog/flying-horse-carousel-watch-hill", tag: "Next Door", title: "The Flying Horse Carousel" },
+    { href: "/blog/best-things-to-do-in-watch-hill-ri", tag: "Activities", title: "15 Best Things to Do in Watch Hill" },
+  ],
+};
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Nav />
+  <main>
+    <AttractionPost {...props} />
+  </main>
+</Base>

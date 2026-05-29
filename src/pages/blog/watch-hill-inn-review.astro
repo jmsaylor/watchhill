@@ -1,0 +1,949 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import { affiliates } from "../../data/affiliates";
+
+const title =
+  "Watch Hill Inn Review (2026): Best Value Luxury, With Real Caveats";
+const description =
+  "A local's honest review of Watch Hill Inn — the all-suite Ocean House Collection property on Bay Street. The kitchens are great, the location is unbeatable, the Ocean House access is real — but there's a reason it costs less than Ocean House. Here's what to actually expect.";
+const publishDate = "2026-05-26";
+const updatedDate = "2026-05-26";
+const readingTime = "12 min read";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Review",
+  itemReviewed: {
+    "@type": "Hotel",
+    name: "Watch Hill Inn",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "38-44 Bay Street",
+      addressLocality: "Watch Hill",
+      addressRegion: "RI",
+      postalCode: "02891",
+      addressCountry: "US",
+    },
+    starRating: { "@type": "Rating", ratingValue: "4" },
+  },
+  reviewRating: { "@type": "Rating", ratingValue: "4.2", bestRating: "5" },
+  author: { "@type": "Organization", name: "Watch Hill Guide" },
+  datePublished: publishDate,
+};
+
+const ratings = [
+  { category: "Location", score: 5.0, note: "On Bay Street itself — steps from the carousel, the lighthouse walk, and the harbor. Unmatched for in-village access." },
+  { category: "Suites & kitchens", score: 4.6, note: "19 all-suite condos with full kitchens, sectional sofas, gas fireplaces, washer/dryer. The Lilly Pulitzer and Eagle's Nest suites are exceptional." },
+  { category: "On-site amenities", score: 3.2, note: "Few. No restaurant, no spa, no pool, no fitness center on property. The Ocean House Collection access is the workaround." },
+  { category: "Ocean House Collection access", score: 4.9, note: "Full access to OH's private beach, Five-Star spa, 5 restaurants, and amenity programming via shuttle or short drive." },
+  { category: "Complimentary touches", score: 4.5, note: "Morning pastries and coffee, all-day snacks, evening wine and beer reception. Gratuity-free property." },
+  { category: "Service consistency", score: 3.8, note: "Inconsistent. Some guests report exceptional service; others report check-in confusion, slow responses, and limited staff presence." },
+  { category: "Building quality", score: 3.5, note: "Honest assessment: the building exterior reads more boutique-condo than luxury hotel. Some guests describe it as 'a glorified motel' — not unfair." },
+  { category: "Value for money", score: 4.0, note: "Reasonable in shoulder seasons; debatable at peak summer rates. The kitchen and OH access carry the value proposition." },
+];
+
+const rooms = [
+  {
+    type: "One-Bedroom Suite",
+    sqft: "~600 sq ft",
+    rate: "From $500/night",
+    view: "Village or partial bay",
+    note: "The entry-level option. Full kitchen, gas fireplace, sectional sofa, separate bedroom, washer/dryer. Best for couples or solo travelers who want kitchen flexibility without paying for a 2BR.",
+  },
+  {
+    type: "Two-Bedroom Suite",
+    sqft: "1,000–1,200 sq ft",
+    rate: "From $900/night",
+    view: "Bay or harbor view",
+    note: "The workhorse unit for families and couples traveling together. Full kitchen, two separate bedrooms (often on different floors in some suites), living area, deck or terrace on most. Three nights here is typically more comfortable than three nights at Ocean House for a family of four.",
+  },
+  {
+    type: "Named Premium Suites",
+    sqft: "1,200–1,600 sq ft",
+    rate: "From $1,200/night",
+    view: "Best harbor views",
+    note: "The Lilly Pulitzer Suite, Eagle's Nest Suite (1,600 sq ft attic with bay views), and Admiral Suite are the top accommodations. Larger living spaces, multiple bedrooms, premium positioning. The Eagle's Nest is the most-mentioned by past guests for its views.",
+  },
+];
+
+const included = [
+  "Full Ocean House Collection amenity access — beach, OH! Spa, 5 restaurants",
+  "Complimentary shuttle to Ocean House throughout the day",
+  "Morning continental breakfast — fresh pastries, fruit, yogurt, coffee, juice",
+  "All-day snacks and beverages in the lobby lounge",
+  "Late-afternoon reception with local wine, beer, and charcuterie",
+  "Cookies and milk in the evening (a small but loved detail)",
+  "Full kitchens in every suite — stainless steel, fully stocked with cookware",
+  "Washer/dryer in each suite",
+  "Gas fireplaces in every suite",
+  "Gratuity-free policy — tips included in resort fee",
+  "Matouk linens and goose-down pillows",
+  "Wi-Fi throughout",
+];
+
+const notIncluded = [
+  "On-property restaurant, spa, pool, or fitness center (use Ocean House)",
+  "Elevators — 2-3 story buildings with exterior corridors and stairs only",
+  "Daily housekeeping is reduced compared to full-service hotels",
+  "Concierge presence is limited; check-in may be unstaffed at off-hours",
+  "Spa treatments at Ocean House (treatments themselves cost extra)",
+  "Restaurant meals at any Ocean House outlet (full price)",
+];
+
+const honestWeaknesses = [
+  {
+    title: "The 'glorified motel' critique is real",
+    body:
+      "Multiple recent reviewers have used the phrase 'glorified motel' or 'souped-up motel' to describe Watch Hill Inn — and they aren't wrong, exactly. The exterior is a series of clapboard buildings with exterior corridors, not a single grand hotel. There are no extensive grounds. The architectural ambition lives inside the suites themselves, not the building envelope. If you're picturing a Victorian seaside grand hotel like Ocean House, Watch Hill Inn isn't that — it's a thoughtfully appointed cluster of condo-style suites in the heart of the village. Once you adjust expectations to that, it's a fine property. If you can't adjust expectations, you'll be disappointed.",
+  },
+  {
+    title: "Service can be thin",
+    body:
+      "Watch Hill Inn doesn't have the same staffing density as Ocean House. Multiple recent reviews flag check-in confusion when arriving in the evening, limited concierge presence, slow responses to in-room issues, and a generally less attentive guest experience. The morning continental breakfast and evening reception are well-handled because they're set up in advance; the in-the-moment service piece is more variable. If high-touch service is important to you, this isn't the right property.",
+  },
+  {
+    title: "No elevators, exterior corridors, stairs",
+    body:
+      "The property has 2-3 story buildings with no elevators and exterior corridors. Most suites require navigating at least one flight of stairs with luggage. This is a real consideration if anyone in your party has mobility issues, if you're traveling with young children plus strollers, or if you have a lot of luggage. Ocean House has elevators throughout; Watch Hill Inn doesn't.",
+  },
+  {
+    title: "Maintenance details slip",
+    body:
+      "Recent reviewers have flagged finicky details — running toilets, gas fireplaces that require crawling under to ignite, no in-room guest manuals explaining how the heating, cooling, or media systems work. These aren't deal-breakers, but they're the kind of details that at this price point should be solved. The suites are beautiful; the operational layer beneath them is less polished.",
+  },
+  {
+    title: "Peak summer rates are aggressive",
+    body:
+      "Watch Hill Inn frequently lists at $600–$1,400+/night with taxes and resort fees in peak summer. At that price point, the value proposition depends heavily on the Ocean House Collection access being something you'll actually use. If you're staying 1-2 nights and won't spend significant time at Ocean House's beach or spa, the math gets harder. The property is genuinely good value at shoulder-season rates ($400–$600); peak rates require you to maximize the OH amenity access for it to make sense.",
+  },
+];
+
+const compareTo = [
+  {
+    name: "Ocean House",
+    distance: "5 min walk uphill",
+    diff: "The flagship. Forbes Triple Five-Star, full-service resort, oceanfront. $200–$700+ more per night. Worth it if you want the full grand-hotel experience.",
+  },
+  {
+    name: "Weekapaug Inn",
+    distance: "10 min east by car",
+    diff: "Forbes Five-Star, Relais & Châteaux, on a private pond. Quieter, smaller, more intimate. Better for couples; similar OH amenity access.",
+  },
+  {
+    name: "VRBO/Misquamicut",
+    distance: "5 min east",
+    diff: "Often $200–$500/night less. Beach houses with kitchens. Better space-per-dollar for families. No OH amenity access.",
+  },
+  {
+    name: "Pleasant View Inn",
+    distance: "5 min east",
+    diff: "Direct beachfront in Misquamicut at significantly lower rates ($200–$400). Mid-tier resort vibe; no luxury polish, no OH access.",
+  },
+];
+
+const faqs = [
+  {
+    q: "How much does Watch Hill Inn cost?",
+    a: "One-Bedroom Suites start around $500/night in peak summer; Two-Bedroom Suites from $900; named premium suites from $1,200. Add taxes and resort fees on top — actual all-in nightly costs run $600–$1,500+ in peak summer. Shoulder seasons (May, late September, October) typically run 25–35% lower.",
+  },
+  {
+    q: "Is Watch Hill Inn part of Ocean House?",
+    a: "Yes — Watch Hill Inn is part of the Ocean House Collection along with Ocean House and Weekapaug Inn. Guests at Watch Hill Inn have full access to Ocean House's amenities: the private ocean beach with cabana service, the Forbes Five-Star OH! Spa, fitness center, indoor pool, all five OH restaurants (with reservations), and complimentary programming. A complimentary shuttle runs between properties throughout the day.",
+  },
+  {
+    q: "Is Watch Hill Inn worth the price?",
+    a: "It depends entirely on what you're optimizing for. If you value being in the village (walking to the carousel, lighthouse, and Bay Street restaurants), if you want kitchen space, and if you'll actually use the Ocean House amenities — yes, it's the best value among the three Ocean House Collection properties. If you expect a Victorian grand hotel atmosphere on-site, dense service, or won't spend time at Ocean House — no, the math doesn't work at peak rates.",
+  },
+  {
+    q: "Does Watch Hill Inn have a restaurant?",
+    a: "No on-property restaurant. The property serves complimentary morning continental breakfast, all-day snacks, and an afternoon wine reception in the lobby lounge. For lunch or dinner, guests walk to Bay Street restaurants (Olympia Tea Room is two minutes away) or take the shuttle to Ocean House's five restaurants.",
+  },
+  {
+    q: "Does Watch Hill Inn have a pool?",
+    a: "No. There's no pool, spa, or fitness center on Watch Hill Inn property. Guests have full access to Ocean House's indoor saltwater pool, beach, fitness center, and Five-Star spa via the complimentary shuttle (5 minutes between properties).",
+  },
+  {
+    q: "Is Watch Hill Inn family-friendly?",
+    a: "Yes for families with kids 6 and up; more complicated for families with very young kids. The Two-Bedroom Suites with kitchens and washer/dryers are genuinely well-suited for family stays of 3+ nights. The lack of elevators, exterior corridors, and stairs make young kids plus strollers logistically harder. Ocean House has more family-specific programming if that matters.",
+  },
+  {
+    q: "How does Watch Hill Inn compare to Ocean House?",
+    a: "Watch Hill Inn is the value play; Ocean House is the experience play. Watch Hill Inn gives you full Ocean House amenity access without paying Ocean House rates — for many travelers, that's the smart choice. Ocean House gives you the full grand-hotel experience: dense service, on-property dining at five restaurants, the Forbes Triple Five-Star polish, and a property that's a destination in itself. If you'll spend most of your trip on-property, book Ocean House. If you'll be in and out of the village all day, Watch Hill Inn is the better deal.",
+  },
+  {
+    q: "When was Watch Hill Inn built?",
+    a: "Watch Hill Inn was originally established in 1845 as the Narragansett House — making it one of the oldest hotels in Watch Hill. It was one of only two hotels (along with Ocean House) to survive the 1938 hurricane. The current iteration of the property — extensively renovated, all-suite, Ocean House Collection — opened in 2013.",
+  },
+];
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Nav />
+
+  <article class="article">
+    <header class="hero">
+      <div class="hero-inner">
+        <p class="kicker">Hotel Review · 2026</p>
+        <h1>
+          Watch Hill Inn Review: The <em>Best Value Luxury</em> Play, With Real Caveats
+        </h1>
+        <p class="hero-sub">
+          A locally written review of the all-suite Watch Hill Inn — the
+          third Ocean House Collection property, on Bay Street in the heart
+          of the village. The kitchens, the location, and the Ocean House
+          access are real. The on-site polish is not.
+        </p>
+        <div class="meta">
+          <span>Updated May 26, 2026</span>
+          <span class="dot">·</span>
+          <span>{readingTime}</span>
+          <span class="dot">·</span>
+          <span>Written from Westerly, RI</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="verdict">
+      <div class="v-inner">
+        <p class="v-label">The Verdict</p>
+        <p class="v-text">
+          <strong>The smart choice if you'll use the Ocean House
+          amenities.</strong> Watch Hill Inn is genuinely the best value
+          among the three Ocean House Collection properties — full kitchens,
+          in-village location, complimentary breakfast and evening
+          reception, and full access to Ocean House's beach, spa, and
+          restaurants. But the on-property experience is more boutique-condo
+          than grand-hotel, and recent reviews flag real service and
+          maintenance concerns. Book it for the kitchen and the OH access,
+          not for the building itself.
+        </p>
+
+        <div class="v-stats">
+          <div>
+            <p class="v-stat-num">4.2</p>
+            <p class="v-stat-label">Overall</p>
+          </div>
+          <div>
+            <p class="v-stat-num">19</p>
+            <p class="v-stat-label">All-suite condos</p>
+          </div>
+          <div>
+            <p class="v-stat-num">$500+</p>
+            <p class="v-stat-label">Starting rate</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="prose">
+      <p class="lede">
+        Watch Hill Inn is the most-misunderstood property in the Ocean House
+        Collection. People book it expecting a smaller version of Ocean
+        House, get something different, and either love it for what it
+        actually is or feel hoodwinked because it wasn't what they pictured.
+        Both reactions are common in reviews. This is the locally honest
+        version — what it actually is, who it's right for, and the specific
+        situations where it's exactly the right call.
+      </p>
+
+      <aside class="disclosure">
+        <strong>A note on links:</strong> Some links below are affiliate
+        links; we may earn a small commission when you book through them at
+        no extra cost to you. We only recommend places we'd send our own
+        family to.
+      </aside>
+    </section>
+
+    <section class="ratings">
+      <h2 class="section-h">Rating Breakdown</h2>
+      <p class="ratings-intro">
+        Eight categories, scored individually. The variation tells the real
+        story better than any averaged number — Watch Hill Inn scores high
+        on location and value, low on on-site amenities and building
+        quality.
+      </p>
+
+      <div class="ratings-list">
+        {ratings.map((r) => (
+          <div class="rating">
+            <div class="r-head">
+              <p class="r-cat">{r.category}</p>
+              <p class="r-score">{r.score.toFixed(1)}</p>
+            </div>
+            <div class="r-bar">
+              <div class="r-bar-fill" style={`width: ${(r.score / 5) * 100}%`} />
+            </div>
+            <p class="r-note">{r.note}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="book-now">
+      <div class="bn-inner">
+        <p class="bn-label">If You're Ready to Book</p>
+        <h2>Check Current Rates &amp; Availability</h2>
+        <p>
+          Rates change weekly. Stay22 aggregates current availability across
+          Booking.com, Hotels.com, Expedia, and direct channels so you can
+          compare in one place.
+        </p>
+        <a class="bn-cta" href={affiliates.hotels.watchHillInn} rel="sponsored nofollow">
+          Check Watch Hill Inn rates →
+        </a>
+      </div>
+    </section>
+
+    <section class="prose">
+      <h2 class="section-h">The Setting</h2>
+      <p>
+        Watch Hill Inn sits at 38-44 Bay Street, in the middle of the village
+        — about a 90-second walk from the Flying Horse Carousel, a five-minute
+        walk from St. Clair Annex, and a ten-minute walk uphill to the
+        lighthouse. The location is the property's single greatest asset.
+        Stepping out of the front door puts you in Watch Hill village proper
+        rather than at a separate resort property; for travelers who want to
+        be in the village, this is the only Ocean House Collection property
+        that delivers that.
+      </p>
+      <p>
+        Physically, Watch Hill Inn is a cluster of 2-3 story clapboard
+        buildings facing Little Narragansett Bay rather than the open
+        Atlantic. There are no elaborate grounds. The 19 suites are spread
+        across a handful of connected and adjacent buildings, all accessed
+        via exterior corridors and stairs. The exterior reads as
+        well-maintained boutique condominiums, which is essentially what
+        they are — the property operates more like a luxury rental
+        association than a traditional hotel, with a small permanent staff
+        and a centralized lobby/check-in building.
+      </p>
+      <p>
+        Originally opened in 1845 as the Narragansett House, the property is
+        one of only two hotels (along with Ocean House) to survive the 1938
+        hurricane that destroyed five of Watch Hill's seven original grand
+        hotels. The current iteration — extensively renovated as an
+        all-suite property and brought into the Ocean House Collection —
+        opened in 2013.
+      </p>
+    </section>
+
+    <section class="rooms">
+      <div class="section-head">
+        <h2>The 19 Suites</h2>
+        <p>
+          Every accommodation at Watch Hill Inn is a suite with a full
+          kitchen, sectional sofa, gas fireplace, washer/dryer, and Matouk
+          linens. Three rough tiers — though several have names rather than
+          a category.
+        </p>
+      </div>
+
+      <div class="rooms-grid">
+        {rooms.map((r) => (
+          <div class="room">
+            <div class="room-head">
+              <h3>{r.type}</h3>
+              <p class="room-meta">
+                <span>{r.sqft}</span>
+                <span class="dot-sm">·</span>
+                <span>{r.rate}</span>
+              </p>
+            </div>
+            <p class="room-view">{r.view}</p>
+            <p class="room-note">{r.note}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="oh-access">
+      <div class="oh-inner">
+        <p class="oh-tag">The Real Value Proposition</p>
+        <h2>The Ocean House Collection Access</h2>
+        <p>
+          Watch Hill Inn's signature feature isn't anything on the Watch
+          Hill Inn property itself — it's the full access to Ocean House's
+          amenities just up the hill. This is the unspoken bargain of the
+          Watch Hill Inn pricing: you pay less than Ocean House rates, you
+          use Ocean House amenities, you get a bigger living space with a
+          kitchen in the trade-off.
+        </p>
+
+        <p>What's actually included for Watch Hill Inn guests:</p>
+
+        <ul class="check-list">
+          <li>Full access to Ocean House's 650-foot private ocean beach with cabana service</li>
+          <li>The Forbes Five-Star OH! Spa (treatments cost extra; facility access is included)</li>
+          <li>Indoor saltwater pool and fitness center</li>
+          <li>Reservations at all five Ocean House restaurants — Coast, the Bistro, the Verandah, Seasons Pool Bar, OH! Pastry &amp; Wine</li>
+          <li>Complimentary wine, cooking, and naturalist classes at the Center for Wine &amp; Culinary Arts</li>
+          <li>Croquet, beach activities, paddleboards, and bikes</li>
+          <li>Nightly movie screenings in the Ocean House on-property cinema</li>
+        </ul>
+
+        <p>
+          A complimentary shuttle runs between Watch Hill Inn and Ocean
+          House throughout the day, or you can drive (3 minutes) or walk
+          (10–15 minutes uphill). Most guests use a combination of all
+          three. The shuttle is reliable but isn't always on a fixed
+          schedule — call the front desk ahead.
+        </p>
+      </div>
+    </section>
+
+    <section class="included">
+      <div class="inc-inner">
+        <div class="inc-col">
+          <p class="inc-label included-label">Included with Your Stay</p>
+          <ul class="check-list">
+            {included.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+
+        <div class="inc-col">
+          <p class="inc-label excluded-label">Not Included / Not Available</p>
+          <ul class="x-list">
+            {notIncluded.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="weak">
+      <div class="w-inner">
+        <p class="w-tag">Where Watch Hill Inn Falls Short</p>
+        <h2>The Things to Know Before You Book</h2>
+        <p class="w-intro">
+          This is the most consistently mixed-review property of the three
+          Ocean House Collection hotels. The honest version requires
+          engaging with the recurring critiques — not dismissing them.
+        </p>
+
+        <div class="w-list">
+          {honestWeaknesses.map((w) => (
+            <div class="w-item">
+              <h3>{w.title}</h3>
+              <p>{w.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="prose">
+      <h2 class="section-h">Who Watch Hill Inn Is For</h2>
+
+      <p><strong>It's the right call if you're:</strong></p>
+      <ul class="for-list yes">
+        <li>A family of 4+ wanting kitchen space, washer/dryer, and multiple bedrooms</li>
+        <li>Staying 3+ nights and planning to spend significant time at Ocean House's beach and spa</li>
+        <li>Looking for the "best Ocean House Collection value" — same access, less cost</li>
+        <li>Prioritizing being in the Watch Hill village proper (walking to carousel, Bay Street, restaurants)</li>
+        <li>Comfortable with a more independent, less staff-dense hotel experience</li>
+        <li>Booking in shoulder season when rates are most reasonable</li>
+      </ul>
+
+      <p><strong>It's probably not the right fit if you:</strong></p>
+      <ul class="for-list no">
+        <li>Want a traditional grand hotel atmosphere — book Ocean House instead</li>
+        <li>Need dense, high-touch service throughout the stay</li>
+        <li>Are traveling with mobility issues — no elevators, stairs throughout</li>
+        <li>Have very young children and a stroller — the exterior corridors and stairs add real friction</li>
+        <li>Won't use Ocean House amenities — the math doesn't work without them</li>
+        <li>Expect to be "wowed" by the building itself — manage expectations or you'll be disappointed</li>
+      </ul>
+    </section>
+
+    <section class="compare">
+      <h2 class="section-h">How Watch Hill Inn Compares</h2>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Distance from Watch Hill Inn</th>
+              <th>Key Difference</th>
+            </tr>
+          </thead>
+          <tbody>
+            {compareTo.map((c) => (
+              <tr>
+                <td><strong>{c.name}</strong></td>
+                <td>{c.distance}</td>
+                <td>{c.diff}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="book-now-bottom">
+      <div class="bnb-inner">
+        <h2>Ready to Book?</h2>
+        <p>
+          Rates and availability change daily. Compare across Booking.com,
+          Hotels.com, Expedia, and direct rates with one click.
+        </p>
+
+        <div class="bnb-grid">
+          <a class="bnb-card" href={affiliates.hotels.watchHillInn} rel="sponsored nofollow">
+            <p class="bnb-tag">This Property</p>
+            <h3>Watch Hill Inn — Check Rates</h3>
+            <p>Compare across booking platforms</p>
+          </a>
+          <a class="bnb-card" href={affiliates.hotels.oceanHouse} rel="sponsored nofollow">
+            <p class="bnb-tag">The Grand Hotel</p>
+            <h3>Ocean House</h3>
+            <p>Forbes Triple Five-Star, $200–$700+ more per night</p>
+          </a>
+          <a class="bnb-card" href={affiliates.hotels.weekapaugInn} rel="sponsored nofollow">
+            <p class="bnb-tag">Quieter Sister</p>
+            <h3>Weekapaug Inn</h3>
+            <p>Forbes Five-Star on a private pond, 10 min east</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq">
+      <h2 class="section-h">Frequently Asked Questions</h2>
+      {faqs.map((faq) => (
+        <details class="faq-item">
+          <summary>{faq.q}</summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <section class="related">
+      <h2 class="section-h">Keep Reading</h2>
+      <div class="related-grid">
+        <a href="/blog/where-to-stay-watch-hill" class="related-card">
+          <p class="related-tag">Full Hotel Guide</p>
+          <h3>Where to Stay in Watch Hill</h3>
+        </a>
+        <a href="/blog/ocean-house-review" class="related-card">
+          <p class="related-tag">Sister Property</p>
+          <h3>Ocean House Review</h3>
+        </a>
+        <a href="/blog/weekapaug-inn-review" class="related-card">
+          <p class="related-tag">Sister Property</p>
+          <h3>Weekapaug Inn Review</h3>
+        </a>
+        <a href="/blog/best-things-to-do-in-watch-hill-ri" class="related-card">
+          <p class="related-tag">Activities</p>
+          <h3>15 Best Things to Do in Watch Hill</h3>
+        </a>
+      </div>
+    </section>
+  </article>
+
+  <style>
+    :root {
+      --ink: #1a1d24;
+      --ink-soft: #4a5061;
+      --ink-muted: #7a8195;
+      --paper: #fbf8f1;
+      --paper-warm: #f3ede0;
+      --line: #e5dfd0;
+      --accent: #2c5f5d;
+      --accent-deep: #1d3f3d;
+      --gold: #b8924a;
+      --rose: #b85a4a;
+      --font-display: "Fraunces", Georgia, serif;
+      --font-body: "Inter Tight", -apple-system, system-ui, sans-serif;
+    }
+    .article {
+      background: var(--paper); color: var(--ink);
+      font-family: var(--font-body); font-size: 18px; line-height: 1.7;
+      padding-bottom: 6rem;
+    }
+    .article *, .article *::before, .article *::after { box-sizing: border-box; }
+
+    .hero {
+      background: linear-gradient(180deg, var(--paper-warm) 0%, var(--paper) 100%);
+      padding: 5rem 1.5rem 3rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-inner { max-width: 760px; margin: 0 auto; }
+    .kicker {
+      font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600; margin: 0 0 1.5rem;
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5.5vw, 4rem);
+      line-height: 1.04; letter-spacing: -0.025em; font-weight: 600;
+      margin: 0 0 1.5rem;
+    }
+    h1 em { font-style: italic; color: var(--accent); }
+    .hero-sub {
+      font-size: 1.2rem; line-height: 1.55; color: var(--ink-soft);
+      margin: 0 0 2rem; max-width: 620px;
+    }
+    .meta {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      font-size: 0.85rem; color: var(--ink-muted);
+    }
+    .dot { color: var(--line); }
+
+    .verdict { max-width: 760px; margin: -1px auto 0; padding: 0 1.5rem; }
+    .v-inner {
+      background: var(--ink); color: var(--paper);
+      padding: 2.5rem; border-radius: 6px; border-left: 4px solid var(--gold);
+    }
+    .v-label {
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); font-weight: 600; margin: 0 0 1rem;
+    }
+    .v-text {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      line-height: 1.5; margin: 0 0 2rem; letter-spacing: -0.005em;
+      color: rgba(251, 248, 241, 0.92);
+    }
+    .v-text strong { color: white; font-weight: 600; }
+    .v-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+      padding-top: 1.5rem; border-top: 1px solid rgba(251, 248, 241, 0.15);
+    }
+    .v-stat-num {
+      font-family: var(--font-display);
+      font-size: 1.7rem; font-weight: 600; color: var(--gold);
+      margin: 0 0 0.2rem; letter-spacing: -0.01em;
+    }
+    .v-stat-label {
+      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(251, 248, 241, 0.65); font-weight: 600; margin: 0;
+    }
+
+    .prose { max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem; }
+    .lede { font-size: 1.15rem; line-height: 1.7; color: var(--ink); margin: 0; }
+    .prose p { margin: 0 0 1.25rem; color: var(--ink); }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose strong { color: var(--ink); font-weight: 600; }
+    .disclosure {
+      background: var(--paper-warm); border-left: 3px solid var(--gold);
+      padding: 1rem 1.25rem; font-size: 0.9rem; color: var(--ink-soft);
+      border-radius: 0 4px 4px 0; margin-top: 2rem;
+    }
+    .disclosure strong { color: var(--ink); }
+
+    .section-h {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+      line-height: 1.1; letter-spacing: -0.02em; font-weight: 600;
+      margin: 0 0 1.5rem;
+    }
+    .section-head { max-width: 680px; margin: 0 auto 3rem; }
+    .section-head h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+      line-height: 1.1; letter-spacing: -0.02em; font-weight: 600;
+      margin: 0 0 0.5rem;
+    }
+    .section-head p { color: var(--ink-soft); margin: 0; }
+
+    .ratings { max-width: 760px; margin: 4rem auto; padding: 0 1.5rem; }
+    .ratings-intro { color: var(--ink-soft); margin: 0 0 2rem; }
+    .ratings-list { display: flex; flex-direction: column; gap: 1.25rem; }
+    .rating { padding: 1.25rem 0; border-bottom: 1px solid var(--line); }
+    .rating:last-child { border-bottom: none; }
+    .r-head {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 0.6rem; gap: 1rem;
+    }
+    .r-cat {
+      font-family: var(--font-display);
+      font-size: 1.1rem; font-weight: 600;
+      letter-spacing: -0.01em; margin: 0;
+    }
+    .r-score {
+      font-family: var(--font-display);
+      font-size: 1.25rem; font-weight: 600; color: var(--accent);
+      margin: 0; font-feature-settings: "tnum";
+    }
+    .r-bar {
+      height: 4px; background: var(--paper-warm);
+      border-radius: 2px; overflow: hidden; margin-bottom: 0.75rem;
+    }
+    .r-bar-fill { height: 100%; background: var(--accent); border-radius: 2px; }
+    .r-note { font-size: 0.95rem; color: var(--ink-soft); margin: 0; line-height: 1.5; }
+
+    .book-now { max-width: 1080px; margin: 4rem auto; padding: 0 1.5rem; }
+    .bn-inner {
+      background: var(--accent); color: var(--paper);
+      padding: 2.5rem; border-radius: 6px;
+    }
+    .bn-label {
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); font-weight: 600; margin: 0 0 0.75rem;
+    }
+    .book-now h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      line-height: 1.15; letter-spacing: -0.015em; font-weight: 600;
+      margin: 0 0 1rem; color: white;
+    }
+    .book-now p {
+      font-size: 1rem; color: rgba(251, 248, 241, 0.85);
+      margin: 0 0 1.5rem; max-width: 620px; line-height: 1.6;
+    }
+    .bn-cta {
+      display: inline-block; background: white; color: var(--ink);
+      padding: 0.85rem 1.75rem; border-radius: 4px;
+      text-decoration: none; font-weight: 600; font-size: 0.95rem;
+      transition: transform 0.15s ease;
+    }
+    .bn-cta:hover { transform: translateY(-2px); }
+
+    .rooms { max-width: 1080px; margin: 4rem auto; padding: 0 1.5rem; }
+    .rooms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+    .room {
+      background: white; border: 1px solid var(--line);
+      padding: 1.75rem; border-radius: 4px;
+      display: flex; flex-direction: column;
+    }
+    .room-head { margin-bottom: 1rem; }
+    .room h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem; font-weight: 600;
+      letter-spacing: -0.015em; margin: 0 0 0.3rem;
+    }
+    .room-meta {
+      font-size: 0.85rem; color: var(--ink-muted); margin: 0;
+      display: flex; gap: 0.4rem; align-items: center; flex-wrap: wrap;
+    }
+    .dot-sm { color: var(--line); }
+    .room-view {
+      font-family: var(--font-display); font-style: italic;
+      color: var(--accent); font-size: 0.95rem; margin: 0 0 1rem;
+    }
+    .room-note {
+      font-size: 0.93rem; color: var(--ink-soft);
+      margin: 0; line-height: 1.55;
+    }
+
+    .oh-access {
+      background: var(--paper-warm); border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 4rem 1.5rem; margin: 4rem 0;
+    }
+    .oh-inner { max-width: 760px; margin: 0 auto; }
+    .oh-tag {
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600; margin: 0 0 0.75rem;
+    }
+    .oh-access h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.3rem);
+      line-height: 1.15; letter-spacing: -0.02em; font-weight: 600;
+      margin: 0 0 1.25rem;
+    }
+    .oh-access p { color: var(--ink); margin: 0 0 1.25rem; line-height: 1.65; }
+    .oh-access p:last-child { margin-bottom: 0; }
+    .oh-access .check-list { margin: 0 0 1.5rem; }
+    .oh-access .check-list li {
+      border-bottom: 1px solid var(--line);
+      background: transparent;
+    }
+
+    .included {
+      background: var(--paper-warm); border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 4rem 1.5rem; margin: 4rem 0;
+    }
+    .inc-inner {
+      max-width: 1080px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+    }
+    .inc-label {
+      font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
+      font-weight: 700; margin: 0 0 1.25rem;
+    }
+    .included-label { color: var(--accent); }
+    .excluded-label { color: var(--rose); }
+    .check-list, .x-list { list-style: none; padding: 0; margin: 0; }
+    .check-list li, .x-list li {
+      position: relative; padding: 0.55rem 0 0.55rem 1.75rem;
+      font-size: 0.95rem; color: var(--ink-soft); line-height: 1.5;
+      border-bottom: 1px solid var(--line);
+    }
+    .check-list li:last-child, .x-list li:last-child { border-bottom: none; }
+    .check-list li::before {
+      content: "✓"; position: absolute; left: 0; top: 0.55rem;
+      color: var(--accent); font-weight: 600;
+    }
+    .x-list li::before {
+      content: "×"; position: absolute; left: 0; top: 0.4rem;
+      color: var(--rose); font-weight: 600; font-size: 1.15rem;
+    }
+
+    .weak { max-width: 760px; margin: 4rem auto; padding: 0 1.5rem; }
+    .w-tag {
+      font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--rose); font-weight: 600; margin: 0 0 0.75rem;
+    }
+    .weak h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.3rem);
+      line-height: 1.15; letter-spacing: -0.02em; font-weight: 600;
+      margin: 0 0 1rem;
+    }
+    .w-intro {
+      color: var(--ink-soft); margin: 0 0 2.5rem;
+      font-size: 1.05rem; line-height: 1.6;
+    }
+    .w-list { display: flex; flex-direction: column; gap: 2rem; }
+    .w-item h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem; font-weight: 600;
+      letter-spacing: -0.015em; margin: 0 0 0.6rem; color: var(--ink);
+    }
+    .w-item p {
+      margin: 0; color: var(--ink-soft);
+      font-size: 1rem; line-height: 1.6;
+    }
+
+    .for-list { list-style: none; padding: 0; margin: 0 0 2rem; }
+    .for-list li {
+      position: relative; padding: 0.65rem 0 0.65rem 1.75rem;
+      color: var(--ink-soft); line-height: 1.55;
+      border-bottom: 1px solid var(--line);
+    }
+    .for-list li:last-child { border-bottom: none; }
+    .for-list.yes li::before {
+      content: "✓"; position: absolute; left: 0; top: 0.65rem;
+      color: var(--accent); font-weight: 600;
+    }
+    .for-list.no li::before {
+      content: "×"; position: absolute; left: 0; top: 0.5rem;
+      color: var(--rose); font-weight: 600; font-size: 1.15rem;
+    }
+
+    .compare { max-width: 1080px; margin: 4rem auto; padding: 0 1.5rem; }
+    .table-wrap {
+      overflow-x: auto; border: 1px solid var(--line);
+      border-radius: 4px; background: white;
+    }
+    table {
+      width: 100%; border-collapse: collapse;
+      font-size: 0.95rem; min-width: 640px;
+    }
+    thead { background: var(--paper-warm); }
+    th {
+      text-align: left; padding: 1rem 1.25rem;
+      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+      font-weight: 600; color: var(--ink-muted);
+      border-bottom: 1px solid var(--line);
+    }
+    td {
+      padding: 1rem 1.25rem; border-bottom: 1px solid var(--line);
+      color: var(--ink-soft); vertical-align: top;
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody strong { color: var(--ink); }
+
+    .book-now-bottom { max-width: 1080px; margin: 4rem auto; padding: 0 1.5rem; }
+    .bnb-inner {
+      background: var(--paper-warm); border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      padding: 3rem; border-radius: 4px;
+    }
+    .book-now-bottom h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      line-height: 1.15; letter-spacing: -0.02em; font-weight: 600;
+      margin: 0 0 1rem;
+    }
+    .book-now-bottom > .bnb-inner > p {
+      color: var(--ink-soft); margin: 0 0 2rem; max-width: 620px;
+    }
+    .bnb-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .bnb-card {
+      background: white; border: 1px solid var(--line);
+      padding: 1.5rem; border-radius: 4px;
+      text-decoration: none; color: var(--ink);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .bnb-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+    .bnb-tag {
+      font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600; margin: 0 0 0.6rem;
+    }
+    .bnb-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem; font-weight: 600;
+      letter-spacing: -0.01em; margin: 0 0 0.5rem; line-height: 1.2;
+    }
+    .bnb-card p:not(.bnb-tag) {
+      font-size: 0.88rem; color: var(--ink-soft);
+      margin: 0; line-height: 1.45;
+    }
+
+    .faq { max-width: 760px; margin: 4rem auto; padding: 0 1.5rem; }
+    .faq-item { border-bottom: 1px solid var(--line); padding: 1.25rem 0; }
+    .faq-item summary {
+      font-family: var(--font-display);
+      font-size: 1.15rem; font-weight: 600; cursor: pointer; color: var(--ink);
+      list-style: none; display: flex; justify-content: space-between;
+      align-items: center; gap: 1rem; letter-spacing: -0.005em;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: "+"; font-size: 1.5rem; color: var(--accent);
+      font-weight: 400; flex-shrink: 0;
+    }
+    .faq-item[open] summary::after { content: "−"; }
+    .faq-item p {
+      margin: 1rem 0 0; color: var(--ink-soft); font-size: 1rem; line-height: 1.6;
+    }
+
+    .related {
+      max-width: 1080px; margin: 4rem auto 0;
+      padding: 3rem 1.5rem 0; border-top: 1px solid var(--line);
+    }
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+    .related-card {
+      display: block; background: white; border: 1px solid var(--line);
+      padding: 1.5rem; text-decoration: none; color: var(--ink);
+      border-radius: 4px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .related-card:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .related-tag {
+      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600; margin: 0 0 0.75rem;
+    }
+    .related-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem; font-weight: 600; margin: 0;
+      line-height: 1.25; letter-spacing: -0.01em;
+    }
+
+    @media (max-width: 720px) {
+      .hero { padding: 3.5rem 1.25rem 2.5rem; }
+      .v-inner { padding: 2rem 1.5rem; }
+      .bn-inner, .bnb-inner { padding: 2rem 1.5rem; }
+      .inc-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .v-stats { gap: 0.5rem; }
+      .v-stat-num { font-size: 1.3rem; }
+    }
+  </style>
+</Base>

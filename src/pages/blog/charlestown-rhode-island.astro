@@ -1,0 +1,105 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import AttractionPost from "../../components/AttractionPost.astro";
+
+const title = "Charlestown, RI: Beaches, Ponds & Hidden Coast (2026 Guide)";
+const description = "Charlestown, Rhode Island day trip from Watch Hill — undeveloped beaches, Ninigret National Wildlife Refuge, parking tips, and where to eat.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  name: "Charlestown, Rhode Island",
+  description: "Coastal town in southern Rhode Island known for undeveloped beaches and the Ninigret National Wildlife Refuge.",
+  address: { "@type": "PostalAddress", addressLocality: "Charlestown", addressRegion: "RI", addressCountry: "US" },
+};
+
+const props = {
+  kicker: "Day Trip · 20 Minutes East of Watch Hill",
+  title: "A Day in ",
+  titleEm: "Charlestown",
+  titleTail: ", Rhode Island",
+  subtitle: "Twenty minutes east of Watch Hill, Charlestown has some of the least-developed beaches in Rhode Island, 858 acres of restored salt ponds and trails at Ninigret National Wildlife Refuge, and a coastal feel that's unchanged in decades.",
+  readingTime: "7 min read",
+  verdict: "<strong>The quietest beach day available within 30 minutes of Watch Hill.</strong> Park at East Beach Charlestown (different from Watch Hill's East Beach) for the most dramatic shoreline, or at Ninigret for the wildlife refuge. Concessions are minimal — pack what you need. Lunch at Wilcox Tavern or The Hitching Post.",
+  quickFacts: [
+    { label: "Distance from Watch Hill", value: "20 min / 12 miles east" },
+    { label: "Town population", value: "~7,800" },
+    { label: "Ninigret Refuge", value: "858 acres, free" },
+    { label: "East Beach Charlestown", value: "3+ miles barrier beach" },
+    { label: "Parking (state beaches)", value: "$10–$30 in season" },
+    { label: "Best for", value: "Beach days, hiking, birding" },
+  ],
+  introParagraphs: [
+    "Charlestown is the Rhode Island shore town most travel guides skip and most locals quietly prefer. Twenty minutes east of Watch Hill on Route 1, it has miles of barrier beaches with no commercial development, 858 protected acres at the Ninigret National Wildlife Refuge, two salt ponds with bird populations, and a year-round population small enough that the town center has about a dozen businesses total. The shoreline runs from Quonochontaug Pond on the west to Cross Mills on the east — about 7 miles of beaches, ponds, and protected marsh.",
+    "It's not a tourist town in any conventional sense. There are no boutique hotels, no Bay Street-style shopping village, no luxury restaurants. The economy is built around the Misquamicut/Charlestown beach overflow, summer rentals, the wildlife refuge, and locals who've been here for generations. What it offers visitors is what Misquamicut was 40 years ago — a beach town that hasn't been developed past the point of being a beach town.",
+    "For Watch Hill visitors, Charlestown works best as a beach-focused day trip. East Beach Charlestown (confusingly, not the same as Watch Hill's East Beach) is a 3-mile barrier beach that connects to Ninigret Pond. The Ninigret National Wildlife Refuge has miles of trails through restored salt marsh and is one of the better birding spots in southern New England. Locals also come for the surfcasting — Charlestown Breachway is a known striped bass spot.",
+  ],
+  tips: [
+    {
+      label: "Pick your beach: East Beach vs. Blue Shutters",
+      body: "<strong>East Beach Charlestown</strong> is the wild 3-mile barrier beach — fewer facilities, more dramatic shoreline, ideal for long walks and quiet swims. Parking at the East Beach state lot is $10–$30 depending on season and day. <strong>Blue Shutters Town Beach</strong> is the smaller, more developed alternative with concessions and a small pavilion — better for families with younger kids. Both are open Memorial Day through Labor Day with lifeguards.",
+    },
+    {
+      label: "Ninigret National Wildlife Refuge",
+      body: "Free, open year-round, with 858 acres of restored former Naval Air Station property converted into salt-pond and grassland habitat. Multiple trails ranging from easy half-mile loops to longer walks. The observation tower offers views over Ninigret Pond. Birding is genuinely excellent — over 250 documented species, with spring and fall migrations being particularly active. Allow 1–2 hours minimum.",
+    },
+    {
+      label: "Charlestown Breachway",
+      body: "The Charlestown Breachway is the narrow channel connecting Ninigret Pond to the Atlantic. The eastern side has a small state campground (Charlestown Breachway State Park) and is a popular fishing spot for striped bass. The Breachway itself is one of the more interesting geographic features on the Rhode Island coast — strong currents on outgoing tides, calm protected water at slack tide. Bring a fishing license if you want to cast.",
+    },
+    {
+      label: "What to eat",
+      body: "<strong>Wilcox Tavern</strong> on Old Post Road is the established sit-down — American tavern menu, full bar, dependable. <strong>The Hitching Post</strong> is a more casual option with strong breakfast and lunch service. <strong>Cove's Edge Restaurant</strong> at Ninigret Park is the seasonal option closest to the beaches. <strong>Beach concessions</strong> exist at the state beaches but are minimal — pack lunch from the Cooked Goose or Sandy's in Westerly before heading out.",
+    },
+    {
+      label: "Why off-season is even better",
+      body: "September through October at Charlestown is when the locals go. The beaches are still warm enough to walk, the parking lots empty out completely, the migrating birds at Ninigret are at peak. Many of the summer beach restrictions lift. This is when Charlestown becomes the secret 30-minute drive that turns into a half-day of complete solitude on the coast.",
+    },
+    {
+      label: "Pair with the Quonochontaug Pond loop",
+      body: "If you're already in Charlestown, a short drive west takes you to Quonochontaug Pond, the same pond that Weekapaug Inn sits on. The Quonochontaug Breachway and the barrier beach on the western side of the pond are equally undeveloped and quieter still. This combined Charlestown + Quonny route is one of the best off-season half-day drives in southern Rhode Island.",
+    },
+  ],
+  faqs: [
+    {
+      q: "How far is Charlestown from Watch Hill, RI?",
+      a: "About 12 miles or 20 minutes by car, driving east on Route 1. There's no public transit between the two — you'll need a car.",
+    },
+    {
+      q: "Is East Beach Charlestown different from East Beach Watch Hill?",
+      a: "Yes — confusingly. They're two different beaches with similar names. East Beach Charlestown is a 3-mile state barrier beach in Charlestown, with state lot parking ($10–$30). East Beach Watch Hill is the quieter town beach end of the Misquamicut/Watch Hill shoreline, with restricted parking. They're about 20 minutes apart.",
+    },
+    {
+      q: "What is the Ninigret National Wildlife Refuge?",
+      a: "An 858-acre protected refuge on the site of a former WWII Naval Air Station. The refuge has miles of trails through restored salt marsh, grassland, and forest habitat, an observation tower over Ninigret Pond, and over 250 documented bird species. Free admission, open year-round. One of the best birding destinations in southern New England.",
+    },
+    {
+      q: "Are Charlestown's beaches better than Misquamicut?",
+      a: "Different, not better. Charlestown's East Beach is wilder, less developed, and quieter — better for walks, quiet swims, and photography. Misquamicut has full amenities, lifeguards, concessions, and easy parking — better for families and a traditional beach day. Locals tend to prefer Charlestown for the solitude.",
+    },
+    {
+      q: "Where do you eat in Charlestown?",
+      a: "Wilcox Tavern on Old Post Road is the established sit-down restaurant. The Hitching Post is the casual breakfast and lunch option. Cove's Edge Restaurant operates seasonally near Ninigret Park. Beach concessions are minimal — packing lunch from a Watch Hill or Westerly stop before heading out is the locals' move.",
+    },
+    {
+      q: "Is Charlestown worth visiting in winter?",
+      a: "For specific purposes, yes. The Ninigret National Wildlife Refuge is open year-round and is one of the better winter birding destinations in the area. East Beach Charlestown in winter is one of the most genuinely empty coastal spots on the East Coast — long walks with almost no other people. Restaurants are mostly seasonal, though Wilcox Tavern operates year-round.",
+    },
+  ],
+  related: [
+    { href: "/blog/day-trips-from-watch-hill", tag: "All Day Trips", title: "10 Best Day Trips from Watch Hill" },
+    { href: "/blog/misquamicut-state-beach", tag: "Beach Day", title: "Misquamicut State Beach Guide" },
+    { href: "/blog/napatree-point-guide", tag: "Watch Hill Hiking", title: "Hiking Napatree Point" },
+    { href: "/blog/weekapaug-inn-review", tag: "Quonny Pond", title: "Weekapaug Inn Review" },
+  ],
+};
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Nav />
+  <main>
+    <AttractionPost {...props} />
+  </main>
+</Base>

@@ -1,0 +1,27 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import StubPost from "../../components/StubPost.astro";
+
+const title = "Best VRBO & Airbnb Rentals Near Watch Hill";
+const description = "How to find the best vacation rentals in Misquamicut, Westerly, and around Watch Hill, RI — what to look for and what to avoid.";
+const preview = "How to find the best beach houses in Misquamicut, the quieter spots in Westerly, and what to look out for when booking a vacation rental near Watch Hill.";
+
+const related = [
+  {"href":"/blog/where-to-stay-watch-hill","title":"Where to Stay in Watch Hill","tag":"Hotels"},
+  {"href":"/blog/best-things-to-do-in-watch-hill-ri","title":"15 Best Things to Do in Watch Hill","tag":"Activities"},
+  {"href":"/blog/best-restaurants-watch-hill","title":"15 Best Restaurants in Watch Hill & Westerly","tag":"Food"},
+  {"href":"/blog/memorial-day-watch-hill","title":"Memorial Day in Watch Hill & Westerly","tag":"Seasonal"},
+];
+---
+
+<Base title={`${title} | Watch Hill Guide`} description={description} noindex={true}>
+  <Nav />
+  <StubPost
+    title={title}
+    hubLabel="Where to Stay"
+    hubHref="/stay"
+    preview={preview}
+    related={related}
+  />
+</Base>

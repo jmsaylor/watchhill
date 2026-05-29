@@ -23,8 +23,8 @@
 
 // ─── PARTNER IDs (REPLACE THESE WITH YOUR REAL CODES) ───────────────────
 const STAY22_ID = "watchhillguide";       // TODO: replace after Stay22 signup
-const BOOKING_ID = "watchhillguide";      // TODO: replace after Booking/CJ signup
-const VRBO_ID = "Gp7VBfs";                // TODO: replace after Expedia signup
+const BOOKING_ID = "watchhillguide";      // TODO: replace after Booking signup
+const VRBO_ID = "watchhillguide";         // TODO: replace after Expedia signup
 const GETYOURGUIDE_ID = "watchhillguide"; // TODO: replace after GYG signup
 const VIATOR_ID = "watchhillguide";       // TODO: replace after Viator signup
 const AMAZON_TAG = "watchhillgd-20";      // TODO: replace after Amazon Associates approval
@@ -42,7 +42,7 @@ const booking = (query: string) =>
 
 // VRBO direct search.
 const vrbo = (query: string) =>
-  `https://vrbo.com/affiliate/${VRBO_ID}`;
+  `https://www.vrbo.com/search/keywords:${encodeURIComponent(query)}?clickref=${VRBO_ID}`;
 
 // GetYourGuide — for tours, activities, attractions.
 const gyg = (query: string) =>

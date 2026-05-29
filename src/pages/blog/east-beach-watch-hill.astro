@@ -1,0 +1,101 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import AttractionPost from "../../components/AttractionPost.astro";
+
+const title = "East Beach Watch Hill: The Local's Beach Guide (2026)";
+const description = "Parking strategy, water quality, lifeguards, and the local's guide to East Beach in Watch Hill, RI — the quieter, prettier alternative to Misquamicut State Beach next door.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  name: "East Beach Watch Hill",
+  description: "Quiet town beach in Watch Hill, RI, connecting to Misquamicut State Beach.",
+  address: { "@type": "PostalAddress", addressLocality: "Watch Hill", addressRegion: "RI", addressCountry: "US" },
+};
+
+const props = {
+  kicker: "Beach · Watch Hill Village",
+  title: "A Day at ",
+  titleEm: "East Beach",
+  titleTail: " in Watch Hill",
+  subtitle: "The quieter, less developed alternative to Misquamicut State Beach next door — a wide stretch of fine sand running east from Watch Hill village, with limited parking and significantly fewer crowds. The locals' choice for a beach day.",
+  readingTime: "5 min read",
+  verdict: "<strong>The harder beach to access, which is exactly why it's quieter.</strong> Restricted parking — you need a Watch Hill Fire District beach sticker, a hotel guest pass, or you walk in from Misquamicut. No concessions, no lifeguards at the Watch Hill end. The trade-off: half the crowds of Misquamicut on the same shoreline.",
+  quickFacts: [
+    { label: "Beach length", value: "~2 miles to Misquamicut" },
+    { label: "Open", value: "Year-round, daylight hours" },
+    { label: "Parking", value: "Sticker required at WH end" },
+    { label: "Lifeguards", value: "Only at Misquamicut end" },
+    { label: "Concessions", value: "None on the Watch Hill side" },
+    { label: "Facilities", value: "None — bring everything" },
+  ],
+  introParagraphs: [
+    "East Beach is the locals' beach. It runs from the eastern edge of Watch Hill village for about two miles along the Atlantic, connecting directly to Misquamicut State Beach at its eastern end. Same sand, same water, same coastline — but with a fraction of the crowds of Misquamicut, no concessions, no lifeguards on the Watch Hill end, and access restrictions that keep most tourists away.",
+    "The reason East Beach works as a quieter alternative is purely structural. The Watch Hill Fire District restricts parking near the beach access points to residents and registered hotel guests during summer months. There's no public lot. Most tourists who arrive in Watch Hill village in summer don't realize East Beach exists — they head straight to Bay Street, the carousel, or drive five minutes east to Misquamicut. Those who know East Beach is here either are local, are staying at Ocean House or Watch Hill Inn, or have figured out the walk-in trick from Misquamicut.",
+    "The beach itself is identical in quality to Misquamicut — wide, fine, white sand, gentle Atlantic surf, ocean temperatures climbing into the high 60s by July and topping out around 70°F in August. Napatree Point is a 10-minute walk west; the Misquamicut amusement strip is a 25-minute walk east. East Beach sits quietly between them.",
+  ],
+  tips: [
+    {
+      label: "How to actually get on the beach",
+      body: "<strong>If you're staying at Ocean House, Weekapaug Inn, or Watch Hill Inn:</strong> the hotel handles beach access through their Ocean House Collection beach service, including cabanas at Ocean House's private beach section. <strong>If you're staying at a Watch Hill rental:</strong> ask the owner about the Fire District sticker or guest pass — many rentals include one. <strong>If you're a day-tripper:</strong> park at Misquamicut State Beach ($20–$30) and walk west along the shoreline — it's about 20 minutes to reach the Watch Hill section, and you can walk as far as Napatree Point if you want.",
+    },
+    {
+      label: "The Misquamicut walk-in is the secret",
+      body: "Most day visitors don't realize you can park at Misquamicut and walk west on the beach into the Watch Hill section. The walk is on hard sand at low tide and softer sand at high tide — go in the morning when the tide is favorable. Once you're past the Misquamicut concession area and the lifeguard stations, the crowds thin dramatically. Within 15 minutes of walking you're on what feels like a private beach.",
+    },
+    {
+      label: "What to bring",
+      body: "Everything. There are no concessions, no restrooms, no umbrellas for rent, no chair service on the Watch Hill end. Pack: water (lots in summer), sunscreen, a beach umbrella or shade, snacks, towels, a small cooler. If you're walking in from Misquamicut, factor the carry into your packing — keep it light.",
+    },
+    {
+      label: "No lifeguards on the Watch Hill end",
+      body: "Lifeguards are only stationed at the Misquamicut State Beach section. Swimming on the Watch Hill end is at your own risk. The surf is generally gentle but rip currents can form on outgoing tides. Watch the conditions, swim near other people, and don't go in alone if the waves look bigger than usual.",
+    },
+    {
+      label: "Combine with Napatree Point",
+      body: "If you're on East Beach for half a day, the natural pairing is the Napatree Point walk to the west. From the Watch Hill end of East Beach, walk west along the shoreline and around the harbor — you'll connect to Napatree's barrier peninsula and the WWI Fort Mansfield ruins at the far end. The full combined walk (beach + Napatree) is about 4 miles and takes 2–3 hours. Bring a change of clothes if you want to swim partway through.",
+    },
+  ],
+  faqs: [
+    {
+      q: "Is East Beach in Watch Hill free?",
+      a: "Yes, the beach itself is free — but access is restricted. There's no public parking near the Watch Hill end. You need to be a Watch Hill Fire District sticker holder, a registered hotel guest, or walk in from Misquamicut State Beach (which has paid parking) to use East Beach.",
+    },
+    {
+      q: "Where do you park for East Beach Watch Hill?",
+      a: "There's no public parking lot for East Beach at the Watch Hill end. Options: (1) hotel guests get parking through their property, (2) Fire District sticker holders use restricted residential spots, (3) day visitors park at Misquamicut State Beach ($20–$30 in 2026) and walk west along the shoreline to reach East Beach.",
+    },
+    {
+      q: "Are there lifeguards at East Beach?",
+      a: "Lifeguards are only stationed at the Misquamicut State Beach section to the east. The Watch Hill end of East Beach has no lifeguards. Swim at your own risk and stay aware of rip currents on outgoing tides.",
+    },
+    {
+      q: "What's the difference between East Beach and Misquamicut?",
+      a: "They're the same continuous shoreline. Misquamicut is the state beach with concessions, lifeguards, parking, restrooms, and the amusement strip across the road. East Beach is the Watch Hill end of the same beach, with no facilities, no lifeguards, restricted parking, and significantly fewer crowds. The transition between them is gradual as you walk along the shoreline.",
+    },
+    {
+      q: "Can you swim at East Beach?",
+      a: "Yes — same Atlantic water and same gentle surf as Misquamicut. Water temperatures hit ~65°F by late June and peak around 70°F in August. No lifeguards means you swim at your own risk; the locals' move is to swim near other beachgoers and avoid going alone.",
+    },
+    {
+      q: "Is East Beach better than Misquamicut?",
+      a: "It depends on what you want. East Beach is quieter, prettier, and more peaceful, but has no facilities. Misquamicut is busier and more developed, with lifeguards, food, restrooms, and easy parking. For a family with young kids who need facilities, Misquamicut is better. For couples, photographers, and anyone who wants a quiet beach day, East Beach is the choice — if you can figure out the access.",
+    },
+  ],
+  related: [
+    { href: "/blog/best-things-to-do-in-watch-hill-ri", tag: "Activities", title: "15 Best Things to Do in Watch Hill" },
+    { href: "/blog/misquamicut-state-beach", tag: "Next Door", title: "Misquamicut State Beach Guide" },
+    { href: "/blog/napatree-point-guide", tag: "Nearby Hike", title: "Hiking Napatree Point" },
+    { href: "/blog/where-to-stay-watch-hill", tag: "Beach Access Hotels", title: "Where to Stay in Watch Hill" },
+  ],
+};
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Nav />
+  <main>
+    <AttractionPost {...props} />
+  </main>
+</Base>

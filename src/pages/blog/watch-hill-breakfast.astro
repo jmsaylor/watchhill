@@ -1,0 +1,110 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import AttractionPost from "../../components/AttractionPost.astro";
+
+const title = "Best Breakfast Spots in Watch Hill & Westerly, RI (2026)";
+const description = "The best breakfast restaurants in Watch Hill and Westerly — coffee, eggs, pastries, and the local favorite no one writes about. Where locals actually eat in the morning.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "Best Breakfast Spots in Watch Hill & Westerly",
+};
+
+const props = {
+  kicker: "Food · Morning Guide",
+  title: "Best ",
+  titleEm: "Breakfast Spots",
+  titleTail: " in Watch Hill & Westerly",
+  subtitle: "Where locals actually eat breakfast — from the cult-favorite Cooked Goose 5 minutes inland to the casual options in Watch Hill village itself. The breakfast scene here is better than most visitors realize, but requires knowing where to go.",
+  readingTime: "6 min read",
+  verdict: "<strong>The Cooked Goose, 5 minutes inland from Watch Hill, is the breakfast answer.</strong> Every local breakfast conversation begins and ends there. In the village itself: Ocean House's OH! Pastry, Wine & Cheese for the casual option, Watch Hill Inn's complimentary continental for guests. For takeout to the beach: the Cooked Goose or Sandy's Fine Food Emporium in Westerly.",
+  quickFacts: [
+    { label: "Best overall breakfast", value: "The Cooked Goose" },
+    { label: "Best in-village casual", value: "OH! Pastry at Ocean House" },
+    { label: "Best beach takeout", value: "Cooked Goose or Sandy's" },
+    { label: "Best diner-style", value: "Noah's in Stonington" },
+    { label: "Open year-round", value: "Cooked Goose, Sandy's" },
+    { label: "Avg breakfast entrée", value: "$15–$22" },
+  ],
+  introParagraphs: [
+    "Breakfast in Watch Hill is one of those things that looks limited from the outside and reveals itself as deeper once you know where to look. The village proper has few dedicated breakfast restaurants — Bay Street is mostly built around lunch and dinner. But within a 5–10 minute drive, the breakfast scene is genuinely excellent, anchored by one cult-favorite spot that every local recommends and a handful of strong alternatives in Westerly and Stonington.",
+    "What follows is the locally honest ranking — the places that locals actually go for breakfast, plus the village-specific options for visitors who want to walk to coffee and pastries from their hotel.",
+  ],
+  tips: [
+    {
+      label: "01 · The Cooked Goose",
+      body: "<strong>92 Watch Hill Road, Westerly</strong> — 5 minutes from Watch Hill village. This is the breakfast answer. Open year-round, 7 AM to 3 PM. Cinnamon roll pancakes are the cult-favorite order. Lobster eggs Benedict are the upscale move. Crab cake sandwich at lunch is somehow $18 in 2026. The coffee is the only iced coffee in the area that's actually good. <strong>Catches:</strong> always a wait at peak hours (8:30 AM–10:30 AM); the move is to go before 8:30 or after 11. They do takeout — call ahead and pick up a breakfast sandwich to eat at the beach. This single restaurant is responsible for half the breakfast traffic in the area.",
+    },
+    {
+      label: "02 · OH! Pastry, Wine & Cheese (Ocean House)",
+      body: "The wine and cheese shop near the Ocean House lobby with a small café area. Morning pastries (croissants, danishes, scones), coffee, and a curated selection. Easy to underestimate — a quietly excellent breakfast option for guests who don't want to commit to the Bistro's full breakfast service. Best part: it's calmer than the main Ocean House restaurants, with a more bookstore-café vibe. Non-hotel guests are welcome.",
+    },
+    {
+      label: "03 · Watch Hill Inn lobby (guests only)",
+      body: "Free for Watch Hill Inn guests: continental breakfast in the lobby lounge — fresh pastries, fruit, yogurt, coffee, juice. Quietly excellent given that it's complimentary. The morning service starts around 7 AM. If you're staying at Watch Hill Inn, this is the path of least resistance, and the quality is genuinely good for a hotel breakfast. Not available to non-guests.",
+    },
+    {
+      label: "04 · Noah's (Stonington, CT)",
+      body: "15 minutes west across the state line into Stonington Borough. Diner-style breakfast and lunch, has been there forever, run by locals. Pancakes, eggs, hash browns done well — not fussy, not photographic, just a place where the food is good and you don't think about it. This is the locals' answer when they want a diner breakfast rather than the Cooked Goose's slightly more polished operation. Year-round.",
+    },
+    {
+      label: "05 · Sandy's Fine Food Emporium (takeout strategy)",
+      body: "<strong>15 Post Road, Westerly</strong> — gourmet market with serious breakfast and sandwich operation. The play: call ahead, pick up two breakfast sandwiches and pastries, eat at Misquamicut State Beach or Watch Hill's East Beach. Way better than beach concession food. Their grain bowls and yogurt parfaits are excellent for the more health-conscious. Year-round; opens at 7 AM. The single best beach-breakfast strategy in the area.",
+    },
+    {
+      label: "06 · Bridge Restaurant Sunday brunch",
+      body: "<strong>37 Main Street, Westerly</strong> — Bridge in downtown Westerly serves Sunday brunch year-round with a serious raw bar component. Lobster eggs Benedict, smoked salmon, oysters at 11 AM. Goes from about 10 AM to 2 PM. Reservations recommended in summer. The locals' Sunday brunch move; the Sunday crowd is intense from June through September.",
+    },
+    {
+      label: "07 · The Bistro at Ocean House",
+      body: "Full breakfast service at the Bistro, Ocean House's casual restaurant. Eggs Benedict, French toast, granola bowls, the usual nicer-hotel breakfast menu. Pricier than the Cooked Goose ($20–$30+ entrées), but the setting is genuinely lovely and reservations are easier than at dinner. Non-hotel guests are welcome; reservations recommended in season.",
+    },
+    {
+      label: "08 · Coffee-only options",
+      body: "<strong>Sift Bake Shop in Mystic</strong> (20 min west) — James Beard semifinalist, almond croissants, cortados, the move for coffee snobs. <strong>Bittersweet Cafe</strong> in downtown Westerly — locally owned, full coffee menu, pastries, year-round, open early. <strong>Watch Hill Inn lobby</strong> — coffee for guests. The actual village of Watch Hill has limited dedicated coffee shops; for serious coffee, drive 5–20 minutes.",
+    },
+  ],
+  faqs: [
+    {
+      q: "What's the best breakfast in Watch Hill?",
+      a: "The Cooked Goose, 5 minutes inland from Watch Hill at 92 Watch Hill Road in Westerly. Open year-round, 7 AM to 3 PM. Cinnamon roll pancakes and lobster eggs Benedict are the cult-favorite orders. Expect a wait at peak hours (8:30 AM–10:30 AM); go before or after to skip the line.",
+    },
+    {
+      q: "Is there a breakfast restaurant in Watch Hill village?",
+      a: "Limited options in the village proper. OH! Pastry, Wine & Cheese at Ocean House serves pastries and coffee. The Bistro at Ocean House has a full breakfast menu. Watch Hill Inn provides complimentary continental breakfast for guests only. For a full diner-style breakfast, you'll drive 5+ minutes inland to the Cooked Goose.",
+    },
+    {
+      q: "Are there year-round breakfast spots near Watch Hill?",
+      a: "Yes. The Cooked Goose is open year-round, as are Bridge Restaurant (Westerly), Sandy's Fine Food Emporium (Westerly), GreySail Brewing's occasional Sunday brunch (Westerly), Noah's in Stonington Borough, and Bittersweet Cafe in downtown Westerly. Many Watch Hill village restaurants close from October through April.",
+    },
+    {
+      q: "What's the best beach breakfast in Watch Hill?",
+      a: "The takeout strategy from Sandy's Fine Food Emporium in Westerly (15 Post Road) — call ahead, pick up breakfast sandwiches and pastries, eat at Misquamicut State Beach or East Beach. Way better than the beach concession food. The Cooked Goose also does takeout breakfast sandwiches for the beach.",
+    },
+    {
+      q: "Where is the Cooked Goose?",
+      a: "92 Watch Hill Road in Westerly, RI — 5 minutes east of Watch Hill village on the main road in. Open year-round, 7 AM to 3 PM, breakfast and lunch only. No reservations; expect a wait at peak hours.",
+    },
+    {
+      q: "Is breakfast in Watch Hill expensive?",
+      a: "Mid-range. The Cooked Goose entrées run $15–$22 in 2026. Ocean House's Bistro breakfast is more expensive ($20–$30+). Casual options like Sandy's and Bittersweet Cafe are cheaper ($10–$15). Bridge Restaurant's Sunday brunch falls in the middle. There are no truly cheap breakfast options in the Watch Hill area — the market doesn't really support them.",
+    },
+  ],
+  related: [
+    { href: "/blog/best-restaurants-watch-hill", tag: "Food Guide", title: "15 Best Restaurants in Watch Hill" },
+    { href: "/blog/st-clair-annex-ice-cream", tag: "Iconic", title: "St. Clair Annex on Bay Street" },
+    { href: "/blog/best-things-to-do-in-watch-hill-ri", tag: "Activities", title: "15 Best Things to Do in Watch Hill" },
+    { href: "/blog/where-to-stay-watch-hill", tag: "Hotels", title: "Where to Stay in Watch Hill" },
+  ],
+};
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Nav />
+  <main>
+    <AttractionPost {...props} />
+  </main>
+</Base>

@@ -1,0 +1,116 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import AttractionPost from "../../components/AttractionPost.astro";
+import { affiliates } from "../../data/affiliates";
+
+const title = "What to Pack for Watch Hill, RI (2026 Local's Guide)";
+const description = "From beach essentials to dinner attire at Ocean House — a complete packing list for Watch Hill, Rhode Island. What to bring, what to skip, and what the local stores have.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "What to Pack for a Watch Hill Trip",
+};
+
+const props = {
+  kicker: "Trip Planning · Packing List",
+  title: "What to Pack for ",
+  titleEm: "Watch Hill",
+  titleTail: "",
+  subtitle: "From beach essentials to what you actually need for dinner at Ocean House — a season-by-season packing guide for Watch Hill, Rhode Island. With the local context for what you can buy in the village and what to bring from home.",
+  readingTime: "7 min read",
+  verdict: "<strong>The Watch Hill dress code is smart casual.</strong> Beach gear during the day, nicer clothes for dinner at Ocean House or Bistro — but nothing that requires formal wear. Layers for evenings (coastal Rhode Island gets cool after sunset even in July). Comfortable shoes for the lighthouse walk and Napatree hike. <strong>Don't pack what you can easily buy in Westerly</strong> — many essentials are cheaper at the local stores than the village boutiques.",
+  quickFacts: [
+    { label: "Dress code", value: "Smart casual maximum" },
+    { label: "Beach essentials", value: "Bring or buy in Westerly" },
+    { label: "Evening layer", value: "Yes, year-round" },
+    { label: "Comfortable shoes", value: "Essential for Napatree" },
+    { label: "Formal wear", value: "Not needed" },
+    { label: "Rain gear", value: "Yes — coastal weather shifts" },
+  ],
+  introParagraphs: [
+    "Watch Hill's dress code is smart casual at its most formal. Even Ocean House's Coast restaurant — Rhode Island's only Forbes Five-Star restaurant — doesn't require jackets. The general rule: clean, well-fitting clothes that wouldn't look out of place at a nice country club. No swimwear at restaurants, no flip-flops at Coast or the Verandah, no shorts at dinner if you can help it. Beach-to-dinner-to-bar all in a single day works with smart packing.",
+    "What follows is the locally honest packing list — what you actually need, what you can skip, and what the local stores carry if you forget something. Most of the essentials can be bought in Westerly (cheaper) or in Watch Hill village (more convenient, more expensive) if needed.",
+  ],
+  tips: [
+    {
+      label: "Clothing — daytime",
+      body: "<strong>Beach days:</strong> swimwear (multiple sets if you'll be in the water daily), beach cover-up, sandals or water shoes, sun hat with a brim. <strong>Village days:</strong> shorts or lightweight pants, polo shirts or breathable casual tops, light cardigan or fleece for breeze. <strong>Hiking Napatree:</strong> actual closed-toe shoes (sneakers are fine; sandals are not), moisture-wicking shirt, light long pants if you're bug-sensitive. <strong>Summer evenings:</strong> a light layer is essential — coastal Rhode Island drops 10–15°F after sunset even in July.",
+    },
+    {
+      label: "Clothing — dinner attire",
+      body: "<strong>Coast at Ocean House:</strong> Men: button-down shirt, chinos or dress pants. Jackets aren't required but make you blend in; many men wear them. Women: a sundress or nicer top and pants/skirt. <strong>The Bistro at Ocean House / Verandah:</strong> Smart casual — collared shirts, nicer shorts are fine in summer, no athleisure. <strong>Olympia Tea Room:</strong> Whatever you wore to the beach is fine at lunch; for dinner, dress up slightly. <strong>Beach bars (Paddy's, Andrea):</strong> Come as you are. <strong>What to avoid everywhere:</strong> athletic wear, swimwear, very casual flip-flops, anything resembling pajamas.",
+    },
+    {
+      label: "Shoes — the underrated detail",
+      body: "Pack three pairs minimum: <strong>beach sandals</strong> for sand and water, <strong>walking shoes</strong> (sneakers or comfortable casual flats) for Bay Street and the lighthouse walk, and <strong>dressier shoes</strong> for dinner at Ocean House restaurants. The Napatree Point hike requires real closed-toe shoes; sandals will fail you on the sand and shoreline rocks. Most of Watch Hill village's streets are cobbled or uneven — heels above 2 inches are a real problem on Bay Street.",
+    },
+    {
+      label: "Beach essentials",
+      body: "Sunscreen (high SPF — coastal Rhode Island sun is genuinely intense), beach towel (most hotels provide for guests, but bring your own if renting), beach umbrella or shade tent (Misquamicut concessions rent these; Watch Hill town beaches don't have rentals), a reusable water bottle (essential — the beaches are hot and you need to hydrate), a small dry bag for valuables. The Misquamicut State Beach pavilion has restrooms and showers; Watch Hill town beaches don't.",
+    },
+    {
+      label: "What you can skip",
+      body: "<strong>Formal wear</strong> — even Ocean House doesn't require it. <strong>Heavy hiking boots</strong> — sneakers handle Napatree. <strong>Lots of jewelry</strong> — Watch Hill skews understated. <strong>Hair dryers or basic toiletries</strong> if staying at a landmark hotel — they provide them. <strong>Beach towels</strong> if your hotel provides them (most do). <strong>Excessive cash</strong> — credit cards work everywhere now, including St. Clair Annex (despite outdated guides saying cash-only).",
+    },
+    {
+      label: "What to bring that visitors often forget",
+      body: "<strong>A light rain jacket</strong> — coastal weather changes fast, even in summer. <strong>Bug spray</strong> — Napatree Point in dawn and dusk has serious mosquitoes in summer. <strong>Binoculars</strong> if you have any interest in birding (Napatree is a Globally Important Bird Area). <strong>A small backpack</strong> for the lighthouse walk and Napatree. <strong>Polarized sunglasses</strong> — coastal sun reflection is brutal without them.",
+    },
+    {
+      label: "What to buy in Westerly instead of packing",
+      body: "<strong>Sunscreen and sunblock</strong> — Westerly drugstores and supermarkets have full selections at normal prices. <strong>Beach toys for kids</strong> — Stop & Shop and Walmart in Westerly are 10 minutes from the village and dramatically cheaper than village boutiques. <strong>Wine and beer for hotel suites</strong> — the Pawcatuck Wine & Spirits and several Westerly liquor stores have better selections at better prices than the village. <strong>Picnic supplies for beach days</strong> — Sandy's Fine Food Emporium and the Stop & Shop both work, but Sandy's is the local secret.",
+    },
+    {
+      label: "Season-specific additions",
+      body: "<strong>Spring (April–May):</strong> Heavier layers, real rain gear, water-resistant shoes — the village is still cool and wet. <strong>Summer (June–August):</strong> Standard summer packing plus extra swimwear changes. <strong>Fall (September–October):</strong> Light jacket essential for evenings, layers for the day. <strong>Winter (November–March):</strong> Full winter gear — coastal Rhode Island gets cold and windy. Ocean House's spa and indoor pool are the main activities; pack accordingly.",
+    },
+  ],
+  cta: {
+    framing: "If you need beach gear, Amazon has reasonable options that ship quickly. Sunscreen, beach umbrellas, and water shoes are particularly worth ordering ahead.",
+    label: "Browse beach essentials →",
+    url: affiliates.amazon.beachBag,
+  },
+  faqs: [
+    {
+      q: "What should you wear to Ocean House?",
+      a: "Smart casual minimum throughout the property. Coast restaurant trends dressier in the evening — jackets aren't required but make men blend in. The Verandah and Bistro are explicitly smart casual: no flip-flops, no tank tops, no swimwear. Pool and beach areas are come-as-you-are within reason. There is no Watch Hill restaurant where you cannot wear nice shorts to lunch.",
+    },
+    {
+      q: "Is there a dress code in Watch Hill?",
+      a: "No formal dress code exists in Watch Hill, but the village skews smart casual. The expectation at restaurants is clean, well-fitting clothes — no swimwear, no athletic wear, no very casual flip-flops at dinner. Beach bars (Paddy's, Andrea) are come-as-you-are. Ocean House restaurants are the most formal venues; Coast is the dressiest.",
+    },
+    {
+      q: "What do you need to bring to Watch Hill beaches?",
+      a: "Sunscreen, beach towel (if not provided by your hotel), reusable water bottle, sun hat, and beach sandals at minimum. For Watch Hill town beaches: also bring everything you'd want, since there are no concessions or facilities. For Misquamicut State Beach: facilities are available, but bring water and sunscreen anyway. Beach umbrellas can be rented at Misquamicut but not at Watch Hill town beaches.",
+    },
+    {
+      q: "Do you need formal wear in Watch Hill?",
+      a: "No. Even Coast at Ocean House — Rhode Island's only Forbes Five-Star restaurant — doesn't require formal attire. Smart casual is the maximum dress level required anywhere in the village. Jackets aren't required at any restaurant; many men wear them at Coast for a special-occasion meal but it's not enforced.",
+    },
+    {
+      q: "What do you need for the Napatree Point hike?",
+      a: "Closed-toe shoes (sneakers fine; sandals will fail you on the sand and rocks), a reusable water bottle (no facilities on the trail), sunscreen, a hat for sun protection, and bug spray in spring and summer. The full loop is 3.1 miles and takes about an hour. Binoculars are a worthwhile addition if you have any interest in birding.",
+    },
+    {
+      q: "What's the weather like in Watch Hill?",
+      a: "Summer: highs in the low 80s, lows in the 60s, humidity peaks in August at 73%. Spring and fall: cooler, with notable evening temperature drops. Winter: cold and windy, frequently rainy or snowy. Coastal weather changes quickly year-round — always bring a light layer even on warm summer days.",
+    },
+  ],
+  related: [
+    { href: "/blog/best-time-to-visit-watch-hill", tag: "Planning", title: "Best Time to Visit Watch Hill" },
+    { href: "/blog/is-watch-hill-worth-visiting", tag: "Planning", title: "Is Watch Hill Worth Visiting?" },
+    { href: "/blog/getting-to-watch-hill", tag: "Planning", title: "How to Get to Watch Hill" },
+    { href: "/blog/watch-hill-with-kids", tag: "Family", title: "Visiting Watch Hill with Kids" },
+  ],
+};
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Nav />
+  <main>
+    <AttractionPost {...props} />
+  </main>
+</Base>

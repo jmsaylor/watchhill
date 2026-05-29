@@ -1,0 +1,108 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import AttractionPost from "../../components/AttractionPost.astro";
+
+const title = "Newport, RI Day Trip from Watch Hill: The Mansion Tour Guide (2026)";
+const description = "How to do a Newport, Rhode Island day trip from Watch Hill — The Breakers, Cliff Walk, lunch on the harbor, traffic tips, and the locals' route that avoids the worst of summer congestion.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TravelGuide",
+  name: "Newport Day Trip from Watch Hill",
+  description: "Complete day-trip guide to Newport, Rhode Island from the Watch Hill / Westerly area.",
+};
+
+const props = {
+  kicker: "Day Trip · 1 Hour East of Watch Hill",
+  title: "A Day in ",
+  titleEm: "Newport, Rhode Island",
+  titleTail: " from Watch Hill",
+  subtitle: "An hour east of Watch Hill sits Newport — the Gilded Age mansion capital, the sailing capital, and the most-visited tourist town in Rhode Island. A full-day trip with real planning, real traffic considerations, and a specific itinerary that makes it work.",
+  readingTime: "11 min read",
+  verdict: "<strong>Allow a full day, not a half day.</strong> Buy Newport Mansions tickets in advance (the Breakers + one other is the right move). Leave Watch Hill by 9 AM. Avoid Saturday afternoons in July — Route 138 over the Newport Bridge can back up badly. The Newport Bridge toll is $4 each way (cash or E-ZPass).",
+  quickFacts: [
+    { label: "Distance from Watch Hill", value: "56 miles / ~1 hr (no traffic)" },
+    { label: "Plan for", value: "Full day, 10+ hours" },
+    { label: "Newport Mansions ticket", value: "~$30/mansion, multi-passes cheaper" },
+    { label: "Cliff Walk", value: "3.5 miles, free" },
+    { label: "Newport Bridge toll", value: "$4 each way" },
+    { label: "Best to avoid", value: "Saturday afternoon traffic" },
+  ],
+  introParagraphs: [
+    "Newport is the headline tourism destination of Rhode Island — 3.5 million annual visitors, the largest concentration of pre-Revolution buildings in the country, and a Gilded Age mansion district that's genuinely unlike anything else in the United States. The Breakers, Marble House, The Elms, Rosecliff, Chateau-sur-Mer — these are working museum estates that the Preservation Society of Newport County maintains and tours daily. The Cliff Walk threads 3.5 miles along the ocean behind them. Downtown Newport has the largest concentration of restaurants in the state.",
+    "From Watch Hill, Newport is 56 miles east — about an hour without traffic, considerably longer with it. The route runs east on Route 1, north on I-95, then east again on Route 138 across the Newport Bridge to Aquidneck Island. The Newport Bridge has a $4 toll each direction. The drive itself is reasonable; the planning challenge is timing it around the predictable summer traffic patterns.",
+    "Most Watch Hill visitors who do Newport find one day enough for the headline experience — one or two mansions, the Cliff Walk, a harbor lunch, an afternoon downtown. If you want depth — multiple mansions, a sailing tour, a tennis hall of fame visit, fine dining — you need two days, and then Newport works better as a base than as a day trip. For most travelers, the one-day approach is correct.",
+  ],
+  tips: [
+    {
+      label: "Buy mansion tickets in advance",
+      body: "Newport Mansions tickets sell out at peak times — particularly summer Saturdays at The Breakers. Buy online at NewportMansions.org at least a few days ahead. The 5-Mansion Multi-House Pass (~$85) is the best value if you'll see more than two mansions. For a one-day trip, The Breakers + one other (Marble House or The Elms) is the right pacing — three mansions in a day becomes exhausting.",
+    },
+    {
+      label: "The Breakers is the must-see",
+      body: "The Breakers is the largest, most ornate, and most visited Newport mansion — Cornelius Vanderbilt II's 70-room summer cottage built 1893–1895. Allow 90 minutes minimum for the self-guided audio tour. Get there first thing in the morning (open at 9 AM) to avoid the worst crowds. The grounds are worth additional time after the interior tour.",
+    },
+    {
+      label: "The Cliff Walk strategy",
+      body: "The 3.5-mile Cliff Walk runs along the ocean behind The Breakers and several other mansions. You don't need to walk the entire thing — most visitors do the first mile or so from The Breakers' beach entrance and turn around. The southern half (from Bailey's Beach end) is rougher and more scenic but less accessible. Wear actual shoes; the path is uneven. The walk is free and open dawn to dusk.",
+    },
+    {
+      label: "Traffic timing matters",
+      body: "<strong>Best:</strong> Leave Watch Hill 8–9 AM weekday, return any time. <strong>Manageable:</strong> Saturday morning departure, returning before 4 PM. <strong>Avoid:</strong> Saturday late afternoon return (3 PM–7 PM) — Newport Bridge traffic and Route 138 west can turn a 1-hour drive into 2+ hours. <strong>Worst:</strong> Holiday weekends in summer. Sunday traffic is generally lighter than Saturday.",
+    },
+    {
+      label: "Where to eat",
+      body: "<strong>Lunch on the harbor:</strong> The Mooring (raw bar, harbor view, the iconic Newport lunch), Midtown Oyster Bar (more casual, equally good food), or Black Pearl on Bannister's Wharf. <strong>Quick lunch:</strong> Empire Tea & Coffee on Bellevue or Pasta Beach for Italian. <strong>Coffee/pastries:</strong> Hammetts (downtown) or Ben's Chili Bowl. Skip the chain restaurants on America's Cup Avenue — Newport's standalone restaurants are better.",
+    },
+    {
+      label: "Bowen's Wharf and downtown",
+      body: "After the mansions, head to downtown Newport (about 15 minutes from the Bellevue mansion district). <strong>Bowen's Wharf</strong> is the main wharf with restaurants, shops, and harbor views. <strong>Thames Street</strong> runs parallel and has more variety. <strong>Bannister's Wharf</strong> next door has the Black Pearl restaurant. Spend an hour or two browsing, watch boats come and go, grab an afternoon coffee before heading back.",
+    },
+    {
+      label: "When one day isn't enough",
+      body: "If your interest is the mansions specifically, consider staying overnight in Newport rather than day-tripping. A 5-mansion deep dive is genuinely a 2-day project. The other reasons to stay overnight: the International Tennis Hall of Fame (Newport-based, 90 minutes minimum), a sunset sailing tour from the harbor, dinner at one of Newport's serious restaurants (Bouchard, the Restaurant at Castle Hill), or Cliff Walk done in full. These are hard to combine into a day trip.",
+    },
+  ],
+  faqs: [
+    {
+      q: "How far is Newport from Watch Hill, Rhode Island?",
+      a: "56 miles, about 1 hour by car without traffic. The route is east on Route 1, north on I-95, then east on Route 138 across the Newport Bridge to Aquidneck Island. Add 30–60 minutes for summer afternoon traffic.",
+    },
+    {
+      q: "Is Newport worth a day trip from Watch Hill?",
+      a: "Yes, for the right traveler. If you're interested in Gilded Age architecture, American social history, or the New England sailing tradition, Newport is the headline experience in the region. The Breakers and the Cliff Walk together justify the drive. If you want more than the headline (multiple mansions, sailing, food scene), Newport works better as an overnight than a day trip.",
+    },
+    {
+      q: "How much does the Newport Bridge toll cost?",
+      a: "$4 each way in 2026 (cash or E-ZPass). The bridge is the eastbound Route 138 crossing from Jamestown to Newport. The westbound side back is also tolled.",
+    },
+    {
+      q: "Which Newport mansion should I visit?",
+      a: "The Breakers if you're only doing one. It's the largest, most ornate, and most iconic — Cornelius Vanderbilt II's 70-room summer estate. If doing two, pair The Breakers with Marble House (also Vanderbilt, more architecturally refined) or The Elms (more elegant, less grand). Tickets are around $30 each; the 5-Mansion Pass is better value if you'll see more than two.",
+    },
+    {
+      q: "Can you do Newport in a day from Watch Hill?",
+      a: "Yes — most visitors do. The right pacing is: leave Watch Hill 9 AM, arrive Newport 10, do The Breakers 10:30–noon, lunch downtown 12:30–2, one more mansion or the Cliff Walk 2–4, head back by 5 to avoid traffic. The one-day approach covers the headline Newport experience without rushing. Two days is needed for any deeper exploration.",
+    },
+    {
+      q: "When is the worst time to drive to Newport from Watch Hill?",
+      a: "Saturday afternoons in July and August are the worst — Route 138 west over the Newport Bridge can back up significantly from 3 PM through 7 PM. Holiday weekends (Memorial Day, Fourth of July, Labor Day) compound this. Weekday driving is significantly easier in both directions.",
+    },
+  ],
+  related: [
+    { href: "/blog/watch-hill-vs-newport", tag: "Comparison", title: "Watch Hill vs Newport: Which to Visit?" },
+    { href: "/blog/day-trips-from-watch-hill", tag: "All Day Trips", title: "10 Best Day Trips from Watch Hill" },
+    { href: "/blog/mystic-day-trip", tag: "Closer Day Trip", title: "A Perfect Day in Mystic, CT" },
+    { href: "/blog/where-to-stay-watch-hill", tag: "Stay Local", title: "Where to Stay in Watch Hill" },
+  ],
+};
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Nav />
+  <main>
+    <AttractionPost {...props} />
+  </main>
+</Base>

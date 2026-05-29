@@ -1,0 +1,105 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import AttractionPost from "../../components/AttractionPost.astro";
+
+const title = "Stonington Borough, CT: A Local's Day Trip Guide (2026)";
+const description = "A walking tour of historic Stonington Borough, Connecticut — the lighthouse museum, Water Street restaurants, vineyards nearby, and parking tips for one of the quietest day trips from Watch Hill.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  name: "Stonington Borough",
+  description: "Historic 18th-century fishing village on a peninsula in southeastern Connecticut.",
+  address: { "@type": "PostalAddress", addressLocality: "Stonington", addressRegion: "CT", addressCountry: "US" },
+};
+
+const props = {
+  kicker: "Day Trip · 15 Minutes West of Watch Hill",
+  title: "A Day in ",
+  titleEm: "Stonington Borough",
+  titleTail: ", Connecticut",
+  subtitle: "Fifteen minutes west of Watch Hill sits one of the most perfectly preserved 18th-century fishing villages in New England — a working harbor, a lighthouse museum at the southern tip, Water Street restaurants, and several serious vineyards within a 10-minute drive. The locals' favorite day trip in the area.",
+  readingTime: "7 min read",
+  verdict: "<strong>Allow a half day to a full day.</strong> Park free at the Velvet Mill on Bayview Avenue and walk into the borough — the metered street parking inside the village is enforced and frustrating. Pair the village walk with Stonington Vineyards (10 min inland) for a comfortable full day. Lunch at Dog Watch Café or Breakwater on Water Street.",
+  quickFacts: [
+    { label: "Distance from Watch Hill", value: "15 min / 7 miles west" },
+    { label: "Village size", value: "1 sq mile, walkable in 90 min" },
+    { label: "Old Lighthouse Museum", value: "~$8 adult, 30 min" },
+    { label: "Stonington Vineyards", value: "10 min inland" },
+    { label: "Best lunch", value: "Dog Watch Café or Breakwater" },
+    { label: "Open year-round", value: "Most of the borough" },
+  ],
+  introParagraphs: [
+    "Stonington Borough is what Watch Hill might look like with even fewer tourists and a working harbor instead of a luxury one. A narrow peninsula sticking out into Long Island Sound, lined with a tight grid of preserved 18th- and 19th-century homes, a commercial fishing fleet still tied up at the docks, and one of the smaller and more charming lighthouse museums on the East Coast at the southern tip. Two hours is enough to walk it end-to-end. Add a long Water Street lunch and a wine tasting and you've made a comfortable day of it.",
+    "It's also the quietest day trip in the area. Mystic, ten minutes further west, gets crowded in summer. Newport, an hour east, can be overwhelming. Stonington Borough handles its visitors at a pace that lets you actually experience the place. Most travelers from the Watch Hill area haven't been; the ones who have go back.",
+    "The borough is technically part of the town of Stonington, but it's the borough — the 1-square-mile colonial village on the peninsula — that's the day-trip destination. Once you're past Bayview Avenue and onto Water Street, you're in a maritime-village environment that looks almost identical to its 1840s photos.",
+  ],
+  tips: [
+    {
+      label: "Park free at the Velvet Mill",
+      body: "The Velvet Mill at 22 Bayview Avenue is a converted 19th-century textile mill now housing artist studios, a brewery, and shops. The parking lot is free and large. Walk from there into the borough — about a 5-minute walk south on Water Street. The metered parking inside the borough itself is limited and enforced; you'll spend more time worrying about the meter than enjoying the village. Velvet Mill parking is the move.",
+    },
+    {
+      label: "The Old Lighthouse Museum",
+      body: "At the southern tip of Water Street stands the granite Old Lighthouse, built in 1840 and decommissioned in 1889. It's now a small museum run by the Stonington Historical Society — admission around $8, open seasonally May through October. Climb the spiral staircase to the lantern room for views across to Watch Hill and Fishers Island. The museum itself covers Stonington's maritime history including the 1814 Battle of Stonington when local militia repelled a British naval attack during the War of 1812.",
+    },
+    {
+      label: "Where to eat on Water Street",
+      body: "<strong>Dog Watch Café</strong> is the casual harbor-side option — solid seafood, outdoor tables in season, decent beer selection. <strong>Breakwater</strong> is the more polished spot, with a serious raw bar and a New American menu. <strong>Noah's</strong> is the locals' breakfast and lunch spot — diner-style, has been there forever. <strong>Indulge Coffee + Sweets</strong> handles morning coffee and pastries. For pre-dinner drinks, the bar at Dog Watch in summer is the move.",
+    },
+    {
+      label: "Cannon Square and the historic walk",
+      body: "Cannon Square sits midway up Water Street and features the two cannons from the Battle of Stonington in 1814, when American forces repelled the British Royal Navy. The plaque there is worth a few minutes of reading. From the square, walk south on Water Street to the lighthouse, then come back up Main Street (one block over) to see the other set of historic homes. The full loop is about a mile and takes 60–90 minutes with stops.",
+    },
+    {
+      label: "Add Stonington Vineyards",
+      body: "Stonington Vineyards at 523 Taugwonk Road is 10 minutes inland from the borough — Connecticut's most established wine country, with lawn tastings, a small picnic area, and an annual Harvest Food & Wine Festival in early September. Pair with Saltwater Farm Vineyard nearby (in a renovated WWII airplane hangar — visually unusual). Both are open most of the year with tasting flights. Designate a driver — rideshare coverage in this area is sparse.",
+    },
+    {
+      label: "Combining with Mystic",
+      body: "Stonington Borough and Mystic are 10 minutes apart and feel completely different — Mystic is busy and tourist-focused; Stonington Borough is quiet and residential. The locals' move is to do Mystic in the morning (Seaport or Aquarium), drive to Stonington Borough for an unhurried lunch and walking tour in the afternoon, then head back to Watch Hill by 5 PM. This pairing gives you the best of both: the headline Mystic attractions and the quieter Stonington charm.",
+    },
+  ],
+  faqs: [
+    {
+      q: "How far is Stonington Borough from Watch Hill?",
+      a: "About 7 miles or 15 minutes by car, driving west through Pawcatuck and across the Connecticut state line. There's no public transit between the two — you'll need a car.",
+    },
+    {
+      q: "Where do you park in Stonington Borough?",
+      a: "Park free at the Velvet Mill at 22 Bayview Avenue, just outside the borough proper. The metered parking inside the village along Water Street is limited and strictly enforced. From the Velvet Mill, it's a 5-minute walk south on Water Street into the borough.",
+    },
+    {
+      q: "Is the Old Lighthouse Museum worth visiting?",
+      a: "Yes, especially for adults interested in early American maritime history. The museum is small (about 30 minutes) and covers the 1814 Battle of Stonington, the local fishing industry, and the lighthouse's operating history through 1889. Admission is around $8, open seasonally May through October. The climb to the lantern room offers views toward Watch Hill and Fishers Island.",
+    },
+    {
+      q: "What's the difference between Stonington and Stonington Borough?",
+      a: "Stonington is the town (about 18,000 residents). Stonington Borough is the historic 1-square-mile village on the peninsula at the southern tip of the town. When most people say \"Stonington,\" they mean the borough. It's the borough that's the day-trip destination.",
+    },
+    {
+      q: "Are there vineyards near Stonington?",
+      a: "Yes — Stonington Vineyards (523 Taugwonk Road) is 10 minutes inland from the borough and the most established Connecticut winery. Saltwater Farm Vineyard nearby is housed in a converted WWII airplane hangar. Both offer tastings; the annual Stonington Harvest Food & Wine Festival happens in early September.",
+    },
+    {
+      q: "Is Stonington Borough open year-round?",
+      a: "Yes — most of the borough operates year-round. The Old Lighthouse Museum is seasonal (May–October). Some restaurants reduce hours in winter, but Dog Watch Café and several others stay open through the colder months. The borough in winter is genuinely beautiful and almost completely empty.",
+    },
+  ],
+  related: [
+    { href: "/blog/day-trips-from-watch-hill", tag: "All Day Trips", title: "10 Best Day Trips from Watch Hill" },
+    { href: "/blog/mystic-day-trip", tag: "10 Min Further", title: "A Perfect Day in Mystic, CT" },
+    { href: "/blog/block-island-ferry-westerly", tag: "Day Trip", title: "Block Island Ferry from Westerly" },
+    { href: "/blog/best-restaurants-watch-hill", tag: "Food", title: "15 Best Restaurants in Watch Hill" },
+  ],
+};
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Nav />
+  <main>
+    <AttractionPost {...props} />
+  </main>
+</Base>

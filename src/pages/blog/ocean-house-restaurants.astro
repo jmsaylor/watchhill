@@ -1,0 +1,27 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import StubPost from "../../components/StubPost.astro";
+
+const title = "All Five Ocean House Restaurants, Reviewed";
+const description = "A complete guide to dining at Ocean House in Watch Hill, RI — Coast, The Bistro, and three more, with what to order and what to wear.";
+const preview = "From the tasting menu at Coast to the casual Bistro — what to book, what to skip, and what to wear at Watch Hill's five-star property.";
+
+const related = [
+  {"href":"/blog/best-restaurants-watch-hill","title":"15 Best Restaurants in Watch Hill & Westerly","tag":"Food"},
+  {"href":"/blog/where-to-stay-watch-hill","title":"Where to Stay in Watch Hill","tag":"Hotels"},
+  {"href":"/blog/best-things-to-do-in-watch-hill-ri","title":"15 Best Things to Do in Watch Hill","tag":"Activities"},
+  {"href":"/blog/is-watch-hill-worth-visiting","title":"Is Watch Hill Worth Visiting?","tag":"Planning"},
+];
+---
+
+<Base title={`${title} | Watch Hill Guide`} description={description} noindex={true}>
+  <Nav />
+  <StubPost
+    title={title}
+    hubLabel="Eat & Drink"
+    hubHref="/eat"
+    preview={preview}
+    related={related}
+  />
+</Base>

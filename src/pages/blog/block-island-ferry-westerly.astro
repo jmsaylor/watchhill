@@ -1,0 +1,141 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import AttractionPost from "../../components/AttractionPost.astro";
+import { affiliates } from "../../data/affiliates";
+
+const title =
+  "Block Island Day Trip from Watch Hill: Which Ferry & How to Plan (2026)";
+const description =
+  "Two ferries can get you to Block Island from the Watch Hill area — the Point Judith high-speed (30 min, the right choice) and the New London Block Island Express (80-90 min, the alternative). Plus what to do once you're there.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TravelGuide",
+  name: "Block Island Day Trip from Watch Hill",
+  description: "Complete guide to taking a day trip to Block Island from the Watch Hill / Westerly, Rhode Island area.",
+  about: {
+    "@type": "Place",
+    name: "Block Island",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "New Shoreham",
+      addressRegion: "RI",
+      addressCountry: "US",
+    },
+  },
+};
+
+const props = {
+  kicker: "Day Trip · Ferry from Point Judith or New London",
+  title: "A Day on ",
+  titleEm: "Block Island",
+  titleTail: " from Watch Hill",
+  subtitle:
+    "Eleven square miles of beaches, bluffs, and quiet, 13 miles offshore. The right ferry from Watch Hill is the Point Judith high-speed — 35-minute drive east, 30-minute crossing, $32 round-trip. Here's how to plan the day around it.",
+  readingTime: "11 min read",
+  verdict:
+    "<strong>Take the Point Judith high-speed ferry</strong>, not the New London one. Point Judith is 35 minutes east of Watch Hill by car; the crossing is 30 minutes; round-trip is about $32. New London is 30 minutes west but the crossing is 80–90 minutes — total travel time is significantly longer. <strong>Book the first morning ferry, rent bikes at Old Harbor, plan to return on a late-afternoon boat.</strong>",
+  quickFacts: [
+    { label: "Point Judith ferry crossing", value: "30 min high-speed / 55 min traditional" },
+    { label: "Drive from Watch Hill to Point Judith", value: "35–40 min" },
+    { label: "Block Island Express (New London)", value: "80–90 min crossing, seasonal" },
+    { label: "Adult fare (Point Judith high-speed)", value: "~$32 round-trip" },
+    { label: "Island size", value: "11 sq miles, 40% conservation land" },
+    { label: "Year-round service", value: "Point Judith traditional ferry only" },
+  ],
+  introParagraphs: [
+    "Block Island sits 13 miles off the southern Rhode Island coast — close enough to reach in 30 minutes, far enough that it feels like a different world. Eleven square miles of beaches, 200-foot clay bluffs, two historic lighthouses, more than 30 miles of trails, and a fishing-and-tourism economy that hasn't changed much in fifty years. Almost half the island is protected conservation land. It's the kind of place that earned its nickname — \"the Bermuda of the North\" — without trying.",
+    "From Watch Hill, the trip is one of the great day-trip options in the region. You can leave the village at 8 AM, be on the island by 11, spend the day biking to Mohegan Bluffs and back, swim at Crescent Beach, eat at Old Harbor, and be back in Watch Hill in time for dinner. The only complication — and it's a real one — is picking the right ferry.",
+    "There are two ferries that serve the Watch Hill area: the Block Island Ferry from <strong>Point Judith, Rhode Island</strong> (35–40 minutes east of Watch Hill by car), and the Block Island Express from <strong>New London, Connecticut</strong> (about 30 minutes west). They're operated by different companies, leave from different states, take very different amounts of time, and one is clearly the right call. Here's the breakdown.",
+  ],
+  tips: [
+    {
+      label: "Point Judith vs New London — pick Point Judith",
+      body: "From Watch Hill, the Point Judith high-speed ferry is the clear winner. The drive to Point Judith is 35–40 minutes east via Route 1; the crossing is 30 minutes; round-trip fare is about $32 per adult. Total time door-to-Old-Harbor: roughly 70 minutes. The New London Block Island Express is closer to drive to (30 min west) but the crossing is 80–90 minutes — total time door-to-Old-Harbor: about 2 hours. Point Judith also offers a traditional 55-minute ferry that's year-round and slightly cheaper if speed doesn't matter.",
+    },
+    {
+      label: "Book ferry tickets in advance",
+      body: "Both ferries sell out on summer weekends. The Block Island Ferry's high-speed boats at Point Judith fill up by Friday evening for Saturday mornings in July and August. Book online at blockislandferry.com a week ahead for any peak-summer weekend trip. Tickets show up in your Apple or Google wallet — print isn't required. For weekday trips in shoulder seasons, walk-up tickets are usually fine.",
+    },
+    {
+      label: "Parking at Point Judith",
+      body: "The Point Judith ferry terminal (Port of Galilee in Narragansett) has its own parking lot — about $20 per day in 2026. Several private lots nearby offer cheaper rates ($12–$15) with shuttle service to the dock. Arrive at least 30 minutes before your scheduled departure; the dock area gets crowded and security is real. Don't drive a car onto the ferry unless you specifically need one on the island — most day-trippers don't, vehicle reservations cost $130+ each way, and parking on the island is more limited than parking at Point Judith.",
+    },
+    {
+      label: "Renting bikes — the only way to do a day trip",
+      body: "Bikes are the right vehicle for Block Island. The island is 11 square miles with manageable hills (one steep climb up to Mohegan Bluffs, otherwise rolling), and most major attractions are within a 4-mile ride from Old Harbor. Three or four bike rental shops sit at the ferry landing — Beach Rose Bicycles and Island Rentals are the two most established. Rentals run $25–$40 per day for a standard beach bike, more for hybrids and e-bikes. Mopeds are also available but the bike experience is better and easier with the hills.",
+    },
+    {
+      label: "The classic day-trip itinerary",
+      body: "<strong>9:30 AM:</strong> Arrive at Old Harbor on the high-speed ferry, rent bikes at the dock. <strong>10 AM:</strong> Bike south on Spring Street toward Mohegan Bluffs (about 2 miles, one notable climb). <strong>10:45 AM:</strong> Southeast Lighthouse — tour the Victorian redbrick tower, walk the lawn, then continue to the Mohegan Bluffs overlook. <strong>11:30 AM:</strong> Climb down the 141 wooden steps to the beach below Mohegan Bluffs. <strong>12:30 PM:</strong> Bike back to Old Harbor for lunch. <strong>1:30 PM:</strong> Crescent Beach for the afternoon (north from the ferry landing on Corn Neck Road). <strong>4:30 PM:</strong> Drinks at The Oar in New Harbor or Ballard's at the ferry landing. <strong>6 PM:</strong> Catch the late-afternoon high-speed ferry back to Point Judith.",
+    },
+    {
+      label: "Mohegan Bluffs — the must-see",
+      body: "Mohegan Bluffs is the headline attraction. 200-foot clay cliffs on the southern shore of the island, with a wooden staircase of 141 steps down to a rocky beach below. The bluffs are named after a 17th-century battle between the Mohegan and Manissean tribes. Going down is easy; coming back up is genuinely strenuous on a hot day. Bring water. Don't skip the actual climb down — the cliff view from the bottom is dramatically different from the overlook view.",
+    },
+    {
+      label: "Where to eat on Block Island",
+      body: "<strong>The Oar</strong> in New Harbor is the iconic Block Island restaurant — American menu with a serious sushi program, drinks on the deck with a marina view, gets crowded mid-afternoon. <strong>The National Hotel</strong> on Water Street has the harbor view and award-winning clam chowder. <strong>Ballard's Beach Resort</strong> is the rowdy beachside option at the ferry landing with live music and food. For a quieter, better-food option, <strong>Eli's</strong> on Chapel Street is the locals' restaurant — small menu, no view, real cooking. For breakfast or coffee, <strong>Persephone's Kitchen</strong>.",
+    },
+    {
+      label: "Don't miss the second lighthouse",
+      body: "Most day-trippers do Mohegan Bluffs and Southeast Lighthouse on the south side of the island and stop there. The <strong>North Light</strong> at the island's northern tip is 4 miles from Old Harbor and worth the additional bike ride if you have time. Built in 1867, it sits on a wild stretch of sand where Atlantic currents from east and west collide, creating a strong riptide. The walk in to the lighthouse is across loose sand — slower than it looks. Less crowded than the southern attractions.",
+    },
+  ],
+  cta: {
+    framing:
+      "Most visitors do Block Island as a day trip and stay overnight in Watch Hill. If you want to stay on the island, there are good seasonal inns — but most are seasonal-only and book up six months ahead. Watch Hill remains the better base for the area.",
+    label: "Browse Watch Hill stays →",
+    url: affiliates.hotels.allWatchHill,
+  },
+  faqs: [
+    {
+      q: "What's the closest ferry to Block Island from Watch Hill, Rhode Island?",
+      a: "The Point Judith ferry in Narragansett, RI, is 35–40 minutes east of Watch Hill by car — the closest and easiest option. It runs both a 30-minute high-speed ferry (~$32 round-trip) and a 55-minute traditional ferry. The New London Block Island Express is closer to drive to (30 min west of Watch Hill) but the crossing takes 80–90 minutes, making total travel time longer. There is no Block Island ferry from Westerly, Watch Hill, or Pawcatuck — Point Judith is the closest dock.",
+    },
+    {
+      q: "How long is the ferry from Point Judith to Block Island?",
+      a: "The high-speed ferry takes about 30 minutes; the traditional ferry takes about 55 minutes. Both are operated by the Block Island Ferry (Interstate Navigation). High-speed runs seasonally from late May through Columbus Day; the traditional ferry runs year-round, multiple times daily in summer and 2–4 times daily in winter.",
+    },
+    {
+      q: "How much does the Block Island ferry cost in 2026?",
+      a: "From Point Judith: traditional ferry around $18 adult one-way / $36 round-trip; high-speed around $30 adult one-way / $32 same-day round-trip. From New London (Block Island Express): $33.25 adult one-way / $64 same-day round-trip. Bikes are about $5–$10 each way. Bringing a car costs $130+ one-way and requires a reservation made by phone.",
+    },
+    {
+      q: "Do I need to bring a car to Block Island?",
+      a: "No — and you shouldn't, for a day trip. The island is small (11 sq miles), bikes are the better vehicle for it, and parking on the island is more limited and expensive than parking on the mainland. Vehicle reservations cost $130+ each way and need to be made by phone in advance. Day-trippers should park at the mainland ferry terminal and bike or walk once on the island.",
+    },
+    {
+      q: "What should I do on Block Island in one day?",
+      a: "Bike south to Mohegan Bluffs and the Southeast Lighthouse (about 2 miles), climb down the 141 steps to the beach below the bluffs, bike back to Old Harbor for lunch, spend the afternoon at Crescent Beach (north on Corn Neck Road), grab drinks at The Oar or Ballard's, and catch a late-afternoon ferry back. Allow about 6 hours on the island for a comfortable day.",
+    },
+    {
+      q: "Is there a Block Island ferry from Westerly or Pawcatuck?",
+      a: "No. Despite a common misconception, there is no Block Island ferry from Westerly, Watch Hill, or Pawcatuck. The two closest options are Point Judith, RI (35–40 minutes east of Watch Hill) and New London, CT (30 minutes west). Point Judith is the better choice for most Watch Hill travelers due to shorter total travel time.",
+    },
+    {
+      q: "Can you fly to Block Island from Westerly?",
+      a: "Yes — New England Airlines runs small-plane flights from Westerly State Airport (WST) to Block Island State Airport (BID) every two hours in season. The flight is about 12 minutes and costs roughly $80 round-trip. It's weather-dependent and the planes are small (8-seater), but it's a genuinely memorable way to do the trip if the ferry doesn't fit your schedule.",
+    },
+    {
+      q: "Is Block Island worth visiting?",
+      a: "Yes, especially as a day trip. It's one of the genuinely unspoiled places left on the New England coast — 40% protected conservation land, no chain stores, small-scale tourism economy, dramatic geography. Mohegan Bluffs is among the most striking natural features in Rhode Island. If you have a full day available in the Watch Hill area, this is one of the best uses of it.",
+    },
+  ],
+  related: [
+    { href: "/blog/day-trips-from-watch-hill", tag: "All Day Trips", title: "10 Best Day Trips from Watch Hill" },
+    { href: "/blog/mystic-day-trip", tag: "Day Trip", title: "A Perfect Day in Mystic, CT" },
+    { href: "/blog/foxwoods-mohegan-sun", tag: "Day Trip", title: "A Day at Foxwoods Casino" },
+    { href: "/blog/where-to-stay-watch-hill", tag: "Stay Local", title: "Where to Stay in Watch Hill" },
+  ],
+};
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Nav />
+  <main>
+    <AttractionPost {...props} />
+  </main>
+</Base>

@@ -1,0 +1,27 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import StubPost from "../../components/StubPost.astro";
+
+const title = "When to Book Watch Hill Hotels (and How to Save)";
+const description = "Booking windows, shoulder-season rates, and the loyalty programs that actually pay off when booking Watch Hill hotels.";
+const preview = "Booking windows, shoulder-season rates, and the hotel loyalty programs that actually pay off in Watch Hill.";
+
+const related = [
+  {"href":"/blog/where-to-stay-watch-hill","title":"Where to Stay in Watch Hill","tag":"Hotels"},
+  {"href":"/blog/is-watch-hill-worth-visiting","title":"Is Watch Hill Worth Visiting?","tag":"Planning"},
+  {"href":"/blog/best-time-to-visit-watch-hill","title":"Best Time to Visit Watch Hill","tag":"Timing"},
+  {"href":"/blog/best-things-to-do-in-watch-hill-ri","title":"15 Best Things to Do in Watch Hill","tag":"Activities"},
+];
+---
+
+<Base title={`${title} | Watch Hill Guide`} description={description} noindex={true}>
+  <Nav />
+  <StubPost
+    title={title}
+    hubLabel="Where to Stay"
+    hubHref="/stay"
+    preview={preview}
+    related={related}
+  />
+</Base>

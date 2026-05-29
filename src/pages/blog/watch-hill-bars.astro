@@ -1,0 +1,27 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import StubPost from "../../components/StubPost.astro";
+
+const title = "The Best Bars in Watch Hill & Westerly";
+const description = "Where to find the best cocktails, oyster happy hours, and live music in Watch Hill and Westerly, RI.";
+const preview = "Watch Hill's nightlife is small but quality. Where to find a great cocktail, oyster happy hour, or live music.";
+
+const related = [
+  {"href":"/blog/best-restaurants-watch-hill","title":"15 Best Restaurants in Watch Hill & Westerly","tag":"Food"},
+  {"href":"/blog/best-things-to-do-in-watch-hill-ri","title":"15 Best Things to Do in Watch Hill","tag":"Activities"},
+  {"href":"/blog/where-to-stay-watch-hill","title":"Where to Stay in Watch Hill","tag":"Hotels"},
+  {"href":"/blog/is-watch-hill-worth-visiting","title":"Is Watch Hill Worth Visiting?","tag":"Planning"},
+];
+---
+
+<Base title={`${title} | Watch Hill Guide`} description={description} noindex={true}>
+  <Nav />
+  <StubPost
+    title={title}
+    hubLabel="Eat & Drink"
+    hubHref="/eat"
+    preview={preview}
+    related={related}
+  />
+</Base>

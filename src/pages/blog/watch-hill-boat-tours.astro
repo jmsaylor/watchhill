@@ -1,0 +1,109 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import AttractionPost from "../../components/AttractionPost.astro";
+
+const title = "Boat Tours, Charters & Sunset Cruises from Watch Hill (2026)";
+const description = "Sport fishing, sunset cruises, harbor tours, and the local outfitters running boats from Watch Hill's working harbor — what to book, when, and what to expect.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  name: "Watch Hill Boat Tours",
+  description: "Charter boats, sport fishing, and sunset cruises from Watch Hill Harbor.",
+  address: { "@type": "PostalAddress", addressLocality: "Watch Hill", addressRegion: "RI", addressCountry: "US" },
+};
+
+const props = {
+  kicker: "Activity · Watch Hill Harbor",
+  title: "Boat Tours from ",
+  titleEm: "Watch Hill",
+  titleTail: " Harbor",
+  subtitle: "Sport fishing charters, scenic harbor tours, and the famously photographable sunset cruise — the local outfitters working out of Watch Hill's small but real harbor. Block Island, Long Island, and Fishers Island are all in view from the water.",
+  readingTime: "6 min read",
+  verdict: "<strong>Sunset cruises are the easiest entry point</strong> — about 90 minutes, $50–$75 per person, no fishing license needed, leaves around 6 PM in summer. Sport fishing charters run $700–$1,500 per half-day (boat, not per person) and require advance booking. Most boats operate Memorial Day through Columbus Day.",
+  quickFacts: [
+    { label: "Main harbor", value: "Watch Hill Harbor, Bay Street" },
+    { label: "Sunset cruise cost", value: "~$50–$75/person, ~90 min" },
+    { label: "Sport fishing charter", value: "$700–$1,500/half-day boat" },
+    { label: "Season", value: "Memorial Day–Columbus Day" },
+    { label: "Booking lead time", value: "1–2 weeks for sport fishing" },
+    { label: "What you can see", value: "Block Island, Fishers Island, Montauk" },
+  ],
+  introParagraphs: [
+    "Watch Hill's harbor is small by working-port standards but real — a mix of fishing boats, yacht-club members' sailboats, and the small charter operators who run sport fishing trips, harbor cruises, and sunset tours out of the slips along the bulkhead. From the water, the geography becomes clearer than from land: Block Island sits about 13 miles south, Fishers Island a mile west across the state line in New York, Montauk Point on the eastern tip of Long Island visible on clear days.",
+    "Three types of boat experiences are available to visitors. <strong>Sport fishing charters</strong> are the serious option — typically 4-hour or full-day trips for striped bass, fluke, scup, or bluefish, on boats that hold 4–6 anglers. <strong>Scenic harbor tours and sunset cruises</strong> are the casual option — narrated 90-minute trips that show you the village from the water, costing $50–$75 per person. <strong>Private charters and pirate-themed family trips</strong> are the third category, typically aimed at families with kids who want a memorable experience without commitment to fishing.",
+    "All Watch Hill boat operations are seasonal. The dock is functionally closed from late October through early May. The peak season is July and August, when reservations become essential. Shoulder seasons (June, September) offer easier booking and often better weather.",
+  ],
+  tips: [
+    {
+      label: "Sport fishing charters",
+      body: "Hard Tail Charters and Snappa are the established Watch Hill area sport fishing operations. Typical pricing: 4-hour half-day charter $700–$900 (covers up to 4–6 anglers, all gear, bait, ice); full-day 8-hour charter $1,200–$1,500. The charter is a private boat — you're not joining a group. Captains specialize in different target species: striped bass and bluefish in summer, fluke (summer flounder) in season, scup year-round. Bring your own snacks and drinks; coolers welcome. Most charters operate from the Pawcatuck or Watch Hill area; confirm departure point when booking.",
+    },
+    {
+      label: "Sunset cruise",
+      body: "The most photographable Watch Hill experience available from the water. Typical 90-minute narrated cruise leaves around 6 PM in summer, costs $50–$75 per person, and runs west along the Watch Hill bluffs and Napatree Point before heading back. The sunset view from the boat is genuinely different — you're looking back at the lighthouse and bluffs from the water as the sun drops behind Fishers Island. Operators include Sail Watch Hill and various seasonal small operators; some leave from Watch Hill Harbor, others from the nearby Avondale boat ramp.",
+    },
+    {
+      label: "Harbor and historic tours",
+      body: "Daytime narrated harbor cruises cover the same geography as the sunset cruise but with daylight visibility of Napatree's Fort Mansfield ruins, the lighthouse, and the mansion district from the water. About 60–90 minutes, $40–$60 per person. Some operators specialize in pirate-themed family cruises (more kid-focused, with cannons, treasure hunts, etc.) — confirm what you're booking before paying.",
+    },
+    {
+      label: "Block Island Sound day cruises",
+      body: "Some sport fishing operators offer all-day Block Island Sound cruises that combine fishing with a stop at Block Island, returning the same day. These are pricier ($1,500+) and require advance booking. The advantage over the public ferry: you can fish on the way out, eat lunch on Block Island, and return on the boat without dealing with ferry schedules. Best for groups of 4–6 willing to share the cost.",
+    },
+    {
+      label: "Booking lead time",
+      body: "<strong>Sport fishing in July/August:</strong> book 2–3 weeks ahead minimum. The good captains book out solidly during peak season. <strong>Sport fishing in shoulder seasons:</strong> 3–5 days ahead is usually enough. <strong>Sunset cruises:</strong> 2–3 days ahead is typical, walk-on availability sometimes exists on weeknights. <strong>Holiday weekends:</strong> all boats book up — call as far ahead as possible. Direct booking with the operator is generally better than booking through GetYourGuide or Viator — same price, fewer middlemen.",
+    },
+    {
+      label: "What to bring",
+      body: "<strong>For sport fishing:</strong> sunscreen, hat with chin strap, polarized sunglasses (essential for seeing fish), bottled water, layered clothing (it's 10°F cooler on the water), motion sickness medication if you're prone (take it 30 minutes before departure). All gear is typically provided by the captain. <strong>For sunset cruises:</strong> a light jacket (essential — the water is cooler than the shore), camera, comfortable shoes. <strong>Don't bring:</strong> sandals with no straps (they fall off in chop), large bags (limited storage), pets (most boats don't accept them).",
+    },
+    {
+      label: "Seasickness reality check",
+      body: "Block Island Sound can get choppy, especially on afternoon trips with wind from the south or southwest. If you're prone to motion sickness, take medication 30–60 minutes before departure (Bonine or Dramamine, whichever you prefer). Eat a small meal beforehand — empty stomach makes it worse. Sit at the back of the boat, focus on the horizon. Sunset cruises in calm summer evenings rarely have rough water; mid-afternoon trips in windy conditions can be genuinely uncomfortable.",
+    },
+  ],
+  faqs: [
+    {
+      q: "What boat tours run from Watch Hill?",
+      a: "Three main types: sport fishing charters (Hard Tail, Snappa, $700–$1,500 per half-day boat), scenic harbor tours and sunset cruises ($40–$75 per person, 60–90 minutes), and private charters including pirate-themed family trips. All operations are seasonal, generally Memorial Day through Columbus Day.",
+    },
+    {
+      q: "How much does a sunset cruise from Watch Hill cost?",
+      a: "Around $50–$75 per person for a 90-minute narrated cruise that typically leaves at 6 PM in summer. The cruise runs west along the Watch Hill bluffs and Napatree Point before heading back into the harbor. Bring a light jacket — the water is cooler than the shore. Book 2–3 days ahead in season.",
+    },
+    {
+      q: "How much does sport fishing in Watch Hill cost?",
+      a: "Typical 4-hour half-day charter is $700–$900 for the boat (up to 4–6 anglers, gear and bait included). Full-day 8-hour charter is $1,200–$1,500. Charter price is for the whole boat, not per person, so groups of 4–6 split the cost. Bring your own food and drinks.",
+    },
+    {
+      q: "What fish can you catch from Watch Hill?",
+      a: "Striped bass and bluefish in summer (June–September), fluke (summer flounder) in season, scup year-round, false albacore in fall. Captains specialize in different species — ask when booking which target your visit aligns with. Block Island Sound is one of the better striped bass fisheries on the East Coast in season.",
+    },
+    {
+      q: "Do you need a fishing license for a Watch Hill charter?",
+      a: "No — Rhode Island captains include a recreational saltwater fishing license under the charter operation; individual anglers on chartered boats don't need to obtain their own. Surf casting from shore at Watch Hill or Misquamicut beaches does require a Rhode Island saltwater license, which is free and easy to obtain online.",
+    },
+    {
+      q: "When is the boat tour season at Watch Hill?",
+      a: "Memorial Day through Columbus Day for most operators — late May through mid-October. Peak season is July and August when booking lead time is 2–3 weeks. Shoulder seasons (June and September) offer easier booking and often better weather. Most operators are completely closed from late October through early May.",
+    },
+  ],
+  related: [
+    { href: "/blog/best-things-to-do-in-watch-hill-ri", tag: "Activities", title: "15 Best Things to Do in Watch Hill" },
+    { href: "/blog/block-island-ferry-westerly", tag: "Get to Block Island", title: "Block Island Ferry from Westerly" },
+    { href: "/blog/watch-hill-lighthouse", tag: "Visible From Boats", title: "Watch Hill Lighthouse Guide" },
+    { href: "/blog/best-time-to-visit-watch-hill", tag: "Planning", title: "Best Time to Visit Watch Hill" },
+  ],
+};
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Nav />
+  <main>
+    <AttractionPost {...props} />
+  </main>
+</Base>

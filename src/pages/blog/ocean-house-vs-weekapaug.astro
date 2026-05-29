@@ -1,0 +1,27 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import StubPost from "../../components/StubPost.astro";
+
+const title = "Ocean House vs Weekapaug Inn: Which Should You Book?";
+const description = "A side-by-side comparison of Ocean House and Weekapaug Inn — both Relais & Châteaux properties in Watch Hill/Weekapaug, RI.";
+const preview = "Both are five-star. Both share amenities. Here's how to choose the right one based on your trip, your travel style, and what you actually want.";
+
+const related = [
+  {"href":"/blog/where-to-stay-watch-hill","title":"Where to Stay in Watch Hill","tag":"Hotels"},
+  {"href":"/blog/best-restaurants-watch-hill","title":"15 Best Restaurants in Watch Hill & Westerly","tag":"Food"},
+  {"href":"/blog/is-watch-hill-worth-visiting","title":"Is Watch Hill Worth Visiting?","tag":"Planning"},
+  {"href":"/blog/best-things-to-do-in-watch-hill-ri","title":"15 Best Things to Do in Watch Hill","tag":"Activities"},
+];
+---
+
+<Base title={`${title} | Watch Hill Guide`} description={description} noindex={true}>
+  <Nav />
+  <StubPost
+    title={title}
+    hubLabel="Where to Stay"
+    hubHref="/stay"
+    preview={preview}
+    related={related}
+  />
+</Base>

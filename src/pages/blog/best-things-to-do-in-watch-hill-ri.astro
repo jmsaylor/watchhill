@@ -1,6 +1,5 @@
 ---
 import Base from "../../layouts/Base.astro";
-import Nav from "../../components/Nav.astro";
 
 const title = "15 Best Things to Do in Watch Hill, RI (2026 Local's Guide)";
 const description =
@@ -36,13 +35,13 @@ const jsonLd = {
 // Affiliate links — replace these slugs with your real partner IDs once you sign up.
 // Using Stay22 / Booking.com / GetYourGuide / Amazon Associates as the four core programs.
 const aff = {
-  oceanHouse: "https://www.stay22.com/embed/gm?aid=watchhillguide&address=Ocean+House+Watch+Hill+RI",
-  weekapaugInn: "https://www.stay22.com/embed/gm?aid=watchhillguide&address=Weekapaug+Inn+RI",
-  watchHillInn: "https://www.stay22.com/embed/gm?aid=watchhillguide&address=Watch+Hill+Inn+RI",
-  vrboWesterly: "https://www.vrbo.com/?filterByRegionId=watch-hill&clickref=watchhillguide",
-  bookingWesterly: "https://www.booking.com/searchresults.html?ss=Watch+Hill&aid=watchhillguide",
-  boatTours: "https://www.getyourguide.com/-l/?partner_id=watchhillguide&q=watch+hill",
-  mysticAquarium: "https://www.getyourguide.com/-l/?partner_id=watchhillguide&q=mystic+aquarium",
+  oceanHouse: "https://www.stay22.com/embed/gm?aid=YOUR_ID&address=Ocean+House+Watch+Hill+RI",
+  weekapaugInn: "https://www.stay22.com/embed/gm?aid=YOUR_ID&address=Weekapaug+Inn+RI",
+  watchHillInn: "https://www.stay22.com/embed/gm?aid=YOUR_ID&address=Watch+Hill+Inn+RI",
+  vrboWesterly: "https://www.vrbo.com/?filterByRegionId=watch-hill&clickref=YOUR_ID",
+  bookingWesterly: "https://www.booking.com/searchresults.html?ss=Watch+Hill&aid=YOUR_ID",
+  boatTours: "https://www.getyourguide.com/-l/?partner_id=YOUR_ID&q=watch+hill",
+  mysticAquarium: "https://www.getyourguide.com/-l/?partner_id=YOUR_ID&q=mystic+aquarium",
   amazonBeachBag: "https://www.amazon.com/s?k=beach+tote+bag&tag=YOUR_TAG",
   amazonBinoculars: "https://www.amazon.com/s?k=birding+binoculars&tag=YOUR_TAG",
   amazonCoolers: "https://www.amazon.com/s?k=beach+cooler&tag=YOUR_TAG",
@@ -263,7 +262,6 @@ const faqs = [
 
 <Base title={title} description={description}>
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-  <Nav />
 
   <article class="article">
     <!-- Hero -->

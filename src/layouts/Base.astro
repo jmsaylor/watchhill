@@ -17,6 +17,17 @@ const { title, description = "The ultimate local's guide to visiting Watch Hill,
 <!doctype html>
 <html lang="en">
   <head>
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL('/images/hero-beach-sky.jpg', Astro.site || 'https://watchhillguide.com')} />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL('/images/hero-beach-sky.jpg', Astro.site || 'https://watchhillguide.com')} />
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZTLK1KN7L4" is:inline></script>
     <script is:inline>

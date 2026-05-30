@@ -1,0 +1,1072 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import { affiliates } from "../../data/affiliates";
+
+const title = "Best Time to Visit Watch Hill, RI (Month-by-Month, 2026 Guide)";
+const description =
+  "A local's complete month-by-month guide to visiting Watch Hill, Rhode Island — real weather data, ocean temperatures, what's open, crowd levels, and the single best month most travelers don't think to book.";
+const publishDate = "2026-05-24";
+const updatedDate = "2026-05-24";
+const readingTime = "10 min read";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description: description,
+  datePublished: publishDate,
+  dateModified: updatedDate,
+  author: {
+    "@type": "Organization",
+    name: "Watch Hill Guide",
+  },
+  about: {
+    "@type": "Place",
+    name: "Watch Hill",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Westerly",
+      addressRegion: "RI",
+      addressCountry: "US",
+    },
+  },
+};
+
+// Month-by-month data. Air temps and water temps verified against NOAA/WeatherSpark
+// historical averages. Hotel rate notes are 2026 directional, not exact pricing.
+const months = [
+  {
+    name: "January",
+    season: "Deep Winter",
+    air: "Highs 38°F / Lows 22°F",
+    water: "42°F",
+    crowds: "Almost none",
+    rate: "Lowest rates of the year",
+    summary:
+      "The village is largely closed. Ocean House operates year-round at reduced capacity. The bluffs in snow are genuinely beautiful and you'll have them to yourself. Best for: anniversary weekends, writers' retreats, anyone who loves an empty coast.",
+    open: "Ocean House (full operations), Bridge Restaurant, The Cooked Goose, GreySail Brewing",
+    closed: "Olympia Tea Room, the carousel, Bay Street shops, all seasonal restaurants",
+  },
+  {
+    name: "February",
+    season: "Deep Winter",
+    air: "Highs 39°F / Lows 21°F",
+    water: "39°F",
+    crowds: "None",
+    rate: "Lowest rates of the year",
+    summary:
+      "Coldest month of the year, statistically. Ocean House becomes its own destination — spa weekends, fireplaces, four-course dinners as the only thing on the schedule. Not a beach trip; this is a refuge trip.",
+    open: "Ocean House, Bridge Restaurant, The Cooked Goose, GreySail Brewing",
+    closed: "Weekapaug Inn (typically closes Jan–March), most of the village",
+  },
+  {
+    name: "March",
+    season: "Late Winter",
+    air: "Highs 47°F / Lows 30°F",
+    water: "40°F",
+    crowds: "Light",
+    rate: "Still off-season pricing",
+    summary:
+      "Things start to stir but most of Watch Hill is still closed. The first warm days appear unpredictably. Best for: ocean walks, off-season Ocean House weekends, locals planning their summer.",
+    open: "Ocean House, Bridge Restaurant, Cooked Goose, GreySail",
+    closed: "Most of Bay Street, the carousel, beach restaurants",
+  },
+  {
+    name: "April",
+    season: "Early Spring",
+    air: "Highs 57°F / Lows 38°F",
+    water: "44°F",
+    crowds: "Light",
+    rate: "Shoulder rates",
+    summary:
+      "The village starts reopening week by week. Weekapaug Inn typically opens. Some restaurants are back, some aren't. The light is beautiful and the air is finally tolerable for long walks. A good month for couples who want a quiet trip with mostly-functioning amenities.",
+    open: "Ocean House, Weekapaug Inn (late April), Bridge, Cooked Goose, GreySail, some Bay Street restaurants",
+    closed: "The carousel, beach restaurants, full Bay Street shopping",
+  },
+  {
+    name: "May",
+    season: "Late Spring",
+    air: "Highs 67°F / Lows 47°F",
+    water: "51°F",
+    crowds: "Building",
+    rate: "Shoulder rates rising sharply at Memorial Day",
+    summary:
+      "The unofficial start of the Watch Hill season is Memorial Day weekend in late May. State beaches open. The carousel typically begins running. Most shops and restaurants are back. Weather is genuinely good. Water is still cold for swimming but fine for wading. Locals consider the first three weeks of May the best-kept secret of the year.",
+    open: "Most of the village by mid-May; everything by Memorial Day weekend",
+    closed: "A handful of seasonal-only spots until Memorial Day",
+  },
+  {
+    name: "June",
+    season: "Early Summer",
+    air: "Highs 75°F / Lows 56°F",
+    water: "60°F",
+    crowds: "Moderate, building",
+    rate: "High season rates begin",
+    summary:
+      "The first true summer month. Days are long (sunsets after 8 PM), water warms up enough to swim by month's end, and the village is fully operational. Weekday rates are still reasonable compared to July. Best for: anyone who wants summer Watch Hill without peak summer crowds.",
+    open: "Everything",
+    closed: "Nothing",
+  },
+  {
+    name: "July",
+    season: "Peak Summer",
+    air: "Highs 81°F / Lows 64°F",
+    water: "68°F",
+    crowds: "Peak",
+    rate: "Peak rates, often booked months ahead",
+    summary:
+      "The busiest, sunniest, most-beach-perfect month of the year. Average 9.7 hours of sunshine per day — the highest of any month. Fourth of July weekend is one of the busiest weekends of the year; book hotels by April. Everything is open, everything is full, every restaurant needs a reservation. The trade-off for the perfect weather is the crowds.",
+    open: "Everything, at full capacity",
+    closed: "Nothing",
+  },
+  {
+    name: "August",
+    season: "Peak Summer",
+    air: "Highs 80°F / Lows 64°F",
+    water: "70°F",
+    crowds: "Peak through mid-month, declining late",
+    rate: "Peak rates",
+    summary:
+      "Warmest water temperatures of the year — 70°F is genuinely warm for the Atlantic this far north. Humidity peaks at 73% so days can feel sticky. Crowds remain heavy through about August 20, then noticeably ease as kids head back to school in some states. Late August is a quietly underrated week.",
+    open: "Everything",
+    closed: "Nothing",
+  },
+  {
+    name: "September",
+    season: "Early Fall",
+    air: "Highs 73°F / Lows 57°F",
+    water: "66°F",
+    crowds: "Low after Labor Day",
+    rate: "Shoulder rates — significant savings",
+    summary:
+      "The single best month to visit Watch Hill if you're flexible. Water temperatures stay swimmable through September. The air is comfortable. Crowds drop sharply after Labor Day weekend. Hotel rates drop 30–40%. Restaurants take reservations again. The village still has everything open through at least mid-September. Locals consider this the perfect month and book their own staycations accordingly.",
+    open: "Everything through mid-September; some seasonal closures begin late month",
+    closed: "Nothing until late September",
+  },
+  {
+    name: "October",
+    season: "Mid Fall",
+    air: "Highs 63°F / Lows 47°F",
+    water: "59°F",
+    crowds: "Very light",
+    rate: "Off-season rates",
+    summary:
+      "Foliage isn't dramatic in coastal Rhode Island but the air is crisp and the light is exceptional. Most attractions begin closing for the season. The carousel ends its run mid-month. Napatree Point in October is one of the great hikes in New England. Best for: photographers, hikers, off-season romantic weekends.",
+    open: "Ocean House, Olympia Tea Room (until early November), Bridge, Cooked Goose, GreySail",
+    closed: "Carousel (mid-month), beach restaurants, some Bay Street shops",
+  },
+  {
+    name: "November",
+    season: "Late Fall",
+    air: "Highs 52°F / Lows 37°F",
+    water: "52°F",
+    crowds: "Very light",
+    rate: "Off-season rates",
+    summary:
+      "The village officially closes for the season. Ocean House stays open with full operations. Bridge Restaurant in Westerly stays open. The weather can be dramatic — bright clear days alongside stormy gray ones. The lighthouse and Napatree in November have a brooding quality that's hard to replicate elsewhere.",
+    open: "Ocean House, Bridge, Cooked Goose, GreySail, a handful of Westerly restaurants",
+    closed: "Almost all of Bay Street",
+  },
+  {
+    name: "December",
+    season: "Holiday Season",
+    air: "Highs 42°F / Lows 28°F",
+    water: "46°F",
+    crowds: "Light, with bumps around the holidays",
+    rate: "Holiday peaks at Ocean House",
+    summary:
+      "Wettest month of the year (~5 inches of precipitation). Ocean House does famous holiday programming — gingerbread house display, holiday afternoon tea, Christmas Eve dinner — and rates jump significantly the week between Christmas and New Year's. Outside of those holiday weekends, December is one of the quietest months at one of the prettiest coastal hotels in America.",
+    open: "Ocean House (with holiday programming), Bridge, Cooked Goose, GreySail",
+    closed: "Almost everything else",
+  },
+];
+
+// Decision-tree style quick lookup
+const byPriority = [
+  {
+    priority: "I want to swim in the ocean",
+    answer: "Late July through mid-September. Water hits 68°F in July and peaks at 70°F in August. September water stays swimmable through about the 20th.",
+  },
+  {
+    priority: "I want the lowest hotel rates",
+    answer: "January through early April. Ocean House midweek rates can drop below $500 in February. Just be ready for most of the village to be closed.",
+  },
+  {
+    priority: "I want everything open with smaller crowds",
+    answer: "Mid-May or September. Both have full operations, lower rates than July/August, and noticeably thinner crowds.",
+  },
+  {
+    priority: "I want the most photogenic weather",
+    answer: "September and October. Crisp air, dramatic light, beautifully empty beaches. Less reliable than July but more interesting.",
+  },
+  {
+    priority: "I want the full peak summer experience",
+    answer: "July or first three weeks of August. Book by April for any July weekend.",
+  },
+  {
+    priority: "I want a quiet romantic weekend",
+    answer: "Late April or November. Restaurants are open enough to dine out, but the village is quiet and rates are reasonable.",
+  },
+];
+
+const faqs = [
+  {
+    q: "What is the best month to visit Watch Hill?",
+    a: "September, if you want warm water without crowds. July or August if you want peak summer with everything fully running. May for the unofficial season start with the best mix of weather, openings, and pre-peak rates. The 'right' month depends on what you're optimizing for — swimming, savings, crowds, or atmosphere.",
+  },
+  {
+    q: "Is Watch Hill worth visiting in the off-season?",
+    a: "Yes — but only if you know what you're signing up for. Ocean House operates year-round and is the heart of an off-season trip. Bridge Restaurant in Westerly and The Cooked Goose stay open. Most of the village is closed from November through April. The light, the empty beaches, and the dramatic weather are the trade-off for limited restaurant options.",
+  },
+  {
+    q: "How warm does the ocean get in Watch Hill?",
+    a: "Atlantic water temperatures near Watch Hill peak at about 70°F in early August. July averages 68°F. September stays around 66°F. By comparison, Cape Cod tends to run a few degrees cooler and the Carolinas considerably warmer.",
+  },
+  {
+    q: "When is Memorial Day weekend in Watch Hill?",
+    a: "Always the last Monday in May, with the long weekend running Saturday through Monday. State beaches officially open that weekend, the carousel begins its summer run, and the historic Westerly-Pawcatuck Memorial Day Parade — one of the oldest in the United States — steps off Monday morning.",
+  },
+  {
+    q: "Is Watch Hill open in winter?",
+    a: "Partially. Ocean House operates year-round with all restaurants and the spa. Bridge Restaurant in downtown Westerly is open all year. The Cooked Goose serves breakfast through winter. Most of Bay Street, the carousel, the beach restaurants, and Weekapaug Inn close from mid-October or November through April or May.",
+  },
+  {
+    q: "When does the Flying Horse Carousel open?",
+    a: "Memorial Day weekend in late May, running daily through Labor Day weekend in early September. After Labor Day it runs on a reduced schedule until mid-October, then closes for the winter.",
+  },
+  {
+    q: "How crowded is Watch Hill in July?",
+    a: "Very. Fourth of July weekend and the second and third weekends of July are the most crowded times of the year. Beaches fill by 10 AM, restaurants need reservations, and Bay Street parking is a real challenge. Weekdays in July are dramatically calmer than weekends.",
+  },
+];
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <Nav />
+
+  <article class="article">
+    <!-- Hero -->
+    <header class="hero">
+      <div class="hero-inner">
+        <p class="kicker">Trip Planning · 2026 Guide</p>
+        <h1>
+          The Best Time to Visit <em>Watch Hill, RI</em>
+        </h1>
+        <p class="hero-sub">
+          A month-by-month, locally written guide to weather, water
+          temperatures, crowds, and what's actually open in Watch Hill across
+          all twelve months of the year — including the month most travelers
+          don't think to book.
+        </p>
+        <div class="meta">
+          <span>Updated May 24, 2026</span>
+          <span class="dot">·</span>
+          <span>{readingTime}</span>
+          <span class="dot">·</span>
+          <span>Written from Westerly, RI</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- THE SHORT ANSWER -->
+    <section class="verdict">
+      <p class="v-label">The Short Answer</p>
+      <p class="v-text">
+        <strong>September.</strong> Water temperatures stay swimmable, crowds
+        drop sharply after Labor Day, and hotel rates fall 30–40% from August
+        peaks. Everything is still open through at least mid-month. If
+        September doesn't work, the next-best options are mid-May (full
+        season starting, smaller crowds) or weekdays in late June.
+      </p>
+    </section>
+
+    <!-- Intro + Disclosure -->
+    <section class="prose">
+      <p class="lede">
+        Watch Hill is one of those coastal towns where the time you visit
+        changes the trip entirely. Late summer is full operations and full
+        crowds. February is a quiet bluff with one open hotel and great
+        rates. Both are worth doing — they're just different vacations
+        wearing the same name. This is the local breakdown of what each month
+        actually looks like, so you can pick the one that matches what you
+        want.
+      </p>
+
+      <aside class="disclosure">
+        <strong>A note on links:</strong> Some links below are affiliate links;
+        we may earn a small commission when you book through them at no extra
+        cost to you.
+      </aside>
+    </section>
+
+    <!-- DECISION TREE BY PRIORITY -->
+    <section class="priority">
+      <div class="p-inner">
+        <p class="p-label">Quick Decision Guide</p>
+        <h2>Pick the Month Based on What You Want</h2>
+
+        <div class="p-list">
+          {
+            byPriority.map((item) => (
+              <div class="p-item">
+                <p class="p-q">{item.priority}</p>
+                <p class="p-a">{item.answer}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- MONTH-BY-MONTH -->
+    <section class="months">
+      <div class="section-head">
+        <h2>Month-by-Month Breakdown</h2>
+        <p>
+          Real weather data, ocean temperatures, what's open, and what each
+          month actually feels like in Watch Hill.
+        </p>
+      </div>
+
+      {
+        months.map((m) => (
+          <article class="month">
+            <header class="m-head">
+              <h3>{m.name}</h3>
+              <p class="m-season">{m.season}</p>
+            </header>
+
+            <dl class="m-facts">
+              <div>
+                <dt>Air</dt>
+                <dd>{m.air}</dd>
+              </div>
+              <div>
+                <dt>Water</dt>
+                <dd>{m.water}</dd>
+              </div>
+              <div>
+                <dt>Crowds</dt>
+                <dd>{m.crowds}</dd>
+              </div>
+              <div>
+                <dt>Rates</dt>
+                <dd>{m.rate}</dd>
+              </div>
+            </dl>
+
+            <p class="m-summary">{m.summary}</p>
+
+            <div class="m-status">
+              <div class="m-status-col open">
+                <p class="m-status-h">Open</p>
+                <p>{m.open}</p>
+              </div>
+              <div class="m-status-col closed">
+                <p class="m-status-h">Closed</p>
+                <p>{m.closed}</p>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </section>
+
+    <!-- THE LOCAL'S CALENDAR (specific events) -->
+    <section class="prose">
+      <h2 class="section-h">Events Worth Planning Around</h2>
+      <p>
+        Beyond weather and crowds, certain weekends in Watch Hill are
+        themselves the attraction. If you're trying to time a trip:
+      </p>
+
+      <ul class="cal">
+        <li>
+          <strong>Memorial Day Weekend (late May):</strong> The unofficial
+          start of summer. Beaches open, the historic
+          <a href="/blog/memorial-day-watch-hill">Westerly-Pawcatuck Parade</a>
+          steps off Monday morning. Book by mid-April.
+        </li>
+        <li>
+          <strong>Fourth of July (early July):</strong> The busiest weekend of
+          the year. Watch Hill fireworks, Misquamicut beach scene, every
+          restaurant fully booked. Reserve hotels by March.
+        </li>
+        <li>
+          <strong>Labor Day Weekend (early September):</strong> The
+          locals-and-loyalists weekend. The town starts to exhale. Genuinely
+          one of the best weekends of the year if you can get a room.
+        </li>
+        <li>
+          <strong>Christmas at Ocean House (late December):</strong> Holiday
+          programming, the gingerbread display, holiday afternoon tea, formal
+          Christmas Eve dinner. A different kind of trip from summer Watch
+          Hill — and arguably more memorable.
+        </li>
+      </ul>
+    </section>
+
+    <!-- Affiliate stay block — placed deep in the article when intent has built -->
+    <section class="stay">
+      <div class="stay-inner">
+        <p class="s-tag">When You Know When to Book</p>
+        <h2>Lock In Your Stay</h2>
+        <p>
+          Rates and availability change weekly. The links below check
+          current pricing across Booking, Hotels.com, Expedia, and VRBO
+          through our aggregator partner — useful for comparing seasons.
+        </p>
+
+        <div class="s-grid">
+          <a class="s-card" href={affiliates.hotels.oceanHouse} rel="sponsored nofollow">
+            <p class="sc-tag">Year-Round</p>
+            <h3>Ocean House</h3>
+            <p>The only Watch Hill landmark hotel open in every season.</p>
+          </a>
+          <a class="s-card" href={affiliates.hotels.weekapaugInn} rel="sponsored nofollow">
+            <p class="sc-tag">April–December</p>
+            <h3>Weekapaug Inn</h3>
+            <p>Best for shoulder-season couples trips.</p>
+          </a>
+          <a class="s-card" href={affiliates.rentals.misquamicutVRBO} rel="sponsored nofollow">
+            <p class="sc-tag">Summer Rentals</p>
+            <h3>VRBO Misquamicut</h3>
+            <p>Beach houses for the full summer week.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+      <h2 class="section-h">Frequently Asked Questions</h2>
+      {
+        faqs.map((faq) => (
+          <details class="faq-item">
+            <summary>{faq.q}</summary>
+            <p>{faq.a}</p>
+          </details>
+        ))
+      }
+    </section>
+
+    <!-- Related -->
+    <section class="related">
+      <h2 class="section-h">Keep Planning</h2>
+      <div class="related-grid">
+        <a href="/blog/is-watch-hill-worth-visiting" class="related-card">
+          <p class="related-tag">Planning</p>
+          <h3>Is Watch Hill Worth Visiting?</h3>
+        </a>
+        <a href="/blog/where-to-stay-watch-hill" class="related-card">
+          <p class="related-tag">Hotels</p>
+          <h3>Where to Stay in Watch Hill</h3>
+        </a>
+        <a href="/blog/best-things-to-do-in-watch-hill-ri" class="related-card">
+          <p class="related-tag">Activities</p>
+          <h3>15 Best Things to Do in Watch Hill</h3>
+        </a>
+        <a href="/blog/memorial-day-watch-hill" class="related-card">
+          <p class="related-tag">Seasonal</p>
+          <h3>Memorial Day in Watch Hill &amp; Westerly</h3>
+        </a>
+      </div>
+    </section>
+  </article>
+
+  <style>
+    :root {
+      --ink: #1a1d24;
+      --ink-soft: #4a5061;
+      --ink-muted: #7a8195;
+      --paper: #fbf8f1;
+      --paper-warm: #f3ede0;
+      --line: #e5dfd0;
+      --accent: #2c5f5d;
+      --accent-deep: #1d3f3d;
+      --gold: #b8924a;
+      --rose: #b85a4a;
+      --font-display: "Fraunces", Georgia, serif;
+      --font-body: "Inter Tight", -apple-system, system-ui, sans-serif;
+    }
+
+    .article {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.7;
+      padding-bottom: 6rem;
+    }
+
+    .article *,
+    .article *::before,
+    .article *::after {
+      box-sizing: border-box;
+    }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(180deg, var(--paper-warm) 0%, var(--paper) 100%);
+      padding: 5rem 1.5rem 3rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .kicker {
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin: 0 0 1.5rem;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5.5vw, 4rem);
+      line-height: 1.04;
+      letter-spacing: -0.025em;
+      font-weight: 600;
+      margin: 0 0 1.5rem;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 1.2rem;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      margin: 0 0 2rem;
+      max-width: 620px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+    }
+
+    .dot {
+      color: var(--line);
+    }
+
+    /* ── VERDICT ──────────────────────────────────────── */
+    .verdict {
+      max-width: 760px;
+      margin: -1px auto 0;
+      padding: 2.5rem 1.5rem;
+      background: var(--accent);
+      color: var(--paper);
+    }
+
+    .v-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--paper-warm);
+      font-weight: 600;
+      margin: 0 0 0.75rem;
+      opacity: 0.85;
+    }
+
+    .v-text {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+      line-height: 1.4;
+      margin: 0;
+      letter-spacing: -0.01em;
+      font-weight: 400;
+    }
+
+    .v-text strong {
+      font-weight: 600;
+      color: white;
+    }
+
+    /* ── PROSE ────────────────────────────────────────── */
+    .prose {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    .lede {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .prose p {
+      margin: 0 0 1.25rem;
+      color: var(--ink);
+    }
+
+    .prose p:last-child {
+      margin-bottom: 0;
+    }
+
+    .prose strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .prose a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    .disclosure {
+      background: var(--paper-warm);
+      border-left: 3px solid var(--gold);
+      padding: 1rem 1.25rem;
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      border-radius: 0 4px 4px 0;
+      margin-top: 2rem;
+    }
+
+    .disclosure strong {
+      color: var(--ink);
+    }
+
+    /* ── SECTION HEADINGS ─────────────────────────────── */
+    .section-h {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+      margin: 0 0 1.5rem;
+    }
+
+    /* ── PRIORITY GRID ────────────────────────────────── */
+    .priority {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 4rem 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .p-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .p-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin: 0 0 0.75rem;
+    }
+
+    .priority h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.3rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+      margin: 0 0 2.5rem;
+      color: white;
+    }
+
+    .p-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .p-item {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid rgba(251, 248, 241, 0.15);
+    }
+
+    .p-item:last-child {
+      border-bottom: none;
+    }
+
+    .p-q {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--gold);
+      margin: 0 0 0.4rem;
+    }
+
+    .p-a {
+      font-size: 1rem;
+      color: rgba(251, 248, 241, 0.85);
+      margin: 0;
+      line-height: 1.55;
+    }
+
+    /* ── MONTHS ───────────────────────────────────────── */
+    .months {
+      max-width: 760px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .section-head {
+      margin-bottom: 3rem;
+    }
+
+    .section-head p {
+      color: var(--ink-soft);
+      margin: 0.5rem 0 0;
+    }
+
+    .month {
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .month:last-of-type {
+      border-bottom: none;
+    }
+
+    .m-head {
+      margin-bottom: 1.25rem;
+    }
+
+    .month h3 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+      margin: 0 0 0.25rem;
+    }
+
+    .m-season {
+      font-family: var(--font-display);
+      font-style: italic;
+      color: var(--ink-muted);
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .m-facts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem 1.5rem;
+      margin: 0 0 1.5rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--paper-warm);
+      border-radius: 4px;
+    }
+
+    .m-facts > div {
+      min-width: 0;
+    }
+
+    .m-facts dt {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      font-weight: 600;
+      margin: 0 0 0.2rem;
+    }
+
+    .m-facts dd {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--ink);
+      font-family: var(--font-display);
+      font-weight: 500;
+      letter-spacing: -0.005em;
+      line-height: 1.3;
+    }
+
+    .m-summary {
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: var(--ink);
+      margin: 0 0 1.5rem;
+    }
+
+    .m-status {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .m-status-col {
+      padding: 1rem 1.25rem;
+      border-radius: 0 4px 4px 0;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .m-status-col.open {
+      background: var(--paper-warm);
+      border-left: 3px solid var(--accent);
+    }
+
+    .m-status-col.closed {
+      background: var(--paper-warm);
+      border-left: 3px solid var(--rose);
+    }
+
+    .m-status-h {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin: 0 0 0.4rem;
+    }
+
+    .m-status-col.open .m-status-h {
+      color: var(--accent);
+    }
+
+    .m-status-col.closed .m-status-h {
+      color: var(--rose);
+    }
+
+    .m-status-col p:not(.m-status-h) {
+      margin: 0;
+      color: var(--ink-soft);
+    }
+
+    /* ── EVENTS CALENDAR ──────────────────────────────── */
+    .cal {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0;
+    }
+
+    .cal li {
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
+
+    .cal li:last-child {
+      border-bottom: none;
+    }
+
+    .cal strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* ── STAY BLOCK ───────────────────────────────────── */
+    .stay {
+      background: var(--paper-warm);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 4rem 1.5rem;
+      margin: 4rem 0;
+    }
+
+    .stay-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .s-tag {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin: 0 0 0.75rem;
+    }
+
+    .stay h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3vw, 2.3rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+      margin: 0 0 1rem;
+    }
+
+    .stay p {
+      max-width: 620px;
+      color: var(--ink-soft);
+      margin: 0 0 2.5rem;
+    }
+
+    .s-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .s-card {
+      background: white;
+      border: 1px solid var(--line);
+      padding: 1.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      color: var(--ink);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .s-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+    }
+
+    .sc-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin: 0 0 0.5rem;
+    }
+
+    .s-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      margin: 0 0 0.5rem;
+    }
+
+    .s-card p:not(.sc-tag) {
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* ── FAQ ──────────────────────────────────────────── */
+    .faq {
+      max-width: 760px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--line);
+      padding: 1.25rem 0;
+    }
+
+    .faq-item summary {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--ink);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      letter-spacing: -0.005em;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: "+";
+      font-size: 1.5rem;
+      color: var(--accent);
+      font-weight: 400;
+      flex-shrink: 0;
+    }
+
+    .faq-item[open] summary::after {
+      content: "−";
+    }
+
+    .faq-item p {
+      margin: 1rem 0 0;
+      color: var(--ink-soft);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /* ── RELATED ──────────────────────────────────────── */
+    .related {
+      max-width: 1080px;
+      margin: 4rem auto 0;
+      padding: 3rem 1.5rem 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .related-card {
+      display: block;
+      background: white;
+      border: 1px solid var(--line);
+      padding: 1.5rem;
+      text-decoration: none;
+      color: var(--ink);
+      border-radius: 4px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .related-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+
+    .related-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin: 0 0 0.75rem;
+    }
+
+    .related-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin: 0;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── MOBILE ───────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .hero {
+        padding: 3.5rem 1.25rem 2.5rem;
+      }
+
+      .verdict {
+        padding: 2rem 1.25rem;
+      }
+
+      .priority {
+        padding: 3rem 1.25rem;
+      }
+
+      .m-status {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</Base>

@@ -1,0 +1,110 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import AttractionPost from "../../components/AttractionPost.astro";
+
+const title = "How to Get to Watch Hill, RI from Boston, NYC, or Providence (2026)";
+const description = "Driving times, train options, parking tips, and the local's guide to actually getting to Watch Hill, Rhode Island from major Northeast cities.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "How to Get to Watch Hill, RI",
+};
+
+const props = {
+  kicker: "Trip Planning · Travel Logistics",
+  title: "Getting to ",
+  titleEm: "Watch Hill",
+  titleTail: ", Rhode Island",
+  subtitle: "Driving directions from Boston (1h 45m), NYC (2h 45m), and Providence (50 min), the Amtrak option from anywhere on the Northeast Corridor, airport choices, and the parking situation once you arrive.",
+  readingTime: "8 min read",
+  verdict: "<strong>Driving is the right answer for most visitors</strong> — Watch Hill village is small but the region around it is what you'll explore, and that requires a car. The exception: Amtrak's Northeast Regional stops at Westerly Station (10 minutes from Watch Hill), making the train a viable option from NYC or Boston with a rental car or taxi at arrival.",
+  quickFacts: [
+    { label: "From Boston", value: "1h 45m drive" },
+    { label: "From NYC", value: "2h 45m drive" },
+    { label: "From Providence", value: "50 min drive" },
+    { label: "From Hartford", value: "1h 15m drive" },
+    { label: "Nearest Amtrak station", value: "Westerly, RI (10 min)" },
+    { label: "Nearest airport", value: "T.F. Green Airport (PVD), 50 min" },
+  ],
+  introParagraphs: [
+    "Watch Hill is reasonably well-positioned for Northeast travelers but not directly served by any major airport, train station, or interstate exit. The nearest interstate (I-95) is about 8 minutes inland in Pawcatuck. The nearest Amtrak station (Westerly, on the Northeast Regional line) is 10 minutes north. The nearest airport (T.F. Green in Providence) is 50 minutes. None of these is exactly at Watch Hill — you'll need either a car or a short transfer at the end of whatever method you use to arrive.",
+    "What follows is the logistics of getting to Watch Hill from each major Northeast city, plus the train, the flight options, and how to handle the parking situation once you arrive. The short answer for most travelers is to drive; the longer answer covers the cases where the train or flight makes more sense.",
+  ],
+  tips: [
+    {
+      label: "From Boston (1h 45m)",
+      body: "Take I-95 south. Exit at Route 78 (Westerly), follow signs to Watch Hill via Route 1A. Allow extra time on summer Friday evenings — I-95 south of Boston backs up consistently from 3 PM onward. The drive is straightforward and unremarkable; budget closer to 2.5 hours on summer weekends with traffic.",
+    },
+    {
+      label: "From NYC (2h 45m)",
+      body: "Take I-95 north to Route 78 east (Westerly). The drive is 2.5–3 hours without traffic, longer on summer weekends. The worst sections are typically I-95 across the Bronx and through New Haven. Leaving NYC by 9 AM weekday or 8 AM weekend gives you the best chance of avoiding the bottlenecks. <strong>Train alternative:</strong> Amtrak Northeast Regional to Westerly Station is 3 hours from Penn Station — comparable time, and you avoid the driving entirely.",
+    },
+    {
+      label: "From Providence (50 min)",
+      body: "Straightforward drive south on I-95 to Route 78 (Westerly), or take coastal Route 1 for a more scenic but slightly longer drive. From Providence's T.F. Green Airport (PVD), it's 50–55 minutes — making PVD the most practical airport for Watch Hill visitors flying in. Rental cars at PVD are plentiful and reasonably priced.",
+    },
+    {
+      label: "From Hartford (1h 15m)",
+      body: "Hartford-area travelers should take I-95 east to Route 78. Bradley International Airport (BDL) is about 1h 30m from Watch Hill — slightly longer than PVD but worth considering if Bradley flights work better for your origin.",
+    },
+    {
+      label: "Amtrak to Westerly Station",
+      body: "The Northeast Regional runs multiple daily trains stopping at Westerly Station. The station is 10 minutes from Watch Hill by car or taxi (about $20 cab ride). Train timing from major cities: <strong>NYC Penn Station:</strong> ~3 hours, $50–$100 each way. <strong>Boston South Station:</strong> ~2.5 hours, $50–$100 each way. <strong>Washington DC:</strong> ~6 hours, more expensive. The train is a real option from NYC or DC — saves the worst of the driving and lets you read or work en route. From the station, you can rent a car at Westerly Auto Rental, take a taxi to Watch Hill (Uber/Lyft work but are sparse), or arrange a hotel pickup if you're staying at one of the landmark properties.",
+    },
+    {
+      label: "Airports",
+      body: "<strong>T.F. Green Airport (PVD)</strong> is the closest major airport, 50 minutes north of Watch Hill in Warwick, RI. Direct flights from major US cities; smaller hub than Boston or NYC airports but generally smoother. <strong>Bradley International (BDL)</strong> in Hartford is 1h 30m away, with more flight options from some origins. <strong>Logan (Boston)</strong> is 2h 15m away — works if other options are limited but it's a long airport-to-Watch-Hill drive. <strong>New York airports</strong> (JFK, LGA, EWR) are all 3+ hours; usually not worth it unless flying internationally.",
+    },
+    {
+      label: "Parking in the village",
+      body: "Watch Hill village has limited parking — Bay Street is metered (typically 2-hour limit, enforced) and a small public lot at the foot of the village fills by mid-morning on summer weekends. <strong>Hotel guests:</strong> Use your property's valet or designated lot. <strong>Day visitors in summer:</strong> Arrive before 10 AM for any chance at street parking, or park at Misquamicut State Beach ($20–$30) and walk west into the village. <strong>Off-season:</strong> Parking is genuinely easy from October through April.",
+    },
+    {
+      label: "Once you're in the area",
+      body: "If you're staying multiple days, you'll need a car for day trips (Mystic 20 min west, Newport 1 hour east, Block Island ferry at Point Judith 35 min east, beaches 5–20 min east). Walk Watch Hill village itself; drive for everything else. Public transit between southern Rhode Island towns is essentially nonexistent — plan to drive.",
+    },
+  ],
+  faqs: [
+    {
+      q: "How do you get to Watch Hill, RI?",
+      a: "Most visitors drive — Watch Hill is about 8 minutes off I-95 in southern Rhode Island. From Boston: 1h 45m on I-95 south. From NYC: 2h 45m on I-95 north. From Providence: 50 minutes south on I-95. Amtrak's Northeast Regional stops at Westerly Station (10 minutes north of Watch Hill) — a viable option from NYC, Boston, or DC.",
+    },
+    {
+      q: "What's the nearest airport to Watch Hill?",
+      a: "T.F. Green Airport (PVD) in Warwick, RI is 50 minutes away — the most practical airport for Watch Hill visitors. Bradley International (BDL) in Hartford is 1h 30m. Logan (BOS) is 2h 15m. New York airports are 3+ hours.",
+    },
+    {
+      q: "Can you take the train to Watch Hill?",
+      a: "The closest Amtrak station is Westerly, RI, 10 minutes north of Watch Hill by car. The Northeast Regional runs multiple daily trains from NYC Penn Station (~3 hours), Boston South Station (~2.5 hours), and other Northeast Corridor cities. From the station, you'll need a taxi or rental car to reach Watch Hill itself.",
+    },
+    {
+      q: "How long does it take to drive from NYC to Watch Hill?",
+      a: "About 2h 45m without traffic, longer on summer weekends. Take I-95 north to Route 78 east (Westerly). The most reliable timing is leaving NYC by 9 AM on weekdays or 8 AM on weekends to avoid the worst I-95 bottlenecks.",
+    },
+    {
+      q: "Where do you park in Watch Hill?",
+      a: "Hotel guests use their property's valet or designated parking. Day visitors: Bay Street has metered 2-hour parking (enforced), a small public lot at the foot of the village fills early in summer. Arrive before 10 AM for parking on a summer weekend, or park at Misquamicut State Beach ($20–$30) and walk into the village. Off-season parking is easy.",
+    },
+    {
+      q: "Do you need a car in Watch Hill?",
+      a: "For day trips around the region, yes. For Watch Hill village itself, no — you can walk everywhere within the village. If you're staying multiple days and planning to visit Mystic, Newport, Block Island, or any of the surrounding beaches, a car is essential. Public transit between southern Rhode Island towns is effectively nonexistent.",
+    },
+  ],
+  related: [
+    { href: "/blog/is-watch-hill-worth-visiting", tag: "Planning", title: "Is Watch Hill Worth Visiting?" },
+    { href: "/blog/best-time-to-visit-watch-hill", tag: "Planning", title: "Best Time to Visit Watch Hill" },
+    { href: "/blog/where-to-stay-watch-hill", tag: "Hotels", title: "Where to Stay in Watch Hill" },
+    { href: "/blog/how-many-days-watch-hill", tag: "Planning", title: "How Many Days Do You Need?" },
+  ],
+};
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Nav />
+  <main>
+    <AttractionPost {...props} />
+  </main>
+</Base>

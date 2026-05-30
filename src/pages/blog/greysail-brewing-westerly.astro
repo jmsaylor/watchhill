@@ -1,0 +1,107 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import AttractionPost from "../../components/AttractionPost.astro";
+
+const title = "GreySail Brewing of Rhode Island: A Westerly Brewery Guide (2026)";
+const description = "GreySail Brewing in Westerly, RI — the historic macaroni-factory taproom, the flagship cream ale, food trucks, hours, and the local's guide to Westerly's anchor craft brewery.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Brewery",
+  name: "GreySail Brewing of Rhode Island",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "63 Canal Street",
+    addressLocality: "Westerly",
+    addressRegion: "RI",
+    postalCode: "02891",
+    addressCountry: "US",
+  },
+};
+
+const props = {
+  kicker: "Brewery · Downtown Westerly",
+  title: "An Afternoon at ",
+  titleEm: "GreySail Brewing",
+  titleTail: "",
+  subtitle: "A craft brewery in a converted macaroni factory on Canal Street, downtown Westerly — launched its flagship cream ale on 11-11-11 and has been the anchor of the area's craft beer scene ever since. Eight minutes from Watch Hill, food trucks on weekends, dog-friendly outdoor seating.",
+  readingTime: "5 min read",
+  verdict: "<strong>The defining Westerly craft brewery.</strong> Taproom hours vary by day (typically afternoons through evening, Thursday through Sunday). Family- and dog-friendly. Free parking on Canal Street. Food trucks rotate in on weekends. Eight-minute drive from Watch Hill village.",
+  quickFacts: [
+    { label: "Founded", value: "11-11-11 (Nov 11, 2011)" },
+    { label: "Location", value: "63 Canal Street, Westerly" },
+    { label: "Building", value: "Former macaroni factory" },
+    { label: "Distance from Watch Hill", value: "8 min / 4 miles" },
+    { label: "Flagship beer", value: "Flagship Cream Ale" },
+    { label: "Dog-friendly", value: "Yes, outdoor area" },
+  ],
+  introParagraphs: [
+    "GreySail Brewing sits in a 19th-century macaroni factory on Canal Street in downtown Westerly — a brick building with high windows, exposed beams, and a small canal running past it that gave the street its name. The brewery launched on November 11, 2011 — 11-11-11, intentionally — with the Flagship Cream Ale, and has been operating continuously since.",
+    "It's the anchor of the Westerly craft beer scene in a way that's hard to overstate. Before GreySail there wasn't really a craft beer scene in southern Rhode Island. After GreySail, downtown Westerly added a wine bar, several restaurants with serious beer programs, and a sister taproom presence in the surrounding area. Most of the better restaurants in Watch Hill and Westerly carry GreySail on tap. Most of the local beer drinkers have a strong opinion about which GreySail is their favorite.",
+    "The taproom itself is modest by craft-brewery standards — a long bar, high tables, a small outdoor patio for warm-weather drinking. The vibe is friendly, lived-in, and unmistakably Westerly. On a typical Saturday afternoon it's a mix of locals, weekenders from Watch Hill, and craft-beer travelers making the pilgrimage from Boston, Providence, or New York.",
+  ],
+  tips: [
+    {
+      label: "What to drink",
+      body: "<strong>Flagship Cream Ale</strong> is the entry point — light, balanced, the beer that launched the brewery. <strong>Captain's Daughter Double IPA</strong> is the hop-forward favorite — assertive but well-built, around 8.5% ABV, the most-cited GreySail by serious beer drinkers. <strong>Hazy IPAs</strong> rotate regularly. <strong>Seasonals</strong> change throughout the year — fall pumpkin and winter porter releases are local events. If you can't decide, order a flight (typically 4 small pours for around $12).",
+    },
+    {
+      label: "Hours and what to check first",
+      body: "GreySail's hours rotate seasonally and shift around private events. Generally open Thursday–Sunday afternoons through evening, with reduced or no hours Monday–Wednesday. <strong>Check their event calendar before going on a weeknight</strong> — they close to the public sometimes for private functions. Saturday afternoons in summer are the most reliable time to visit; Sundays are quieter and pleasant.",
+    },
+    {
+      label: "Food trucks",
+      body: "GreySail doesn't have its own kitchen — they bring in food trucks on Friday and Saturday evenings, and occasionally for Sunday brunch service. The truck lineup rotates; check their social media for the current weekend's schedule. If no food truck is present, you can bring your own food (pizza from a local spot, takeout from the Cooked Goose, etc.) — most regulars do exactly this.",
+    },
+    {
+      label: "Dog-friendly outdoor area",
+      body: "GreySail's outdoor patio is dog-friendly and is one of the more reliably dog-welcoming spots in Westerly. Bring a leash. The patio has water bowls and the regulars are friendly to other people's dogs. In warm months this is the better seating area anyway — more relaxed than the taproom.",
+    },
+    {
+      label: "How to pair with the rest of your day",
+      body: "GreySail combines well with several Watch Hill / Westerly afternoons. <strong>Beach day pairing:</strong> beach in the morning, GreySail in the late afternoon to decompress. <strong>Day trip pairing:</strong> after a Mystic or Foxwoods day, swing through Westerly for GreySail before heading back to Watch Hill. <strong>Rainy day pairing:</strong> Mystic Aquarium in the morning, GreySail in the afternoon. <strong>Solo evening:</strong> GreySail + Bridge Restaurant downtown is the locals' Friday night.",
+    },
+  ],
+  faqs: [
+    {
+      q: "How far is GreySail Brewing from Watch Hill?",
+      a: "About 4 miles or 8 minutes by car. From Watch Hill village, drive north through Pawcatuck into downtown Westerly. GreySail is at 63 Canal Street, right downtown, with free street parking nearby.",
+    },
+    {
+      q: "What are GreySail's hours?",
+      a: "Hours rotate seasonally. Generally Thursday through Sunday in the afternoon and evening, with reduced or no hours Monday through Wednesday. Always check their event calendar before visiting on a weekday, as they sometimes close to the public for private events.",
+    },
+    {
+      q: "Does GreySail have food?",
+      a: "Not their own kitchen — they bring in food trucks on Friday and Saturday evenings, and sometimes for Sunday brunch. You can bring your own food in if no truck is present, which is what most regulars do. Many local restaurants will package takeout for a brewery visit.",
+    },
+    {
+      q: "What's GreySail's best beer?",
+      a: "The Flagship Cream Ale is the iconic beer — light, balanced, the launch product from 2011. Captain's Daughter Double IPA is the most-cited GreySail among serious craft beer drinkers — hop-forward, around 8.5% ABV. The rotating hazy IPAs and seasonal releases are also worth ordering when fresh.",
+    },
+    {
+      q: "Is GreySail dog-friendly?",
+      a: "Yes — the outdoor patio welcomes dogs on leash. Water bowls are typically available. The indoor taproom is generally not dog-allowed except in colder months when the patio is closed.",
+    },
+    {
+      q: "When did GreySail Brewing open?",
+      a: "November 11, 2011 — 11-11-11, intentionally chosen. The brewery launched in the converted Bradford Mill macaroni factory on Canal Street in downtown Westerly and has been operating continuously since.",
+    },
+  ],
+  related: [
+    { href: "/blog/best-restaurants-watch-hill", tag: "Food Guide", title: "15 Best Restaurants in Watch Hill" },
+    { href: "/blog/watch-hill-bars", tag: "Nightlife", title: "Best Bars in Watch Hill & Westerly" },
+    { href: "/blog/best-things-to-do-in-watch-hill-ri", tag: "Activities", title: "15 Best Things to Do in Watch Hill" },
+    { href: "/blog/where-to-stay-watch-hill", tag: "Stay Local", title: "Where to Stay in Watch Hill" },
+  ],
+};
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Nav />
+  <main>
+    <AttractionPost {...props} />
+  </main>
+</Base>

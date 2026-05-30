@@ -1,0 +1,105 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import AttractionPost from "../../components/AttractionPost.astro";
+
+const title = "Mystic Aquarium: A Visitor's Guide from Watch Hill (2026)";
+const description = "Tickets, hours, beluga whales, the best time to visit, and the local's guide to Mystic Aquarium — 20 minutes west of Watch Hill in Mystic, Connecticut.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  name: "Mystic Aquarium",
+  description: "Major aquarium in Mystic, Connecticut, known for beluga whales, sea lions, and African penguins.",
+  address: { "@type": "PostalAddress", addressLocality: "Mystic", addressRegion: "CT", addressCountry: "US" },
+};
+
+const props = {
+  kicker: "Attraction · 20 Minutes West of Watch Hill",
+  title: "A Visit to ",
+  titleEm: "Mystic Aquarium",
+  titleTail: "",
+  subtitle: "One of the best aquariums in the Northeast — beluga whales, sea lions, African penguins, an active marine animal rescue clinic since 1975, and the single best rainy-day activity within an hour of Watch Hill. Twenty minutes west in Mystic, Connecticut.",
+  readingTime: "6 min read",
+  verdict: "<strong>The best rainy-day plan within an hour of Watch Hill.</strong> Allow 2–4 hours. <strong>Tickets ~$45 adult / $35 child in 2026</strong> — buy the Mystic Pass for a combined discount with Mystic Seaport. The belugas are the headline attraction; the African penguins exhibit is the under-the-radar highlight. Open year-round with reduced winter hours.",
+  quickFacts: [
+    { label: "Distance from Watch Hill", value: "20 min / 13 miles" },
+    { label: "Adult admission", value: "~$45 in 2026" },
+    { label: "Child admission (3–17)", value: "~$35" },
+    { label: "Plan for", value: "2–4 hours minimum" },
+    { label: "Headline exhibits", value: "Belugas, sea lions, penguins" },
+    { label: "Open", value: "Year-round, reduced winter hours" },
+  ],
+  introParagraphs: [
+    "Mystic Aquarium is the kind of attraction that exceeds visitor expectations consistently — most travelers arrive expecting a competent regional aquarium and leave having had a better experience than they planned. The headline draws are the beluga whales (one of the few aquariums in North America with belugas in residence), the California sea lions, and the African penguin colony. The aquarium has been operating as a marine animal rescue and rehabilitation clinic since 1975, which gives the educational programming real weight — animals on display are often rescues, and the work happening behind the scenes is genuinely consequential.",
+    "From Watch Hill, the Mystic Aquarium is the closest serious attraction with year-round indoor exhibits. That makes it the default rainy-day plan for almost every Watch Hill itinerary that includes one. Twenty minutes west on Route 1 and then Route 27, with on-site free parking — about as easy as day-trip logistics get.",
+    "The aquarium is part of the larger Mystic ecosystem of attractions. Mystic Seaport Museum is 5 minutes away. Olde Mistick Village (50+ specialty shops) is on the same parking lot. Downtown Mystic with the famous drawbridge is also 5 minutes away. Most day-trippers combine the aquarium with at least one of these into a full day.",
+  ],
+  tips: [
+    {
+      label: "Buy the Mystic Pass for both attractions",
+      body: "If you're doing both Mystic Aquarium and Mystic Seaport in the same trip (and most day-trippers do), buy the Mystic Pass online in advance. It combines admission to both at a meaningful discount versus paying separately. Visits don't need to be on the same day, though same-day is most common. Available at mystic.org.",
+    },
+    {
+      label: "Best time to visit",
+      body: "<strong>Weekday mornings</strong> have the lightest crowds, especially before 11 AM. <strong>Weekend afternoons in summer</strong> are the worst — long lines at the gates, crowded exhibits, parking lots full. <strong>Rainy days year-round</strong> are paradoxically the busiest the aquarium gets because everyone in the region has the same idea. If you can plan around weather forecasts, sunny weekday morning is the optimal slot.",
+    },
+    {
+      label: "The headline exhibits to prioritize",
+      body: "<strong>Beluga whales</strong> are the most photographed and most-loved residents. There are several pools — visit the underwater viewing area first, then the surface pool. Feeding times are posted at the entrance; align your visit with one. <strong>California sea lions</strong> have their own outdoor exhibit with daily shows. <strong>African penguins</strong> are the under-the-radar highlight — small colony, charming, often less crowded than the belugas. <strong>The ray touch pool</strong> is the best interactive exhibit for kids.",
+    },
+    {
+      label: "Don't skip the conservation programming",
+      body: "Mystic Aquarium operates one of the most active marine animal rescue and rehabilitation clinics on the East Coast. The exhibits throughout the building include information on the conservation work, current rescue cases, and broader marine biology research. If you've got an interested kid (or adult), allow time to actually read the displays — the conservation focus is what differentiates this aquarium from a tourist attraction.",
+    },
+    {
+      label: "What's worth skipping",
+      body: "The 4D theater experience and some of the optional add-ons can be skipped without losing much. The core aquarium experience is the live exhibits — the supplementary digital content is fine but not essential. If you're working through a busy day, prioritize seeing the live animals over the films.",
+    },
+    {
+      label: "Pair with Mystic Seaport or downtown",
+      body: "<strong>Full day plan:</strong> Aquarium morning (open–noon) → lunch in downtown Mystic → Mystic Seaport afternoon (1–4 PM) → dinner in Mystic or back to Watch Hill. <strong>Half day plan:</strong> Aquarium 10 AM–1 PM, lunch in downtown Mystic, head back. The aquarium alone is 2–4 hours; combined with the Seaport you've got a full 8–9 hour day.",
+    },
+  ],
+  faqs: [
+    {
+      q: "How much does Mystic Aquarium cost in 2026?",
+      a: "Adult admission is approximately $45; child (3–17) is approximately $35; children under 3 are free. The Mystic Pass combines aquarium admission with Mystic Seaport at a discount. Senior and military discounts available. Online pre-purchase often saves a few dollars and skips the ticket line.",
+    },
+    {
+      q: "How long do you need at Mystic Aquarium?",
+      a: "2–4 hours is the right range. 2 hours covers the headline exhibits (belugas, sea lions, penguins, indoor exhibits). 4 hours allows for the daily shows, feedings, and a more relaxed pace through everything. Families with young kids often spend the full 4 hours.",
+    },
+    {
+      q: "Is Mystic Aquarium worth visiting?",
+      a: "Yes, especially with kids or on a rainy day. The beluga whale exhibit is genuinely impressive — one of the few aquariums in North America with belugas in residence. The marine animal rescue and rehabilitation work since 1975 gives the educational programming meaningful weight. It's the best rainy-day plan within an hour of Watch Hill.",
+    },
+    {
+      q: "What's the difference between Mystic Aquarium and Mystic Seaport?",
+      a: "Two completely different attractions. Mystic Aquarium is a marine science and animal rescue facility with live animal exhibits — best for kids and most rainy-day visits. Mystic Seaport Museum is the largest maritime museum in the U.S., with a recreated 19th-century seafaring village, working shipyard, and historic vessels you can board. Both are excellent; many day-trippers do both with the combined Mystic Pass.",
+    },
+    {
+      q: "Is parking free at Mystic Aquarium?",
+      a: "Yes — free on-site parking. Multiple lots adjacent to the aquarium entrance. Arrive early in summer to get the closer spots; overflow lots are slightly farther but always available.",
+    },
+    {
+      q: "Is Mystic Aquarium open year-round?",
+      a: "Yes, with reduced winter hours. Generally open daily 10 AM–5 PM in summer (with extended weekend hours), and 10 AM–4 PM in winter. Closed Thanksgiving and Christmas Day. Check the official site before visiting in shoulder season.",
+    },
+  ],
+  related: [
+    { href: "/blog/mystic-day-trip", tag: "Full Day Plan", title: "A Perfect Day in Mystic, CT" },
+    { href: "/blog/day-trips-from-watch-hill", tag: "All Day Trips", title: "10 Best Day Trips from Watch Hill" },
+    { href: "/blog/watch-hill-rainy-day", tag: "Rainy Day", title: "What to Do on a Rainy Day in Watch Hill" },
+    { href: "/blog/watch-hill-with-kids", tag: "Family", title: "Visiting Watch Hill with Kids" },
+  ],
+};
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Nav />
+  <main>
+    <AttractionPost {...props} />
+  </main>
+</Base>

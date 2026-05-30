@@ -1,0 +1,118 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import AttractionPost from "../../components/AttractionPost.astro";
+
+const title = "10 Free Things to Do in Watch Hill, RI (2026 Local's Guide)";
+const description = "Sunsets at the lighthouse, Bay Street strolls, Napatree hikes, and the best Watch Hill experiences that cost nothing — a local's guide to free Watch Hill.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "10 Free Things to Do in Watch Hill, RI",
+};
+
+const props = {
+  kicker: "Activities · Budget-Friendly",
+  title: "10 ",
+  titleEm: "Free Things",
+  titleTail: " to Do in Watch Hill",
+  subtitle: "Watch Hill has a reputation for being expensive — and the hotels and restaurants live up to it. But the actual experiences that define the village are mostly free: sunsets, beach walks, historic strolls, the lighthouse, the bluffs. Here are the best of them.",
+  readingTime: "8 min read",
+  verdict: "<strong>The best of Watch Hill is genuinely free.</strong> Sunset at the lighthouse, the Napatree Point hike, beach walks along East Beach, watching the carousel from outside, the historic district walking tour — these are the experiences that locals do constantly and tourists often miss. Bring shoes you can walk in.",
+  quickFacts: [
+    { label: "Lighthouse grounds", value: "Free, 8 AM–sunset, year-round" },
+    { label: "Napatree Point", value: "Free, 24/7, year-round" },
+    { label: "Bay Street strolling", value: "Free, always" },
+    { label: "East Beach walks", value: "Free (walk-in from Misquamicut)" },
+    { label: "Historic District tour", value: "Free, self-guided" },
+    { label: "Watching the carousel", value: "Free from the sidewalk" },
+  ],
+  introParagraphs: [
+    "Watch Hill costs what it costs to stay and eat in — that's not changing. But the actual things to <em>do</em> in Watch Hill are almost all free. The village is small, the natural assets are unfenced, and the historic landmarks don't charge admission. A budget visitor who skips the luxury overlay can experience nearly the same Watch Hill that the Ocean House guests experience, with the only meaningful difference being where you sleep and where you have dinner.",
+    "What follows is the ranked list of free Watch Hill experiences — ten of them, ordered roughly by how much they define the village's character. Most of these are also what locals do regularly, which is the best test of whether something is genuinely worth doing.",
+  ],
+  tips: [
+    {
+      label: "01 · Sunset at Watch Hill Lighthouse",
+      body: "The single best free thing to do in Watch Hill. Walk up Lighthouse Road from the village (about 10 minutes uphill), arrive 30 minutes before sunset, sit on the grass below the lighthouse, watch the sun drop into Long Island Sound. The bluff faces directly into the sunset; on clear evenings you can see Fishers Island, Block Island, and Montauk on the horizon. Free, open daily 8 AM to sunset, year-round. Most locals do this regularly.",
+    },
+    {
+      label: "02 · The Napatree Point hike",
+      body: "An 86-acre conservation area extending 1.3 miles west from Watch Hill village as a barrier peninsula between Little Narragansett Bay and the open Atlantic. Trail is 3.1 miles for the full loop, takes about 1 hour. The WWI Fort Mansfield ruins at the western tip are partially buried in sand and free to explore. Globally Important Bird Area — bring binoculars in spring and fall migration. Open 24/7, year-round, no entrance fee.",
+    },
+    {
+      label: "03 · Bay Street strolling",
+      body: "The two-block heart of Watch Hill village along Bay Street is free to walk and visually rich — preserved Victorian-era resort architecture, the harbor with its yachts, the carousel pavilion, St. Clair Annex's sidewalk windows, and the small shops. A 20-minute walk end-to-end with stops. Late afternoon golden-hour light along Bay Street is the photographable Watch Hill that ends up on Instagram.",
+    },
+    {
+      label: "04 · The historic district walking tour",
+      body: "The Watch Hill Historic District is on the National Register of Historic Places — over 100 buildings, mostly Victorian-era resort homes, in a tight grid above the village. A self-guided walking tour following Bluff Avenue, Wells Avenue, and the side streets takes about 90 minutes. Many homes have small interpretive plaques. The Holiday House — Taylor Swift's mansion — is on Bluff Avenue but please respect the property and don't linger.",
+    },
+    {
+      label: "05 · Watching the Flying Horse Carousel from outside",
+      body: "Only kids under 12 and under 5 feet can ride the Flying Horse Carousel, but anyone can stand on the sidewalk and watch the horses literally fly outward as the ride spins up to speed. It's a free 5-minute show that's been running since 1879. Best from the benches across the street, with an ice cream from St. Clair Annex next door — those have a cost, but the watching is free.",
+    },
+    {
+      label: "06 · East Beach walks (walk-in from Misquamicut)",
+      body: "If you park at Misquamicut State Beach ($20-$30 for the lot), you can walk west along the shoreline into Watch Hill's East Beach for free. The walk takes about 20 minutes to reach the genuinely quiet section. Total distance from Misquamicut to the Watch Hill village end of East Beach is about 2 miles. Continue west and you connect to Napatree Point. Endless free shoreline.",
+    },
+    {
+      label: "07 · Watching the harbor",
+      body: "Watch Hill's harbor sits at the base of Bay Street, home to working fishing boats and the Watch Hill Yacht Club. Sitting on the benches at the end of Bay Street watching the boats come and go, especially in late afternoon when the working boats return, is a quietly excellent free pastime. Adds a half hour to any Bay Street visit.",
+    },
+    {
+      label: "08 · Sundown drinks-in-hand on the verandah at Ocean House",
+      body: "<strong>The trick:</strong> non-hotel guests are welcome to dine at Ocean House's Verandah, which means you can buy one drink at sunset and use the property's most photographable seating area for the price of a cocktail. Smart-casual minimum — no flip-flops, no swimwear. Not technically free, but the closest you'll get to experiencing Ocean House without paying for a room. About $18 for a cocktail.",
+    },
+    {
+      label: "09 · Watching airplane traffic to Block Island",
+      body: "New England Airlines flies small 8-seater planes from Westerly State Airport to Block Island every two hours in season. From Napatree Point or East Beach, you can watch them come and go. Genuinely entertaining for kids who like planes. Free, requires only that you're at the beach at the right times (planes typically leave Westerly heading southwest in mid-morning and return early afternoon).",
+    },
+    {
+      label: "10 · Off-season Bay Street",
+      body: "The most under-rated free Watch Hill experience is the village in the off-season — November through April. Bay Street is mostly closed for the season, the crowds are gone entirely, the village feels like the small residential place it actually is. You can park anywhere, walk anywhere, photograph anything. Many locals consider winter Watch Hill to be the best Watch Hill. Bring layers.",
+    },
+  ],
+  faqs: [
+    {
+      q: "What is the best free thing to do in Watch Hill?",
+      a: "Sunset at Watch Hill Lighthouse, easily. Walk up Lighthouse Road from the village, arrive 30 minutes before sunset, sit on the grass below the granite tower, watch the sun drop into Long Island Sound. Free, year-round, 8 AM to sunset. This is what locals do regularly and what most visitors miss.",
+    },
+    {
+      q: "Is Napatree Point free?",
+      a: "Yes — the 86-acre Napatree Point Conservation Area is free, open 24/7, year-round. The catch is parking — there's no designated parking at Napatree, so you'll need to park in the Watch Hill village (street parking on Bay Street or the small village lot) and walk in. Alternative: park at Misquamicut State Beach and walk west along the shoreline.",
+    },
+    {
+      q: "Can you visit Watch Hill on a budget?",
+      a: "Yes, if you stay outside the village. The actual activities in Watch Hill are mostly free (the lighthouse, Napatree, beaches, historic walks). The expensive parts are lodging and luxury dining. Stay in Westerly or Misquamicut at much lower rates, drive into Watch Hill for the day, eat at affordable spots (Cooked Goose, Bridge Restaurant, St. Clair Annex), and you can do Watch Hill on a reasonable budget.",
+    },
+    {
+      q: "Is there free parking in Watch Hill?",
+      a: "Limited. Bay Street has some metered parking. There's a small public lot at the foot of the village. Both fill quickly in summer. The free alternative most locals recommend: park at Misquamicut State Beach (paid in season) and walk or bike west, or park along Watch Hill Road outside the village center and walk in.",
+    },
+    {
+      q: "Can you visit Watch Hill Lighthouse for free?",
+      a: "Yes — the lighthouse grounds are open daily from 8 AM to sunset year-round, with no entrance fee. You walk up Lighthouse Road from the village (about 10 minutes uphill). The small museum next to the tower charges a modest admission ($5–$10) and is only open Tuesdays, Wednesdays, and Thursdays from 1–3 PM, July through Labor Day. The tower itself is closed to the public.",
+    },
+    {
+      q: "What can you do for free in Watch Hill in winter?",
+      a: "Almost all of the free activities are still available — the lighthouse grounds, Napatree Point, the beach walks, the historic district tour, the harbor view. The village shops and restaurants close from November through April, but the natural and historic assets are free year-round. Winter Watch Hill is genuinely beautiful and almost completely empty.",
+    },
+  ],
+  related: [
+    { href: "/blog/best-things-to-do-in-watch-hill-ri", tag: "Activities", title: "15 Best Things to Do in Watch Hill" },
+    { href: "/blog/watch-hill-budget-guide", tag: "Budget", title: "How Much Does a Watch Hill Trip Cost?" },
+    { href: "/blog/watch-hill-lighthouse", tag: "Free Activity", title: "Watch Hill Lighthouse Guide" },
+    { href: "/blog/napatree-point-guide", tag: "Free Hike", title: "Hiking Napatree Point" },
+  ],
+};
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Nav />
+  <main>
+    <AttractionPost {...props} />
+  </main>
+</Base>

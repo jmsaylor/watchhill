@@ -1,0 +1,956 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import { affiliates } from "../../data/affiliates";
+
+const title =
+  "10 Best Day Trips from Watch Hill, RI (2026 Local's Guide)";
+const description =
+  "A local's ranked guide to the best day trips from Watch Hill, Rhode Island — Mystic, Stonington, Newport, Block Island, the Connecticut casinos, and the hidden corners of the southern New England coast worth your time.";
+const publishDate = "2026-05-24";
+const updatedDate = "2026-05-24";
+const readingTime = "11 min read";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description: description,
+  datePublished: publishDate,
+  dateModified: updatedDate,
+  author: {
+    "@type": "Organization",
+    name: "Watch Hill Guide",
+  },
+  about: {
+    "@type": "Place",
+    name: "Watch Hill",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Westerly",
+      addressRegion: "RI",
+      addressCountry: "US",
+    },
+  },
+};
+
+// 10 destinations ranked by a combination of distance, payoff, and how
+// often locals actually go. Closest-and-best at the top.
+const trips = [
+  {
+    n: 1,
+    name: "Mystic, Connecticut",
+    drive: "20 min west",
+    summary:
+      "The default Watch Hill day trip and for good reason. Mystic is partly in Stonington, partly in Groton, and entirely worth a full day. The Mystic Seaport Museum recreates a 19th-century whaling village with active shipwrights and historic vessels you can board. The Mystic Aquarium is one of the best in the Northeast — particularly for kids — with beluga whales, sea lions, and an actual Steller sea lion exhibit. Downtown Mystic has its own walkable charm with restaurants, galleries, and the iconic counterweighted drawbridge.",
+    do: [
+      "Mystic Seaport Museum (~$32 adult, half a day minimum)",
+      "Mystic Aquarium (~$45 adult, 3–4 hours with kids)",
+      "Walk the historic downtown and watch the drawbridge open",
+      "Dinner on Main Street — Bravo Bravo or Engine Room",
+    ],
+    insider:
+      "If you have one day for both Watch Hill and Mystic: Watch Hill in the morning, drive to Mystic for lunch, hit the Seaport in the afternoon, dinner downtown, back to Westerly by 9 PM. Avoid Saturday in July — parking is genuinely difficult.",
+    booking: {
+      label: "Mystic Aquarium tickets",
+      url: affiliates.tours.mysticAquarium,
+    },
+  },
+  {
+    n: 2,
+    name: "Stonington Borough, Connecticut",
+    drive: "15 min west",
+    summary:
+      "What Watch Hill might look like with even fewer tourists. A perfectly preserved 18th-century fishing village on a narrow peninsula, with a tight grid of historic homes, a working commercial fishing fleet, and a lighthouse museum at the southern tip. Two hours is enough to walk it end-to-end. Add a long lunch on Water Street and it's a half-day.",
+    do: [
+      "Old Lighthouse Museum (~$8 adult, 30 minutes)",
+      "Walk Water Street and Cannon Square",
+      "Stonington Vineyards — 10 minutes inland, tastings on the lawn",
+      "Lunch at Dog Watch Café or Breakwater",
+    ],
+    insider:
+      "Park at the Velvet Mill on Bayview Avenue (free) and walk in. Borough parking is metered and frustrating. Combine with Mystic for a full day — they're 10 minutes apart and totally different in feel.",
+    booking: null,
+  },
+  {
+    n: 3,
+    name: "Block Island",
+    drive: "Ferry from Pawcatuck",
+    summary:
+      "A small island off the coast of Rhode Island, accessible by ferry from Pawcatuck (the high-speed Block Island Ferry from Westerly's Pawcatuck ferry terminal cuts the trip to about 30 minutes one-way). Block Island is biking territory — rent bikes off the ferry and you can see the whole island in a day. Mohegan Bluffs is the headline attraction: 200-foot clay cliffs with a long staircase down to the beach. The Southeast Lighthouse sits at the top.",
+    do: [
+      "Rent bikes at the ferry terminal on Block Island",
+      "Mohegan Bluffs and the Southeast Lighthouse",
+      "Lunch at The Oar (American with a serious sushi menu)",
+      "Crescent Beach for the afternoon",
+      "Catch the late-afternoon ferry back",
+    ],
+    insider:
+      "Buy ferry tickets in advance for summer weekends — they sell out. The high-speed ferry takes ~30 min; the traditional ferry from Point Judith takes 55 min but allows cars. For a day trip you don't need a car on the island.",
+    booking: {
+      label: "Block Island ferry options",
+      url: affiliates.tours.blockIslandFerry,
+    },
+  },
+  {
+    n: 4,
+    name: "Newport, Rhode Island",
+    drive: "1 hr east",
+    summary:
+      "An hour east on coastal Route 1 then up I-95, Newport is the headline destination of Rhode Island tourism. The Gilded Age mansions — The Breakers, Marble House, Rosecliff — are genuinely worth the visit for anyone interested in American social history. The 3.5-mile Cliff Walk threads behind them along the ocean. Downtown Newport has a working sailing harbor, a serious restaurant scene, and more bars than Watch Hill has total businesses.",
+    do: [
+      "The Breakers (~$30, 2 hours, the most famous Vanderbilt mansion)",
+      "Walk the Cliff Walk — 3.5 miles one way along the coast",
+      "Lunch at The Mooring or Midtown Oyster Bar on the harbor",
+      "Bowen's Wharf for browsing and a late-afternoon drink",
+    ],
+    insider:
+      "Newport is a full-day trip, not a half-day. Leave Watch Hill by 9 AM, plan to return by 8 PM. Avoid Saturday afternoons in July — traffic between Westerly and Newport can be brutal. The Newport Bridge is a $4 toll.",
+    booking: {
+      label: "Newport mansion tickets",
+      url: affiliates.tours.newportMansions,
+    },
+  },
+  {
+    n: 5,
+    name: "Foxwoods Resort Casino",
+    drive: "30 min north",
+    summary:
+      "Twenty minutes north of Mystic on the Mashantucket Pequot reservation, Foxwoods is one of the largest casinos in the Western Hemisphere. The casino itself is the obvious draw, but there's also a Native American history museum on-site (genuinely good), several headlining concert venues, multiple restaurants, an outlet mall, and a Lake Of Isles golf course. Even if you don't gamble, it's a destination for concerts and meals.",
+    do: [
+      "The Mashantucket Pequot Museum (~$20, the casino's best-kept secret)",
+      "A concert at Grand Theater or Premier Theater (huge touring acts)",
+      "Dinner at Cedars Steaks & Oysters or Sugar Factory",
+      "Tanger Outlets on the property for shopping",
+    ],
+    insider:
+      "Foxwoods and Mohegan Sun are 15 minutes apart and very different. Foxwoods is bigger, more sprawling, more family-friendly. Mohegan Sun is more concentrated, more glittery, with a better casino floor. Try both if you stay overnight.",
+    booking: null,
+  },
+  {
+    n: 6,
+    name: "Providence, Rhode Island",
+    drive: "50 min north",
+    summary:
+      "Rhode Island's capital is a quietly excellent small city — walkable, with Brown and RISD as cultural anchors. Federal Hill has some of the best Italian restaurants in New England. The RISD Museum is a small but genuinely world-class art museum. The Providence Athenaeum, a 19th-century subscription library where Edgar Allan Poe courted Sarah Helen Whitman, is open to the public. A perfect rainy-day or off-season day trip.",
+    do: [
+      "Federal Hill for lunch — Pane e Vino, Massimo, or Camille's",
+      "RISD Museum (~$15, 2 hours)",
+      "Walk Benefit Street's mile of preserved Federalist architecture",
+      "Coffee at Olga's Cup + Saucer if it's afternoon",
+    ],
+    insider:
+      "If you visit during WaterFire season (May–November on select Saturdays), time your trip around it. Bonfires lit in braziers along the rivers, with music — it's the city's signature event and genuinely magical.",
+    booking: null,
+  },
+  {
+    n: 7,
+    name: "Charlestown, Rhode Island",
+    drive: "20 min east",
+    summary:
+      "Twenty minutes east, Charlestown has some of the best undeveloped beaches in Rhode Island. Blue Shutters Town Beach and East Beach (a different East Beach than Watch Hill's) face the open Atlantic with miles of dunes and no commercial development. The Ninigret National Wildlife Refuge sits inland — 858 acres of restored salt ponds with hiking trails and active birding. This is the day trip for people who want the beach without the village.",
+    do: [
+      "East Beach Charlestown — 3 miles of barrier beach",
+      "Ninigret National Wildlife Refuge for hiking",
+      "Lunch at Wilcox Tavern or The Hitching Post",
+      "Visit Indian Cedar Swamp Restoration Area for the bog walk",
+    ],
+    insider:
+      "Pack everything you need — concessions are minimal compared to Misquamicut or state beaches. The off-season here is unbeatable; September through October is when locals go.",
+    booking: null,
+  },
+  {
+    n: 8,
+    name: "New London & Old Lyme, Connecticut",
+    drive: "35 min west",
+    summary:
+      "Past Mystic on I-95, New London is a working Connecticut port city — home to the Coast Guard Academy, a busy ferry terminal, and Ocean Beach Park. Old Lyme, just across the Connecticut River, has the Florence Griswold Museum — the birthplace of American Impressionism, in the house where artists like Childe Hassam summered. A more historically interesting day trip than the obvious picks.",
+    do: [
+      "U.S. Coast Guard Academy (free, includes a tall ship in summer)",
+      "Florence Griswold Museum (~$12, 2 hours)",
+      "Lunch at On the Waterfront in Old Saybrook",
+      "Walk Ocean Beach Park boardwalk",
+    ],
+    insider:
+      "This trip is for adults more than kids. If you have a deep interest in American history or art, it's the most under-the-radar of the day trips on this list.",
+    booking: null,
+  },
+  {
+    n: 9,
+    name: "Watch Hill State Airport → Block Island by Plane",
+    drive: "Westerly to BID via 12-min flight",
+    summary:
+      "An offbeat option locals love: New England Airlines flies from Westerly State Airport (WST) to Block Island State Airport (BID) every two hours in season. The flight itself is about twelve minutes and the view from the small plane over Block Island Sound is spectacular. Total cost is roughly $80 round-trip — comparable to the ferry, faster, and significantly more memorable.",
+    do: [
+      "Land on Block Island and walk into Old Harbor (10 min)",
+      "Do the full Block Island day — bikes, Mohegan Bluffs, lunch",
+      "Catch a return flight in the late afternoon",
+    ],
+    insider:
+      "Weather-dependent — small planes don't fly in heavy weather. Build flexibility into the plan. Book directly with New England Airlines; they're a tiny operation and don't show up on aggregators.",
+    booking: null,
+  },
+  {
+    n: 10,
+    name: "Stonington Vineyards & the Connecticut Wine Trail",
+    drive: "25 min west",
+    summary:
+      "Connecticut has a real wine country — there are about 40 wineries in the state — and the closest serious one is Stonington Vineyards, fifteen minutes inland from the borough. Lawn tastings, a summer music series, and an annual Harvest Food & Wine Festival. Within a half-hour drive you can visit three or four more wineries and make a real day of it. Designate a driver.",
+    do: [
+      "Stonington Vineyards tasting + walking the grounds",
+      "Saltwater Farm Vineyard nearby for the renovated WWII hangar",
+      "Lunch at the vineyard or back in Stonington Borough",
+      "Maugle Sierra Vineyards for a third stop if you have time",
+    ],
+    insider:
+      "Booking a car service or Uber for the day is genuinely the only smart way to do this trip. Rideshare coverage is sparse in this area — book ahead, not after.",
+    booking: null,
+  },
+];
+
+// Quick-pick decision matrix
+const byTravelStyle = {
+  withKids: ["Mystic Aquarium", "Block Island bikes", "Foxwoods Pequot Museum", "Charlestown beaches"],
+  forCouples: ["Stonington Borough", "Stonington Vineyards", "Old Lyme Florence Griswold", "Newport Cliff Walk"],
+  rainyDay: ["Mystic Aquarium", "RISD Museum (Providence)", "Pequot Museum at Foxwoods", "Florence Griswold Museum"],
+  halfDay: ["Stonington Borough", "Charlestown beaches", "Mystic downtown only"],
+  fullDay: ["Block Island", "Newport mansions + Cliff Walk", "Mystic Seaport + Aquarium"],
+};
+
+const faqs = [
+  {
+    q: "What is the best day trip from Watch Hill?",
+    a: "Mystic, Connecticut — 20 minutes west. It has both Mystic Seaport Museum and Mystic Aquarium, a walkable historic downtown, and a serious restaurant scene. It's the day trip that works for every type of traveler: families, couples, history buffs, food people. Pair it with Stonington Borough for the perfect full day.",
+  },
+  {
+    q: "How long is the ferry from Westerly to Block Island?",
+    a: "The high-speed ferry from Pawcatuck (technically Westerly's ferry terminal sits in Pawcatuck, CT) takes about 30 minutes one-way. The traditional ferry from Point Judith takes 55 minutes but allows cars. For a day trip from Watch Hill, the high-speed Westerly ferry is the move — you don't need a car on Block Island.",
+  },
+  {
+    q: "Is Newport worth a day trip from Watch Hill?",
+    a: "Yes, but plan for a full day — it's about an hour each way without summer traffic. The Newport mansions (especially The Breakers) and the Cliff Walk are the headline attractions, both genuinely worth the trip. Avoid Saturday afternoons in July when traffic between Westerly and Newport can turn the one-hour drive into two.",
+  },
+  {
+    q: "How far is Foxwoods from Watch Hill?",
+    a: "About 30 minutes north — through Mystic and then 15 minutes inland to the Mashantucket Pequot reservation. Mohegan Sun is another 15 minutes from Foxwoods, so you can technically visit both casinos in one trip if that's your plan.",
+  },
+  {
+    q: "Can you fly from Westerly to Block Island?",
+    a: "Yes — New England Airlines runs small-plane flights from Westerly State Airport (WST) to Block Island State Airport (BID) every two hours in season. The flight is about 12 minutes and costs roughly $80 round-trip. It's weather-dependent and the planes are small (8-seater), but it's a genuinely memorable way to do the trip.",
+  },
+  {
+    q: "What's the best rainy-day trip from Watch Hill?",
+    a: "Mystic Aquarium, easily. Two to three hours of indoor space with active exhibits, perfect for kids and surprisingly engaging for adults. The Mashantucket Pequot Museum at Foxwoods is the best rainy-day choice for adults specifically — most travelers don't realize how good it is.",
+  },
+];
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <Nav />
+
+  <article class="article">
+    <!-- Hero -->
+    <header class="hero">
+      <div class="hero-inner">
+        <p class="kicker">Day Trip Guide · 2026</p>
+        <h1>
+          The <em>10 Best Day Trips</em> from Watch Hill, RI
+        </h1>
+        <p class="hero-sub">
+          Watch Hill is the kind of village you don't need to leave — but if
+          you have three days, the southern New England coast around it is one
+          of the most rewarding driving regions in America. Here's where to
+          go, what to do, and how far each one actually is.
+        </p>
+        <div class="meta">
+          <span>Updated May 24, 2026</span>
+          <span class="dot">·</span>
+          <span>{readingTime}</span>
+          <span class="dot">·</span>
+          <span>Written from Westerly, RI</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Intro -->
+    <section class="prose">
+      <p class="lede">
+        The geography is the gift. Watch Hill sits at the southwestern corner
+        of Rhode Island, ten minutes from the Connecticut state line, an hour
+        from Newport, half a day from Boston, and within easy reach of a
+        coastline that includes everything from gilded mansions to small
+        islands to working fishing villages to a Native American
+        reservation–owned casino larger than several airports. The day-trip
+        possibilities are unusual in their range. This is the local ranking
+        of which ones are actually worth your time.
+      </p>
+
+      <aside class="disclosure">
+        <strong>A note on links:</strong> Some links below go through partners
+        we earn small commissions from when you book. We only link to
+        attractions we'd send our own family to.
+      </aside>
+    </section>
+
+    <!-- Decision Matrix -->
+    <section class="matrix">
+      <div class="matrix-inner">
+        <p class="m-label">Quick Lookup</p>
+        <h2>If You Know What You're Looking For…</h2>
+
+        <div class="matrix-grid">
+          <div class="m-card">
+            <p class="m-h">With Kids</p>
+            <ul>
+              {byTravelStyle.withKids.map((t) => <li>{t}</li>)}
+            </ul>
+          </div>
+          <div class="m-card">
+            <p class="m-h">For Couples</p>
+            <ul>
+              {byTravelStyle.forCouples.map((t) => <li>{t}</li>)}
+            </ul>
+          </div>
+          <div class="m-card">
+            <p class="m-h">Rainy Day</p>
+            <ul>
+              {byTravelStyle.rainyDay.map((t) => <li>{t}</li>)}
+            </ul>
+          </div>
+          <div class="m-card">
+            <p class="m-h">Half-Day</p>
+            <ul>
+              {byTravelStyle.halfDay.map((t) => <li>{t}</li>)}
+            </ul>
+          </div>
+          <div class="m-card">
+            <p class="m-h">Full Day</p>
+            <ul>
+              {byTravelStyle.fullDay.map((t) => <li>{t}</li>)}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The 10 Day Trips -->
+    <section class="trips">
+      <div class="section-head">
+        <h2>The 10 Best Day Trips, Ranked</h2>
+        <p>
+          Ranked by a mix of payoff, distance, and how often locals actually
+          take each one. Closest and best at the top.
+        </p>
+      </div>
+
+      {
+        trips.map((t) => (
+          <article class="trip" id={`trip-${t.n}`}>
+            <header class="t-head">
+              <p class="t-num">{String(t.n).padStart(2, "0")}</p>
+              <div class="t-meta">
+                <h3>{t.name}</h3>
+                <p class="t-drive">{t.drive}</p>
+              </div>
+            </header>
+
+            <p class="t-summary">{t.summary}</p>
+
+            <div class="t-do">
+              <p class="t-do-label">What to Do</p>
+              <ul>
+                {t.do.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+
+            <div class="t-insider">
+              <p class="t-insider-label">Local Tip</p>
+              <p>{t.insider}</p>
+            </div>
+
+            {t.booking && (
+              <a
+                class="t-cta"
+                href={t.booking.url}
+                rel="sponsored nofollow"
+              >
+                {t.booking.label} →
+              </a>
+            )}
+          </article>
+        ))
+      }
+    </section>
+
+    <!-- Cross-link to Where to Stay -->
+    <section class="stay-context">
+      <div class="sc-inner">
+        <p class="sc-tag">Building a Multi-Day Trip?</p>
+        <h2>Watch Hill Makes a Better Base Than a Destination</h2>
+        <p>
+          The trick with this region is that no single town has everything,
+          but the combinations are exceptional. Watch Hill is the most
+          comfortable base — quieter than Mystic, more walkable than Newport,
+          closer to everything than anywhere in Connecticut. Stay here for
+          three or four nights and day-trip out.
+        </p>
+        <a class="sc-cta" href="/blog/where-to-stay-watch-hill">
+          Read: Where to Stay in Watch Hill →
+        </a>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+      <h2 class="section-h">Frequently Asked Questions</h2>
+      {
+        faqs.map((faq) => (
+          <details class="faq-item">
+            <summary>{faq.q}</summary>
+            <p>{faq.a}</p>
+          </details>
+        ))
+      }
+    </section>
+
+    <!-- Related -->
+    <section class="related">
+      <h2 class="section-h">Keep Reading</h2>
+      <div class="related-grid">
+        <a href="/blog/best-things-to-do-in-watch-hill-ri" class="related-card">
+          <p class="related-tag">Activities</p>
+          <h3>15 Best Things to Do in Watch Hill</h3>
+        </a>
+        <a href="/blog/where-to-stay-watch-hill" class="related-card">
+          <p class="related-tag">Hotels</p>
+          <h3>Where to Stay in Watch Hill</h3>
+        </a>
+        <a href="/blog/best-restaurants-watch-hill" class="related-card">
+          <p class="related-tag">Food</p>
+          <h3>15 Best Restaurants in Watch Hill &amp; Westerly</h3>
+        </a>
+        <a href="/blog/is-watch-hill-worth-visiting" class="related-card">
+          <p class="related-tag">Planning</p>
+          <h3>Is Watch Hill Worth Visiting?</h3>
+        </a>
+      </div>
+    </section>
+  </article>
+
+  <style>
+    :root {
+      --ink: #1a1d24;
+      --ink-soft: #4a5061;
+      --ink-muted: #7a8195;
+      --paper: #fbf8f1;
+      --paper-warm: #f3ede0;
+      --line: #e5dfd0;
+      --accent: #2c5f5d;
+      --accent-deep: #1d3f3d;
+      --gold: #b8924a;
+      --font-display: "Fraunces", Georgia, serif;
+      --font-body: "Inter Tight", -apple-system, system-ui, sans-serif;
+    }
+
+    .article {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.7;
+      padding-bottom: 6rem;
+    }
+
+    .article *,
+    .article *::before,
+    .article *::after {
+      box-sizing: border-box;
+    }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(180deg, var(--paper-warm) 0%, var(--paper) 100%);
+      padding: 5rem 1.5rem 3rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .kicker {
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin: 0 0 1.5rem;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5.5vw, 4rem);
+      line-height: 1.04;
+      letter-spacing: -0.025em;
+      font-weight: 600;
+      margin: 0 0 1.5rem;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 1.2rem;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      margin: 0 0 2rem;
+      max-width: 620px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+    }
+
+    .dot {
+      color: var(--line);
+    }
+
+    /* ── PROSE ────────────────────────────────────────── */
+    .prose {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    .lede {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .disclosure {
+      background: var(--paper-warm);
+      border-left: 3px solid var(--gold);
+      padding: 1rem 1.25rem;
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      border-radius: 0 4px 4px 0;
+      margin-top: 2rem;
+    }
+
+    .disclosure strong {
+      color: var(--ink);
+    }
+
+    /* ── SECTION HEADINGS ─────────────────────────────── */
+    .section-h {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+      margin: 0 0 1.5rem;
+    }
+
+    /* ── MATRIX ───────────────────────────────────────── */
+    .matrix {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 4rem 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .matrix-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .m-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin: 0 0 0.75rem;
+    }
+
+    .matrix h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.3rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+      margin: 0 0 2.5rem;
+      color: white;
+    }
+
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .m-card {
+      padding-top: 1rem;
+      border-top: 1px solid rgba(251, 248, 241, 0.2);
+    }
+
+    .m-h {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--gold);
+      margin: 0 0 0.75rem;
+    }
+
+    .m-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .m-card li {
+      font-size: 0.92rem;
+      color: rgba(251, 248, 241, 0.85);
+      padding: 0.3rem 0;
+      border-bottom: 1px solid rgba(251, 248, 241, 0.08);
+    }
+
+    .m-card li:last-child {
+      border-bottom: none;
+    }
+
+    /* ── TRIPS ────────────────────────────────────────── */
+    .trips {
+      max-width: 760px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .section-head {
+      margin-bottom: 3rem;
+    }
+
+    .section-head p {
+      color: var(--ink-soft);
+      margin: 0.5rem 0 0;
+    }
+
+    .trip {
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .trip:last-of-type {
+      border-bottom: none;
+    }
+
+    .t-head {
+      display: flex;
+      align-items: baseline;
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .t-num {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 0;
+      letter-spacing: -0.02em;
+      font-feature-settings: "tnum";
+      flex-shrink: 0;
+    }
+
+    .t-meta {
+      flex: 1;
+    }
+
+    .trip h3 {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 3.5vw, 2.1rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+      margin: 0 0 0.4rem;
+    }
+
+    .t-drive {
+      font-family: var(--font-display);
+      font-style: italic;
+      color: var(--ink-muted);
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .t-summary {
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: var(--ink);
+      margin: 0 0 1.5rem;
+    }
+
+    .t-do,
+    .t-insider {
+      padding: 1rem 1.25rem;
+      border-radius: 0 4px 4px 0;
+      margin-bottom: 1rem;
+    }
+
+    .t-do {
+      background: var(--paper);
+      border-left: 3px solid var(--accent);
+    }
+
+    .t-insider {
+      background: var(--paper-warm);
+      border-left: 3px solid var(--gold);
+    }
+
+    .t-do-label,
+    .t-insider-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin: 0 0 0.5rem;
+    }
+
+    .t-do-label {
+      color: var(--accent);
+    }
+
+    .t-insider-label {
+      color: var(--gold);
+    }
+
+    .t-do ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .t-do li {
+      position: relative;
+      padding: 0.35rem 0 0.35rem 1.25rem;
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+
+    .t-do li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .t-insider p:not(.t-insider-label) {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      line-height: 1.55;
+    }
+
+    .t-cta {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--paper);
+      padding: 0.7rem 1.25rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      transition: background 0.15s ease;
+    }
+
+    .t-cta:hover {
+      background: var(--accent-deep);
+    }
+
+    /* ── STAY CONTEXT (cross-link to Where to Stay) ───── */
+    .stay-context {
+      max-width: 1080px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .sc-inner {
+      background: var(--paper-warm);
+      border: 1px solid var(--line);
+      padding: 2.5rem;
+      border-radius: 4px;
+      border-left: 4px solid var(--accent);
+    }
+
+    .sc-tag {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin: 0 0 0.75rem;
+    }
+
+    .stay-context h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 2.8vw, 1.9rem);
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      font-weight: 600;
+      margin: 0 0 1rem;
+    }
+
+    .stay-context p {
+      color: var(--ink-soft);
+      margin: 0 0 1.5rem;
+      max-width: 620px;
+    }
+
+    .sc-cta {
+      display: inline-block;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 2px;
+      transition: color 0.15s ease;
+    }
+
+    .sc-cta:hover {
+      color: var(--accent-deep);
+    }
+
+    /* ── FAQ ──────────────────────────────────────────── */
+    .faq {
+      max-width: 760px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--line);
+      padding: 1.25rem 0;
+    }
+
+    .faq-item summary {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--ink);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      letter-spacing: -0.005em;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: "+";
+      font-size: 1.5rem;
+      color: var(--accent);
+      font-weight: 400;
+      flex-shrink: 0;
+    }
+
+    .faq-item[open] summary::after {
+      content: "−";
+    }
+
+    .faq-item p {
+      margin: 1rem 0 0;
+      color: var(--ink-soft);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /* ── RELATED ──────────────────────────────────────── */
+    .related {
+      max-width: 1080px;
+      margin: 4rem auto 0;
+      padding: 3rem 1.5rem 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .related-card {
+      display: block;
+      background: white;
+      border: 1px solid var(--line);
+      padding: 1.5rem;
+      text-decoration: none;
+      color: var(--ink);
+      border-radius: 4px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .related-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+
+    .related-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin: 0 0 0.75rem;
+    }
+
+    .related-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin: 0;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── MOBILE ───────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .hero {
+        padding: 3.5rem 1.25rem 2.5rem;
+      }
+
+      .matrix {
+        padding: 3rem 1.25rem;
+      }
+
+      .sc-inner {
+        padding: 2rem 1.5rem;
+      }
+
+      .t-head {
+        flex-direction: column;
+        gap: 0.4rem;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</Base>

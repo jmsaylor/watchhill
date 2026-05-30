@@ -1,0 +1,113 @@
+---
+import Base from "../../layouts/Base.astro";
+import Nav from "../../components/Nav.astro";
+import AttractionPost from "../../components/AttractionPost.astro";
+
+const title = "The Watch Hill Historic District: A Walking Tour (2026)";
+const description = "A self-guided walking tour of the Watch Hill Historic District — National Register-listed Victorian homes, the architectural styles, and the stories behind one of New England's best-preserved 19th-century resort villages.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  name: "Watch Hill Historic District",
+  description: "National Register of Historic Places–listed Victorian resort village in Watch Hill, RI.",
+  address: { "@type": "PostalAddress", addressLocality: "Watch Hill", addressRegion: "RI", addressCountry: "US" },
+};
+
+const props = {
+  kicker: "Self-Guided Tour · Historic District",
+  title: "Walking the ",
+  titleEm: "Watch Hill Historic District",
+  titleTail: "",
+  subtitle: "A free, self-guided 90-minute walking tour of one of New England's best-preserved 19th-century resort villages — listed on the National Register of Historic Places with over 100 contributing buildings, mostly Victorian-era summer homes on the bluffs above Bay Street.",
+  readingTime: "8 min read",
+  verdict: "<strong>Free, self-guided, walkable in 60–90 minutes.</strong> Start at the foot of Bay Street, walk up Bluff Avenue, loop through Wells Avenue and the side streets, end at the lighthouse. Wear actual shoes (the village streets are cobbled). Please respect that these are private residences — photograph from the street, don't approach houses, keep voices down.",
+  quickFacts: [
+    { label: "Listed on National Register", value: "1979" },
+    { label: "Contributing buildings", value: "~140" },
+    { label: "Walking time", value: "60–90 minutes" },
+    { label: "Best time", value: "Late afternoon for light" },
+    { label: "Cost", value: "Free, self-guided" },
+    { label: "Architectural eras", value: "1830s–1930s" },
+  ],
+  introParagraphs: [
+    "The Watch Hill Historic District is one of the best-preserved Victorian-era seaside resort villages on the East Coast. It was added to the National Register of Historic Places in 1979 and now includes approximately 140 contributing buildings — mostly summer cottages built between the 1830s and the 1930s by wealthy New England and New York families who came to escape the urban heat. Watch Hill was one of the original five \"summer colony\" destinations in southern New England, along with Newport, Watch Hill, Naragansett Pier, Westerly, and Quonochontaug.",
+    "The architectural range is unusually rich for such a small area. Greek Revival cottages from the 1830s sit alongside elaborate Shingle Style summer homes from the 1880s and Colonial Revival reconstructions from the 1920s. Several survived the catastrophic 1938 hurricane that destroyed five of Watch Hill's seven original grand hotels (only Ocean House and Watch Hill Inn survived among the hotels). The houses on the inland side of the bluffs fared better than those right on the water.",
+    "The walking tour below is self-guided. There's no formal museum or visitor center. The houses are private residences and most are not open to the public — this is a tour that you do from the street, photographing facades and enjoying the architectural diversity. Please be respectful: keep voices down, don't approach the houses, don't photograph people on porches.",
+  ],
+  tips: [
+    {
+      label: "Start at the foot of Bay Street",
+      body: "Begin at the public lot at the foot of Bay Street near the harbor. From here, walk up Bay Street past the Flying Horse Carousel, Olympia Tea Room, St. Clair Annex, and the shops — this is the commercial Victorian streetscape that defines the village. The street itself is the historic core; the buildings on Bay Street are mostly converted summer hotels and merchant buildings from the late 1800s.",
+    },
+    {
+      label: "Climb Larkin Road to Bluff Avenue",
+      body: "From Bay Street, follow Larkin Road uphill — a steep but short climb that takes you to Bluff Avenue, the spine of the historic district. Bluff Avenue runs along the top of the headland that gives Watch Hill its name, with the most prestigious historic homes along its length. Several of these houses face the open Atlantic and have spectacular views; others face inland with views of Little Narragansett Bay and Block Island Sound.",
+    },
+    {
+      label: "Walk Bluff Avenue end-to-end",
+      body: "Bluff Avenue is the main artery of the historic district. Walking it end-to-end takes about 30 minutes with stops to photograph. Notable architectural styles you'll see: <strong>Shingle Style</strong> (1880s–1890s, distinctive wood-shingled walls), <strong>Queen Anne</strong> (1880s, asymmetrical, turrets, wraparound porches), <strong>Colonial Revival</strong> (1900–1930s, more symmetrical, white clapboard). Many houses have small interpretive plaques with construction dates and original owners. The plaques themselves are worth reading.",
+    },
+    {
+      label: "Holiday House on Bluff Avenue",
+      body: "The most famous house in the district is Holiday House — built in 1929 for Rebekah Harkness, the Standard Oil heiress, dance patron, and former owner of the Rebekah Harkness Foundation. Today it is owned by Taylor Swift, who purchased it in 2013 for around $17 million. The house is on Bluff Avenue at 16 Bluff Avenue. <strong>Important:</strong> please respect the property. Walk past on the public sidewalk, photograph from the street if you wish, but do not approach the house, ring the bell, or linger. The neighborhood is residential and the security is real.",
+    },
+    {
+      label: "Wells Avenue and the side streets",
+      body: "From Bluff Avenue, turn inland onto Wells Avenue and explore the side streets — Ninigret Avenue, Plimpton Avenue, and Lighthouse Road. The houses here are smaller and less grand than those on Bluff Avenue but often more architecturally interesting. Several Greek Revival cottages from the 1830s and 1840s are tucked along these streets — the earliest surviving structures in the historic district.",
+    },
+    {
+      label: "End at the lighthouse",
+      body: "Conclude your walking tour at Watch Hill Lighthouse, at the western tip of Bluff Avenue. The lighthouse itself is from 1856 (the current granite tower; the original 1808 wooden one was replaced), and the small museum next door — open Tuesday through Thursday afternoons in summer — covers the broader Watch Hill maritime history. Even when the museum is closed, the lighthouse grounds are open to the public during daylight hours and offer the best sunset view in the village.",
+    },
+    {
+      label: "Best time for the walk",
+      body: "<strong>Late afternoon</strong> (around 4–5 PM in summer) gives the best architectural photography light — golden, low-angle, the kind that makes Victorian woodwork look its best. <strong>Off-season</strong> (October–April) is when locals do this walk; the village is quiet, the houses are mostly closed up, and you can actually concentrate on the architecture without summer traffic. <strong>Avoid</strong> Saturday afternoons in July and August — Bay Street is busy with carousel visitors and the parking lot fills.",
+    },
+    {
+      label: "What you can read in advance",
+      body: "The Watch Hill Conservancy publishes walking-tour materials and historical information on its website. The Watch Hill Improvement Society also maintains historical records. For deeper architectural reading, the National Register of Historic Places nomination form from 1979 is publicly available and is the most comprehensive source on the district's history — it covers individual notable buildings, the social history of the resort era, and the geographic development of the village.",
+    },
+  ],
+  faqs: [
+    {
+      q: "Is the Watch Hill Historic District open to the public?",
+      a: "The district itself — meaning the streets and public spaces — is fully accessible. The houses are private residences and are not open to tour. This is a self-guided walking tour conducted entirely from public sidewalks and streets, with the option to photograph facades and read interpretive plaques.",
+    },
+    {
+      q: "Where is Taylor Swift's house in Watch Hill?",
+      a: "Holiday House, at 16 Bluff Avenue. The 1929 mansion was originally built for Rebekah Harkness (Standard Oil heir and dance patron) and purchased by Taylor Swift in 2013 for around $17 million. Please respect that this is a private residence — photograph from the public sidewalk if you wish, but do not approach the house or linger. The neighborhood is residential and security is active.",
+    },
+    {
+      q: "How long does the walking tour take?",
+      a: "60–90 minutes is the typical range. The full route (Bay Street, up Larkin Road, along Bluff Avenue, through the side streets, ending at the lighthouse) is about 1.5 miles with notable climbs. Add 30 minutes if you stop to photograph extensively or read the plaques in detail.",
+    },
+    {
+      q: "When was the Watch Hill Historic District established?",
+      a: "Added to the National Register of Historic Places in 1979. The actual historic district encompasses buildings from the 1830s through the 1930s. The district has been recognized as one of the most intact 19th-century summer resort villages on the East Coast — a designation reinforced by the survival of much of the building stock through the 1938 hurricane that destroyed several of the original grand hotels.",
+    },
+    {
+      q: "Is the walking tour free?",
+      a: "Yes — entirely free, self-guided. No tour company runs the walk; no guidebook is required to enjoy it. The Watch Hill Conservancy publishes optional digital materials online. The lighthouse grounds at the end of the walk are free; the small lighthouse museum charges a modest admission and has limited hours.",
+    },
+    {
+      q: "What architectural styles will you see?",
+      a: "The district covers a wide range: Greek Revival (1830s–1840s, the earliest cottages), Italianate (1860s), Stick Style and Queen Anne (1870s–1880s), Shingle Style (1880s–1890s, particularly characteristic of Watch Hill), and Colonial Revival (1900–1930s). Several houses combine elements from multiple periods due to renovations and additions.",
+    },
+  ],
+  related: [
+    { href: "/blog/best-things-to-do-in-watch-hill-ri", tag: "Activities", title: "15 Best Things to Do in Watch Hill" },
+    { href: "/blog/taylor-swift-watch-hill-mansion", tag: "Local History", title: "The Real Story of Holiday House" },
+    { href: "/blog/watch-hill-lighthouse", tag: "Tour Ending", title: "Watch Hill Lighthouse Guide" },
+    { href: "/blog/free-things-watch-hill", tag: "Free Activities", title: "10 Free Things to Do in Watch Hill" },
+  ],
+};
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Nav />
+  <main>
+    <AttractionPost {...props} />
+  </main>
+</Base>
